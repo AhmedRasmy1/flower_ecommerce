@@ -12,7 +12,10 @@ class SuccessRegisterState extends RegisterState {
   SuccessRegisterState(this.registerEntities);
 }
 
-class LoadingRegisterState extends RegisterState {}
+class LoadingRegisterState extends RegisterState {
+
+  LoadingRegisterState();
+}
 
 class ErrorRegisterState extends RegisterState {
   Exception? exception;
