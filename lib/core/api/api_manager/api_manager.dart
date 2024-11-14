@@ -13,7 +13,7 @@ part 'api_manager.g.dart';
 abstract class ApiService {
 
   @FactoryMethod()
-  factory ApiService(Dio dio) = _ApiService;
+  factory ApiService(Dio dio) =_ApiService;
 
   @POST(ApiConstants.signupRoute)
   Future<RegisterResponseDto> signUp(@Body() RegisterModelDto registerModelDto);
