@@ -9,24 +9,31 @@ import '../../../domain/use_cases/register_usecase.dart';
 
 @injectable
 class RegisterViewModel extends Cubit<RegisterState> {
-  RegisterUseCase registerUseCase;
+  final RegisterUseCase _registerUseCase;
 
   //static RegisterViewModel get(context) => BlocProvider.of(context);
 
-  RegisterViewModel(this.registerUseCase) : super(InitialState());
-  bool genderChosen=false;
+  RegisterViewModel(this._registerUseCase) : super(InitialState());
+  bool isSelectGender =false;
 
-  void register(
-      {required String firstName,
-      required String lastName,
-      required String email,
-      required String password,
-      required String rePassword,
-      required String phone}) async {
+  void doIntent(RegisterAction intent) async {
+    switch (intent) {
+      case RegisterAction():
+        _register(intent);
+    }
+  }
+
+  void _register(RegisterAction registerAction) async {
     emit(LoadingRegisterState());
-    String gender = SharedData.getData(key: StringCache.selectGender)??'';
-    var result = await registerUseCase.register(firstName, lastName, email,
-        password, gender, rePassword, phone);
+    String gender = SharedData.getData(key: StringCache.selectGender) ?? '';
+    var result = await _registerUseCase.register(
+        registerAction.firstName,
+        registerAction.lastName,
+        registerAction.email,
+        registerAction.password,
+        gender,///
+        registerAction. rePassword,
+        registerAction. phone);
 
     switch (result) {
       case Success<RegisterEntities?>():
@@ -37,3 +44,5 @@ class RegisterViewModel extends Cubit<RegisterState> {
     }
   }
 }
+
+

@@ -31,7 +31,7 @@ String? validatePasswordMatch({
   required String password,
   required String confirmPassword,
   required String message,
-   String? messageIsEmpty,
+  String? messageIsEmpty,
 }) {
   if (password.trim().isEmpty) {
     return messageIsEmpty;
@@ -126,11 +126,44 @@ String? validatePassword({
       RegExp(r'^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$');
   if (password.trim().isEmpty) {
     return message;
-  }
-  else if (password.length < 8) {
+  } else if (password.length < 8) {
     return messageLength;
+  } else if (!passwordRegExp.hasMatch(password)) {
+    return messageInvalid;
   }
-  else if (!passwordRegExp.hasMatch(password)) {
+  return null;
+}
+
+String? validateString({
+  required String value,
+  required String message,
+  required String messageLength,
+  required String messageInvalid,
+}) {
+  final RegExp valueRegExp = RegExp(r'^[A-Za-z]+$');
+  if (value.trim().isEmpty) {
+    return message;
+  } else if (value.length < 3) {
+    return messageLength;
+  } else if (!valueRegExp.hasMatch(value)) {
+    return messageInvalid;
+  }
+  return null;
+}
+
+String? validateEmail({
+  required String value,
+  required String message,
+
+  required String messageInvalid,
+}) {
+  // التعبير المنتظم للتحقق من صحة البريد الإلكتروني
+  final RegExp emailRegExp = RegExp(
+      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+
+  if (value.trim().isEmpty) {
+    return message;
+  } else if (!emailRegExp.hasMatch(value)) {
     return messageInvalid;
   }
   return null;

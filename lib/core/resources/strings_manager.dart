@@ -42,4 +42,7 @@ class AppStrings {
   static const String agreeTermsConditions = "Creating an account, you agree to our ";
   static const String termsConditions = "Terms&Conditions";
   static const String passwordIsEmpty = "password is empty";
+  static const String messageLength3 = "Minimum 3 characters";
+  static const String invalidInput = "Invalid input";
+  static const String emailIsEmpty = "email is empty";
 }

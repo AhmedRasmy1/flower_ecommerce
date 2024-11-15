@@ -34,25 +34,26 @@ class _RegisterViewState extends State<RegisterView> {
   final TextEditingController _phoneController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   Color buttonColor = ColorManager.darkGrey;
-  bool isPasswordHidden1 = true;
-  bool isPasswordHidden2 = true;
-  bool passwordValid = false;
   bool _hasStartedTyping = false;
+
   @override
   void initState() {
     viewModel = getIt.get<RegisterViewModel>();
     super.initState();
   }
+
   void _onTextChanged(String text) {
     if (!_hasStartedTyping && text.isNotEmpty) {
       _hasStartedTyping = true;
       _phoneController.text = '+2$text';
-      _phoneController.selection = TextSelection.collapsed(offset: _phoneController.text.length);
+      _phoneController.selection =
+          TextSelection.collapsed(offset: _phoneController.text.length);
     }
     if (text.isEmpty) {
       _hasStartedTyping = false;
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -88,10 +89,12 @@ class _RegisterViewState extends State<RegisterView> {
                               controller: _firstNameController,
                               labelText: AppStrings.firstName,
                               hintText: AppStrings.enterYourFirstName,
-                              obscureText: false,
-                              validator: (value) =>
-                                  validateNotEmpty(
-                                      value, AppStrings.entervalidfirstName),
+                              validator: (value) => validateString(
+                                value: value!,
+                                messageLength: AppStrings.messageLength3,
+                                messageInvalid: AppStrings.invalidInput,
+                                message: AppStrings.entervalidLastName,
+                              ),
                             ),
                           ),
                           SizedBox(
@@ -101,10 +104,12 @@ class _RegisterViewState extends State<RegisterView> {
                               controller: _lastNameController,
                               labelText: AppStrings.lastName,
                               hintText: AppStrings.enterYourLastName,
-                              obscureText: false,
-                              validator: (value) =>
-                                  validateNotEmpty(
-                                      value, AppStrings.entervalidLastName),
+                              validator: (value) => validateString(
+                                value: value!,
+                                messageLength: AppStrings.messageLength3,
+                                messageInvalid: AppStrings.invalidInput,
+                                message: AppStrings.entervalidLastName,
+                              ),
                             ),
                           ),
                         ],
@@ -115,9 +120,11 @@ class _RegisterViewState extends State<RegisterView> {
                         controller: _emailController,
                         labelText: AppStrings.email,
                         hintText: AppStrings.enterYourEmail,
-                        obscureText: false,
-                        validator: (value) =>
-                            validateNotEmpty(value, AppStrings.enterValidEmail),
+                        validator: (value) => validateEmail(
+                          value: value!,
+                          message: AppStrings.emailIsEmpty,
+                          messageInvalid: AppStrings.enterValidEmail,
+                        ),
                       ),
                       const SizedBox(height: AppSize.s24),
                       Row(
@@ -130,15 +137,14 @@ class _RegisterViewState extends State<RegisterView> {
                               controller: _passwordController,
                               labelText: AppStrings.password,
                               hintText: AppStrings.enterYourPassword,
-                              obscureText: isPasswordHidden2,
-                              validator: (value) =>
-                                  validatePassword(
-                                      password: _passwordController.text,
-                                      messageInvalid: AppStrings
-                                          .passwordInvalidFormat,
-                                      messageLength: AppStrings
-                                          .passwordCharactersLong,
-                                      message: AppStrings.passwordNotMatch),
+                              obscureText: true,
+                              validator: (value) => validatePassword(
+                                  password: _passwordController.text,
+                                  messageInvalid:
+                                      AppStrings.passwordInvalidFormat,
+                                  messageLength:
+                                      AppStrings.passwordCharactersLong,
+                                  message: AppStrings.passwordNotMatch),
                             ),
                           ),
                           SizedBox(
@@ -148,14 +154,12 @@ class _RegisterViewState extends State<RegisterView> {
                               controller: _rePasswordController,
                               labelText: AppStrings.confirmPassword,
                               hintText: AppStrings.enterYourConfirmPassword,
-                              obscureText: isPasswordHidden2,
-                              validator: (value) =>
-                                  validatePasswordMatch(
-                                    messageIsEmpty:AppStrings.passwordIsEmpty ,
-                                      password: _passwordController.text,
-                                      confirmPassword: _rePasswordController
-                                          .text,
-                                      message: AppStrings.passwordNotMatch),
+                              obscureText: true,
+                              validator: (value) => validatePasswordMatch(
+                                  messageIsEmpty: AppStrings.passwordIsEmpty,
+                                  password: _passwordController.text,
+                                  confirmPassword: _rePasswordController.text,
+                                  message: AppStrings.passwordNotMatch),
                             ),
                           ),
                         ],
@@ -166,24 +170,26 @@ class _RegisterViewState extends State<RegisterView> {
                         keyboardType: TextInputType.phone,
                         labelText: AppStrings.phoneNumber,
                         hintText: AppStrings.enterPhoneNumber,
-                        onChanged:    _onTextChanged,
+                        onChanged: _onTextChanged,
                         obscureText: false,
-                        validator: (value) =>
-                            validateNotEmpty(
-                              value,
-                              AppStrings.enterValidPhoneNumber,
-                            ),
+                        validator: (value) => validateNotEmpty(
+                          value,
+                          AppStrings.enterValidPhoneNumber,
+                        ),
                       ),
                       const SizedBox(height: AppSize.s16),
-                      const ChooseGender(),
+                      ChooseGender(viewModel: viewModel),
                       const AuthPrompt(
                         message: AppStrings.agreeTermsConditions,
                         userAccess: AppStrings.termsConditions,
                         color: ColorManager.black,
-                        routeName: RoutesManager.loginRoute,/// change
+                        routeName: RoutesManager.loginRoute,
+
+                        /// change
                       ),
                       const SizedBox(height: AppSize.s48),
                       BlocConsumerForSignupPage(
+                        isSelectGender: isSelectGender,
                         formKey: _formKey,
                         emailController: _emailController,
                         passwordController: _passwordController,
@@ -195,7 +201,12 @@ class _RegisterViewState extends State<RegisterView> {
                         viewModel: viewModel,
                         updateButtonColor: (newColor) {
                           setState(() {
-                            buttonColor = newColor;
+                            if (isSelectGender) {
+                              buttonColor = newColor;
+                              viewModel.isSelectGender = false;
+                            } else {
+                              viewModel.isSelectGender = true;
+                            }
                           });
                         },
                       ),
@@ -215,5 +226,3 @@ class _RegisterViewState extends State<RegisterView> {
     );
   }
 }
-
-

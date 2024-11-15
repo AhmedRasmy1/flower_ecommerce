@@ -1,4 +1,3 @@
-
 import 'package:flower_ecommerce/Features/auth/presentation/view_model/signup_view_model/signup_state.dart';
 import 'package:flower_ecommerce/core/resources/color_manager.dart';
 import 'package:flower_ecommerce/core/resources/style_manager.dart';
@@ -23,6 +22,7 @@ class BlocConsumerForSignupPage extends StatelessWidget {
   final Color buttonColor;
   final Function(Color) updateButtonColor;
   final RegisterViewModel viewModel;
+  final bool isSelectGender;
 
   const BlocConsumerForSignupPage({
     super.key,
@@ -35,7 +35,7 @@ class BlocConsumerForSignupPage extends StatelessWidget {
     required this.phoneController,
     required this.buttonColor,
     required this.updateButtonColor,
-    required this.viewModel,
+    required this.viewModel, required this.isSelectGender,
   });
 
   @override
@@ -62,14 +62,27 @@ class BlocConsumerForSignupPage extends StatelessWidget {
           Navigator.pop(context);
           String? message;
           if (state.exception is ServerError) {
-            message = (state.exception as ServerError).serverMessage ;
+            message = (state.exception as ServerError).serverMessage;
           }
           showCustomDialog(context, message);
-
         }
         if (state is SuccessRegisterState) {
           Navigator.pop(context);
+          firstNameController.clear();
+          lastNameController.clear();
+          emailController.clear();
+          passwordController.clear();
+          rePasswordController.clear();
+          phoneController.clear();
+
           Navigator.pushNamed(context, RoutesManager.loginRoute);
+
+          firstNameController.dispose();
+          lastNameController.dispose();
+          emailController.dispose();
+          passwordController.dispose();
+          rePasswordController.dispose();
+          phoneController.dispose();
         }
       },
       builder: (context, state) {
@@ -79,14 +92,17 @@ class BlocConsumerForSignupPage extends StatelessWidget {
           onPressed: () {
             validationMethod(
               actionPress: () {
-                viewModel.register(
-                  firstName: firstNameController.text,
-                  lastName: lastNameController.text,
-                  email: emailController.text,
-                  password: rePasswordController.text,
-                  rePassword: rePasswordController.text,
-                  phone: phoneController.text,
-                );
+                if(isSelectGender){
+                  viewModel.doIntent(RegisterAction(
+                    firstName: firstNameController.text,
+                    lastName: lastNameController.text,
+                    email: emailController.text,
+                    password: rePasswordController.text,
+                    rePassword: rePasswordController.text,
+                    phone: phoneController.text,
+                  ));
+                }
+
               },
               formKey: formKey,
               updateButtonColor: updateButtonColor,
@@ -97,7 +113,6 @@ class BlocConsumerForSignupPage extends StatelessWidget {
     );
   }
 }
-
 
 void showCustomDialog(BuildContext context, String? message) {
   showDialog(
@@ -117,7 +132,7 @@ void showCustomDialog(BuildContext context, String? message) {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  message??'Error',
+                  message ?? 'Error',
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -133,7 +148,11 @@ void showCustomDialog(BuildContext context, String? message) {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: ColorManager.pink,
                   ),
-                  child:  Text('Close',style: getSemiBoldStyle(color: ColorManager.white,fontSize: AppSize.s14),),
+                  child: Text(
+                    'Close',
+                    style: getSemiBoldStyle(
+                        color: ColorManager.white, fontSize: AppSize.s14),
+                  ),
                 ),
               ],
             ),
