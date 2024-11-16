@@ -157,9 +157,9 @@ String? validateEmail({
 
   required String messageInvalid,
 }) {
-  // التعبير المنتظم للتحقق من صحة البريد الإلكتروني
+
   final RegExp emailRegExp = RegExp(
-      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+      r"^[a-zA-Z0-9.a-zA-Z0-9!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
 
   if (value.trim().isEmpty) {
     return message;
