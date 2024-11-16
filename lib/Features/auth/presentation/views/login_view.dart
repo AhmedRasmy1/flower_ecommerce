@@ -122,7 +122,10 @@ class _LoginScreenState extends State<LoginView> {
                         width: context.screenWidth * 0.22,
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context, RoutesManager.forgetPasswordRoute);
+                        },
                         child: Column(
                           children: [
                             Text(AppStrings.forgetPassword,
@@ -225,7 +228,7 @@ class _LoginScreenState extends State<LoginView> {
                               fontSize: 16)),
                       InkWell(
                         onTap: () {
-                          Navigator.pushReplacementNamed(
+                          Navigator.pushNamed(
                               context, RoutesManager.registerRoute);
                         },
                         child: Column(
