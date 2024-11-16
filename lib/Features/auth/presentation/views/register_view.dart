@@ -187,6 +187,8 @@ class _RegisterViewState extends State<RegisterView> {
                         /// change
                       ),
                       const SizedBox(height: AppSize.s48),
+
+
                       BlocConsumerForSignupPage(
                         isSelectGender: isSelectGender,
                         formKey: _formKey,

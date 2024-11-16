@@ -58,20 +58,31 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<LoginResponseDto> login(LoginModelDto loginModelDto) async {
+
+  Future<ForgetPasswordResponse> forgetPassword(
+      ForgetPasswordRequest requestEmail) async {
+    Future<LoginResponseDto> login(LoginModelDto loginModelDto) async {
+
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(loginModelDto.toJson());
+
+    _data.addAll(requestEmail.toJson());
+    final _options = _setStreamType<ForgetPasswordResponse>(Options(
+          _data.addAll(loginModelDto.toJson());
     final _options = _setStreamType<LoginResponseDto>(Options(
+
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
         .compose(
           _dio.options,
+
+          'auth/forgotPassword',
           'auth/signin',
+
           queryParameters: queryParameters,
           data: _data,
         )
@@ -81,9 +92,48 @@ class _ApiService implements ApiService {
           baseUrl,
         )));
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late LoginResponseDto _value;
+
+    late ForgetPasswordResponse _value;
+    try {
+      _value = ForgetPasswordResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<VerifyResponse> verifyPassword(VerifyRequest requestOtp) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(requestOtp.toJson());
+    final _options = _setStreamType<VerifyResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          'auth/verifyResetCode',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late VerifyResponse _value;
+    try {
+      _value = VerifyResponse.fromJson(_result.data!);
+          late LoginResponseDto _value;
     try {
       _value = LoginResponseDto.fromJson(_result.data!);
+
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
