@@ -8,4 +8,6 @@ class ColorManager {
   static const Color grey = Color(0xff535353);
   static const Color error = Color(0xffCC1010);// for subtitles color
   static const Color darkGrey = Color(0xff7a7a7c);
+  static const Color lightGrey = Color(0xff0C1015);
+
 }

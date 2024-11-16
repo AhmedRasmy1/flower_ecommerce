@@ -36,4 +36,7 @@ class AppStrings {
   static const String dontReciveCode = "Didn't receive code? ";
   static const String invalidCode = "Invalid code";
   static const String enterPhoneNumber = "Enter your phone number";
+  static const String rememberMe = "Remember me";
+  static const String invalidEmailOrPassword = 'Invalid Email or Password';
+  static const String forgetPassword = 'Forget password?';
 }

@@ -1,3 +1,6 @@
+import 'package:flower_ecommerce/Features/auth/data/models/request/LoginModelDto.dart';
+import 'package:flower_ecommerce/Features/auth/data/models/response/LoginResponseDto.dart';
+import 'package:flower_ecommerce/Features/auth/domain/entities/login_entities.dart';
 import 'package:flower_ecommerce/Features/auth/domain/entities/register_entities.dart';
 
 import 'package:injectable/injectable.dart';
@@ -21,6 +24,14 @@ class AuthOnLineDataSourceImpl implements AuthOnLineDataSource {
     return executeApi(() async {
       var response = await _authRetrofit.signUp(registerModelDto);
       return response.toRegisterEntities();
+    });
+  }
+
+  @override
+  Future<Result<LoginEntitie>> login (LoginModelDto loginModelDto) {
+    return executeApi(() async {
+      var response = await _authRetrofit.login(loginModelDto);
+      return response.toLoginEntities();
     });
   }
 }
