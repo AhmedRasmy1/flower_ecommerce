@@ -1,3 +1,6 @@
+import 'package:flower_ecommerce/Features/auth/data/models/request/LoginModelDto.dart';
+import 'package:flower_ecommerce/Features/auth/data/models/response/LoginResponseDto.dart';
+import 'package:flower_ecommerce/Features/auth/domain/entities/login_entities.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/common/api_result.dart';
 import '../../domain/entities/register_entities.dart';
@@ -5,7 +8,6 @@ import '../data_sources/auth_online_datasource.dart';
 import '../../domain/repositories/auth_repo.dart';
 import '../data_sources/auth_offline_datasource.dart';
 import '../models/request/RegisterModelDto.dart';
-
 
 @Injectable(as: AuthRepo)
 class AuthRepoImpl implements AuthRepo {
@@ -17,7 +19,6 @@ class AuthRepoImpl implements AuthRepo {
     this.onLineDataSource,
   );
 
-
   @override
   Future<Result<RegisterEntities?>> register(
       String firstName,
@@ -27,16 +28,22 @@ class AuthRepoImpl implements AuthRepo {
       String gender,
       String rePassword,
       String phone) {
-
     return onLineDataSource.register(RegisterModelDto(
       email: email,
       firstName: firstName,
-      gender:gender,
-      rePassword:rePassword,
-      phone:phone,
+      gender: gender,
+      rePassword: rePassword,
+      phone: phone,
       password: password,
       lastName: lastName,
+    ));
+  }
 
+  @override
+  Future<Result<LoginEntitie>> login(String email, String password) {
+    return onLineDataSource.login(LoginModelDto(
+      email: email,
+      password: password,
     ));
   }
 }
