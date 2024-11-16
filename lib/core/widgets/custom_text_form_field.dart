@@ -87,6 +87,7 @@ class CustomTextFormField extends StatelessWidget {
       obscureText: obscureText ?? false,
       validator: validator,
       onChanged:onChanged ,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
     );
   }
 }

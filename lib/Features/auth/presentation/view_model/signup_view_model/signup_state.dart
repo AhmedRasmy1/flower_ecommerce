@@ -22,3 +22,24 @@ class ErrorRegisterState extends RegisterState {
 
   ErrorRegisterState(this.exception);
 }
+
+
+
+sealed class RegisterToAction {}
+
+class RegisterAction extends RegisterToAction {
+  String firstName;
+  String lastName;
+  String email;
+  String password;
+  String rePassword;
+  String phone;
+
+  RegisterAction(
+      {required this.firstName,
+        required this.lastName,
+        required this.email,
+        required this.password,
+        required this.rePassword,
+        required this.phone});
+}

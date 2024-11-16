@@ -4,11 +4,12 @@ import 'package:flower_ecommerce/core/resources/strings_manager.dart';
 import 'package:flower_ecommerce/core/resources/style_manager.dart';
 import 'package:flower_ecommerce/core/resources/values_manager.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../core/utils/cashed_data_shared_preferences.dart';
 
 class ChooseGender extends StatefulWidget {
-  const ChooseGender({super.key});
+  const ChooseGender({super.key, required this.viewModel});
+
+  final RegisterViewModel viewModel;
 
   @override
   State<ChooseGender> createState() => _ChooseGenderState();
@@ -24,8 +25,11 @@ class _ChooseGenderState extends State<ChooseGender> {
       children: [
         Text(
           AppStrings.gender,
-          style:
-          getSemiBoldStyle(color: ColorManager.grey, fontSize: AppSize.s18),
+          style: getSemiBoldStyle(
+              color: !widget.viewModel.isSelectGender
+                  ? ColorManager.grey
+                  : Colors.redAccent,
+              fontSize: AppSize.s18),
         ),
         const Spacer(),
         Row(
@@ -37,11 +41,11 @@ class _ChooseGenderState extends State<ChooseGender> {
               groupValue: _selectedValue,
               onChanged: (String? value) {
                 setState(() {
+                  widget.viewModel.isSelectGender = false;
                   _selectedValue = value;
-                  _isActive =!_isActive;
+                  _isActive = !_isActive;
                   SharedData.setData(
                       key: StringCache.selectGender, value: value);
-                  print(SharedData.getData(key: StringCache.selectGender));
                 });
               },
             ),
@@ -62,20 +66,18 @@ class _ChooseGenderState extends State<ChooseGender> {
               groupValue: _selectedValue,
               onChanged: (String? value) {
                 setState(() {
+                  widget.viewModel.isSelectGender = false;
                   _selectedValue = value;
-                  _isActive =!_isActive;
+                  _isActive = !_isActive;
                   SharedData.setData(
                       key: StringCache.selectGender, value: value);
-                  print(SharedData.getData(key: StringCache.selectGender));
                 });
               },
             ),
-            Text(
-              AppStrings.male,
-              style: getLightStyle(
-                  color: !_isActive ? ColorManager.black : ColorManager.grey,
-                  fontSize: AppSize.s16),
-            ),
+            Text(AppStrings.male,
+                style: getLightStyle(
+                    color: _isActive ? ColorManager.black : ColorManager.grey,
+                    fontSize: AppSize.s16)),
           ],
         ),
         const Spacer(),
@@ -83,4 +85,3 @@ class _ChooseGenderState extends State<ChooseGender> {
     );
   }
 }
-
