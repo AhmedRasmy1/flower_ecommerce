@@ -150,6 +150,7 @@ class _RegisterViewState extends State<RegisterView> {
                         ),
                       ),
                       const SizedBox(height: AppSize.s48),
+
                       CustomElevatedButton(
                         buttonColor: buttonColor,
                         title: AppStrings.signUp,

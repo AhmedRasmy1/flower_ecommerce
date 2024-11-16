@@ -29,6 +29,7 @@ class AppStrings {
   static const String phoneNumberStartWithZeroError =
       "Mobile number must start with 0";
   static const String confirmPassword = "Confirm Password";
+  static const String confirmButton = "Confirm";
   static const String enterYourConfirmPassword = "confirm password";
   static const String emailVerification = "Email verification";
   static const String subTitleOfEmailVerification =
@@ -36,4 +37,5 @@ class AppStrings {
   static const String dontReciveCode = "Didn't receive code? ";
   static const String invalidCode = "Invalid code";
   static const String enterPhoneNumber = "Enter your phone number";
+  static const String resend = "resend";
 }
