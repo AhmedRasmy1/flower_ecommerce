@@ -1,4 +1,4 @@
-import 'package:flower_ecommerce/generated/assets.dart';
+import 'package:flower_ecommerce/core/resources/assets_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../resources/font_manager.dart';
@@ -23,7 +23,7 @@ class CustomAppBar extends StatelessWidget {
         if (onTap != null)
           GestureDetector(
             onTap: onTap,
-            child: SvgPicture.asset(Assets.imagesVector),
+            child: SvgPicture.asset(AssetsManager.vector),
           ),
         const SizedBox(width: AppSize.s8),
         if (title != null)

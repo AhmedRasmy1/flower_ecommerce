@@ -42,6 +42,7 @@ class SharedData {
 }
 
 class StringCache {
+  static const String selectGender = 'selectGender';
   //!for Example ! for Example ! for Example ! for Example ! for Example
  // static const String emailResetPassword = 'emailResetPassword';
 // static const String userEmail = 'userEmail';

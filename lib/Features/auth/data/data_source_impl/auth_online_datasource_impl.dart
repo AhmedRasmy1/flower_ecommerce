@@ -1,7 +1,12 @@
+
 import 'package:flower_ecommerce/Features/auth/data/models/request/forget_password_request/forget_password_request.dart';
 import 'package:flower_ecommerce/Features/auth/data/models/response/forget_password_response/forget_password_response.dart';
 import 'package:flower_ecommerce/Features/auth/data/models/response/forget_password_response/verify_response.dart';
 import 'package:flower_ecommerce/Features/auth/domain/entities/forget_password_entity.dart';
+import 'package:flower_ecommerce/Features/auth/data/models/request/LoginModelDto.dart';
+import 'package:flower_ecommerce/Features/auth/data/models/response/LoginResponseDto.dart';
+import 'package:flower_ecommerce/Features/auth/domain/entities/login_entities.dart';
+
 import 'package:flower_ecommerce/Features/auth/domain/entities/register_entities.dart';
 import 'package:flower_ecommerce/Features/auth/domain/entities/verify_password_entity.dart';
 
@@ -31,6 +36,7 @@ class AuthOnLineDataSourceImpl implements AuthOnLineDataSource {
   }
 
   @override
+
   Future<Result<ForgetPasswordEntity?>> forgetPassword(String email ) {
     ForgetPasswordRequest requestEmail=ForgetPasswordRequest(email: email);
     return executeApi(() async {
@@ -51,3 +57,11 @@ class AuthOnLineDataSourceImpl implements AuthOnLineDataSource {
   }
 
   }
+  Future<Result<LoginEntitie>> login (LoginModelDto loginModelDto) {
+    return executeApi(() async {
+      var response = await _authRetrofit.login(loginModelDto);
+      return response.toLoginEntities();
+    });
+  }
+}
+
