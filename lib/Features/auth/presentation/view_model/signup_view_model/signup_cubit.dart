@@ -1,3 +1,4 @@
+import 'package:flower_ecommerce/core/utils/cashed_data_shared_preferences.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../../core/common/api_result.dart';
@@ -8,27 +9,31 @@ import '../../../domain/use_cases/register_usecase.dart';
 
 @injectable
 class RegisterViewModel extends Cubit<RegisterState> {
-  RegisterUseCase registerUseCase;
-  RegisterViewModel(this.registerUseCase) : super(InitialState());
+  final RegisterUseCase _registerUseCase;
 
-  void register(
-      // {
-      // required String firstName,
-      // required String lastName,
-      // required String email,
-      // required String password,
-      // required String gender,
-      // required String rePassword,
-      // required String phone}
-      ) async {
-    var result = await registerUseCase.register(
-        'fivcrsxtakjkName',
-        'dfdjkdffcdf',
-        'dfdf1ddkzjl2ass@gmail.com',
-        'As@112233',
-        'male',
-        'As@112233',
-        '+201258501121');
+  //static RegisterViewModel get(context) => BlocProvider.of(context);
+
+  RegisterViewModel(this._registerUseCase) : super(InitialState());
+  bool isSelectGender =false;
+
+  void doIntent(RegisterAction intent) async {
+    switch (intent) {
+      case RegisterAction():
+        _register(intent);
+    }
+  }
+
+  void _register(RegisterAction registerAction) async {
+    emit(LoadingRegisterState());
+    String gender = SharedData.getData(key: StringCache.selectGender) ?? '';
+    var result = await _registerUseCase.register(
+        registerAction.firstName,
+        registerAction.lastName,
+        registerAction.email,
+        registerAction.password,
+        gender,///
+        registerAction. rePassword,
+        registerAction. phone);
 
     switch (result) {
       case Success<RegisterEntities?>():
@@ -39,3 +44,5 @@ class RegisterViewModel extends Cubit<RegisterState> {
     }
   }
 }
+
+

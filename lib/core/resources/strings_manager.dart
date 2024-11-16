@@ -36,7 +36,18 @@ class AppStrings {
   static const String dontReciveCode = "Didn't receive code? ";
   static const String invalidCode = "Invalid code";
   static const String enterPhoneNumber = "Enter your phone number";
+
+  static const String passwordInvalidFormat = "Invalid password format";
+  static const String passwordCharactersLong = "Min 8 characters";
+  static const String alreadyHaveAccount = "Already have an account?";
+  static const String agreeTermsConditions = "Creating an account, you agree to our ";
+  static const String termsConditions = "Terms&Conditions";
+  static const String passwordIsEmpty = "password is empty";
+  static const String messageLength3 = "Minimum 3 characters";
+  static const String invalidInput = "Invalid input";
+  static const String emailIsEmpty = "email is empty";
   static const String rememberMe = "Remember me";
   static const String invalidEmailOrPassword = 'Invalid Email or Password';
   static const String forgetPassword = 'Forget password?';
+
 }
