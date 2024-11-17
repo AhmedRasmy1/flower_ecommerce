@@ -35,7 +35,8 @@ class BlocConsumerForSignupPage extends StatelessWidget {
     required this.phoneController,
     required this.buttonColor,
     required this.updateButtonColor,
-    required this.viewModel, required this.isSelectGender,
+    required this.viewModel,
+    required this.isSelectGender,
   });
 
   @override
@@ -67,7 +68,6 @@ class BlocConsumerForSignupPage extends StatelessWidget {
           showCustomDialog(context, message);
         }
         if (state is SuccessRegisterState) {
-          Navigator.pop(context);
           firstNameController.clear();
           lastNameController.clear();
           emailController.clear();
@@ -75,14 +75,9 @@ class BlocConsumerForSignupPage extends StatelessWidget {
           rePasswordController.clear();
           phoneController.clear();
 
-          Navigator.pushNamed(context, RoutesManager.loginRoute);
-
-          firstNameController.dispose();
-          lastNameController.dispose();
-          emailController.dispose();
-          passwordController.dispose();
-          rePasswordController.dispose();
-          phoneController.dispose();
+          Navigator.pop(context);
+          Navigator.pushNamed(context, RoutesManager.loginRoute,
+             );
         }
       },
       builder: (context, state) {
@@ -92,7 +87,7 @@ class BlocConsumerForSignupPage extends StatelessWidget {
           onPressed: () {
             validationMethod(
               actionPress: () {
-                if(isSelectGender){
+                if (viewModel.isSelectGender2) {
                   viewModel.doIntent(RegisterAction(
                     firstName: firstNameController.text,
                     lastName: lastNameController.text,
@@ -102,8 +97,8 @@ class BlocConsumerForSignupPage extends StatelessWidget {
                     phone: phoneController.text,
                   ));
                 }
-
               },
+
               formKey: formKey,
               updateButtonColor: updateButtonColor,
             );

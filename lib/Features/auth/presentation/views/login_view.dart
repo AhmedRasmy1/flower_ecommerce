@@ -35,13 +35,14 @@ class _LoginScreenState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
+
     return BlocProvider(
       create: (context) => viewModel,
       child: Scaffold(
         body: BlocListener<LoginViewModel, LoginState>(
           listener: (context, state) {
             if (state is SuccessLoginState) {
-              Navigator.pushReplacementNamed(context, RoutesManager.homeRoute);
+              Navigator.pushReplacementNamed(context, RoutesManager.layoutRoute);
             } else if (state is ErrorLoginState) {
               setState(() {
                 _errorMessage = AppStrings.invalidEmailOrPassword;
@@ -198,6 +199,7 @@ class _LoginScreenState extends State<LoginView> {
                     width: context.screenWidth * 0.9,
                     height: context.screenHeight * 0.063,
                     child: ElevatedButton(
+
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white,
@@ -205,6 +207,10 @@ class _LoginScreenState extends State<LoginView> {
                               borderRadius: BorderRadius.circular(100),
                               side: BorderSide(
                                   color: ColorManager.placeHolderColor))),
+//                       onPressed: () {
+//                         Navigator.pushReplacementNamed(context, RoutesManager.layoutRoute);
+//                       },
+
                       child: Text(
                         AppStrings.continueAsGuest,
                         style: TextStyle(
@@ -231,7 +237,9 @@ class _LoginScreenState extends State<LoginView> {
                       InkWell(
                         onTap: () {
                           Navigator.pushNamed(
-                              context, RoutesManager.registerRoute);
+                              context, RoutesManager.registerRoute,
+                              // arguments: {'email':_emailController.text}
+                          );
                         },
                         child: Column(
                           children: [

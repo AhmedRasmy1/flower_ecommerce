@@ -1,6 +1,7 @@
 
 import 'package:flower_ecommerce/Features/cart/presentation/pages/cart_view.dart';
 import 'package:flower_ecommerce/Features/home/presentation/pages/home_view.dart';
+import 'package:flower_ecommerce/Features/layout/presentation/pages/layout_view.dart';
 import 'package:flower_ecommerce/Features/profile/presentation/pages/profile_view.dart';
 import 'package:flower_ecommerce/splash_view.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,7 @@ class RoutesManager {
   static const String forgetPasswordRoute = '/forgetPassword';
   static const String emailVerificationRoute = '/emailVerification';
   static const String resetPasswordRoute = '/resetPassword';
+  static const String layoutRoute = '/layoutRoute';
 
 
 }
@@ -34,9 +36,9 @@ class RouteGenerator {
       case RoutesManager.profileRoute:
         return MaterialPageRoute(builder: (_) => const ProfileView());
       case RoutesManager.loginRoute:
-        return MaterialPageRoute(builder: (_) => const LoginView());
+        return MaterialPageRoute(builder: (_) => const LoginView(), );
       case RoutesManager.registerRoute:
-        return MaterialPageRoute(builder: (_) => const RegisterView());
+        return MaterialPageRoute(builder: (_) => const RegisterView(),settings: settings);
       case RoutesManager.cartRoute:
         return MaterialPageRoute(builder: (_) => const CartView());
       case RoutesManager.forgetPasswordRoute:
@@ -46,6 +48,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const ResetPasswordView());
       case RoutesManager.emailVerificationRoute:
         return MaterialPageRoute(builder: (_) => const OtpVerificationPage());
+      case RoutesManager.layoutRoute:
+        return MaterialPageRoute(builder: (_) => const LayoutView());
 
       default:
         return unDefinedRoute();
