@@ -50,8 +50,12 @@ class AppStrings {
   static const String rememberMe = "Remember me";
   static const String invalidEmailOrPassword = 'Invalid Email or Password';
   static const String forgetPassword = 'Forget password?';
+  static const String forgetPasswordMessageHeader ="Please enter your email associated to \n your account";
+  static const String resetPassword="Reset Password";
+  static const String resetPasswordMessage="Password must not be empty and must contain \n6 characters with upper case letter and one\n number at least";
   static const String home = 'Home';
   static const String categories = 'Categories';
   static const String cart = 'Cart';
   static const String profile = 'Profile';
+
 }

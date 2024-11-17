@@ -3,8 +3,8 @@ import 'package:flower_ecommerce/core/functions/extenstions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../Features/auth/presentation/view_model/verify_password_view_model/verify_password_cubit.dart';
-import '../resources/color_manager.dart';
+import '../view_model/verify_password_view_model/verify_password_cubit.dart';
+import '../../../../core/resources/color_manager.dart';
 
 class CustomFieldForOtpVerification extends StatelessWidget {
   const CustomFieldForOtpVerification({
