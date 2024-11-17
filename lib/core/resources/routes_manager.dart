@@ -41,6 +41,7 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const CartView());
       case RoutesManager.forgetPasswordRoute:
         return MaterialPageRoute(builder: (_) =>  const ForgetPasswordView());
+
       case RoutesManager.resetPasswordRoute:
         return MaterialPageRoute(builder: (_) => const ResetPasswordView());
       case RoutesManager.emailVerificationRoute:

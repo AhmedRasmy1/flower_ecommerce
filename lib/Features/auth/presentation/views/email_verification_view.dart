@@ -8,13 +8,16 @@ import '../../../../core/resources/color_manager.dart';
 import '../../../../core/resources/font_manager.dart';
 import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/resources/values_manager.dart';
-import '../../../../core/widgets/block_consumer_for_otp.dart';
+
+import '../widgets/block_consumer_for_otp.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
-import '../../../../core/widgets/custom_field_for_verification.dart';
+import '../widgets/custom_field_for_verification.dart';
 import '../view_model/verify_password_view_model/verify_password_cubit.dart';
 
 class OtpVerificationPage extends StatefulWidget {
-  const OtpVerificationPage({super.key});
+   const OtpVerificationPage({super.key});
+
+
 
   @override
   createState() => _OtpVerificationPageState();
@@ -22,6 +25,7 @@ class OtpVerificationPage extends StatefulWidget {
 
 class _OtpVerificationPageState extends State<OtpVerificationPage> {
   late VerifyPasswordViewModel viewModel;
+  late String editEmail;
   final List<TextEditingController> _controllers =
   List.generate(6, (_) => TextEditingController());
   bool _isCodeInvalid = false; // Track invalid code state
@@ -32,6 +36,18 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
   void initState() {
     viewModel = getIt.get<VerifyPasswordViewModel>();
     super.initState();
+  }
+
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final args = ModalRoute.of(context)?.settings.arguments ;
+    if (args is String) {
+      editEmail = args;
+    } else {
+      editEmail = "default_email@example.com";
+    }
   }
 
   @override
@@ -112,6 +128,7 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
                       _isCodeInvalid = isInvalid;
                     });
                   },
+                  email: editEmail,
                 ),
                 const SizedBox(height: 24),
                 RichText(

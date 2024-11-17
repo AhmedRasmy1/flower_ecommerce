@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:flower_ecommerce/Features/auth/data/models/request/forget_password_request/reset_password_request.dart';
 import 'package:flower_ecommerce/Features/auth/data/models/request/forget_password_request/verify_request.dart';
+import 'package:flower_ecommerce/Features/auth/data/models/response/forget_password_response/reset_password_response.dart';
 import 'package:flower_ecommerce/Features/auth/data/models/response/forget_password_response/verify_response.dart';
 import 'package:flower_ecommerce/Features/auth/data/models/response/LoginResponseDto.dart';
 import 'package:injectable/injectable.dart';
@@ -30,8 +32,11 @@ abstract class ApiService {
 
   @POST(ApiConstants.verifyResetCode)
   Future<VerifyResponse> verifyPassword(@Body() VerifyRequest requestOtp);
+
   @POST(ApiConstants.loginRoute)
   Future<LoginResponseDto> login(@Body() LoginModelDto loginModelDto);
 
+  @PUT(ApiConstants.resetPasswordRoute)
+  Future<ResetPasswordResponse> resetPassword(@Body() ResetPasswordRequest requestOtp);
 
 }

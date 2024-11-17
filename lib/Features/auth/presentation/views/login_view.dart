@@ -160,7 +160,7 @@ class _LoginScreenState extends State<LoginView> {
                     ),
                   ),
                 Center(
-                  child: Container(
+                  child: SizedBox(
                     width: context.screenWidth * 0.91,
                     height: context.screenHeight * 0.063,
                     child: ElevatedButton(
@@ -175,6 +175,10 @@ class _LoginScreenState extends State<LoginView> {
                           );
                         }
                       },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: ColorManager.pink,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(100))),
                       child: Text(
                         AppStrings.login,
                         style: TextStyle(
@@ -182,10 +186,7 @@ class _LoginScreenState extends State<LoginView> {
                             fontWeight: FontWeight.w500,
                             fontSize: 16),
                       ),
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: ColorManager.pink,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(100))),
+
                     ),
                   ),
                 ),
@@ -193,11 +194,17 @@ class _LoginScreenState extends State<LoginView> {
                   height: MediaQuery.of(context).size.height * 0.02,
                 ),
                 Center(
-                  child: Container(
+                  child: SizedBox(
                     width: context.screenWidth * 0.9,
                     height: context.screenHeight * 0.063,
                     child: ElevatedButton(
                       onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(100),
+                              side: BorderSide(
+                                  color: ColorManager.placeHolderColor))),
                       child: Text(
                         AppStrings.continueAsGuest,
                         style: TextStyle(
@@ -205,12 +212,7 @@ class _LoginScreenState extends State<LoginView> {
                             fontWeight: FontWeight.w500,
                             fontSize: 16),
                       ),
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(100),
-                              side: BorderSide(
-                                  color: ColorManager.placeHolderColor))),
+
                     ),
                   ),
                 ),

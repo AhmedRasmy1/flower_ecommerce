@@ -200,7 +200,7 @@ class _RegisterViewState extends State<RegisterView> {
                         viewModel: viewModel,
                         updateButtonColor: (newColor) {
                           setState(() {
-                            if (isSelectGender) {
+                            if (viewModel.isSelectGender) {
                               buttonColor = newColor;
                               viewModel.isSelectGender = false;
                             } else {

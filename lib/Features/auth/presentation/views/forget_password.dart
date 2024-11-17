@@ -4,10 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/di/di.dart';
 import '../../../../core/functions/helper.dart';
-import '../../../../core/resources/routes_manager.dart';
 import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/resources/values_manager.dart';
-import '../../../../core/utils/utilss.dart';
+import '../../../../core/utils/utils.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../core/widgets/show_error_dialog.dart';
 import '../../../../core/widgets/show_loading_dialog.dart';
@@ -16,7 +15,7 @@ import '../view_model/forget_password_view_model/forget_password_state.dart';
 import 'email_verification_view.dart';
 
 class ForgetPasswordView extends StatefulWidget {
-  const ForgetPasswordView({super.key});
+  const ForgetPasswordView({super.key  });
 
   @override
   State<ForgetPasswordView> createState() => _ForgetPasswordViewState();
@@ -50,7 +49,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
       create: (context) => viewModel,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Password"),
+          title: Text(AppStrings.password),
         ),
         body: BlocListener<ForgetPasswordViewModel, ForgetPasswordState>(
           listenWhen: (previous, current) {
@@ -71,8 +70,13 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
             } else if (state is SuccessForgetPasswordState) {
               final email=_emailController.text;
               Navigator.of(context).popUntil((route)=>route.isFirst); // Close dialogs before showing success
-              Navigator.pushNamed(
-                  context, RoutesManager.emailVerificationRoute,arguments: email);
+              Navigator.push(
+                  context,
+                  //RoutesManager.emailVerificationRoute,arguments:email);
+                  MaterialPageRoute(
+               builder: (context)=>OtpVerificationPage(),
+            settings: RouteSettings(arguments: email))
+              );
 
             }
           },
@@ -86,9 +90,9 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                 child: Column(
 
                   children: [
-                    Text("Forget Password"),
+                    Text(AppStrings.forgetPassword),
                     const SizedBox(height: AppSize.s24),
-                    Text("Please enter your email associated to \n your account", textAlign: TextAlign.center,),
+                    Text(AppStrings.forgetPasswordMessageHeader, textAlign: TextAlign.center,),
                     const SizedBox(height: AppSize.s24),
                     CustomTextFormField(
                       keyboardType: TextInputType.emailAddress,

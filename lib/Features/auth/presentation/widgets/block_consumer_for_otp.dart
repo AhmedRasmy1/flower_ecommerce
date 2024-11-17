@@ -1,20 +1,21 @@
 
 import 'package:flower_ecommerce/Features/auth/presentation/view_model/verify_password_view_model/verify_password_state.dart';
+import 'package:flower_ecommerce/Features/auth/presentation/views/reset_password_view.dart';
 import 'package:flower_ecommerce/core/widgets/show_error_dialog.dart';
 import 'package:flower_ecommerce/core/widgets/show_loading_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../Features/auth/presentation/view_model/verify_password_view_model/verify_password_cubit.dart';
-import '../resources/routes_manager.dart';
-import '../utils/utilss.dart';
+import '../view_model/verify_password_view_model/verify_password_cubit.dart';
+import '../../../../core/utils/utils.dart';
 
 class BlocConsumerForOtpVerificationPage extends StatelessWidget {
-  final ValueChanged<bool> onCodeInvalid; // Callback for invalid code
+  final ValueChanged<bool> onCodeInvalid;// Callback for invalid code
+  final String email;
 
   const BlocConsumerForOtpVerificationPage({
     super.key,
-    required this.onCodeInvalid, // Required callback
+    required this.onCodeInvalid,// Required callback
+    required this.email,
   });
 
   @override
@@ -31,8 +32,12 @@ class BlocConsumerForOtpVerificationPage extends StatelessWidget {
         } else if (state is SuccessVerifyPasswordState) {
 
           Navigator.of(context).popUntil((route)=>route.isFirst); // Close dialogs before showing success
-          Navigator.pushNamed(context, RoutesManager.resetPasswordRoute);
-
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context)=>ResetPasswordView(),
+                  settings: RouteSettings(arguments: email))
+          );
         }
       },
       listenWhen: (previous, current) {

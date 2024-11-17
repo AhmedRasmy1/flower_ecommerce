@@ -26,11 +26,15 @@ import '../../Features/auth/domain/use_cases/forget_Password_usecase.dart'
     as _i251;
 import '../../Features/auth/domain/use_cases/login_usecases.dart' as _i526;
 import '../../Features/auth/domain/use_cases/register_usecase.dart' as _i284;
+import '../../Features/auth/domain/use_cases/reset_password_usecase.dart'
+    as _i785;
 import '../../Features/auth/domain/use_cases/verify_uce_case.dart' as _i753;
 import '../../Features/auth/presentation/view_model/forget_password_view_model/forget_password_cubit.dart'
     as _i191;
 import '../../Features/auth/presentation/view_model/login_view_model/login_cubit.dart'
     as _i920;
+import '../../Features/auth/presentation/view_model/reset_password_view_model/reset_password_cubit.dart'
+    as _i14;
 import '../../Features/auth/presentation/view_model/signup_view_model/signup_cubit.dart'
     as _i674;
 import '../../Features/auth/presentation/view_model/verify_password_view_model/verify_password_cubit.dart'
@@ -68,6 +72,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i284.RegisterUseCase(gh<_i1049.AuthRepo>()));
     gh.factory<_i753.VerifyUseCase>(
         () => _i753.VerifyUseCase(gh<_i1049.AuthRepo>()));
+    gh.factory<_i785.ResetPasswordUseCase>(
+        () => _i785.ResetPasswordUseCase(gh<_i1049.AuthRepo>()));
     gh.factory<_i920.LoginViewModel>(
         () => _i920.LoginViewModel(gh<_i526.LoginUseCases>()));
     gh.factory<_i674.RegisterViewModel>(
@@ -76,6 +82,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i191.ForgetPasswordViewModel(gh<_i251.ForgetPasswordUseCase>()));
     gh.factory<_i396.VerifyPasswordViewModel>(
         () => _i396.VerifyPasswordViewModel(gh<_i753.VerifyUseCase>()));
+    gh.factory<_i14.ResetPasswordViewModel>(
+        () => _i14.ResetPasswordViewModel(gh<_i785.ResetPasswordUseCase>()));
     return this;
   }
 }
