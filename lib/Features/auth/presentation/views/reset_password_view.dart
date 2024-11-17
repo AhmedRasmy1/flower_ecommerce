@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/di/di.dart';
@@ -78,7 +77,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
             }
           },
           child: Container(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(AppSize.s10),
             child: Form(
               key: _formKey,
               onChanged: validateInputs,
@@ -118,7 +117,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                                   message: AppStrings.passwordNotMatch),
                             ),
                           ),
-                          SizedBox(height: AppSize.s24),
+                          const SizedBox(height: AppSize.s24),
                           SizedBox(
                             width: double.infinity,
                             child: CustomTextFormField(
@@ -141,7 +140,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                         builder: (context, state) {
 
                           if (state is LoadingResetPasswordState) {
-                            return Center(child: CircularProgressIndicator());
+                            return const Center(child: CircularProgressIndicator());
                           } else {
                             return SizedBox(
                               height: AppSize.s48,
@@ -155,7 +154,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                                 style:ElevatedButton.styleFrom(
                                     backgroundColor:ColorManager.pink
                                 ),
-                                child: Text(AppStrings.confirmButton,
+                                child: const Text(AppStrings.confirmButton,
                                   style:  TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color:ColorManager.white

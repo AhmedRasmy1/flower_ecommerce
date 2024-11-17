@@ -49,7 +49,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
       create: (context) => viewModel,
       child: Scaffold(
         appBar: AppBar(
-          title: Text(AppStrings.password),
+          title: const Text(AppStrings.password),
         ),
         body: BlocListener<ForgetPasswordViewModel, ForgetPasswordState>(
           listenWhen: (previous, current) {
@@ -72,12 +72,10 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
               Navigator.of(context).popUntil((route)=>route.isFirst); // Close dialogs before showing success
               Navigator.push(
                   context,
-                  //RoutesManager.emailVerificationRoute,arguments:email);
                   MaterialPageRoute(
-               builder: (context)=>OtpVerificationPage(),
+               builder: (context)=>const OtpVerificationPage(),
             settings: RouteSettings(arguments: email))
               );
-
             }
           },
 
@@ -85,14 +83,14 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
             key: _formKey,
             onChanged: validateInputs,
             child: Container(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: Center(
                 child: Column(
 
                   children: [
-                    Text(AppStrings.forgetPassword),
+                    const Text(AppStrings.forgetPassword),
                     const SizedBox(height: AppSize.s24),
-                    Text(AppStrings.forgetPasswordMessageHeader, textAlign: TextAlign.center,),
+                    const Text(AppStrings.forgetPasswordMessageHeader, textAlign: TextAlign.center,),
                     const SizedBox(height: AppSize.s24),
                     CustomTextFormField(
                       keyboardType: TextInputType.emailAddress,
@@ -108,7 +106,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                       builder: (context, state) {
 
                         if (state is LoadingForgetPasswordState) {
-                          return Center(child: CircularProgressIndicator());
+                          return const Center(child: CircularProgressIndicator());
                         } else {
                           return SizedBox(
                             width: double.infinity,
@@ -121,7 +119,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                               style:ElevatedButton.styleFrom(
                                   backgroundColor:ColorManager.pink
                               ),
-                              child: Text(AppStrings.confirmButton,
+                              child: const Text(AppStrings.confirmButton,
                                 style:  TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color:ColorManager.white,
