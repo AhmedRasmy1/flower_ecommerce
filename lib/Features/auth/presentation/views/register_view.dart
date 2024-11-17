@@ -55,6 +55,10 @@ class _RegisterViewState extends State<RegisterView> {
 
   @override
   Widget build(BuildContext context) {
+    // final arguments =
+    // ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
+    // final String? email = arguments['email'] as String??'';
+    // print("=========================$email========================");
     return BlocProvider(
       create: (context) => viewModel,
       child: SafeArea(
@@ -188,7 +192,7 @@ class _RegisterViewState extends State<RegisterView> {
                       ),
                       const SizedBox(height: AppSize.s48),
                       BlocConsumerForSignupPage(
-                        isSelectGender: isSelectGender,
+                        isSelectGender: viewModel.isSelectGender,
                         formKey: _formKey,
                         emailController: _emailController,
                         passwordController: _passwordController,
@@ -200,11 +204,16 @@ class _RegisterViewState extends State<RegisterView> {
                         viewModel: viewModel,
                         updateButtonColor: (newColor) {
                           setState(() {
-                            if (isSelectGender) {
+                            if (viewModel.isSelectGender) {
                               buttonColor = newColor;
-                              viewModel.isSelectGender = false;
+                              if (viewModel.isSelectGender2 == true) {
+                                viewModel.isSelectGender = true;
+                              }
+
                             } else {
-                              viewModel.isSelectGender = true;
+                              if (viewModel.isSelectGender2 == false) {
+                                viewModel.isSelectGender = true;
+                              }
                             }
                           });
                         },

@@ -100,8 +100,6 @@ Widget buildIcon(String assetPath, int index, int currentIndex) {
     padding: const EdgeInsets.symmetric(
         horizontal: AppPadding.p20, vertical: AppPadding.p4),
     decoration: BoxDecoration(
-      color:
-          isSelected ? ColorManager.pink.withOpacity(0.2) : Colors.transparent,
       borderRadius: BorderRadius.circular(12),
     ),
     child: SvgPicture.asset(

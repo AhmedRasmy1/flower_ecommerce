@@ -50,4 +50,8 @@ class AppStrings {
   static const String rememberMe = "Remember me";
   static const String invalidEmailOrPassword = 'Invalid Email or Password';
   static const String forgetPassword = 'Forget password?';
+  static const String home = 'Home';
+  static const String categories = 'Categories';
+  static const String cart = 'Cart';
+  static const String profile = 'Profile';
 }

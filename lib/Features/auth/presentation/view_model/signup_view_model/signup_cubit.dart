@@ -11,10 +11,11 @@ import '../../../domain/use_cases/register_usecase.dart';
 class RegisterViewModel extends Cubit<RegisterState> {
   final RegisterUseCase _registerUseCase;
 
-  //static RegisterViewModel get(context) => BlocProvider.of(context);
+  static RegisterViewModel get(context) => BlocProvider.of(context);
 
   RegisterViewModel(this._registerUseCase) : super(InitialState());
   bool isSelectGender =false;
+  bool isSelectGender2 =false;
 
   void doIntent(RegisterAction intent) async {
     switch (intent) {
