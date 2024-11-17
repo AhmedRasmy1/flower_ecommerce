@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../../core/resources/app_constants.dart';
 import '../widgets/custom_button_navigation_bar.dart';
 

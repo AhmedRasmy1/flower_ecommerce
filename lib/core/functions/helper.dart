@@ -107,7 +107,7 @@ Widget buildIcon(String assetPath, int index, int currentIndex) {
       width: 24,
       height: 24,
       colorFilter: ColorFilter.mode(
-        isSelected ? ColorManager.pink : ColorManager.grey,
+        isSelected ? ColorManager.pink : ColorManager.lightGrey2,
         BlendMode.srcIn,
       ),
     ),

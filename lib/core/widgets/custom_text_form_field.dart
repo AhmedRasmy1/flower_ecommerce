@@ -18,7 +18,8 @@ class CustomTextFormField extends StatelessWidget {
     this.keyboardType,
     this.enabled,
     this.prefixIcon,
-    this.initialValue, this.onChanged,
+    this.initialValue,
+    this.onChanged,
   });
 
   final TextEditingController controller;
@@ -31,7 +32,7 @@ class CustomTextFormField extends StatelessWidget {
   final Widget? suffix;
   final Widget? prefixIcon;
   final TextInputType? keyboardType;
-  final  void Function(String)? onChanged;
+  final void Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +87,7 @@ class CustomTextFormField extends StatelessWidget {
           )),
       obscureText: obscureText ?? false,
       validator: validator,
-      onChanged:onChanged ,
+      onChanged: onChanged,
       autovalidateMode: AutovalidateMode.onUserInteraction,
     );
   }

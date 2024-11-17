@@ -1,3 +1,5 @@
+import 'package:flower_ecommerce/core/resources/style_manager.dart';
+import 'package:flower_ecommerce/core/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/functions/helper.dart';
 import '../../../../core/resources/assets_manager.dart';
@@ -10,6 +12,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
     required this.currentIndex,
     required this.onItemTapped,
   });
+
   final int currentIndex;
   final Function(int) onItemTapped;
 
@@ -34,9 +37,12 @@ class CustomBottomNavigationBar extends StatelessWidget {
           label: AppStrings.profile,
         ),
       ],
+      selectedFontSize: AppSize.s12,
+      selectedLabelStyle: getLightStyle(color: ColorManager.lightGrey2),
+      unselectedLabelStyle: getMediumStyle(color: ColorManager.lightGrey2),
       currentIndex: currentIndex,
       onTap: onItemTapped,
-     type:  BottomNavigationBarType.fixed,
+      type: BottomNavigationBarType.fixed,
       selectedItemColor: ColorManager.pink,
     );
   }

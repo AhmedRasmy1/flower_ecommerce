@@ -209,7 +209,6 @@ class _RegisterViewState extends State<RegisterView> {
                               if (viewModel.isSelectGender2 == true) {
                                 viewModel.isSelectGender = true;
                               }
-
                             } else {
                               if (viewModel.isSelectGender2 == false) {
                                 viewModel.isSelectGender = true;
