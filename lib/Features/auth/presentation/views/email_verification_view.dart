@@ -1,4 +1,8 @@
+import 'dart:async';
 
+
+
+import 'package:flower_ecommerce/Features/auth/presentation/view_model/forget_password_view_model/forget_password_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,9 +19,7 @@ import '../widgets/custom_field_for_verification.dart';
 import '../view_model/verify_password_view_model/verify_password_cubit.dart';
 
 class OtpVerificationPage extends StatefulWidget {
-   const OtpVerificationPage({super.key});
-
-
+  const OtpVerificationPage({super.key});
 
   @override
   createState() => _OtpVerificationPageState();
@@ -25,29 +27,42 @@ class OtpVerificationPage extends StatefulWidget {
 
 class _OtpVerificationPageState extends State<OtpVerificationPage> {
   late VerifyPasswordViewModel viewModel;
+  late ForgetPasswordViewModel forgetPasswordViewModel ;
   late String editEmail;
   final List<TextEditingController> _controllers =
   List.generate(6, (_) => TextEditingController());
   bool _isCodeInvalid = false; // Track invalid code state
-
   final String _errorMessage = AppStrings.invalidCode;
+  bool isButtonDisabled = true; // To track button state
+  int _remainingTime = 60; // Timer countdown in seconds
+  Timer? timer; // Timer object
 
   @override
   void initState() {
     viewModel = getIt.get<VerifyPasswordViewModel>();
+    forgetPasswordViewModel =getIt.get<ForgetPasswordViewModel>();
+    startTimer();
     super.initState();
   }
-
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    final args = ModalRoute.of(context)?.settings.arguments ;
+    final args = ModalRoute.of(context)?.settings.arguments;
     if (args is String) {
       editEmail = args;
     } else {
       editEmail = "default_email@example.com";
     }
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel(); // Cancel timer when the widget is disposed
+    for (var controller in _controllers) {
+      controller.dispose(); // Dispose of the controllers to free resources
+    }
+    super.dispose();
   }
 
   @override
@@ -58,9 +73,7 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
         child: Scaffold(
           body: Padding(
             padding: const EdgeInsets.only(
-                top: AppPadding.p8,
-                left: AppPadding.p16,
-                right: AppPadding.p16),
+                top: AppPadding.p8, left: AppPadding.p16, right: AppPadding.p16),
             child: Column(
               children: [
                 CustomAppBar(
@@ -143,16 +156,30 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
                         ),
                       ),
                       TextSpan(
-                        text: AppStrings.resend,
+                        text: isButtonDisabled
+                            ? ' ($_remainingTime s)' // Display remaining time
+                            : '',
                         style: TextStyle(
                           fontSize: FontSize.s16,
-                          fontWeight: FontWeightManager.regular,
-                          color: ColorManager.pink,
-                          decoration: TextDecoration.underline,
-                          decorationColor: ColorManager.pink,
+                          color: ColorManager.grey,
                         ),
                       ),
                     ],
+                  ),
+                ),
+                InkWell(
+                  onTap: isButtonDisabled ? null : resendOTP, // Disable when button is inactive
+                  child: Text(
+                    AppStrings.resend,
+                    style: TextStyle(
+                      fontSize: FontSize.s16,
+                      fontWeight: FontWeightManager.regular,
+                      color: isButtonDisabled
+                          ? ColorManager.grey
+                          : ColorManager.pink,
+                      decoration: TextDecoration.underline,
+                      decorationColor: ColorManager.pink,
+                    ),
                   ),
                 ),
               ],
@@ -161,5 +188,28 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
         ),
       ),
     );
+  }
+
+  void startTimer() {
+    setState(() {
+      isButtonDisabled = true; // Disable the button
+      _remainingTime = 60; // Reset the timer
+    });
+
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (_remainingTime > 1) {
+        setState(() => _remainingTime--);
+      } else {
+        timer.cancel();
+        setState(() {
+          isButtonDisabled = false; // Enable the button
+        });
+      }
+    });
+  }
+
+  void resendOTP() {
+    startTimer();
+   forgetPasswordViewModel.doIntent(ForgetPasswordIntent(editEmail)); // Call the ViewModel's resend OTP function
   }
 }
