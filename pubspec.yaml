@@ -28,23 +28,22 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  bloc: ^8.1.4
+  cached_network_image: ^3.4.1
   cupertino_icons: ^1.0.8
   dio: ^5.7.0
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
+  flutter_svg: ^2.0.14
   get_it: ^8.0.2
+  google_fonts: ^6.2.1
   injectable: ^2.5.0
   json_annotation: ^4.9.0
   logger: ^2.4.0
+  pretty_dio_logger: ^1.4.0
   retrofit: ^4.4.1
   shared_preferences: ^2.3.3
-  pretty_dio_logger: ^1.4.0
-  bloc: ^8.1.4
-  flutter_svg: ^2.0.14
-  cached_network_image: ^3.4.1
-
-
 
 dev_dependencies:
   build_runner: ^2.4.13
@@ -94,4 +93,3 @@ flutter:
   assets:
     - assets/
     - assets/images/
-

@@ -1,0 +1,52 @@
+import 'package:flower_ecommerce/core/resources/assets_manager.dart';
+import 'package:flower_ecommerce/core/resources/color_manager.dart';
+import 'package:flower_ecommerce/core/resources/font_manager.dart';
+import 'package:flower_ecommerce/core/resources/strings_manager.dart';
+import 'package:flower_ecommerce/core/resources/values_manager.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+
+class CustomTextFieldForSearch extends StatelessWidget {
+  const CustomTextFieldForSearch({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      decoration: InputDecoration(
+        contentPadding: const EdgeInsets.symmetric(
+          vertical: AppPadding.p8,
+          horizontal: AppPadding.p16,
+        ),
+        hintText: AppStrings.search,
+        hintStyle: TextStyle(
+          fontSize: FontSize.s14,
+          color: ColorManager.grey,
+          fontWeight: FontWeightManager.medium,
+        ),
+        prefixIcon: SizedBox(
+          width: AppSize.s18,
+          height: AppSize.s18,
+          child: SvgPicture.asset(
+            AssetsManager.searchIcon,
+            fit: BoxFit.scaleDown,
+          ),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+            color: ColorManager.offWhite,
+            width: AppSize.w1_5,
+          ),
+          borderRadius: BorderRadius.circular(AppSize.s10),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+            color: ColorManager.offWhite,
+          ),
+          borderRadius: BorderRadius.circular(AppSize.s10),
+        ),
+      ),
+    );
+  }
+}

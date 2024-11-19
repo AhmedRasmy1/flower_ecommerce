@@ -1,6 +1,7 @@
 import 'package:flower_ecommerce/core/resources/assets_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../resources/font_manager.dart';
 import '../resources/values_manager.dart';
 
@@ -10,11 +11,13 @@ class CustomAppBar extends StatelessWidget {
     this.title,
     this.onTap,
     this.color,
+    this.image,
   });
 
   final String? title;
   final void Function()? onTap;
   final Color? color;
+  final String? image;
 
   @override
   Widget build(BuildContext context) {
@@ -26,13 +29,21 @@ class CustomAppBar extends StatelessWidget {
             child: SvgPicture.asset(AssetsManager.vector),
           ),
         const SizedBox(width: AppSize.s8),
+        if (image != null)
+          SvgPicture.asset(
+            width: AppSize.s20,
+            height: AppSize.s20,
+            image!,
+            fit: BoxFit.scaleDown,
+          ),
         if (title != null)
           Text(
             title!,
             style: TextStyle(
-              fontSize: FontSize.s20,
+              fontSize: FontSize.s22,
               color: color ?? Colors.black,
               fontWeight: FontWeightManager.bold,
+              fontFamily: GoogleFonts.imFellEnglish().fontFamily,
             ),
           ),
       ],

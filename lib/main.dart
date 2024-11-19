@@ -1,8 +1,10 @@
 import 'package:flower_ecommerce/core/di/di.dart';
+import 'package:flower_ecommerce/core/resources/color_manager.dart';
 import 'package:flower_ecommerce/core/resources/routes_manager.dart';
 import 'package:flower_ecommerce/core/utils/cashed_data_shared_preferences.dart';
 import 'package:flower_ecommerce/core/utils/my_bloc_observer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 // import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -11,6 +13,8 @@ void main() {
   SharedData.cacheInitialization();
   Bloc.observer = MyBlocObserver();
   configureDependencies();
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+      overlays: [SystemUiOverlay.top]);
   runApp(const FlowerApp());
 }
 
@@ -19,10 +23,18 @@ class FlowerApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      onGenerateRoute: RouteGenerator.getRoute,
-      initialRoute: RoutesManager.splashRoute,
+    return const AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle(
+        statusBarColor: ColorManager.white,
+        statusBarIconBrightness: Brightness.dark,
+        systemNavigationBarColor: Colors.white,
+        systemNavigationBarIconBrightness: Brightness.dark,
+      ),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        onGenerateRoute: RouteGenerator.getRoute,
+        initialRoute: RoutesManager.splashRoute,
+      ),
     );
   }
 }
