@@ -24,14 +24,17 @@ class CustomHeader extends StatelessWidget {
         ),
         const Spacer(),
         if (viewAll != null)
-          TextButton(
-            onPressed: () {},
+          GestureDetector(
+            onTap: () {},
             child: Text(
               viewAll!,
               style: const TextStyle(
-                  fontSize: FontSize.s14,
-                  color: ColorManager.pink,
-                  decoration: TextDecoration.underline),
+                fontSize: FontSize.s14,
+                color: ColorManager.pink,
+                decoration: TextDecoration.underline,
+                decorationColor: ColorManager.pink,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
       ],

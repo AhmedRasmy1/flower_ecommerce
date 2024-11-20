@@ -12,5 +12,5 @@ class ColorManager {
   static const Color lightGrey = Color(0xff0C1015);
   static const Color lightGrey2 = Color(0xff7D7D7D);
   static const Color offWhite = Color(0xffA6A6A6);
-  static const Color blur = Color(0xffaeaeae4d);
+  static const Color lightPink = Color(0xfff9ecf0);
 }

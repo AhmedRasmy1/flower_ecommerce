@@ -67,4 +67,7 @@ class AppStrings {
   static const String graduation =
       'Its time to celebrate all grads with happiness';
   static const String giftNow = 'Gift Now';
+  static const String viewAll = 'View All';
+  static const String bestSeller = 'Best Seller';
+  static const String occasion = 'Occasion';
 }
