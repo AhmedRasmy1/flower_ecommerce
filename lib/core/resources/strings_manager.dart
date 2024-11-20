@@ -61,5 +61,10 @@ class AppStrings {
   static const String cart = 'Cart';
   static const String profile = 'Profile';
   static const String search = 'Search';
-  static const String flowry = 'Flowry';
+  static const String flowry = 'Flowery';
+  static const String address = 'Deliver to 2XVP+XC - Sheikh Zayed';
+  static const String discover = 'Discover something now';
+  static const String graduation =
+      'Its time to celebrate all grads with happiness';
+  static const String giftNow = 'Gift Now';
 }

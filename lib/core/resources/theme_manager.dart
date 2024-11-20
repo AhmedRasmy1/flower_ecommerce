@@ -6,7 +6,6 @@ import 'font_manager.dart';
 
 import 'values_manager.dart';
 
-
 ThemeData getApplicationTheme() {
   return ThemeData(
     inputDecorationTheme: InputDecorationTheme(

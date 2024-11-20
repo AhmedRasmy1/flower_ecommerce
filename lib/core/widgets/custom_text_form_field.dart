@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../resources/color_manager.dart';
 import '../resources/font_manager.dart';
-
 import '../resources/style_manager.dart';
 import '../resources/theme_manager.dart';
 import '../resources/values_manager.dart';
@@ -33,6 +32,7 @@ class CustomTextFormField extends StatelessWidget {
   final Widget? prefixIcon;
   final TextInputType? keyboardType;
   final void Function(String)? onChanged;
+  // final double borderRadius = AppSize.s5;
 
   @override
   Widget build(BuildContext context) {

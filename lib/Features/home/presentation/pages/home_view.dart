@@ -1,3 +1,6 @@
+import 'package:flower_ecommerce/Features/home/presentation/widgets/custom_card.dart';
+import 'package:flower_ecommerce/Features/home/presentation/widgets/custom_header.dart';
+import 'package:flower_ecommerce/Features/home/presentation/widgets/custom_location.dart';
 import 'package:flower_ecommerce/Features/home/presentation/widgets/custom_search_field.dart';
 import 'package:flower_ecommerce/core/resources/assets_manager.dart';
 import 'package:flower_ecommerce/core/resources/color_manager.dart';
@@ -30,7 +33,17 @@ class HomeView extends StatelessWidget {
                   ),
                   Expanded(child: CustomTextFieldForSearch())
                 ],
-              )
+              ),
+              SizedBox(height: AppSize.s16),
+              CustomLocation(
+                icon: AssetsManager.locationIcon,
+                address: AppStrings.address,
+                arrow: AssetsManager.arrowIcon,
+              ),
+              SizedBox(height: AppSize.s24),
+              CustomHeader(title: AppStrings.discover),
+              SizedBox(height: AppSize.s16),
+              CustomCard()
             ],
           ),
         ),

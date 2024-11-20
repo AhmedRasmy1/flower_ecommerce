@@ -9,4 +9,7 @@ class AssetsManager {
   static const String profile = 'assets/images/profile.svg';
   static const String searchIcon = 'assets/images/searchIcon.svg';
   static const String appLogo = 'assets/images/AppLogo.svg';
+  static const String locationIcon = 'assets/images/location.svg';
+  static const String arrowIcon = 'assets/images/arrow.svg';
+  static const String graduationImage = 'assets/images/immagee.jpg';
 }
