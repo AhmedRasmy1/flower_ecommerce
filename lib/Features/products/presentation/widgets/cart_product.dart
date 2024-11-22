@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flower_ecommerce/core/resources/assets_manager.dart';
 import 'package:flower_ecommerce/core/resources/style_manager.dart';
 import 'package:flower_ecommerce/core/resources/values_manager.dart';
@@ -128,7 +130,14 @@ class CartProduct extends StatelessWidget {
                       backgroundColor: ColorManager.pink,
 
                   ) ,
-                  onPressed: (){},
+                  onPressed: (){
+
+                    /// add to cart
+                    /// add to cart
+                    log('add to cart');
+                    /// add to cart
+                    /// add to cart
+                  },
                   child:  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
 
