@@ -39,6 +39,7 @@ import '../../Features/auth/presentation/view_model/signup_view_model/signup_cub
     as _i674;
 import '../../Features/auth/presentation/view_model/verify_password_view_model/verify_password_cubit.dart'
     as _i396;
+
 import '../../Features/categories/data/data_sources/all_categories_datasource.dart'
     as _i939;
 import '../../Features/categories/data/data_sources/all_categories_datasource_impl.dart'
@@ -63,6 +64,18 @@ import '../../Features/products/domain/use_cases/all_categories_usecase.dart'
     as _i232;
 import '../../Features/products/presentation/manager/all_products_cubit.dart'
     as _i491;
+import '../../Features/best_seller/data/data_source/best_online_data_source.dart'
+    as _i97;
+import '../../Features/best_seller/data/data_source/best_online_data_source_impl.dart'
+    as _i840;
+import '../../Features/best_seller/data/repositories/best_repo_impl.dart'
+    as _i762;
+import '../../Features/best_seller/domain/repositories/best_repo.dart'
+    as _i1010;
+import '../../Features/best_seller/domain/use_case/best_seller_use_case.dart'
+    as _i439;
+import '../../Features/best_seller/presentation/best_seller_view_model/best_seller_cubit.dart'
+    as _i1012;
 import '../api/api_manager/api_manager.dart' as _i680;
 import '../api/dio_module.dart' as _i784;
 
@@ -82,6 +95,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i406.AuthOffLineDataSource>(
         () => _i1004.AuthOffLineDataSourceImpl());
     gh.factory<_i680.ApiService>(() => _i680.ApiService(gh<_i361.Dio>()));
+
     gh.factory<_i711.AllProductsDatasource>(
         () => _i34.AllProductsDatasourceImpl(gh<_i680.ApiService>()));
     gh.factory<_i939.AllCategoriesDatasource>(
@@ -98,6 +112,16 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i173.CategoriesRepoImpl(gh<_i711.AllProductsDatasource>()));
     gh.factory<_i232.ProductsUseCase>(
         () => _i232.ProductsUseCase(gh<_i540.ProductsRepo>()));
+    gh.factory<_i97.BestOnLineDataSource>(
+        () => _i840.BestOnLineDataSourceImpl(gh<_i680.ApiService>()));
+    gh.factory<_i318.AuthOnLineDataSource>(
+        () => _i453.AuthOnLineDataSourceImpl(gh<_i680.ApiService>()));
+    gh.factory<_i1010.BestRepo>(
+        () => _i762.BestRepoImpl(gh<_i97.BestOnLineDataSource>()));
+    gh.factory<_i439.BestSellerUseCase>(
+        () => _i439.BestSellerUseCase(gh<_i1010.BestRepo>()));
+    gh.factory<_i1012.BestSellerViewModel>(
+        () => _i1012.BestSellerViewModel(gh<_i439.BestSellerUseCase>()));
     gh.factory<_i1049.AuthRepo>(() => _i118.AuthRepoImpl(
           gh<_i406.AuthOffLineDataSource>(),
           gh<_i318.AuthOnLineDataSource>(),

@@ -8,5 +8,7 @@ class ApiConstants {
   static const String resetPasswordRoute = "auth/resetPassword";
   static const String categories = "categories";
   static const String products = "products";
+    static const String bestSellerRoute = "/best-seller";
+
 
 }
