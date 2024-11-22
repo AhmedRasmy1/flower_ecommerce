@@ -1,8 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flower_ecommerce/Features/home/data/models/best_seller.dart';
 import 'package:flower_ecommerce/core/functions/extenstions.dart';
 import 'package:flutter/material.dart';
 
 class CustomBestSellerContainer extends StatelessWidget {
-  const CustomBestSellerContainer({super.key});
+  const CustomBestSellerContainer({super.key, required this.bestSeller});
+
+  final List<BestSeller> bestSeller;
 
   @override
   Widget build(BuildContext context) {
@@ -12,41 +16,47 @@ class CustomBestSellerContainer extends StatelessWidget {
         height: context.screenHeight * 0.26,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          itemCount: 10,
+          itemCount: bestSeller.length,
           itemBuilder: (context, index) {
+            final bestSellerItem = bestSeller[index];
             return Padding(
               padding: const EdgeInsets.only(right: 16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: context.screenWidth * 0.4,
-                    height: context.screenHeight * 0.2,
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('assets/images/bestsellerimage.jpg'),
-                        filterQuality: FilterQuality.high,
-                        fit: BoxFit.cover,
+              child: GestureDetector(
+                onTap: () {},
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CachedNetworkImage(
+                      imageUrl: bestSellerItem.imgCover ?? '',
+                      width: context.screenWidth * 0.4,
+                      height: context.screenHeight * 0.2,
+                      fit: BoxFit.cover,
+                      errorWidget: (context, url, error) => const Center(
+                        child: Icon(
+                          Icons.error,
+                          color: Colors.red,
+                          size: 32,
+                        ),
                       ),
                     ),
-                  ),
-                  const Text(
-                    'Sunny',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w400,
+                    Text(
+                      bestSellerItem.title?.split(' ').take(3).join(' ') ?? '',
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
-                  ),
-                  const Text(
-                    '600 EGP',
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
+                    Text(
+                      '${bestSellerItem.price} EGP',
+                      style: const TextStyle(
+                        fontSize: 20,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             );
           },

@@ -12,4 +12,7 @@ class AssetsManager {
   static const String locationIcon = 'assets/images/location.svg';
   static const String arrowIcon = 'assets/images/arrow.svg';
   static const String graduationImage = 'assets/images/immagee.jpg';
+  static const String loadingLoading1 = 'assets/images/Circle_Loader.gif';
+  static const String circleLoading = 'assets/images/Circle_Loader_1.gif';
+  static const String loading = 'assets/images/Loading.mp4';
 }
