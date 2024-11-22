@@ -39,6 +39,18 @@ import '../../Features/auth/presentation/view_model/signup_view_model/signup_cub
     as _i674;
 import '../../Features/auth/presentation/view_model/verify_password_view_model/verify_password_cubit.dart'
     as _i396;
+import '../../Features/best_seller/data/data_source/best_online_data_source.dart'
+    as _i97;
+import '../../Features/best_seller/data/data_source/best_online_data_source_impl.dart'
+    as _i840;
+import '../../Features/best_seller/data/repositories/best_repo_impl.dart'
+    as _i762;
+import '../../Features/best_seller/domain/repositories/best_repo.dart'
+    as _i1010;
+import '../../Features/best_seller/domain/use_case/best_seller_use_case.dart'
+    as _i439;
+import '../../Features/best_seller/presentation/best_seller_view_model/best_seller_cubit.dart'
+    as _i1012;
 import '../api/api_manager/api_manager.dart' as _i680;
 import '../api/dio_module.dart' as _i784;
 
@@ -58,8 +70,16 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i406.AuthOffLineDataSource>(
         () => _i1004.AuthOffLineDataSourceImpl());
     gh.factory<_i680.ApiService>(() => _i680.ApiService(gh<_i361.Dio>()));
+    gh.factory<_i97.BestOnLineDataSource>(
+        () => _i840.BestOnLineDataSourceImpl(gh<_i680.ApiService>()));
     gh.factory<_i318.AuthOnLineDataSource>(
         () => _i453.AuthOnLineDataSourceImpl(gh<_i680.ApiService>()));
+    gh.factory<_i1010.BestRepo>(
+        () => _i762.BestRepoImpl(gh<_i97.BestOnLineDataSource>()));
+    gh.factory<_i439.BestSellerUseCase>(
+        () => _i439.BestSellerUseCase(gh<_i1010.BestRepo>()));
+    gh.factory<_i1012.BestSellerViewModel>(
+        () => _i1012.BestSellerViewModel(gh<_i439.BestSellerUseCase>()));
     gh.factory<_i1049.AuthRepo>(() => _i118.AuthRepoImpl(
           gh<_i406.AuthOffLineDataSource>(),
           gh<_i318.AuthOnLineDataSource>(),
@@ -70,10 +90,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i526.LoginUseCases(gh<_i1049.AuthRepo>()));
     gh.factory<_i284.RegisterUseCase>(
         () => _i284.RegisterUseCase(gh<_i1049.AuthRepo>()));
-    gh.factory<_i753.VerifyUseCase>(
-        () => _i753.VerifyUseCase(gh<_i1049.AuthRepo>()));
     gh.factory<_i785.ResetPasswordUseCase>(
         () => _i785.ResetPasswordUseCase(gh<_i1049.AuthRepo>()));
+    gh.factory<_i753.VerifyUseCase>(
+        () => _i753.VerifyUseCase(gh<_i1049.AuthRepo>()));
     gh.factory<_i920.LoginViewModel>(
         () => _i920.LoginViewModel(gh<_i526.LoginUseCases>()));
     gh.factory<_i674.RegisterViewModel>(

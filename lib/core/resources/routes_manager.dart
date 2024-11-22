@@ -10,6 +10,7 @@ import '../../Features/auth/presentation/views/forget_password.dart';
 import '../../Features/auth/presentation/views/login_view.dart';
 import '../../Features/auth/presentation/views/register_view.dart';
 import '../../Features/auth/presentation/views/reset_password_view.dart';
+import '../../Features/best_seller/presentation/view/best_seller_view.dart';
 
 class RoutesManager {
   static const String splashRoute = '/';
@@ -22,6 +23,8 @@ class RoutesManager {
   static const String emailVerificationRoute = '/emailVerification';
   static const String resetPasswordRoute = '/resetPassword';
   static const String layoutRoute = '/layoutRoute';
+  static const String bestSellerRoute = '/bestSellerRoute';
+
 
 
 }
@@ -50,6 +53,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const OtpVerificationPage());
       case RoutesManager.layoutRoute:
         return MaterialPageRoute(builder: (_) => const LayoutView());
+      case RoutesManager.bestSellerRoute:
+        return MaterialPageRoute(builder: (_) => const  BestSellerView());
 
       default:
         return unDefinedRoute();

@@ -4,6 +4,7 @@ import 'package:flower_ecommerce/Features/auth/data/models/request/forget_passwo
 import 'package:flower_ecommerce/Features/auth/data/models/response/forget_password_response/reset_password_response.dart';
 import 'package:flower_ecommerce/Features/auth/data/models/response/forget_password_response/verify_response.dart';
 import 'package:flower_ecommerce/Features/auth/data/models/response/LoginResponseDto.dart';
+import 'package:flower_ecommerce/Features/best_seller/data/model/best_seller_response.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
@@ -38,5 +39,9 @@ abstract class ApiService {
 
   @PUT(ApiConstants.resetPasswordRoute)
   Future<ResetPasswordResponse> resetPassword(@Body() ResetPasswordRequest requestOtp);
+
+
+  @GET(ApiConstants.bestSellerRoute)
+  Future<BestSellerResponse> getBestSeller();
 
 }
