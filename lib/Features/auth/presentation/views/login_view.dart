@@ -109,6 +109,7 @@ class _LoginScreenState extends State<LoginView> {
                           setState(() {
                             rememberMe = value ?? false;
                             viewModel.rememberMe = rememberMe;
+
                           });
                         },
                       ),
@@ -198,7 +199,17 @@ class _LoginScreenState extends State<LoginView> {
                     width: context.screenWidth * 0.9,
                     height: context.screenHeight * 0.063,
                     child: ElevatedButton(
-                      onPressed: () {},
+
+//                       onPressed: () {
+//                         Navigator.pushNamed(context, RoutesManager.tryScreenRoute);
+//                       },
+
+                      onPressed: () {
+                        Navigator.pushNamed(
+                            context, RoutesManager.layoutRoute);
+                      },
+
+
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white,
                           shape: RoundedRectangleBorder(

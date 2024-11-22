@@ -4,6 +4,10 @@ import 'package:flower_ecommerce/Features/auth/data/models/request/forget_passwo
 import 'package:flower_ecommerce/Features/auth/data/models/response/forget_password_response/reset_password_response.dart';
 import 'package:flower_ecommerce/Features/auth/data/models/response/forget_password_response/verify_response.dart';
 import 'package:flower_ecommerce/Features/auth/data/models/response/LoginResponseDto.dart';
+
+import 'package:flower_ecommerce/Features/products_details/data/models/response/product_details_dto.dart';
+import 'package:flower_ecommerce/Features/products/data/models/all_products.dart';
+import 'package:flower_ecommerce/Features/best_seller/data/model/best_seller_response.dart';
 import 'package:flower_ecommerce/Features/home/data/models/home_model.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/error_logger.dart';
@@ -13,6 +17,7 @@ import '../../../Features/auth/data/models/request/RegisterModelDto.dart';
 import '../../../Features/auth/data/models/request/forget_password_request/forget_password_request.dart';
 import '../../../Features/auth/data/models/response/RegisterResponseDto.dart';
 import '../../../Features/auth/data/models/response/forget_password_response/forget_password_response.dart';
+import '../../../Features/categories/data/models/response/all_categories.dart';
 import '../api_constants.dart';
 
 part 'api_manager.g.dart';
@@ -23,10 +28,14 @@ part 'api_manager.g.dart';
 abstract class ApiService {
   @FactoryMethod()
   factory ApiService(Dio dio) = _ApiService;
+
+  factory ApiService(Dio dio) = _ApiService;
   @POST(ApiConstants.signupRoute)
   Future<RegisterResponseDto> signUp(@Body() RegisterModelDto registerModelDto);
 
   @POST(ApiConstants.forgetPasswordRoute)
+  Future<ForgetPasswordResponse> forgetPassword(
+      @Body() ForgetPasswordRequest requestEmail);
   Future<ForgetPasswordResponse> forgetPassword(
       @Body() ForgetPasswordRequest requestEmail);
 
@@ -37,6 +46,22 @@ abstract class ApiService {
   Future<LoginResponseDto> login(@Body() LoginModelDto loginModelDto);
 
   @PUT(ApiConstants.resetPasswordRoute)
+  Future<ResetPasswordResponse> resetPassword(
+      @Body() ResetPasswordRequest requestOtp);
+
+  // @GET(ApiConstants.productDetailsRoute)
+  // Future<ProductDetailsDto> getProductDetails(@Query("") String productId);
+
+  @GET("${ApiConstants.productDetailsRoute}/{productId}")
+  Future<ProductDetailsDto> getProductDetails(
+      @Path("productId") String productId);
+
+  @GET(ApiConstants.categories)
+  Future<AllCategories> getAllCategories();
+  @GET(ApiConstants.products)
+  Future<AllProducts> getAllProducts();
+  @GET(ApiConstants.bestSellerRoute)
+  Future<BestSellerResponse> getBestSeller();
   Future<ResetPasswordResponse> resetPassword(
       @Body() ResetPasswordRequest requestOtp);
 

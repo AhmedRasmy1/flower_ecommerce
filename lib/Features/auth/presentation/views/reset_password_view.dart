@@ -48,7 +48,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
       create: (context) => viewModel,
       child: Scaffold(
         appBar: AppBar(
-          title: Text(AppStrings.password),
+          title: const Text(AppStrings.password),
         ),
         body: BlocListener<ResetPasswordViewModel, ResetPasswordState>(
           listenWhen: (previous, current) {
@@ -82,11 +82,18 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      SizedBox(height: AppSize.s48),
-                      Text(AppStrings.resetPassword,
+                      const SizedBox(height: AppSize.s48),
+                      const Text(AppStrings.resetPassword,
+                        style:TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold
+                        )),
+                      const Text(AppStrings.resetPassword,
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold)),
-                      SizedBox(height: AppSize.s48),
+                      const SizedBox(height: AppSize.s48),
+                      const Text(
+                       AppStrings.resetPasswordMessage,
                       Text(
                         AppStrings.resetPasswordMessage,
                         textAlign: TextAlign.center,
@@ -111,7 +118,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                                   message: AppStrings.passwordNotMatch),
                             ),
                           ),
-                          const SizedBox(height: AppSize.s24),
+                          SizedBox(height: AppSize.s24),
                           SizedBox(
                             width: double.infinity,
                             child: CustomTextFormField(

@@ -6,4 +6,8 @@ class ApiConstants {
   static const String verifyResetCode = "auth/verifyResetCode";
   static const String resetPasswordRoute = "auth/resetPassword";
   static const String homeEndPointApi = "home";
+  static const String productDetailsRoute = "products";
+  static const String categories = "categories";
+  static const String products = "products";
+  static const String bestSellerRoute = "/best-seller";
 }

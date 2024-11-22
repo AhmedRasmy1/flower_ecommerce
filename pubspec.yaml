@@ -47,6 +47,19 @@ dependencies:
   pretty_dio_logger: ^1.4.0
   retrofit: ^4.4.1
   shared_preferences: ^2.3.3
+  pretty_dio_logger: ^1.4.0
+  bloc: ^8.1.4
+  flutter_svg: ^2.0.14
+  cached_network_image: ^3.4.1
+
+  carousel_slider: ^5.0.0
+  smooth_page_indicator: ^1.2.0+3
+  flutter_screenutil: ^5.9.3
+  device_preview: ^1.2.0
+  mockito: ^5.4.4
+  skeletonizer: ^1.4.2
+
+
 
 dev_dependencies:
   build_runner: ^2.4.13

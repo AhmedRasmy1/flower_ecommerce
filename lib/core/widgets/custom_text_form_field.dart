@@ -19,6 +19,9 @@ class CustomTextFormField extends StatelessWidget {
     this.prefixIcon,
     this.initialValue,
     this.onChanged,
+    this.prefixStyle,
+    this.hintStyle,
+    this.borderSideColor,
   });
 
   final TextEditingController controller;
@@ -32,6 +35,9 @@ class CustomTextFormField extends StatelessWidget {
   final Widget? prefixIcon;
   final TextInputType? keyboardType;
   final void Function(String)? onChanged;
+  final TextStyle? prefixStyle;
+  final TextStyle? hintStyle;
+  final Color? borderSideColor;
   // final double borderRadius = AppSize.s5;
 
   @override
@@ -53,36 +59,48 @@ class CustomTextFormField extends StatelessWidget {
                   ],
                 )
               : null,
+          prefixStyle: prefixStyle,
           labelText: labelText,
           labelStyle: getRegularStyle(
             color: ColorManager.grey,
             fontSize: FontSize.s16,
           ),
           hintText: hintText,
-          hintStyle: getRegularStyle(
-            color: ColorManager.placeHolderColor,
-            fontSize: FontSize.s14,
-          ),
+          hintStyle: hintStyle ??
+              getRegularStyle(
+                color: ColorManager.placeHolderColor,
+                fontSize: FontSize.s14,
+              ),
           floatingLabelBehavior: FloatingLabelBehavior.always,
           contentPadding: const EdgeInsets.all(AppPadding.p18),
           enabledBorder: outLintInputBorderMethod(
-            const BorderSide(color: ColorManager.black, width: AppSize.w1_5),
+            BorderSide(
+                color: borderSideColor ?? ColorManager.black,
+                width: AppSize.w1_5),
             const BorderRadius.all(Radius.circular(AppSize.s5)),
           ),
           focusedBorder: outLintInputBorderMethod(
-            const BorderSide(color: ColorManager.grey, width: AppSize.w1_5),
+            BorderSide(
+                color: borderSideColor ?? ColorManager.grey,
+                width: AppSize.w1_5),
             const BorderRadius.all(Radius.circular(AppSize.s5)),
           ),
           errorBorder: outLintInputBorderMethod(
-            const BorderSide(color: ColorManager.error, width: AppSize.w1_5),
+            BorderSide(
+                color: borderSideColor ?? ColorManager.error,
+                width: AppSize.w1_5),
             const BorderRadius.all(Radius.circular(AppSize.s5)),
           ),
           focusedErrorBorder: outLintInputBorderMethod(
-            const BorderSide(color: ColorManager.error, width: AppSize.w1_5),
+            BorderSide(
+                color: borderSideColor ?? ColorManager.error,
+                width: AppSize.w1_5),
             const BorderRadius.all(Radius.circular(AppSize.s5)),
           ),
           disabledBorder: outLintInputBorderMethod(
-            const BorderSide(color: ColorManager.grey, width: AppSize.w1_5),
+            BorderSide(
+                color: borderSideColor ?? ColorManager.grey,
+                width: AppSize.w1_5),
             const BorderRadius.all(Radius.circular(AppSize.s5)),
           )),
       obscureText: obscureText ?? false,

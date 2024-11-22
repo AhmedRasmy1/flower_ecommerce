@@ -2,8 +2,11 @@ class Assets {
   Assets._();
   static const String imagesCart = 'assets/images/cart.svg';
   static const String imagesCategories = 'assets/images/categories.svg';
+  static const String imagesFilter = 'assets/images/filter.svg';
   static const String imagesFlower = 'assets/images/Flower.svg';
   static const String imagesHome = 'assets/images/home.svg';
+  static const String imagesMenu = 'assets/images/menu.svg';
   static const String imagesProfile = 'assets/images/profile.svg';
+  static const String imagesSearch = 'assets/images/search.svg';
   static const String imagesVector = 'assets/images/Vector.svg';
 }
