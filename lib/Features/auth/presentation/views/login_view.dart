@@ -200,7 +200,9 @@ class _LoginScreenState extends State<LoginView> {
                     height: context.screenHeight * 0.063,
                     child: ElevatedButton(
 
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, RoutesManager.tryScreenRoute);
+                      },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white,
                           shape: RoundedRectangleBorder(

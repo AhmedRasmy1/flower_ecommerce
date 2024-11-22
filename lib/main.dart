@@ -4,6 +4,7 @@ import 'package:flower_ecommerce/core/utils/cashed_data_shared_preferences.dart'
 import 'package:flower_ecommerce/core/utils/my_bloc_observer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 // import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
@@ -19,10 +20,13 @@ class FlowerApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      onGenerateRoute: RouteGenerator.getRoute,
-      initialRoute: RoutesManager.splashRoute,
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        onGenerateRoute: RouteGenerator.getRoute,
+        initialRoute: RoutesManager.splashRoute,
+      ),
     );
   }
 }

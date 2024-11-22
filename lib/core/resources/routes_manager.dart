@@ -2,6 +2,8 @@
 import 'package:flower_ecommerce/Features/cart/presentation/pages/cart_view.dart';
 import 'package:flower_ecommerce/Features/home/presentation/pages/home_view.dart';
 import 'package:flower_ecommerce/Features/layout/presentation/pages/layout_view.dart';
+import 'package:flower_ecommerce/Features/products_details/presentation/views/product_details_view.dart';
+import 'package:flower_ecommerce/Features/products_details/presentation/widgets/try_screen.dart';
 import 'package:flower_ecommerce/Features/profile/presentation/pages/profile_view.dart';
 import 'package:flower_ecommerce/splash_view.dart';
 import 'package:flutter/material.dart';
@@ -22,12 +24,14 @@ class RoutesManager {
   static const String emailVerificationRoute = '/emailVerification';
   static const String resetPasswordRoute = '/resetPassword';
   static const String layoutRoute = '/layoutRoute';
-
-
+  static const String productDetailsRoute = '/productDetailsRoute';
+  static const String tryScreenRoute = '/tryScreenRoute';
 }
 
 class RouteGenerator {
   static Route<dynamic> getRoute(RouteSettings settings) {
+    final args = settings.arguments;
+    //final args ="673e2d1b1159920171828146";
     switch (settings.name) {
       case RoutesManager.splashRoute:
         return MaterialPageRoute(builder: (_) => const SplashView());
@@ -50,7 +54,17 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const OtpVerificationPage());
       case RoutesManager.layoutRoute:
         return MaterialPageRoute(builder: (_) => const LayoutView());
-
+      case RoutesManager.tryScreenRoute:
+        return MaterialPageRoute(builder: (_) =>  TryScreen());
+      case RoutesManager.productDetailsRoute:
+        if (args is String) {
+          return MaterialPageRoute(
+            builder: (_) => ProductDetailsView(productId: args),
+          );
+        }
+        return unDefinedRoute();
+      // case RoutesManager.productDetailsRoute:
+      //   return MaterialPageRoute(builder: (_) =>  ProductDetailsView(productId: "673e2d1b1159920171828146",));
       default:
         return unDefinedRoute();
     }

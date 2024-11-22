@@ -38,10 +38,11 @@ class AppStrings {
   static const String invalidCode = "Invalid code";
   static const String enterPhoneNumber = "Enter your phone number";
   static const String resend = "resend";
-    static const String passwordInvalidFormat = "Invalid password format";
+  static const String passwordInvalidFormat = "Invalid password format";
   static const String passwordCharactersLong = "Min 8 characters";
   static const String alreadyHaveAccount = "Already have an account?";
-  static const String agreeTermsConditions = "Creating an account, you agree to our ";
+  static const String agreeTermsConditions =
+      "Creating an account, you agree to our ";
   static const String termsConditions = "Terms&Conditions";
   static const String passwordIsEmpty = "password is empty";
   static const String messageLength3 = "Minimum 3 characters";
@@ -50,12 +51,19 @@ class AppStrings {
   static const String rememberMe = "Remember me";
   static const String invalidEmailOrPassword = 'Invalid Email or Password';
   static const String forgetPassword = 'Forget password?';
-  static const String forgetPasswordMessageHeader ="Please enter your email associated to \n your account";
-  static const String resetPassword="Reset Password";
-  static const String resetPasswordMessage="Password must not be empty and must contain \n6 characters with upper case letter and one\n number at least";
+  static const String forgetPasswordMessageHeader =
+      "Please enter your email associated to \n your account";
+  static const String resetPassword = "Reset Password";
+  static const String resetPasswordMessage =
+      "Password must not be empty and must contain \n6 characters with upper case letter and one\n number at least";
   static const String home = 'Home';
   static const String categories = 'Categories';
   static const String cart = 'Cart';
   static const String profile = 'Profile';
-
+  static const String egyptCurrency = 'EGP';
+  static const String status = 'Status:';
+  static const String taxes = 'All prices include tax';
+  static const String description = 'Description';
+  static const String bouquetInclude = 'Bouquet include';
+  static const String addToCart = "Add to cart";
 }
