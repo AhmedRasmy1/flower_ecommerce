@@ -1,5 +1,3 @@
-
-
 import 'package:flower_ecommerce/Features/auth/domain/entities/register_entities.dart';
 
 sealed class RegisterState {}
@@ -13,7 +11,6 @@ class SuccessRegisterState extends RegisterState {
 }
 
 class LoadingRegisterState extends RegisterState {
-
   LoadingRegisterState();
 }
 
@@ -22,8 +19,6 @@ class ErrorRegisterState extends RegisterState {
 
   ErrorRegisterState(this.exception);
 }
-
-
 
 sealed class RegisterToAction {}
 
@@ -37,9 +32,9 @@ class RegisterAction extends RegisterToAction {
 
   RegisterAction(
       {required this.firstName,
-        required this.lastName,
-        required this.email,
-        required this.password,
-        required this.rePassword,
-        required this.phone});
+      required this.lastName,
+      required this.email,
+      required this.password,
+      required this.rePassword,
+      required this.phone});
 }

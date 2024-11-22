@@ -29,6 +29,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   bloc: ^8.1.4
+  bloc_test: ^9.1.7
   cached_network_image: ^3.4.1
   cupertino_icons: ^1.0.8
   dio: ^5.7.0
@@ -41,6 +42,8 @@ dependencies:
   injectable: ^2.5.0
   json_annotation: ^4.9.0
   logger: ^2.4.0
+  meta: ^1.15.0
+  mockito: ^5.4.4
   pretty_dio_logger: ^1.4.0
   retrofit: ^4.4.1
   shared_preferences: ^2.3.3

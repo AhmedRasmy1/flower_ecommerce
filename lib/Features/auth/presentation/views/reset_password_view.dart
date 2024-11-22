@@ -16,12 +16,9 @@ import '../view_model/reset_password_view_model/reset_password_state.dart';
 class ResetPasswordView extends StatefulWidget {
   const ResetPasswordView({super.key});
 
-
-
   @override
   State<ResetPasswordView> createState() => _ResetPasswordViewState();
 }
-
 
 class _ResetPasswordViewState extends State<ResetPasswordView> {
   late ResetPasswordViewModel viewModel;
@@ -31,22 +28,22 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _rePasswordController = TextEditingController();
 
-  bool isButtonEnabled=false;
+  bool isButtonEnabled = false;
 
-  void validateInputs(){
-
-    isButtonEnabled=_formKey.currentState?.validate()??false;
-
+  void validateInputs() {
+    isButtonEnabled = _formKey.currentState?.validate() ?? false;
   }
 
   @override
   void initState() {
-   viewModel = getIt.get<ResetPasswordViewModel>();
+    viewModel = getIt.get<ResetPasswordViewModel>();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
-    final String editEmail=ModalRoute.of(context)?.settings.arguments as String;
+    final String editEmail =
+        ModalRoute.of(context)?.settings.arguments as String;
     return BlocProvider(
       create: (context) => viewModel,
       child: Scaffold(
@@ -55,14 +52,14 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
         ),
         body: BlocListener<ResetPasswordViewModel, ResetPasswordState>(
           listenWhen: (previous, current) {
-            if(current is LoadingResetPasswordState || current is ErrorResetPasswordState || current is SuccessResetPasswordState)
-            {
+            if (current is LoadingResetPasswordState ||
+                current is ErrorResetPasswordState ||
+                current is SuccessResetPasswordState) {
               return true;
             }
-            return false ;
+            return false;
           },
           listener: (context, state) {
-
             if (state is LoadingResetPasswordState) {
               showLoadingDialog(context);
             } else if (state is ErrorResetPasswordState) {
@@ -70,10 +67,9 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
               Navigator.of(context).pop(); // Close loading dialog
               showErrorDialog(context, message);
             } else if (state is SuccessResetPasswordState) {
-              Navigator.of(context).popUntil((route)=>route.isFirst); // Close dialogs before showing success
-              Navigator.pushNamed(
-                  context, RoutesManager.loginRoute);
-
+              Navigator.of(context).popUntil((route) =>
+                  route.isFirst); // Close dialogs before showing success
+              Navigator.pushNamed(context, RoutesManager.loginRoute);
             }
           },
           child: Container(
@@ -81,20 +77,18 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
             child: Form(
               key: _formKey,
               onChanged: validateInputs,
-              child:Padding(
+              child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
                       SizedBox(height: AppSize.s48),
                       Text(AppStrings.resetPassword,
-                        style:TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold
-                        )),
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold)),
                       SizedBox(height: AppSize.s48),
                       Text(
-                       AppStrings.resetPasswordMessage,
+                        AppStrings.resetPasswordMessage,
                         textAlign: TextAlign.center,
                       ),
                       SizedBox(height: AppSize.s48),
@@ -111,9 +105,9 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                               validator: (value) => validatePassword(
                                   password: _passwordController.text,
                                   messageInvalid:
-                                  AppStrings.passwordInvalidFormat,
+                                      AppStrings.passwordInvalidFormat,
                                   messageLength:
-                                  AppStrings.passwordCharactersLong,
+                                      AppStrings.passwordCharactersLong,
                                   message: AppStrings.passwordNotMatch),
                             ),
                           ),
@@ -132,34 +126,31 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                                   message: AppStrings.passwordNotMatch),
                             ),
                           ),
-                           SizedBox(height: AppSize.s48),
+                          SizedBox(height: AppSize.s48),
                         ],
                       ),
-
-                      BlocBuilder<ResetPasswordViewModel,ResetPasswordState>(
+                      BlocBuilder<ResetPasswordViewModel, ResetPasswordState>(
                         builder: (context, state) {
-
                           if (state is LoadingResetPasswordState) {
-                            return const Center(child: CircularProgressIndicator());
+                            return const Center(
+                                child: CircularProgressIndicator());
                           } else {
                             return SizedBox(
                               height: AppSize.s48,
                               width: double.infinity,
                               child: ElevatedButton(
                                 onPressed: () {
-                                  if (isButtonEnabled==true){
+                                  if (isButtonEnabled == true) {
                                     resetPassword(editEmail);
                                   }
                                 },
-                                style:ElevatedButton.styleFrom(
-                                    backgroundColor:ColorManager.pink
-                                ),
-                                child: const Text(AppStrings.confirmButton,
-                                  style:  TextStyle(
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor: ColorManager.pink),
+                                child: const Text(
+                                  AppStrings.confirmButton,
+                                  style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      color:ColorManager.white
-                                  ),
-
+                                      color: ColorManager.white),
                                 ),
                               ),
                             );
@@ -174,13 +165,12 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
           ),
         ),
       ),
-
     );
   }
 
   void resetPassword(String email) {
-    String password=_passwordController.text;
+    String password = _passwordController.text;
 
-    viewModel.doIntent(ResetPasswordIntent(email,password));
+    viewModel.doIntent(ResetPasswordIntent(email, password));
   }
 }

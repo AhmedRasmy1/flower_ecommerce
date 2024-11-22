@@ -4,6 +4,7 @@ import 'package:flower_ecommerce/Features/auth/data/models/request/forget_passwo
 import 'package:flower_ecommerce/Features/auth/data/models/response/forget_password_response/reset_password_response.dart';
 import 'package:flower_ecommerce/Features/auth/data/models/response/forget_password_response/verify_response.dart';
 import 'package:flower_ecommerce/Features/auth/data/models/response/LoginResponseDto.dart';
+import 'package:flower_ecommerce/Features/home/data/models/home_model.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
@@ -21,14 +22,13 @@ part 'api_manager.g.dart';
 @RestApi(baseUrl: ApiConstants.baseUrl)
 abstract class ApiService {
   @FactoryMethod()
-  factory ApiService(Dio dio) =_ApiService;
+  factory ApiService(Dio dio) = _ApiService;
   @POST(ApiConstants.signupRoute)
   Future<RegisterResponseDto> signUp(@Body() RegisterModelDto registerModelDto);
 
-
   @POST(ApiConstants.forgetPasswordRoute)
-  Future<ForgetPasswordResponse> forgetPassword(@Body() ForgetPasswordRequest requestEmail);
-
+  Future<ForgetPasswordResponse> forgetPassword(
+      @Body() ForgetPasswordRequest requestEmail);
 
   @POST(ApiConstants.verifyResetCode)
   Future<VerifyResponse> verifyPassword(@Body() VerifyRequest requestOtp);
@@ -37,6 +37,9 @@ abstract class ApiService {
   Future<LoginResponseDto> login(@Body() LoginModelDto loginModelDto);
 
   @PUT(ApiConstants.resetPasswordRoute)
-  Future<ResetPasswordResponse> resetPassword(@Body() ResetPasswordRequest requestOtp);
+  Future<ResetPasswordResponse> resetPassword(
+      @Body() ResetPasswordRequest requestOtp);
 
+  @GET(ApiConstants.homeEndPointApi)
+  Future<HomeModel> getHomeData();
 }

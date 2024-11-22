@@ -76,8 +76,10 @@ class BlocConsumerForSignupPage extends StatelessWidget {
           phoneController.clear();
 
           Navigator.pop(context);
-          Navigator.pushNamed(context, RoutesManager.loginRoute,
-             );
+          Navigator.pushNamed(
+            context,
+            RoutesManager.loginRoute,
+          );
         }
       },
       builder: (context, state) {
@@ -98,7 +100,6 @@ class BlocConsumerForSignupPage extends StatelessWidget {
                   ));
                 }
               },
-
               formKey: formKey,
               updateButtonColor: updateButtonColor,
             );

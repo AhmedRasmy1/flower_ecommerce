@@ -7,9 +7,11 @@ class CustomHeader extends StatelessWidget {
     super.key,
     this.title,
     this.viewAll,
+    this.onTap,
   });
   final String? title;
   final String? viewAll;
+  final Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -25,7 +27,7 @@ class CustomHeader extends StatelessWidget {
         const Spacer(),
         if (viewAll != null)
           GestureDetector(
-            onTap: () {},
+            onTap: onTap,
             child: Text(
               viewAll!,
               style: const TextStyle(

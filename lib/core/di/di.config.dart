@@ -39,6 +39,14 @@ import '../../Features/auth/presentation/view_model/signup_view_model/signup_cub
     as _i674;
 import '../../Features/auth/presentation/view_model/verify_password_view_model/verify_password_cubit.dart'
     as _i396;
+import '../../Features/home/data/data_sources/home_data_source.dart' as _i448;
+import '../../Features/home/data/data_sources_impl/home_data_source_impl.dart'
+    as _i824;
+import '../../Features/home/data/repositories_impl/home_repo_impl.dart'
+    as _i288;
+import '../../Features/home/domain/repositories/home_repo.dart' as _i143;
+import '../../Features/home/domain/use_cases/home_use_case.dart' as _i185;
+import '../../Features/home/presentation/viewmodels/home_cubit.dart' as _i1022;
 import '../api/api_manager/api_manager.dart' as _i680;
 import '../api/dio_module.dart' as _i784;
 
@@ -58,12 +66,20 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i406.AuthOffLineDataSource>(
         () => _i1004.AuthOffLineDataSourceImpl());
     gh.factory<_i680.ApiService>(() => _i680.ApiService(gh<_i361.Dio>()));
+    gh.factory<_i448.HomeDataSource>(
+        () => _i824.HomeDataSourceImpl(gh<_i680.ApiService>()));
     gh.factory<_i318.AuthOnLineDataSource>(
         () => _i453.AuthOnLineDataSourceImpl(gh<_i680.ApiService>()));
+    gh.factory<_i143.HomeRepo>(
+        () => _i288.HomeRepoImpl(gh<_i448.HomeDataSource>()));
     gh.factory<_i1049.AuthRepo>(() => _i118.AuthRepoImpl(
           gh<_i406.AuthOffLineDataSource>(),
           gh<_i318.AuthOnLineDataSource>(),
         ));
+    gh.factory<_i185.HomeUseCase>(
+        () => _i185.HomeUseCase(gh<_i143.HomeRepo>()));
+    gh.factory<_i1022.HomeCubit>(
+        () => _i1022.HomeCubit(gh<_i185.HomeUseCase>()));
     gh.factory<_i251.ForgetPasswordUseCase>(
         () => _i251.ForgetPasswordUseCase(gh<_i1049.AuthRepo>()));
     gh.factory<_i526.LoginUseCases>(

@@ -1,12 +1,13 @@
 class RegisterModelDto {
   RegisterModelDto({
-      this.firstName, 
-      this.lastName, 
-      this.email, 
-      this.password, 
-      this.rePassword, 
-      this.phone, 
-      this.gender,});
+    this.firstName,
+    this.lastName,
+    this.email,
+    this.password,
+    this.rePassword,
+    this.phone,
+    this.gender,
+  });
 
   RegisterModelDto.fromJson(dynamic json) {
     firstName = json['firstName'];
@@ -36,5 +37,4 @@ class RegisterModelDto {
     map['gender'] = gender;
     return map;
   }
-
 }

@@ -8,7 +8,6 @@ class SuccessLoginState extends LoginState {
   LoginEntitie loginEntities;
 
   SuccessLoginState(this.loginEntities);
-
 }
 
 class LoadingLoginState extends LoginState {}
@@ -17,5 +16,4 @@ class ErrorLoginState extends LoginState {
   Exception? exception;
 
   ErrorLoginState(this.exception);
-
 }

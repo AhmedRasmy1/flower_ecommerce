@@ -1,33 +1,28 @@
-
-
-
-
 import 'package:bloc/bloc.dart';
 import 'package:flower_ecommerce/Features/auth/presentation/view_model/reset_password_view_model/reset_password_state.dart';
 import 'package:injectable/injectable.dart';
-
 
 import '../../../../../core/common/api_result.dart';
 import '../../../domain/entities/reset_password_entity.dart';
 import '../../../domain/use_cases/reset_password_usecase.dart';
 
 @injectable
-class ResetPasswordViewModel extends Cubit<ResetPasswordState>{
+class ResetPasswordViewModel extends Cubit<ResetPasswordState> {
   ResetPasswordUseCase resetPasswordUseCase;
   ResetPasswordViewModel(this.resetPasswordUseCase) : super(InitialState());
 
-  void doIntent(ResetPasswordScreenIntent intent){
-
+  void doIntent(ResetPasswordScreenIntent intent) {
     switch (intent) {
-
-      case ResetPasswordIntent():_resetPassword(intent);
-
+      case ResetPasswordIntent():
+        _resetPassword(intent);
     }
   }
-  void _resetPassword(ResetPasswordIntent intent) async{
+
+  void _resetPassword(ResetPasswordIntent intent) async {
     emit(LoadingResetPasswordState());
 
-    var result = await resetPasswordUseCase.invoke(intent.email,intent.newPassword);
+    var result =
+        await resetPasswordUseCase.invoke(intent.email, intent.newPassword);
     switch (result) {
       case Success<ResetPasswordEntity?>():
         emit(SuccessResetPasswordState(result.data));
@@ -35,13 +30,13 @@ class ResetPasswordViewModel extends Cubit<ResetPasswordState>{
         emit(ErrorResetPasswordState(result.exception));
     }
   }
-
 }
-sealed class ResetPasswordScreenIntent{}
-class ResetPasswordIntent extends ResetPasswordScreenIntent{
+
+sealed class ResetPasswordScreenIntent {}
+
+class ResetPasswordIntent extends ResetPasswordScreenIntent {
   String email;
-  String newPassword ;
+  String newPassword;
 
-ResetPasswordIntent(this.email,this.newPassword);
+  ResetPasswordIntent(this.email, this.newPassword);
 }
-

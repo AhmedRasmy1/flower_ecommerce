@@ -12,7 +12,6 @@ import '../data_sources/auth_offline_datasource.dart';
 import '../models/request/RegisterModelDto.dart';
 import '../models/request/forget_password_request/reset_password_request.dart';
 
-
 @Injectable(as: AuthRepo)
 class AuthRepoImpl implements AuthRepo {
   AuthOffLineDataSource offLineDataSource;
@@ -52,20 +51,19 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<Result<ForgetPasswordEntity?>> forgetPassword(String email)
-  {
+  Future<Result<ForgetPasswordEntity?>> forgetPassword(String email) {
     return onLineDataSource.forgetPassword(email);
   }
 
   @override
-  Future<Result<VerifyPasswordEntity?>> verifyPassword(String otp)
-  {
+  Future<Result<VerifyPasswordEntity?>> verifyPassword(String otp) {
     return onLineDataSource.verifyPassword(otp);
   }
 
-
   @override
-  Future<Result<ResetPasswordEntity?>> resetPassword(String email, String newPassword) {
-    return onLineDataSource.resetPassword(ResetPasswordRequest(email: email,newPassword: newPassword));
+  Future<Result<ResetPasswordEntity?>> resetPassword(
+      String email, String newPassword) {
+    return onLineDataSource.resetPassword(
+        ResetPasswordRequest(email: email, newPassword: newPassword));
   }
 }

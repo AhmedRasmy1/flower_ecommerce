@@ -56,11 +56,11 @@ class AuthOnLineDataSourceImpl implements AuthOnLineDataSource {
   }
 
   @override
-  Future<Result<ResetPasswordEntity?>> resetPassword(ResetPasswordRequest resetPasswordRequest) {
+  Future<Result<ResetPasswordEntity?>> resetPassword(
+      ResetPasswordRequest resetPasswordRequest) {
     return executeApi(() async {
       var response = await _authRetrofit.resetPassword(resetPasswordRequest);
       return response.toResetPasswordEntity();
     });
-
   }
 }

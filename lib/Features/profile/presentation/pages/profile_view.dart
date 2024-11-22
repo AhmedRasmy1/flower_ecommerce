@@ -6,7 +6,9 @@ class ProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('ProfileView'),),
+      appBar: AppBar(
+        title: const Text('ProfileView'),
+      ),
     );
   }
 }

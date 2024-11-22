@@ -8,5 +8,4 @@ class Assets {
   static const String imagesHome = 'assets/images/home.svg';
   static const String imagesProfile = 'assets/images/profile.svg';
   static const String imagesVector = 'assets/images/Vector.svg';
-
 }

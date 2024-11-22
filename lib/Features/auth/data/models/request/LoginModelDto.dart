@@ -1,7 +1,8 @@
 class LoginModelDto {
   LoginModelDto({
-      this.email, 
-      this.password,});
+    this.email,
+    this.password,
+  });
 
   LoginModelDto.fromJson(dynamic json) {
     email = json['email'];
@@ -16,5 +17,4 @@ class LoginModelDto {
     map['password'] = password;
     return map;
   }
-
 }

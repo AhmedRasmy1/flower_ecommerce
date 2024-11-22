@@ -5,11 +5,8 @@ import '../../../../core/common/api_result.dart';
 import '../entities/register_entities.dart';
 import '../entities/reset_password_entity.dart';
 
-
 abstract class AuthRepo {
-
   Future<Result<RegisterEntities?>> register(
-
     String firstName,
     String lastName,
     String email,
@@ -20,7 +17,7 @@ abstract class AuthRepo {
   );
   Future<Result<ForgetPasswordEntity?>> forgetPassword(String email);
   Future<Result<VerifyPasswordEntity?>> verifyPassword(String otp);
-  Future<Result<ResetPasswordEntity?>> resetPassword(String email,String newPassword);
-  Future<Result<LoginEntitie>> login (String name,String password);
-
+  Future<Result<ResetPasswordEntity?>> resetPassword(
+      String email, String newPassword);
+  Future<Result<LoginEntitie>> login(String name, String password);
 }

@@ -1,4 +1,3 @@
-
 import 'package:flower_ecommerce/Features/cart/presentation/pages/cart_view.dart';
 import 'package:flower_ecommerce/Features/home/presentation/pages/home_view.dart';
 import 'package:flower_ecommerce/Features/layout/presentation/pages/layout_view.dart';
@@ -22,8 +21,6 @@ class RoutesManager {
   static const String emailVerificationRoute = '/emailVerification';
   static const String resetPasswordRoute = '/resetPassword';
   static const String layoutRoute = '/layoutRoute';
-
-
 }
 
 class RouteGenerator {
@@ -36,13 +33,16 @@ class RouteGenerator {
       case RoutesManager.profileRoute:
         return MaterialPageRoute(builder: (_) => const ProfileView());
       case RoutesManager.loginRoute:
-        return MaterialPageRoute(builder: (_) => const LoginView(), );
+        return MaterialPageRoute(
+          builder: (_) => const LoginView(),
+        );
       case RoutesManager.registerRoute:
-        return MaterialPageRoute(builder: (_) => const RegisterView(),settings: settings);
+        return MaterialPageRoute(
+            builder: (_) => const RegisterView(), settings: settings);
       case RoutesManager.cartRoute:
         return MaterialPageRoute(builder: (_) => const CartView());
       case RoutesManager.forgetPasswordRoute:
-        return MaterialPageRoute(builder: (_) =>  const ForgetPasswordView());
+        return MaterialPageRoute(builder: (_) => const ForgetPasswordView());
 
       case RoutesManager.resetPasswordRoute:
         return MaterialPageRoute(builder: (_) => const ResetPasswordView());

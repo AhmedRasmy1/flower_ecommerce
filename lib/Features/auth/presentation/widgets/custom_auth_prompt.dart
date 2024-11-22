@@ -55,6 +55,5 @@ class AuthPrompt extends StatelessWidget {
         ),
       ],
     );
-
   }
 }
