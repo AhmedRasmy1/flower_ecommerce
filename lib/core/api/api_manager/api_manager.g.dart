@@ -196,19 +196,28 @@ class _ApiService implements ApiService {
   }
 
   @override
+
   Future<ProductDetailsDto> getProductDetails(String productId) async {
+
+
+  Future<AllCategories> getAllCategories() async {
+  Future<BestSellerResponse> getBestSeller() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<ProductDetailsDto>(Options(
+
+    final _options = _setStreamType<AllCategories>(Options(
+
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
         .compose(
           _dio.options,
-          'products/${productId}',
+
+          'categories',
+
           queryParameters: queryParameters,
           data: _data,
         )
@@ -218,9 +227,56 @@ class _ApiService implements ApiService {
           baseUrl,
         )));
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+
+    late AllCategories _value;
+    try {
+      _value = AllCategories.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<AllProducts> getAllProducts() async {
+
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+
+    final _options = _setStreamType<ProductDetailsDto>(Options(
+
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+
+          'products/${productId}',
+
+
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+
     late ProductDetailsDto _value;
     try {
       _value = ProductDetailsDto.fromJson(_result.data!);
+
+    late AllProducts _value;
+    try {
+      _value = AllProducts.fromJson(_result.data!);
+
+
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

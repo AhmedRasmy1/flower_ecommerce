@@ -87,13 +87,13 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                   child: Column(
                     children: [
                       SizedBox(height: AppSize.s48),
-                      Text(AppStrings.resetPassword,
+                      const Text(AppStrings.resetPassword,
                         style:TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold
                         )),
                       SizedBox(height: AppSize.s48),
-                      Text(
+                      const Text(
                        AppStrings.resetPasswordMessage,
                         textAlign: TextAlign.center,
                       ),

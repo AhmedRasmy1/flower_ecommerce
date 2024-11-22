@@ -35,14 +35,14 @@ class _LoginScreenState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-
     return BlocProvider(
       create: (context) => viewModel,
       child: Scaffold(
         body: BlocListener<LoginViewModel, LoginState>(
           listener: (context, state) {
             if (state is SuccessLoginState) {
-              Navigator.pushReplacementNamed(context, RoutesManager.layoutRoute);
+              Navigator.pushReplacementNamed(
+                  context, RoutesManager.layoutRoute);
             } else if (state is ErrorLoginState) {
               setState(() {
                 _errorMessage = AppStrings.invalidEmailOrPassword;
@@ -58,7 +58,7 @@ class _LoginScreenState extends State<LoginView> {
                   padding: EdgeInsets.only(
                       top: context.screenHeight * 0.06,
                       left: context.screenWidth * 0.08),
-                  child: Text(
+                  child: const Text(
                     AppStrings.login,
                     style: TextStyle(
                         color: ColorManager.lightGrey,
@@ -66,7 +66,7 @@ class _LoginScreenState extends State<LoginView> {
                         fontWeight: FontWeight.w500),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: AppSize.s20,
                 ),
                 Container(
@@ -81,7 +81,7 @@ class _LoginScreenState extends State<LoginView> {
                         validateNotEmpty(value, AppStrings.enterValidEmail),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: AppSize.s24,
                 ), //
                 Container(
@@ -109,10 +109,11 @@ class _LoginScreenState extends State<LoginView> {
                           setState(() {
                             rememberMe = value ?? false;
                             viewModel.rememberMe = rememberMe;
+
                           });
                         },
                       ),
-                      Text(
+                      const Text(
                         AppStrings.rememberMe,
                         style: TextStyle(
                             color: ColorManager.lightGrey,
@@ -129,7 +130,7 @@ class _LoginScreenState extends State<LoginView> {
                         },
                         child: Column(
                           children: [
-                            Text(AppStrings.forgetPassword,
+                            const Text(AppStrings.forgetPassword,
                                 style: TextStyle(
                                     color: ColorManager.lightGrey,
                                     fontWeight: FontWeight.w400,
@@ -157,7 +158,7 @@ class _LoginScreenState extends State<LoginView> {
                         const EdgeInsets.symmetric(horizontal: AppPadding.p24),
                     child: Text(
                       _errorMessage!,
-                      style: TextStyle(color: Colors.red, fontSize: 14),
+                      style: const TextStyle(color: Colors.red, fontSize: 14),
                     ),
                   ),
                 Center(
@@ -177,17 +178,16 @@ class _LoginScreenState extends State<LoginView> {
                         }
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: ColorManager.pink,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(100))),
-                      child: Text(
+                          backgroundColor: ColorManager.pink,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(100))),
+                      child: const Text(
                         AppStrings.login,
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w500,
                             fontSize: 16),
                       ),
-
                     ),
                   ),
                 ),
@@ -200,27 +200,33 @@ class _LoginScreenState extends State<LoginView> {
                     height: context.screenHeight * 0.063,
                     child: ElevatedButton(
 
+//                       onPressed: () {
+//                         Navigator.pushNamed(context, RoutesManager.tryScreenRoute);
+//                       },
+
                       onPressed: () {
-                        Navigator.pushNamed(context, RoutesManager.tryScreenRoute);
+                        Navigator.pushNamed(
+                            context, RoutesManager.layoutRoute);
                       },
+
+
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(100),
-                              side: BorderSide(
+                              side: const BorderSide(
                                   color: ColorManager.placeHolderColor))),
 //                       onPressed: () {
 //                         Navigator.pushReplacementNamed(context, RoutesManager.layoutRoute);
 //                       },
 
-                      child: Text(
+                      child: const Text(
                         AppStrings.continueAsGuest,
                         style: TextStyle(
                             color: ColorManager.placeHolderColor,
                             fontWeight: FontWeight.w500,
                             fontSize: 16),
                       ),
-
                     ),
                   ),
                 ),
@@ -231,7 +237,7 @@ class _LoginScreenState extends State<LoginView> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(AppStrings.notHaveAnAccount,
+                      const Text(AppStrings.notHaveAnAccount,
                           style: TextStyle(
                               color: ColorManager.placeHolderColor,
                               fontWeight: FontWeight.w500,
@@ -239,13 +245,13 @@ class _LoginScreenState extends State<LoginView> {
                       InkWell(
                         onTap: () {
                           Navigator.pushNamed(
-                              context, RoutesManager.registerRoute,
-                              // arguments: {'email':_emailController.text}
+                            context, RoutesManager.registerRoute,
+                            // arguments: {'email':_emailController.text}
                           );
                         },
                         child: Column(
                           children: [
-                            Text(AppStrings.signUp,
+                            const Text(AppStrings.signUp,
                                 style: TextStyle(
                                     color: ColorManager.pink,
                                     fontWeight: FontWeight.w600,

@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flower_ecommerce/core/resources/color_manager.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -19,7 +20,7 @@ class CustomImage extends StatelessWidget {
     this.height,
     this.width,
     this.sizeIndicator,
-    this.boxFit,
+    this.boxFit, this.placeholder,
   });
 
   final String url;
@@ -27,25 +28,24 @@ class CustomImage extends StatelessWidget {
   final double? width;
   final double? sizeIndicator;
   final BoxFit? boxFit;
+  final Widget? placeholder;
 
   @override
   Widget build(BuildContext context) {
     return getFileExtensionFromUrl(url) == 'svg'
         ? SvgPicture.network(
-            url.isNotEmpty ? '${ApiConstants.baseUrl}$url' : '',
+           url,
             fit: BoxFit.fill,
             placeholderBuilder: (context) => const Center(
-              child: CircularProgressIndicator(),
+              child:CircularProgressIndicator(color: ColorManager.pink),
             ),
           )
         : CachedNetworkImage(
             height: height,
             width: width ?? MediaQuery.sizeOf(context).width,
-            imageUrl: url.isNotEmpty ? '${ApiConstants.baseUrl}$url' : '',
+            imageUrl:url,
             fit: boxFit ?? BoxFit.fill,
-            placeholder: (context, url) => const Center(
-              child: CircularProgressIndicator(),
-            ),
+            placeholder: (context, url) =>   placeholder?? const CircularProgressIndicator(color: ColorManager.pink),
             errorWidget: (context, url, error) => const Center(
               child: Icon(Icons.error),
             ),

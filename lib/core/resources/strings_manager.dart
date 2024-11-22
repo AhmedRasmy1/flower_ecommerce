@@ -60,10 +60,18 @@ class AppStrings {
   static const String categories = 'Categories';
   static const String cart = 'Cart';
   static const String profile = 'Profile';
+
   static const String egyptCurrency = 'EGP';
   static const String status = 'Status:';
   static const String taxes = 'All prices include tax';
   static const String description = 'Description';
   static const String bouquetInclude = 'Bouquet include';
   static const String addToCart = "Add to cart";
+
+  static const String filter = 'Filter';
+  static const String all = 'All';
+  static const String bestSeller = 'Best Seller';
+  static const String bestSellerTitleDescription = "Bloom with our exquisite best sellers";
+  static const String countryCurrency ="EGP";
+  static const String addToCart = 'Add to cart';
 }

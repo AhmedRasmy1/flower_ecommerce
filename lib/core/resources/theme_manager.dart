@@ -40,6 +40,6 @@ OutlineInputBorder outLintInputBorderMethod(
     BorderSide borderSide, BorderRadius borderRadius) {
   return OutlineInputBorder(
     borderSide: borderSide,
-    borderRadius: const BorderRadius.all(Radius.circular(AppSize.s5)),
+    borderRadius:  BorderRadius.all(Radius.circular(AppSize.s5)),
   );
 }
