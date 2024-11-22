@@ -43,6 +43,10 @@ dependencies:
   bloc: ^8.1.4
   flutter_svg: ^2.0.14
   cached_network_image: ^3.4.1
+
+  carousel_slider: ^5.0.0
+  smooth_page_indicator: ^1.2.0+3
+  flutter_screenutil: ^5.9.3
   device_preview: ^1.2.0
   mockito: ^5.4.4
   skeletonizer: ^1.4.2

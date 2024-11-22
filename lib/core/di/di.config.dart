@@ -40,6 +40,18 @@ import '../../Features/auth/presentation/view_model/signup_view_model/signup_cub
 import '../../Features/auth/presentation/view_model/verify_password_view_model/verify_password_cubit.dart'
     as _i396;
 
+import '../../Features/products_details/data/data_source_imp/product_details_online_datasource_impl.dart'
+    as _i696;
+import '../../Features/products_details/data/data_sources/product_details_online_datasource.dart'
+    as _i178;
+import '../../Features/products_details/data/repositories/product_details_repo_impl.dart'
+    as _i174;
+import '../../Features/products_details/domain/repositories/product_details_repo.dart'
+    as _i368;
+import '../../Features/products_details/domain/use_cases/product_details_usecases.dart'
+    as _i364;
+import '../../Features/products_details/presentation/view_model/product_details_cubit.dart'
+    as _i942;
 import '../../Features/categories/data/data_sources/all_categories_datasource.dart'
     as _i939;
 import '../../Features/categories/data/data_sources/all_categories_datasource_impl.dart'
@@ -96,6 +108,15 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i1004.AuthOffLineDataSourceImpl());
     gh.factory<_i680.ApiService>(() => _i680.ApiService(gh<_i361.Dio>()));
 
+    gh.factory<_i178.ProductDetailsOnlineDataSource>(
+        () => _i696.ProductDetailsOnlineDataSourceImp(gh<_i680.ApiService>()));
+    gh.factory<_i318.AuthOnLineDataSource>(
+        () => _i453.AuthOnLineDataSourceImpl(gh<_i680.ApiService>()));
+    gh.factory<_i368.ProductDetailsRepo>(() => _i174.ProductDetailsRepoImpl(
+        gh<_i178.ProductDetailsOnlineDataSource>()));
+    gh.factory<_i364.ProductDetailsUseCases>(
+        () => _i364.ProductDetailsUseCases(gh<_i368.ProductDetailsRepo>()));
+    
     gh.factory<_i711.AllProductsDatasource>(
         () => _i34.AllProductsDatasourceImpl(gh<_i680.ApiService>()));
     gh.factory<_i939.AllCategoriesDatasource>(
@@ -122,10 +143,14 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i439.BestSellerUseCase(gh<_i1010.BestRepo>()));
     gh.factory<_i1012.BestSellerViewModel>(
         () => _i1012.BestSellerViewModel(gh<_i439.BestSellerUseCase>()));
+
     gh.factory<_i1049.AuthRepo>(() => _i118.AuthRepoImpl(
           gh<_i406.AuthOffLineDataSource>(),
           gh<_i318.AuthOnLineDataSource>(),
         ));
+
+    gh.factory<_i942.ProductDetailsViewModel>(() =>
+        _i942.ProductDetailsViewModel(gh<_i364.ProductDetailsUseCases>()));
     gh.factory<_i491.AllProductsViewModel>(
         () => _i491.AllProductsViewModel(gh<_i232.ProductsUseCase>()));
     gh.factory<_i251.ForgetPasswordUseCase>(
