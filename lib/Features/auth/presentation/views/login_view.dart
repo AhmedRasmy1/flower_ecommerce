@@ -58,7 +58,7 @@ class _LoginScreenState extends State<LoginView> {
                   padding: EdgeInsets.only(
                       top: context.screenHeight * 0.06,
                       left: context.screenWidth * 0.08),
-                  child: Text(
+                  child: const Text(
                     AppStrings.login,
                     style: TextStyle(
                         color: ColorManager.lightGrey,
@@ -66,7 +66,7 @@ class _LoginScreenState extends State<LoginView> {
                         fontWeight: FontWeight.w500),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: AppSize.s20,
                 ),
                 Container(
@@ -81,7 +81,7 @@ class _LoginScreenState extends State<LoginView> {
                         validateNotEmpty(value, AppStrings.enterValidEmail),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: AppSize.s24,
                 ), //
                 Container(
@@ -109,10 +109,11 @@ class _LoginScreenState extends State<LoginView> {
                           setState(() {
                             rememberMe = value ?? false;
                             viewModel.rememberMe = rememberMe;
+
                           });
                         },
                       ),
-                      Text(
+                      const Text(
                         AppStrings.rememberMe,
                         style: TextStyle(
                             color: ColorManager.lightGrey,
@@ -200,7 +201,10 @@ class _LoginScreenState extends State<LoginView> {
                     height: context.screenHeight * 0.063,
                     child: ElevatedButton(
 
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(
+                            context, RoutesManager.layoutRoute);
+                      },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white,
                           shape: RoundedRectangleBorder(
