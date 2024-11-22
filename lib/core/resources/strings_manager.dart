@@ -57,5 +57,7 @@ class AppStrings {
   static const String categories = 'Categories';
   static const String cart = 'Cart';
   static const String profile = 'Profile';
+  static const String filter = 'Filter';
+  static const String all = 'All';
 
 }

@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flower_ecommerce/Features/products/presentation/manager/all_products_state.dart';
+import 'package:flower_ecommerce/core/resources/color_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/di/di.dart';
@@ -29,76 +32,95 @@ class _GirdBodyOfProductsState extends State<GirdBodyOfProducts> {
     viewModel = getIt.get<AllProductsViewModel>()..doIntent(GetAllProductsAction());
     super.initState();
   }
-
+  @override
+  void dispose() {
+    viewModel.close();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
 
     print("page id ---------------- ${widget.pageId}");
 
-    return BlocProvider(
-      create: (context) => viewModel,
-      child: BlocConsumer<AllProductsViewModel, AllProductsState>(
-        listener: (context, state) {
-          // TODO: implement listener
-        },
+    return RefreshIndicator(
+      color: ColorManager.pink,
+      onRefresh: () async {
+         getIt.get<AllProductsViewModel>().doIntent(GetAllProductsAction());
 
-        builder: (context, state) {
-          if (state is SuccessAllProductsState) {
-            List<ProductsEntities> allData =
-            /// FROM CHATGPT
-            state.categoriesEntities?.products ?? [];
-            List<ProductsEntities> filteredByOccasion =
-            allData.where((product) {
-              if (widget.pageId.isEmpty) {
-                return true;
-              }
-              if (widget.page.name == 'Category') {
-                return product.category == widget.pageId;
-              } else if (widget.page.name == 'Occasion') {
-                return product.occasion == widget.pageId;
-              } else {
-                return true;
-              }
-            }).toList();
+      },
+      child: BlocProvider(
+        create: (context) => viewModel,
+        child: BlocConsumer<AllProductsViewModel, AllProductsState>(
+          listener: (context, state) {
+            // TODO: implement listener
+          },
 
-            return LayoutBuilder(
-              builder: (context, constraints) {
-                double aspectRatio = (constraints.maxWidth > 500) ?0.67: 0.6 ;
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: GridView.builder(
-                    gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: constraints.maxWidth > 500?3:2,
-                        mainAxisSpacing: 10,
-                        crossAxisSpacing: 10,
-                        childAspectRatio: aspectRatio
+          builder: (context, state) {
+            if (state is SuccessAllProductsState) {
+              List<ProductsEntities> allData =
+              /// FROM CHATGPT
+              state.categoriesEntities?.products ?? [];
+              List<ProductsEntities> filteredByOccasion =
+              allData.where((product) {
+                if (widget.pageId.isEmpty) {
+                  return true;
+                }
+                if (widget.page.name == 'Category') {
+                  return product.category == widget.pageId;
+                } else if (widget.page.name == 'Occasion') {
+                  return product.occasion == widget.pageId;
+                } else {
+                  return true;
+                }
+              }).toList();
+
+              return LayoutBuilder(
+                builder: (context, constraints) {
+                  double aspectRatio = (constraints.maxWidth > 500) ?0.67: 0.6 ;
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GridView.builder(
+                      physics: const BouncingScrollPhysics(),
+                      gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: constraints.maxWidth > 500?3:2,
+                          mainAxisSpacing: 10,
+                          crossAxisSpacing: 10,
+                          childAspectRatio: aspectRatio
+                      ),
+                      itemCount: filteredByOccasion.length,
+                      itemBuilder: (context, index) {
+                        return filteredByOccasion.isNotEmpty
+                            ? InkWell(
+
+
+                          splashColor:  Colors.pink.withOpacity(.2),
+                          borderRadius: BorderRadius.circular(12),
+                          highlightColor: Colors.pink.withOpacity(0.1),
+
+                          onTap: () {
+                            /// go to details
+                            log('go to details');
+                            /// go to details
+                            /// go to details
+                            /// go to details
+                            /// go to details
+                          },
+                              child: CartProduct(
+                                                      productsEntities: filteredByOccasion[index],
+                                                    ),
+                            )
+                            : const SkeletonBody();
+                      },
                     ),
-                    itemCount: filteredByOccasion.length,
-                    itemBuilder: (context, index) {
-                      return filteredByOccasion.isNotEmpty
-                          ? InkWell(
-                        onTap: () {
-                          /// go to details
-                          /// go to details
-                          /// go to details
-                          /// go to details
-                          /// go to details
-                        },
-                            child: CartProduct(
-                                                    productsEntities: filteredByOccasion[index],
-                                                  ),
-                          )
-                          : const SkeletonBody();
-                    },
-                  ),
-                );
-              },
+                  );
+                },
 
-            );
-          } else {
-            return const SkeletonBody();
-          }
-        },
+              );
+            } else {
+              return const SkeletonBody();
+            }
+          },
+        ),
       ),
     );
   }
