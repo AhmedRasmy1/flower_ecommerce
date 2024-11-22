@@ -1,7 +1,5 @@
 import 'dart:async';
 
-
-
 import 'package:flower_ecommerce/Features/auth/presentation/view_model/forget_password_view_model/forget_password_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,10 +25,10 @@ class OtpVerificationPage extends StatefulWidget {
 
 class _OtpVerificationPageState extends State<OtpVerificationPage> {
   late VerifyPasswordViewModel viewModel;
-  late ForgetPasswordViewModel forgetPasswordViewModel ;
+  late ForgetPasswordViewModel forgetPasswordViewModel;
   late String editEmail;
   final List<TextEditingController> _controllers =
-  List.generate(6, (_) => TextEditingController());
+      List.generate(6, (_) => TextEditingController());
   bool _isCodeInvalid = false; // Track invalid code state
   final String _errorMessage = AppStrings.invalidCode;
   bool isButtonDisabled = true; // To track button state
@@ -40,7 +38,7 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
   @override
   void initState() {
     viewModel = getIt.get<VerifyPasswordViewModel>();
-    forgetPasswordViewModel =getIt.get<ForgetPasswordViewModel>();
+    forgetPasswordViewModel = getIt.get<ForgetPasswordViewModel>();
     startTimer();
     super.initState();
   }
@@ -73,7 +71,9 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
         child: Scaffold(
           body: Padding(
             padding: const EdgeInsets.only(
-                top: AppPadding.p8, left: AppPadding.p16, right: AppPadding.p16),
+                top: AppPadding.p8,
+                left: AppPadding.p16,
+                right: AppPadding.p16),
             child: Column(
               children: [
                 CustomAppBar(
@@ -107,7 +107,7 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: List.generate(
                       AppConstants.listGenerate,
-                          (index) {
+                      (index) {
                         return CustomFieldForOtpVerification(
                           controllers: _controllers,
                           viewModel: viewModel,
@@ -168,7 +168,9 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
                   ),
                 ),
                 InkWell(
-                  onTap: isButtonDisabled ? null : resendOTP, // Disable when button is inactive
+                  onTap: isButtonDisabled
+                      ? null
+                      : resendOTP, // Disable when button is inactive
                   child: Text(
                     AppStrings.resend,
                     style: TextStyle(
@@ -210,6 +212,7 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
 
   void resendOTP() {
     startTimer();
-   forgetPasswordViewModel.doIntent(ForgetPasswordIntent(editEmail)); // Call the ViewModel's resend OTP function
+    forgetPasswordViewModel.doIntent(ForgetPasswordIntent(
+        editEmail)); // Call the ViewModel's resend OTP function
   }
 }

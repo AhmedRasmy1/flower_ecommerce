@@ -34,7 +34,7 @@ class CustomFieldForOtpVerification extends StatelessWidget {
               FocusScope.of(context).nextFocus();
             } else if (index == 5) {
               String enteredOtp =
-              _controllers.map((controller) => controller.text).join();
+                  _controllers.map((controller) => controller.text).join();
               viewModel.doIntent(VerifyPasswordIntent(enteredOtp));
               FocusScope.of(context).unfocus();
             }
@@ -70,7 +70,7 @@ class CustomFieldForOtpVerification extends StatelessWidget {
             ),
           ),
           contentPadding: const EdgeInsets.symmetric(
-            vertical:  AppPadding.p24,
+            vertical: AppPadding.p24,
           ),
         ),
         style: const TextStyle(fontSize: 20),

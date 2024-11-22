@@ -1,20 +1,14 @@
 import 'package:flower_ecommerce/Features/auth/domain/entities/forget_password_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-
 part 'forget_password_response.g.dart';
 
 @JsonSerializable()
-
 class ForgetPasswordResponse {
-  ForgetPasswordResponse({
-      this.message, 
-      this.info,
-  this.error
-  });
+  ForgetPasswordResponse({this.message, this.info, this.error});
 
-
-  factory ForgetPasswordResponse.fromJson(Map<String, dynamic> json) => _$ForgetPasswordResponseFromJson(json);
+  factory ForgetPasswordResponse.fromJson(Map<String, dynamic> json) =>
+      _$ForgetPasswordResponseFromJson(json);
 
   String? message;
   String? info;
@@ -23,10 +17,6 @@ class ForgetPasswordResponse {
   Map<String, dynamic> toJson() => _$ForgetPasswordResponseToJson(this);
 
   ForgetPasswordEntity toForgetPasswordEntity() {
-    return ForgetPasswordEntity(
-        message: message,
-        info: info,
-        error:error
-    );
+    return ForgetPasswordEntity(message: message, info: info, error: error);
   }
 }

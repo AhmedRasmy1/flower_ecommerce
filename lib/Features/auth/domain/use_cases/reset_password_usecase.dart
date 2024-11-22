@@ -1,5 +1,3 @@
-
-
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/common/api_result.dart';
@@ -12,7 +10,8 @@ class ResetPasswordUseCase {
 
   ResetPasswordUseCase(this.authRepo);
 
-  Future<Result<ResetPasswordEntity?>> invoke(String email,String newPassword) {
+  Future<Result<ResetPasswordEntity?>> invoke(
+      String email, String newPassword) {
     return authRepo.resetPassword(email, newPassword);
   }
 }

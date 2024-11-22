@@ -1,4 +1,3 @@
-
 import 'package:flower_ecommerce/Features/auth/presentation/view_model/verify_password_view_model/verify_password_state.dart';
 import 'package:flower_ecommerce/Features/auth/presentation/views/reset_password_view.dart';
 import 'package:flower_ecommerce/core/widgets/show_error_dialog.dart';
@@ -9,46 +8,45 @@ import '../view_model/verify_password_view_model/verify_password_cubit.dart';
 import '../../../../core/utils/utils.dart';
 
 class BlocConsumerForOtpVerificationPage extends StatelessWidget {
-  final ValueChanged<bool> onCodeInvalid;// Callback for invalid code
+  final ValueChanged<bool> onCodeInvalid; // Callback for invalid code
   final String email;
 
   const BlocConsumerForOtpVerificationPage({
     super.key,
-    required this.onCodeInvalid,// Required callback
+    required this.onCodeInvalid, // Required callback
     required this.email,
   });
 
   @override
   Widget build(BuildContext context) {
     return BlocListener<VerifyPasswordViewModel, VerifyPasswordState>(
-      listener: (context, state) {
+        listener: (context, state) {
+          if (state is LoadingVerifyPasswordState) {
+            showLoadingDialog(context);
+          } else if (state is ErrorVerifyPasswordState) {
+            var message = extractErrorMessage(state.exception);
+            Navigator.of(context).pop(); // Close loading dialog
+            showErrorDialog(context, message);
+          } else if (state is SuccessVerifyPasswordState) {
+            Navigator.of(context).popUntil((route) =>
+                route.isFirst); // Close dialogs before showing success
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ResetPasswordView(),
+                    settings: RouteSettings(arguments: email)));
+          }
+        },
+        listenWhen: (previous, current) {
+          if (current is LoadingVerifyPasswordState ||
+              current is ErrorVerifyPasswordState ||
+              current is SuccessVerifyPasswordState) {
+            return true;
+          }
+          return false;
+        },
+        child: SizedBox.shrink() // Placeholder when no loading state
 
-        if (state is LoadingVerifyPasswordState) {
-          showLoadingDialog(context);
-        } else if (state is ErrorVerifyPasswordState) {
-          var message = extractErrorMessage(state.exception);
-          Navigator.of(context).pop(); // Close loading dialog
-          showErrorDialog(context, message);
-        } else if (state is SuccessVerifyPasswordState) {
-
-          Navigator.of(context).popUntil((route)=>route.isFirst); // Close dialogs before showing success
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context)=>ResetPasswordView(),
-                  settings: RouteSettings(arguments: email))
-          );
-        }
-      },
-      listenWhen: (previous, current) {
-        if(current is LoadingVerifyPasswordState || current is ErrorVerifyPasswordState || current is SuccessVerifyPasswordState)
-        {
-          return true;
-        }
-        return false ;
-      },
-     child: SizedBox.shrink()// Placeholder when no loading state
-
-    );
+        );
   }
 }

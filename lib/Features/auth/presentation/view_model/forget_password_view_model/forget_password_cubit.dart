@@ -1,4 +1,3 @@
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../../core/common/api_result.dart';
@@ -6,21 +5,19 @@ import '../../../domain/entities/forget_password_entity.dart';
 import '../../../domain/use_cases/forget_Password_usecase.dart';
 import 'forget_password_state.dart';
 
-
 @injectable
-class ForgetPasswordViewModel extends Cubit<ForgetPasswordState>{
+class ForgetPasswordViewModel extends Cubit<ForgetPasswordState> {
   ForgetPasswordUseCase forgetPasswordUseCase;
   ForgetPasswordViewModel(this.forgetPasswordUseCase) : super(InitialState());
 
-  void doIntent(ForgetPasswordScreenIntent intent){
-
+  void doIntent(ForgetPasswordScreenIntent intent) {
     switch (intent) {
-
-      case ForgetPasswordIntent():_forgetPassword(intent);
-
+      case ForgetPasswordIntent():
+        _forgetPassword(intent);
     }
   }
-  void _forgetPassword(ForgetPasswordIntent intent) async{
+
+  void _forgetPassword(ForgetPasswordIntent intent) async {
     emit(LoadingForgetPasswordState());
 
     var result = await forgetPasswordUseCase.invoke(intent.email);
@@ -31,12 +28,12 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordState>{
         emit(ErrorForgetPasswordState(result.exception));
     }
   }
-
 }
-sealed class ForgetPasswordScreenIntent{}
-class ForgetPasswordIntent extends ForgetPasswordScreenIntent{
+
+sealed class ForgetPasswordScreenIntent {}
+
+class ForgetPasswordIntent extends ForgetPasswordScreenIntent {
   String email;
 
   ForgetPasswordIntent(this.email);
 }
-

@@ -1,4 +1,3 @@
-
 import 'package:flower_ecommerce/Features/auth/presentation/view_model/verify_password_view_model/verify_password_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -6,25 +5,23 @@ import '../../../../../core/common/api_result.dart';
 import '../../../domain/entities/verify_password_entity.dart';
 import '../../../domain/use_cases/verify_uce_case.dart';
 
-
 @injectable
-class VerifyPasswordViewModel extends Cubit<VerifyPasswordState>{
+class VerifyPasswordViewModel extends Cubit<VerifyPasswordState> {
   VerifyUseCase verifyUseCase;
- VerifyPasswordViewModel(this.verifyUseCase) : super(InitialState());
+  VerifyPasswordViewModel(this.verifyUseCase) : super(InitialState());
 
-  void doIntent(VerifyPasswordScreenIntent intent){
-
+  void doIntent(VerifyPasswordScreenIntent intent) {
     switch (intent) {
-
-      case VerifyPasswordIntent():_verifyPassword(intent);
-
+      case VerifyPasswordIntent():
+        _verifyPassword(intent);
     }
   }
-  void _verifyPassword(VerifyPasswordIntent intent) async{
+
+  void _verifyPassword(VerifyPasswordIntent intent) async {
     emit(LoadingVerifyPasswordState());
 
     var result = await verifyUseCase.invoke(intent.otp);
-    var testOtp=intent.otp;
+    var testOtp = intent.otp;
     print("ttttttttttttttttttttttttttttttttttttt$testOtp");
     switch (result) {
       case Success<VerifyPasswordEntity?>():
@@ -33,12 +30,12 @@ class VerifyPasswordViewModel extends Cubit<VerifyPasswordState>{
         emit(ErrorVerifyPasswordState(result.exception));
     }
   }
-
 }
-sealed class VerifyPasswordScreenIntent{}
-class VerifyPasswordIntent extends VerifyPasswordScreenIntent{
+
+sealed class VerifyPasswordScreenIntent {}
+
+class VerifyPasswordIntent extends VerifyPasswordScreenIntent {
   String otp;
 
   VerifyPasswordIntent(this.otp);
 }
-

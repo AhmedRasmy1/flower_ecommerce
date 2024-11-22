@@ -15,7 +15,7 @@ import '../view_model/forget_password_view_model/forget_password_state.dart';
 import 'email_verification_view.dart';
 
 class ForgetPasswordView extends StatefulWidget {
-  const ForgetPasswordView({super.key  });
+  const ForgetPasswordView({super.key});
 
   @override
   State<ForgetPasswordView> createState() => _ForgetPasswordViewState();
@@ -26,21 +26,18 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
 
   @override
   void initState() {
-     viewModel= getIt.get<ForgetPasswordViewModel>();
+    viewModel = getIt.get<ForgetPasswordViewModel>();
     super.initState();
   }
-
 
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController _emailController = TextEditingController();
 
-  bool isButtonEnabled=false;
+  bool isButtonEnabled = false;
 
-  void validateInputs(){
-
-    isButtonEnabled=_formKey.currentState?.validate()??false;
-
+  void validateInputs() {
+    isButtonEnabled = _formKey.currentState?.validate() ?? false;
   }
 
   @override
@@ -53,14 +50,14 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
         ),
         body: BlocListener<ForgetPasswordViewModel, ForgetPasswordState>(
           listenWhen: (previous, current) {
-            if(current is LoadingForgetPasswordState || current is ErrorForgetPasswordState || current is SuccessForgetPasswordState)
-            {
+            if (current is LoadingForgetPasswordState ||
+                current is ErrorForgetPasswordState ||
+                current is SuccessForgetPasswordState) {
               return true;
             }
-            return false ;
+            return false;
           },
           listener: (context, state) {
-
             if (state is LoadingForgetPasswordState) {
               showLoadingDialog(context);
             } else if (state is ErrorForgetPasswordState) {
@@ -68,17 +65,16 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
               Navigator.of(context).pop(); // Close loading dialog
               showErrorDialog(context, message);
             } else if (state is SuccessForgetPasswordState) {
-              final email=_emailController.text;
-              Navigator.of(context).popUntil((route)=>route.isFirst); // Close dialogs before showing success
+              final email = _emailController.text;
+              Navigator.of(context).popUntil((route) =>
+                  route.isFirst); // Close dialogs before showing success
               Navigator.push(
                   context,
                   MaterialPageRoute(
-               builder: (context)=>const OtpVerificationPage(),
-            settings: RouteSettings(arguments: email))
-              );
+                      builder: (context) => const OtpVerificationPage(),
+                      settings: RouteSettings(arguments: email)));
             }
           },
-
           child: Form(
             key: _formKey,
             onChanged: validateInputs,
@@ -86,11 +82,13 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
               padding: const EdgeInsets.all(16.0),
               child: Center(
                 child: Column(
-
                   children: [
                     const Text(AppStrings.forgetPassword),
                     const SizedBox(height: AppSize.s24),
-                    const Text(AppStrings.forgetPasswordMessageHeader, textAlign: TextAlign.center,),
+                    const Text(
+                      AppStrings.forgetPasswordMessageHeader,
+                      textAlign: TextAlign.center,
+                    ),
                     const SizedBox(height: AppSize.s24),
                     CustomTextFormField(
                       keyboardType: TextInputType.emailAddress,
@@ -104,34 +102,32 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                     const SizedBox(height: AppSize.s48),
                     BlocBuilder<ForgetPasswordViewModel, ForgetPasswordState>(
                       builder: (context, state) {
-
                         if (state is LoadingForgetPasswordState) {
-                          return const Center(child: CircularProgressIndicator());
+                          return const Center(
+                              child: CircularProgressIndicator());
                         } else {
                           return SizedBox(
                             width: double.infinity,
                             child: ElevatedButton(
                               onPressed: () {
-                                if (isButtonEnabled==true){
+                                if (isButtonEnabled == true) {
                                   forgetPassword();
                                 }
                               },
-                              style:ElevatedButton.styleFrom(
-                                  backgroundColor:ColorManager.pink
-                              ),
-                              child: const Text(AppStrings.confirmButton,
-                                style:  TextStyle(
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: ColorManager.pink),
+                              child: const Text(
+                                AppStrings.confirmButton,
+                                style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  color:ColorManager.white,
+                                  color: ColorManager.white,
                                 ),
-
                               ),
                             ),
                           );
                         }
                       },
                     ),
-
                   ],
                 ),
               ),

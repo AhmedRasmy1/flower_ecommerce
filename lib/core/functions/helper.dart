@@ -152,10 +152,8 @@ String? validateString({
 String? validateEmail({
   required String value,
   required String message,
-
   required String messageInvalid,
 }) {
-
   final RegExp emailRegExp = RegExp(
       r"^[a-zA-Z0-9.a-zA-Z0-9!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
 

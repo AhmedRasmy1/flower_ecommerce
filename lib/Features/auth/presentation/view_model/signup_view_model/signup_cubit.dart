@@ -14,8 +14,8 @@ class RegisterViewModel extends Cubit<RegisterState> {
   static RegisterViewModel get(context) => BlocProvider.of(context);
 
   RegisterViewModel(this._registerUseCase) : super(InitialState());
-  bool isSelectGender =false;
-  bool isSelectGender2 =false;
+  bool isSelectGender = false;
+  bool isSelectGender2 = false;
 
   void doIntent(RegisterAction intent) async {
     switch (intent) {
@@ -32,9 +32,11 @@ class RegisterViewModel extends Cubit<RegisterState> {
         registerAction.lastName,
         registerAction.email,
         registerAction.password,
-        gender,///
-        registerAction. rePassword,
-        registerAction. phone);
+        gender,
+
+        ///
+        registerAction.rePassword,
+        registerAction.phone);
 
     switch (result) {
       case Success<RegisterEntities?>():
@@ -45,5 +47,3 @@ class RegisterViewModel extends Cubit<RegisterState> {
     }
   }
 }
-
-

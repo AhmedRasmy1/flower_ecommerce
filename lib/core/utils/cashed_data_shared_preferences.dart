@@ -44,13 +44,5 @@ class SharedData {
 class StringCache {
   static const String selectGender = 'selectGender';
   //!for Example ! for Example ! for Example ! for Example ! for Example
- // static const String emailResetPassword = 'emailResetPassword';
-// static const String userEmail = 'userEmail';
-// static const String userPassword = 'userPassword';
+  static const String userToken = 'userToken';
 }
-//how to used  for Example
-// SharedData.setData(key: StringCache.emailResetPassword, value: value)- // Set
-
-// SharedData.getData(key: StringCache.emailResetPassword) ---------------// get
-// SharedData.deleteItem(key: StringCache.emailResetPassword)------// deleteItem
-// SharedData.clearItems()-----------------------------------------// clearItems

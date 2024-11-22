@@ -2,10 +2,11 @@ import '../../../domain/entities/register_entities.dart';
 
 class RegisterResponseDto {
   RegisterResponseDto({
-      this.message, 
-      this.error, 
-      this.user, 
-      this.token,});
+    this.message,
+    this.error,
+    this.user,
+    this.token,
+  });
 
   RegisterResponseDto.fromJson(dynamic json) {
     message = json['message'];
@@ -28,28 +29,25 @@ class RegisterResponseDto {
     map['token'] = token;
     return map;
   }
-  RegisterEntities toRegisterEntities(){
-    return RegisterEntities(
-        error: error,
-        message: message,
-        token: token,
-        user: user?.toEntity()
-    );
-  }
 
+  RegisterEntities toRegisterEntities() {
+    return RegisterEntities(
+        error: error, message: message, token: token, user: user?.toEntity());
+  }
 }
 
 class User {
   User({
-      this.firstName, 
-      this.lastName, 
-      this.email, 
-      this.gender, 
-      this.phone, 
-      this.photo, 
-      this.role, 
-      this.id, 
-      this.createdAt,});
+    this.firstName,
+    this.lastName,
+    this.email,
+    this.gender,
+    this.phone,
+    this.photo,
+    this.role,
+    this.id,
+    this.createdAt,
+  });
 
   User.fromJson(dynamic json) {
     firstName = json['firstName'];

@@ -15,5 +15,6 @@ class AppConstants {
     ProfileView(),
   ];
 }
- bool isSelectGender =false;
- bool isSelectGender2 =true;
+
+bool isSelectGender = false;
+bool isSelectGender2 = true;

@@ -1,4 +1,3 @@
-
 import '../../../domain/entities/forget_password_entity.dart';
 
 sealed class ForgetPasswordState {}

@@ -1,4 +1,3 @@
-
 import '../../../domain/entities/verify_password_entity.dart';
 
 sealed class VerifyPasswordState {}

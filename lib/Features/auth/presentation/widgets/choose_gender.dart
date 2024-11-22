@@ -42,7 +42,7 @@ class _ChooseGenderState extends State<ChooseGender> {
               onChanged: (String? value) {
                 setState(() {
                   widget.viewModel.isSelectGender = false;
-                  widget.viewModel.isSelectGender2=true;
+                  widget.viewModel.isSelectGender2 = true;
                   _selectedValue = value;
                   _isActive = !_isActive;
                   SharedData.setData(
@@ -67,7 +67,7 @@ class _ChooseGenderState extends State<ChooseGender> {
               groupValue: _selectedValue,
               onChanged: (String? value) {
                 setState(() {
-                  widget.viewModel.isSelectGender2=true;
+                  widget.viewModel.isSelectGender2 = true;
                   widget.viewModel.isSelectGender = false;
                   _selectedValue = value;
                   _isActive = !_isActive;
