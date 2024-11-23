@@ -1,6 +1,7 @@
 import 'package:flower_ecommerce/Features/cart/presentation/pages/cart_view.dart';
 import 'package:flower_ecommerce/Features/home/presentation/pages/home_view.dart';
 import 'package:flower_ecommerce/Features/layout/presentation/pages/layout_view.dart';
+import 'package:flower_ecommerce/Features/occasions/presentation/views/occasions_view.dart';
 import 'package:flower_ecommerce/Features/products_details/presentation/views/product_details_view.dart';
 import 'package:flower_ecommerce/Features/products_details/presentation/widgets/try_screen.dart';
 import 'package:flower_ecommerce/Features/profile/presentation/pages/profile_view.dart';
@@ -28,6 +29,7 @@ class RoutesManager {
   static const String productDetailsRoute = '/productDetailsRoute';
   static const String tryScreenRoute = '/tryScreenRoute';
   static const String bestSellerRoute = '/bestSellerRoute';
+  static const String occassionViewRoute = '/occassionViewRoute';
 }
 
 class RouteGenerator {
@@ -50,6 +52,8 @@ class RouteGenerator {
             builder: (_) => const RegisterView(), settings: settings);
       case RoutesManager.cartRoute:
         return MaterialPageRoute(builder: (_) => const CartView());
+      case RoutesManager.occassionViewRoute:
+        return MaterialPageRoute(builder: (_) => const OccasionsView());
       case RoutesManager.forgetPasswordRoute:
         return MaterialPageRoute(builder: (_) => const ForgetPasswordView());
 

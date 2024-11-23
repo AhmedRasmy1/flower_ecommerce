@@ -1,4 +1,5 @@
 import 'package:device_preview/device_preview.dart';
+import 'package:flower_ecommerce/Features/occasions/presentation/views/occasions_view.dart';
 import 'package:flower_ecommerce/core/di/di.dart';
 import 'package:flower_ecommerce/core/resources/color_manager.dart';
 import 'package:flower_ecommerce/core/resources/routes_manager.dart';
@@ -44,6 +45,7 @@ class FlowerApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         onGenerateRoute: RouteGenerator.getRoute,
         initialRoute: RoutesManager.splashRoute,
+
       ),
     );
   }
