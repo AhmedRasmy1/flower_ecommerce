@@ -1,21 +1,18 @@
-import 'package:flower_ecommerce/Features/categories/data/models/response/all_categories.dart';
-import 'package:flower_ecommerce/Features/categories/presentation/pages/categories_view.dart';
-import 'package:flower_ecommerce/Features/home/presentation/viewmodels/home_cubit.dart';
-import 'package:flower_ecommerce/Features/home/presentation/widgets/custom_bestseller_container.dart';
-import 'package:flower_ecommerce/Features/home/presentation/widgets/custom_card.dart';
-import 'package:flower_ecommerce/Features/home/presentation/widgets/custom_category_container.dart';
-import 'package:flower_ecommerce/Features/home/presentation/widgets/custom_header.dart';
-import 'package:flower_ecommerce/Features/home/presentation/widgets/custom_location.dart';
-import 'package:flower_ecommerce/Features/home/presentation/widgets/custom_occasion_container.dart';
-import 'package:flower_ecommerce/Features/home/presentation/widgets/custom_search_field.dart';
-import 'package:flower_ecommerce/Features/layout/presentation/pages/layout_view.dart';
-import 'package:flower_ecommerce/core/di/di.dart';
-import 'package:flower_ecommerce/core/resources/assets_manager.dart';
-import 'package:flower_ecommerce/core/resources/color_manager.dart';
-import 'package:flower_ecommerce/core/resources/routes_manager.dart';
-import 'package:flower_ecommerce/core/resources/strings_manager.dart';
-import 'package:flower_ecommerce/core/resources/values_manager.dart';
-import 'package:flower_ecommerce/core/widgets/custom_app_bar.dart';
+import '../viewmodels/home_cubit.dart';
+import '../widgets/custom_bestseller_container.dart';
+import '../widgets/custom_card.dart';
+import '../widgets/custom_category_container.dart';
+import '../widgets/custom_header.dart';
+import '../widgets/custom_location.dart';
+import '../widgets/custom_occasion_container.dart';
+import '../widgets/custom_search_field.dart';
+import '../../../../core/di/di.dart';
+import '../../../../core/resources/assets_manager.dart';
+import '../../../../core/resources/color_manager.dart';
+import '../../../../core/resources/routes_manager.dart';
+import '../../../../core/resources/strings_manager.dart';
+import '../../../../core/resources/values_manager.dart';
+import '../../../../core/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -80,7 +77,7 @@ class _HomeViewState extends State<HomeView> {
                 } else if (state is HomeSuccess) {
                   var bestSeller = state.homeEntity.bestSeller;
                   var occasions = state.homeEntity.occasions;
-                  var product = state.homeEntity.products;
+                  // var product = state.homeEntity.products;
                   return SingleChildScrollView(
                     child: Column(
                       children: [

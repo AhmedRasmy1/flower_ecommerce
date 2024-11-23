@@ -1,5 +1,5 @@
-import 'package:flower_ecommerce/Features/home/domain/entities/home_entity.dart';
-import 'package:flower_ecommerce/core/common/api_result.dart';
+import '../../domain/entities/home_entity.dart';
+import '../../../../core/common/api_result.dart';
 
 abstract class HomeDataSource {
   Future<Result<HomeEntity>> getHomeData();

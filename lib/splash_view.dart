@@ -1,7 +1,7 @@
-import 'package:flower_ecommerce/core/functions/extenstions.dart';
-import 'package:flower_ecommerce/core/resources/assets_manager.dart';
-import 'package:flower_ecommerce/core/resources/strings_manager.dart';
-import 'package:flower_ecommerce/core/resources/values_manager.dart';
+import 'core/functions/extenstions.dart';
+import 'core/resources/assets_manager.dart';
+import 'core/resources/strings_manager.dart';
+import 'core/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../../../core/resources/app_constants.dart';

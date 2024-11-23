@@ -1,8 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flower_ecommerce/Features/home/data/models/best_seller.dart';
-import 'package:flower_ecommerce/Features/products_details/presentation/views/product_details_view.dart';
-import 'package:flower_ecommerce/core/functions/extenstions.dart';
-import 'package:flower_ecommerce/core/resources/routes_manager.dart';
+import '../../data/models/best_seller.dart';
+import '../../../products_details/presentation/views/product_details_view.dart';
+import '../../../../core/functions/extenstions.dart';
 import 'package:flutter/material.dart';
 
 class CustomBestSellerContainer extends StatelessWidget {

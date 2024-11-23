@@ -1,11 +1,11 @@
-import 'package:flower_ecommerce/Features/cart/presentation/pages/cart_view.dart';
-import 'package:flower_ecommerce/Features/home/presentation/pages/home_view.dart';
-import 'package:flower_ecommerce/Features/layout/presentation/pages/layout_view.dart';
-import 'package:flower_ecommerce/Features/occasions/presentation/views/occasions_view.dart';
-import 'package:flower_ecommerce/Features/products_details/presentation/views/product_details_view.dart';
-import 'package:flower_ecommerce/Features/products_details/presentation/widgets/try_screen.dart';
-import 'package:flower_ecommerce/Features/profile/presentation/pages/profile_view.dart';
-import 'package:flower_ecommerce/splash_view.dart';
+import '../../Features/cart/presentation/pages/cart_view.dart';
+import '../../Features/home/presentation/pages/home_view.dart';
+import '../../Features/layout/presentation/pages/layout_view.dart';
+import '../../Features/occasions/presentation/views/occasions_view.dart';
+import '../../Features/products_details/presentation/views/product_details_view.dart';
+import '../../Features/products_details/presentation/widgets/try_screen.dart';
+import '../../Features/profile/presentation/pages/profile_view.dart';
+import '../../splash_view.dart';
 import 'package:flutter/material.dart';
 import '../../Features/auth/presentation/views/email_verification_view.dart';
 import '../../Features/auth/presentation/views/forget_password.dart';
@@ -65,7 +65,7 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const LayoutView());
 
       case RoutesManager.tryScreenRoute:
-        return MaterialPageRoute(builder: (_) => TryScreen());
+        return MaterialPageRoute(builder: (_) => const TryScreen());
       case RoutesManager.productDetailsRoute:
         if (args is String) {
           return MaterialPageRoute(

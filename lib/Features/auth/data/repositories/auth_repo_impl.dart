@@ -1,8 +1,8 @@
-import 'package:flower_ecommerce/Features/auth/domain/entities/forget_password_entity.dart';
+import '../../domain/entities/forget_password_entity.dart';
 
-import 'package:flower_ecommerce/Features/auth/domain/entities/verify_password_entity.dart';
-import 'package:flower_ecommerce/Features/auth/data/models/request/LoginModelDto.dart';
-import 'package:flower_ecommerce/Features/auth/domain/entities/login_entities.dart';
+import '../../domain/entities/verify_password_entity.dart';
+import '../models/request/LoginModelDto.dart';
+import '../../domain/entities/login_entities.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/common/api_result.dart';
 import '../../domain/entities/register_entities.dart';
@@ -67,5 +67,4 @@ class AuthRepoImpl implements AuthRepo {
     return onLineDataSource.resetPassword(
         ResetPasswordRequest(email: email, newPassword: newPassword));
   }
-
 }

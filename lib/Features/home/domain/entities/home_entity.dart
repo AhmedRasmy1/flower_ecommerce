@@ -1,6 +1,6 @@
-import 'package:flower_ecommerce/Features/home/data/models/best_seller.dart';
-import 'package:flower_ecommerce/Features/home/data/models/occasion.dart';
-import 'package:flower_ecommerce/Features/home/data/models/product.dart';
+import '../../data/models/best_seller.dart';
+import '../../data/models/occasion.dart';
+import '../../data/models/product.dart';
 
 class HomeEntity {
   String? message;

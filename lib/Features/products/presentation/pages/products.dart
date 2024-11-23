@@ -1,8 +1,8 @@
 import 'dart:developer';
 
-import 'package:flower_ecommerce/Features/products/presentation/manager/all_products_state.dart';
-import 'package:flower_ecommerce/Features/products_details/presentation/views/product_details_view.dart';
-import 'package:flower_ecommerce/core/resources/color_manager.dart';
+import '../manager/all_products_state.dart';
+import '../../../products_details/presentation/views/product_details_view.dart';
+import '../../../../core/resources/color_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/di/di.dart';
@@ -43,7 +43,7 @@ class _GirdBodyOfProductsState extends State<GirdBodyOfProducts> {
 
   @override
   Widget build(BuildContext context) {
-    print("page id ---------------- ${widget.pageId}");
+    // print("page id ---------------- ${widget.pageId}");
 
     return RefreshIndicator(
       color: ColorManager.pink,

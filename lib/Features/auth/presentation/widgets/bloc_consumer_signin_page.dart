@@ -1,7 +1,7 @@
-import 'package:flower_ecommerce/Features/auth/presentation/view_model/signup_view_model/signup_state.dart';
-import 'package:flower_ecommerce/core/resources/color_manager.dart';
-import 'package:flower_ecommerce/core/resources/style_manager.dart';
-import 'package:flower_ecommerce/core/resources/values_manager.dart';
+import '../view_model/signup_view_model/signup_state.dart';
+import '../../../../core/resources/color_manager.dart';
+import '../../../../core/resources/style_manager.dart';
+import '../../../../core/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/common/custom_exception.dart';

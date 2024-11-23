@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import '../../../../../core/common/api_result.dart';
 
+import '../../../../../core/common/api_result.dart';
 import '../../domain/entities/categories_entities.dart';
 import '../../domain/use_cases/all_categories_usecase.dart';
 import 'all_categories_state.dart';

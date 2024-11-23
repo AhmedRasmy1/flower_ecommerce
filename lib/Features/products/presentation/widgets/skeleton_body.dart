@@ -1,8 +1,7 @@
-import 'package:flower_ecommerce/Features/products/domain/entities/ProductsEntities.dart';
+import '../../domain/entities/ProductsEntities.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-import '../../../../core/resources/color_manager.dart';
 import 'cart_product.dart';
 
 class SkeletonBody extends StatelessWidget {

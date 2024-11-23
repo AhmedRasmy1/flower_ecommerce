@@ -1,11 +1,11 @@
-import 'package:flower_ecommerce/Features/auth/presentation/view_model/login_view_model/login_cubit.dart';
-import 'package:flower_ecommerce/core/functions/extenstions.dart';
-import 'package:flower_ecommerce/core/functions/helper.dart';
-import 'package:flower_ecommerce/core/resources/color_manager.dart';
-import 'package:flower_ecommerce/core/resources/routes_manager.dart';
-import 'package:flower_ecommerce/core/resources/strings_manager.dart';
-import 'package:flower_ecommerce/core/resources/values_manager.dart';
-import 'package:flower_ecommerce/core/widgets/custom_text_form_field.dart';
+import '../view_model/login_view_model/login_cubit.dart';
+import '../../../../core/functions/extenstions.dart';
+import '../../../../core/functions/helper.dart';
+import '../../../../core/resources/color_manager.dart';
+import '../../../../core/resources/routes_manager.dart';
+import '../../../../core/resources/strings_manager.dart';
+import '../../../../core/resources/values_manager.dart';
+import '../../../../core/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -109,7 +109,6 @@ class _LoginScreenState extends State<LoginView> {
                           setState(() {
                             rememberMe = value ?? false;
                             viewModel.rememberMe = rememberMe;
-
                           });
                         },
                       ),
@@ -199,16 +198,13 @@ class _LoginScreenState extends State<LoginView> {
                     width: context.screenWidth * 0.9,
                     height: context.screenHeight * 0.063,
                     child: ElevatedButton(
-
 //                       onPressed: () {
 //                         Navigator.pushNamed(context, RoutesManager.tryScreenRoute);
 //                       },
 
                       onPressed: () {
-                        Navigator.pushNamed(
-                            context, RoutesManager.layoutRoute);
+                        Navigator.pushNamed(context, RoutesManager.layoutRoute);
                       },
-
 
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white,

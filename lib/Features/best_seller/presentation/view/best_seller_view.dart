@@ -1,6 +1,6 @@
-import 'package:flower_ecommerce/Features/best_seller/presentation/best_seller_view_model/best_seller_state.dart';
-import 'package:flower_ecommerce/Features/best_seller/presentation/widgets/list_best_seller_widget.dart';
-import 'package:flower_ecommerce/core/resources/strings_manager.dart';
+import '../best_seller_view_model/best_seller_state.dart';
+import '../widgets/list_best_seller_widget.dart';
+import '../../../../core/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,7 +9,6 @@ import '../../../../core/resources/values_manager.dart';
 
 import '../../domain/entities/best_seller_entity.dart';
 import '../best_seller_view_model/best_seller_cubit.dart';
-
 
 class BestSellerView extends StatefulWidget {
   const BestSellerView({super.key});
@@ -37,11 +36,12 @@ class _BestSellerViewState extends State<BestSellerView> {
           title: const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
               Text(AppStrings.bestSeller,
-                style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold)),
-              Text(AppStrings.bestSellerTitleDescription,
-              style: TextStyle(fontSize: AppSize.s13),),
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              Text(
+                AppStrings.bestSellerTitleDescription,
+                style: TextStyle(fontSize: AppSize.s13),
+              ),
             ],
           ),
         ),
@@ -50,7 +50,6 @@ class _BestSellerViewState extends State<BestSellerView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
               BlocBuilder<BestSellerViewModel, BestSellerState>(
                 builder: (context, state) {
                   if (state is LoadingBestSellerState) {

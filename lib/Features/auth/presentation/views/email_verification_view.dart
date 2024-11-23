@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flower_ecommerce/Features/auth/presentation/view_model/forget_password_view_model/forget_password_cubit.dart';
+import '../view_model/forget_password_view_model/forget_password_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -159,7 +159,7 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
                         text: isButtonDisabled
                             ? ' ($_remainingTime s)' // Display remaining time
                             : '',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: FontSize.s16,
                           color: ColorManager.grey,
                         ),

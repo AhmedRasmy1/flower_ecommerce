@@ -1,4 +1,4 @@
-import 'package:flower_ecommerce/Features/auth/domain/entities/login_entities.dart';
+import '../../../domain/entities/login_entities.dart';
 
 sealed class LoginState {}
 

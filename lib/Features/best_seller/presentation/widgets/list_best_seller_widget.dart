@@ -1,10 +1,10 @@
-import 'package:flower_ecommerce/Features/best_seller/domain/entities/best_seller_entity.dart';
-import 'package:flower_ecommerce/Features/best_seller/presentation/widgets/best_seller_item_widget.dart';
+import '../../domain/entities/best_seller_entity.dart';
+import 'best_seller_item_widget.dart';
 import 'package:flutter/material.dart';
 
 class ListBestSellerGrid extends StatelessWidget {
-  ListBestSellerGrid({required this.items, super.key});
-  List<BestSellerEntity>? items;
+  const ListBestSellerGrid({required this.items, super.key});
+  final List<BestSellerEntity>? items;
 
   @override
   Widget build(BuildContext context) {

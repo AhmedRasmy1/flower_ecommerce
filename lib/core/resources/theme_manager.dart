@@ -1,4 +1,4 @@
-import 'package:flower_ecommerce/core/resources/style_manager.dart';
+import 'style_manager.dart';
 import 'package:flutter/material.dart';
 
 import 'color_manager.dart';
@@ -39,6 +39,6 @@ OutlineInputBorder outLintInputBorderMethod(
     BorderSide borderSide, BorderRadius borderRadius) {
   return OutlineInputBorder(
     borderSide: borderSide,
-    borderRadius:  BorderRadius.all(Radius.circular(AppSize.s5)),
+    borderRadius: const BorderRadius.all(Radius.circular(AppSize.s5)),
   );
 }

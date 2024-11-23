@@ -1,6 +1,4 @@
-
-import 'package:flower_ecommerce/Features/categories/domain/entities/categories_entities.dart';
-import 'package:flower_ecommerce/Features/products/domain/entities/ProductsEntities.dart';
+import '../../domain/entities/ProductsEntities.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/api/api_extentions.dart';
 import '../../../../core/api/api_manager/api_manager.dart';
@@ -13,13 +11,11 @@ class AllProductsDatasourceImpl implements AllProductsDatasource {
 
   AllProductsDatasourceImpl(this._authRetrofit);
 
-
   @override
   Future<Result<AllProductsEntities?>> getAllProducts() {
     return executeApi(() async {
       var response = await _authRetrofit.getAllProducts();
       return response.toAllProductsEntities();
     });
-
   }
 }

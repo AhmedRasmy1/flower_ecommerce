@@ -1,4 +1,4 @@
-import 'package:flower_ecommerce/Features/products_details/domain/entities/product_details_entity.dart';
+import '../../../domain/entities/product_details_entity.dart';
 
 class ProductDetailsDto {
   ProductDetailsDto({

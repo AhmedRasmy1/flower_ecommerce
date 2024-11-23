@@ -1,9 +1,8 @@
 import 'dart:developer';
 
-import 'package:flower_ecommerce/core/resources/assets_manager.dart';
-import 'package:flower_ecommerce/core/resources/style_manager.dart';
-import 'package:flower_ecommerce/core/resources/values_manager.dart';
-import 'package:flower_ecommerce/core/widgets/custom_elevated_button.dart';
+import '../../../../core/resources/assets_manager.dart';
+import '../../../../core/resources/style_manager.dart';
+import '../../../../core/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -19,7 +18,6 @@ class CartProduct extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return IntrinsicHeight(
       child: Container(
         decoration: BoxDecoration(
@@ -57,8 +55,7 @@ class CartProduct extends StatelessWidget {
               ),
             ),
             Padding(
-              padding:
-                  const EdgeInsets.only(top: 13.5, left: 8,right: 8),
+              padding: const EdgeInsets.only(top: 13.5, left: 8, right: 8),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -99,8 +96,7 @@ class CartProduct extends StatelessWidget {
                       ),
                       Text(
                         calculateDiscountPercentage(
-                                productsEntities.priceAfterDiscount!
-                                    .toDouble(),
+                                productsEntities.priceAfterDiscount!.toDouble(),
                                 productsEntities.price!.toDouble())
                             .toString()
                             .substring(0, 2),
@@ -116,44 +112,51 @@ class CartProduct extends StatelessWidget {
                           color: ColorManager.discountRate,
                         ),
                       ),
-
                     ],
                   )
                 ],
               ),
             ),
-            Spacer(),
+            const Spacer(),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal:8 ),
+              padding: const EdgeInsets.symmetric(horizontal: 8),
               child: ElevatedButton(
-                  style:ElevatedButton.styleFrom(
-                      backgroundColor: ColorManager.pink,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: ColorManager.pink,
+                ),
+                onPressed: () {
+                  /// add to cart
+                  /// add to cart
+                  log('add to cart');
 
-                  ) ,
-                  onPressed: (){
-
-                    /// add to cart
-                    /// add to cart
-                    log('add to cart');
-                    /// add to cart
-                    /// add to cart
-                  },
-                  child:  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-
-                    children: [
-                      SvgPicture.asset(AssetsManager.cart,width: 15,height: 15,colorFilter: const ColorFilter.mode(
+                  /// add to cart
+                  /// add to cart
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset(
+                      AssetsManager.cart,
+                      width: 15,
+                      height: 15,
+                      colorFilter: const ColorFilter.mode(
                         ColorManager.white,
                         BlendMode.srcIn,
-                      ) ,),
-                      const SizedBox(
-                        width: AppSize.s8,
                       ),
-                      Text('Add to cart',style: getBoldStyle(color: ColorManager.white,fontSize: AppSize.s12),),
-                    ],
-                  ),),
+                    ),
+                    const SizedBox(
+                      width: AppSize.s8,
+                    ),
+                    Text(
+                      'Add to cart',
+                      style: getBoldStyle(
+                          color: ColorManager.white, fontSize: AppSize.s12),
+                    ),
+                  ],
+                ),
+              ),
             ),
-         Spacer(),
+            const Spacer(),
           ],
         ),
       ),
@@ -161,10 +164,6 @@ class CartProduct extends StatelessWidget {
   }
 }
 
-
-
-
-double calculateDiscountPercentage(
-    double priceAfterDiscount, double price) {
+double calculateDiscountPercentage(double priceAfterDiscount, double price) {
   return ((priceAfterDiscount / price) * 100);
 }

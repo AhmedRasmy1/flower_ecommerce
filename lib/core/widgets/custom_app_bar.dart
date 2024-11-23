@@ -1,27 +1,28 @@
-import 'package:flower_ecommerce/core/resources/assets_manager.dart';
+import '../resources/assets_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../resources/font_manager.dart';
 import '../resources/values_manager.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({
-    super.key,
-    this.title,
-    this.onTap,
-    this.color,
-    this.image,
-  });
+  const CustomAppBar(
+      {super.key,
+      this.title,
+      this.onTap,
+      this.color,
+      this.image,
+      this.subtitle});
 
   final String? title;
   final void Function()? onTap;
   final Color? color;
   final String? image;
+  final String? subtitle;
 
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (onTap != null)
           GestureDetector(
@@ -36,16 +37,29 @@ class CustomAppBar extends StatelessWidget {
             image!,
             fit: BoxFit.scaleDown,
           ),
-        if (title != null)
-          Text(
-            title!,
-            style: TextStyle(
-              fontSize: FontSize.s22,
-              color: color ?? Colors.black,
-              fontWeight: FontWeightManager.bold,
-              fontFamily: GoogleFonts.imFellEnglish().fontFamily,
-            ),
-          ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            if (title != null)
+              Text(
+                title!,
+                style: TextStyle(
+                  fontSize: FontSize.s22,
+                  color: color ?? Colors.black,
+                  fontWeight: FontWeightManager.bold,
+                ),
+              ),
+            if (subtitle != null)
+              Text(
+                subtitle!,
+                style: TextStyle(
+                  fontSize: FontSize.s14,
+                  color: Colors.black,
+                  fontWeight: FontWeightManager.bold,
+                ),
+              ),
+          ],
+        ),
       ],
     );
   }

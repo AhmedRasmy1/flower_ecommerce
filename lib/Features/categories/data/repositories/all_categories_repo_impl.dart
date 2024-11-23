@@ -1,4 +1,4 @@
-import 'package:flower_ecommerce/Features/categories/domain/entities/categories_entities.dart';
+import '../../domain/entities/categories_entities.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/common/api_result.dart';
 import '../../domain/repositories/categories_repo.dart';

@@ -1,4 +1,4 @@
-import 'package:flower_ecommerce/core/resources/strings_manager.dart';
+import '../../../../core/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../../core/resources/assets_manager.dart';
@@ -14,7 +14,8 @@ class FilterButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: AppSize.s8, vertical: AppSize.s10),
+      padding: const EdgeInsets.symmetric(
+          horizontal: AppSize.s8, vertical: AppSize.s10),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: ColorManager.pink.withOpacity(.8),
