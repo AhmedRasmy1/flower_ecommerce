@@ -18,6 +18,7 @@ import '../../../Features/auth/data/models/request/forget_password_request/forge
 import '../../../Features/auth/data/models/response/RegisterResponseDto.dart';
 import '../../../Features/auth/data/models/response/forget_password_response/forget_password_response.dart';
 import '../../../Features/categories/data/models/response/all_categories.dart';
+import '../../../Features/occasions/data/models/occasion_response/occasion_response.dart';
 import '../api_constants.dart';
 
 part 'api_manager.g.dart';
@@ -51,4 +52,7 @@ abstract class ApiService {
   Future<BestSellerResponse> getBestSeller();
   @GET(ApiConstants.homeEndPointApi)
   Future<HomeModel> getHomeData();
+  @GET('https://flower.elevateegy.com/api/v1/occasions')
+  Future<OccasionResponse?> getOccasions();
+
 }

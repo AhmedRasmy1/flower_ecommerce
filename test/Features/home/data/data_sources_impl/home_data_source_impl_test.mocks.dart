@@ -32,6 +32,8 @@ import 'package:flower_ecommerce/Features/categories/data/models/response/all_ca
     as _i8;
 import 'package:flower_ecommerce/Features/home/data/models/home_model.dart'
     as _i11;
+import 'package:flower_ecommerce/Features/occasions/data/models/occasion_response/occasion_response.dart'
+    as _i19;
 import 'package:flower_ecommerce/Features/products/data/models/all_products.dart'
     as _i9;
 import 'package:flower_ecommerce/Features/products_details/data/models/response/product_details_dto.dart'
@@ -332,4 +334,13 @@ class MockApiService extends _i1.Mock implements _i12.ApiService {
           ),
         )),
       ) as _i13.Future<_i11.HomeModel>);
+
+  @override
+  _i13.Future<_i19.OccasionResponse?> getOccasions() => (super.noSuchMethod(
+        Invocation.method(
+          #getOccasions,
+          [],
+        ),
+        returnValue: _i13.Future<_i19.OccasionResponse?>.value(),
+      ) as _i13.Future<_i19.OccasionResponse?>);
 }

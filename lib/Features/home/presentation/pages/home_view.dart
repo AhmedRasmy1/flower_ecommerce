@@ -135,7 +135,8 @@ class _HomeViewState extends State<HomeView> {
                           title: AppStrings.occasion,
                           viewAll: AppStrings.viewAll,
                           onTap: () {
-                            /// Navigate to OccasionView
+                            Navigator.pushNamed(
+                                context, RoutesManager.occassionViewRoute);
                           },
                         ),
                         const SizedBox(height: AppSize.s16),
