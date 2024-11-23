@@ -55,7 +55,7 @@ class _SplashViewState extends State<SplashView> {
       () {
         if (mounted) {
           Navigator.pushNamedAndRemoveUntil(
-              context, RoutesManager.bestSellerRoute, (route) => false);
+              context, RoutesManager.loginRoute, (route) => false);
         }
       },
     );

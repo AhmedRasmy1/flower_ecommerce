@@ -39,11 +39,8 @@ class AppStrings {
   static const String enterPhoneNumber = "Enter your phone number";
   static const String resend = "resend";
   static const String passwordInvalidFormat = "Invalid password format";
-  static const String passwordInvalidFormat = "Invalid password format";
   static const String passwordCharactersLong = "Min 8 characters";
   static const String alreadyHaveAccount = "Already have an account?";
-  static const String agreeTermsConditions =
-      "Creating an account, you agree to our ";
   static const String agreeTermsConditions =
       "Creating an account, you agree to our ";
   static const String termsConditions = "Terms&Conditions";
@@ -59,11 +56,7 @@ class AppStrings {
   static const String resetPassword = "Reset Password";
   static const String resetPasswordMessage =
       "Password must not be empty and must contain \n6 characters with upper case letter and one\n number at least";
-  static const String forgetPasswordMessageHeader =
-      "Please enter your email associated to \n your account";
-  static const String resetPassword = "Reset Password";
-  static const String resetPasswordMessage =
-      "Password must not be empty and must contain \n6 characters with upper case letter and one\n number at least";
+
   static const String home = 'Home';
   static const String categories = 'Categories';
   static const String cart = 'Cart';
@@ -75,14 +68,12 @@ class AppStrings {
   static const String description = 'Description';
   static const String bouquetInclude = 'Bouquet include';
   static const String addToCart = "Add to cart";
-
   static const String filter = 'Filter';
   static const String all = 'All';
   static const String bestSeller = 'Best Seller';
   static const String bestSellerTitleDescription =
       "Bloom with our exquisite best sellers";
   static const String countryCurrency = "EGP";
-  static const String addToCart = 'Add to cart';
   static const String search = 'Search';
   static const String flowry = 'Flowery';
   static const String address = 'Deliver to 2XVP+XC - Sheikh Zayed';
@@ -91,6 +82,5 @@ class AppStrings {
       'Its time to celebrate all grads with happiness';
   static const String giftNow = 'Gift Now';
   static const String viewAll = 'View All';
-  static const String bestSeller = 'Best Seller';
   static const String occasion = 'Occasion';
 }

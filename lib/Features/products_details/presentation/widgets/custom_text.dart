@@ -8,9 +8,9 @@ class CustomText extends StatelessWidget {
 
   CustomText(
       {required this.text,
-        this.color,
-         this.fontWeight,
-        this.fontSize,
+      this.color,
+      this.fontWeight,
+      this.fontSize,
       super.key});
 
   @override
@@ -22,6 +22,7 @@ class CustomText extends StatelessWidget {
         fontWeight: fontWeight,
         fontSize: fontSize,
       ),
+      textAlign: TextAlign.justify,
     );
   }
 }

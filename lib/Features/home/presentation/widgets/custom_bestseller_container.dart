@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flower_ecommerce/Features/home/data/models/best_seller.dart';
+import 'package:flower_ecommerce/Features/products_details/presentation/views/product_details_view.dart';
 import 'package:flower_ecommerce/core/functions/extenstions.dart';
+import 'package:flower_ecommerce/core/resources/routes_manager.dart';
 import 'package:flutter/material.dart';
 
 class CustomBestSellerContainer extends StatelessWidget {
@@ -13,7 +15,7 @@ class CustomBestSellerContainer extends StatelessWidget {
     return Align(
       alignment: Alignment.topLeft,
       child: SizedBox(
-        height: context.screenHeight * 0.26,
+        height: context.screenHeight * 0.29,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
           itemCount: bestSeller.length,
@@ -22,7 +24,17 @@ class CustomBestSellerContainer extends StatelessWidget {
             return Padding(
               padding: const EdgeInsets.only(right: 16.0),
               child: GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return ProductDetailsView(
+                            productId: bestSellerItem.id ?? '');
+                      },
+                    ),
+                  );
+                },
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

@@ -3,8 +3,8 @@ import 'package:flower_ecommerce/Features/best_seller/presentation/widgets/best_
 import 'package:flutter/material.dart';
 
 class ListBestSellerGrid extends StatelessWidget {
-  ListBestSellerGrid({required this.items,super.key});
-   List<BestSellerEntity>? items ;
+  ListBestSellerGrid({required this.items, super.key});
+  List<BestSellerEntity>? items;
 
   @override
   Widget build(BuildContext context) {

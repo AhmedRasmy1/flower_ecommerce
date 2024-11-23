@@ -28,43 +28,27 @@ part 'api_manager.g.dart';
 abstract class ApiService {
   @FactoryMethod()
   factory ApiService(Dio dio) = _ApiService;
-
-  factory ApiService(Dio dio) = _ApiService;
   @POST(ApiConstants.signupRoute)
   Future<RegisterResponseDto> signUp(@Body() RegisterModelDto registerModelDto);
-
   @POST(ApiConstants.forgetPasswordRoute)
   Future<ForgetPasswordResponse> forgetPassword(
       @Body() ForgetPasswordRequest requestEmail);
-  Future<ForgetPasswordResponse> forgetPassword(
-      @Body() ForgetPasswordRequest requestEmail);
-
   @POST(ApiConstants.verifyResetCode)
   Future<VerifyResponse> verifyPassword(@Body() VerifyRequest requestOtp);
-
   @POST(ApiConstants.loginRoute)
   Future<LoginResponseDto> login(@Body() LoginModelDto loginModelDto);
-
   @PUT(ApiConstants.resetPasswordRoute)
   Future<ResetPasswordResponse> resetPassword(
       @Body() ResetPasswordRequest requestOtp);
-
-  // @GET(ApiConstants.productDetailsRoute)
-  // Future<ProductDetailsDto> getProductDetails(@Query("") String productId);
-
   @GET("${ApiConstants.productDetailsRoute}/{productId}")
   Future<ProductDetailsDto> getProductDetails(
       @Path("productId") String productId);
-
   @GET(ApiConstants.categories)
   Future<AllCategories> getAllCategories();
   @GET(ApiConstants.products)
   Future<AllProducts> getAllProducts();
   @GET(ApiConstants.bestSellerRoute)
   Future<BestSellerResponse> getBestSeller();
-  Future<ResetPasswordResponse> resetPassword(
-      @Body() ResetPasswordRequest requestOtp);
-
   @GET(ApiConstants.homeEndPointApi)
   Future<HomeModel> getHomeData();
 }

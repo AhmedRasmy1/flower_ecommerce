@@ -3,7 +3,6 @@ import 'package:flower_ecommerce/core/resources/color_manager.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import '../api/api_constants.dart';
 
 String getFileExtensionFromUrl(String url) {
   List<String> parts = url.split('.');
@@ -20,7 +19,8 @@ class CustomImage extends StatelessWidget {
     this.height,
     this.width,
     this.sizeIndicator,
-    this.boxFit, this.placeholder,
+    this.boxFit,
+    this.placeholder,
   });
 
   final String url;
@@ -34,18 +34,20 @@ class CustomImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return getFileExtensionFromUrl(url) == 'svg'
         ? SvgPicture.network(
-           url,
+            url,
             fit: BoxFit.fill,
             placeholderBuilder: (context) => const Center(
-              child:CircularProgressIndicator(color: ColorManager.pink),
+              child: CircularProgressIndicator(color: ColorManager.pink),
             ),
           )
         : CachedNetworkImage(
             height: height,
             width: width ?? MediaQuery.sizeOf(context).width,
-            imageUrl:url,
+            imageUrl: url,
             fit: boxFit ?? BoxFit.fill,
-            placeholder: (context, url) =>   placeholder?? const CircularProgressIndicator(color: ColorManager.pink),
+            placeholder: (context, url) =>
+                placeholder ??
+                const CircularProgressIndicator(color: ColorManager.pink),
             errorWidget: (context, url, error) => const Center(
               child: Icon(Icons.error),
             ),

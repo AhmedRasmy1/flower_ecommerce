@@ -7,30 +7,26 @@ import 'package:flutter/material.dart';
 
 import '../usefull_methods/part_title.dart';
 
-
 class BestSellerItem extends StatelessWidget {
-   BestSellerItem({required this.bestSellerEntity,super.key});
+  BestSellerItem({required this.bestSellerEntity, super.key});
 
-   BestSellerEntity? bestSellerEntity;
-
+  BestSellerEntity? bestSellerEntity;
 
   @override
   Widget build(BuildContext context) {
-    String percentage=percentageCalculate(bestSellerEntity?.price??0, bestSellerEntity?.priceAfterDiscount??0);
+    String percentage = percentageCalculate(bestSellerEntity?.price ?? 0,
+        bestSellerEntity?.priceAfterDiscount ?? 0);
     return Card(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(AppSize.s8),
-        side: BorderSide(color: ColorManager.lightGrey3)
-      ),
-
+          borderRadius: BorderRadius.circular(AppSize.s8),
+          side: const BorderSide(color: ColorManager.lightGrey3)),
       child: Padding(
-        padding:const EdgeInsets.all(AppSize.s8) ,
+        padding: const EdgeInsets.all(AppSize.s8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-
             Image.network(
-              bestSellerEntity?.imgCover??"",
+              bestSellerEntity?.imgCover ?? "",
               fit: BoxFit.cover,
             ),
             Padding(
@@ -38,28 +34,27 @@ class BestSellerItem extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
                   Text(
-                    getTitlePart(bestSellerEntity?.title??""),
+                    getTitlePart(bestSellerEntity?.title ?? ""),
                     style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height:AppSize.s4),
+                  const SizedBox(height: AppSize.s4),
                   Row(
                     children: [
                       Text(
-                       "${AppStrings.countryCurrency} ${bestSellerEntity?.priceAfterDiscount.toString()}",
+                        "${AppStrings.countryCurrency} ${bestSellerEntity?.priceAfterDiscount.toString()}",
                         style: const TextStyle(
                           fontSize: 14,
                           color: ColorManager.black,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      const SizedBox(width:AppSize.s8),
+                      const SizedBox(width: AppSize.s8),
                       Text(
-                       bestSellerEntity!.price.toString(),
+                        bestSellerEntity!.price.toString(),
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 12,
@@ -67,9 +62,9 @@ class BestSellerItem extends StatelessWidget {
                           decoration: TextDecoration.lineThrough,
                         ),
                       ),
-                      const SizedBox(width:AppSize.s8),
-                       Text(
-                       percentage,
+                      const SizedBox(width: AppSize.s8),
+                      Text(
+                        percentage,
                         style: const TextStyle(
                           fontSize: 12,
                           color: ColorManager.percentageColor,
@@ -78,8 +73,6 @@ class BestSellerItem extends StatelessWidget {
                       ),
                     ],
                   ),
-
-
                 ],
               ),
             ),
@@ -90,8 +83,12 @@ class BestSellerItem extends StatelessWidget {
                 onPressed: () {
                   // Action
                 },
-                icon: Icon(Icons.shopping_cart,color: ColorManager.white),
-                label: Text(AppStrings.addToCart,style: TextStyle(color: ColorManager.white),),
+                icon:
+                    const Icon(Icons.shopping_cart, color: ColorManager.white),
+                label: const Text(
+                  AppStrings.addToCart,
+                  style: TextStyle(color: ColorManager.white),
+                ),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: ColorManager.pink,
                   shape: RoundedRectangleBorder(

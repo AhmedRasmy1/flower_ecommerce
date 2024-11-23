@@ -1,3 +1,5 @@
+import 'package:flower_ecommerce/Features/categories/data/models/response/all_categories.dart';
+import 'package:flower_ecommerce/Features/categories/presentation/pages/categories_view.dart';
 import 'package:flower_ecommerce/Features/home/presentation/viewmodels/home_cubit.dart';
 import 'package:flower_ecommerce/Features/home/presentation/widgets/custom_bestseller_container.dart';
 import 'package:flower_ecommerce/Features/home/presentation/widgets/custom_card.dart';
@@ -6,9 +8,11 @@ import 'package:flower_ecommerce/Features/home/presentation/widgets/custom_heade
 import 'package:flower_ecommerce/Features/home/presentation/widgets/custom_location.dart';
 import 'package:flower_ecommerce/Features/home/presentation/widgets/custom_occasion_container.dart';
 import 'package:flower_ecommerce/Features/home/presentation/widgets/custom_search_field.dart';
+import 'package:flower_ecommerce/Features/layout/presentation/pages/layout_view.dart';
 import 'package:flower_ecommerce/core/di/di.dart';
 import 'package:flower_ecommerce/core/resources/assets_manager.dart';
 import 'package:flower_ecommerce/core/resources/color_manager.dart';
+import 'package:flower_ecommerce/core/resources/routes_manager.dart';
 import 'package:flower_ecommerce/core/resources/strings_manager.dart';
 import 'package:flower_ecommerce/core/resources/values_manager.dart';
 import 'package:flower_ecommerce/core/widgets/custom_app_bar.dart';
@@ -28,6 +32,12 @@ class _HomeViewState extends State<HomeView> {
   void initState() {
     viewModel = getIt<HomeCubit>();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    viewModel.close();
+    super.dispose();
   }
 
   @override
@@ -61,7 +71,11 @@ class _HomeViewState extends State<HomeView> {
               builder: (context, state) {
                 if (state is HomeLoading) {
                   return Center(
-                    child: Image.asset(AssetsManager.loadingLoading1),
+                    child: Image.asset(
+                      AssetsManager.loadingLoading1,
+                      width: 100,
+                      height: 100,
+                    ),
                   );
                 } else if (state is HomeSuccess) {
                   var bestSeller = state.homeEntity.bestSeller;
@@ -94,25 +108,35 @@ class _HomeViewState extends State<HomeView> {
                         const SizedBox(height: AppSize.s16),
                         const CustomCard(),
                         const SizedBox(height: AppSize.s24),
-                        const CustomHeader(
+                        CustomHeader(
                           title: AppStrings.categories,
                           viewAll: AppStrings.viewAll,
+                          onTap: () {
+                            /// Navigate to CategoriesView
+                          },
                         ),
                         const SizedBox(height: AppSize.s16),
                         const CustomCategoryContainer(),
                         const SizedBox(height: AppSize.s24),
-                        const CustomHeader(
+                        CustomHeader(
                           title: AppStrings.bestSeller,
                           viewAll: AppStrings.viewAll,
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, RoutesManager.bestSellerRoute);
+                          },
                         ),
                         const SizedBox(height: AppSize.s16),
                         CustomBestSellerContainer(
                           bestSeller: bestSeller ?? [],
                         ),
                         const SizedBox(height: AppSize.s16),
-                        const CustomHeader(
+                        CustomHeader(
                           title: AppStrings.occasion,
                           viewAll: AppStrings.viewAll,
+                          onTap: () {
+                            /// Navigate to OccasionView
+                          },
                         ),
                         const SizedBox(height: AppSize.s16),
                         CustomOccasionContainer(
@@ -122,9 +146,7 @@ class _HomeViewState extends State<HomeView> {
                     ),
                   );
                 } else {
-                  return Center(
-                    child: Image.asset(AssetsManager.loadingLoading1),
-                  );
+                  return const Center(child: Text('Error'));
                 }
               },
             ),

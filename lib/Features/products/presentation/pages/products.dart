@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flower_ecommerce/Features/products/presentation/manager/all_products_state.dart';
+import 'package:flower_ecommerce/Features/products_details/presentation/views/product_details_view.dart';
 import 'package:flower_ecommerce/core/resources/color_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,24 +30,25 @@ class _GirdBodyOfProductsState extends State<GirdBodyOfProducts> {
 
   @override
   void initState() {
-    viewModel = getIt.get<AllProductsViewModel>()..doIntent(GetAllProductsAction());
+    viewModel = getIt.get<AllProductsViewModel>()
+      ..doIntent(GetAllProductsAction());
     super.initState();
   }
+
   @override
   void dispose() {
     viewModel.close();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
-
     print("page id ---------------- ${widget.pageId}");
 
     return RefreshIndicator(
       color: ColorManager.pink,
       onRefresh: () async {
-         getIt.get<AllProductsViewModel>().doIntent(GetAllProductsAction());
-
+        getIt.get<AllProductsViewModel>().doIntent(GetAllProductsAction());
       },
       child: BlocProvider(
         create: (context) => viewModel,
@@ -54,14 +56,14 @@ class _GirdBodyOfProductsState extends State<GirdBodyOfProducts> {
           listener: (context, state) {
             // TODO: implement listener
           },
-
           builder: (context, state) {
             if (state is SuccessAllProductsState) {
               List<ProductsEntities> allData =
-              /// FROM CHATGPT
-              state.categoriesEntities?.products ?? [];
+
+                  /// FROM CHATGPT
+                  state.categoriesEntities?.products ?? [];
               List<ProductsEntities> filteredByOccasion =
-              allData.where((product) {
+                  allData.where((product) {
                 if (widget.pageId.isEmpty) {
                   return true;
                 }
@@ -76,45 +78,51 @@ class _GirdBodyOfProductsState extends State<GirdBodyOfProducts> {
 
               return LayoutBuilder(
                 builder: (context, constraints) {
-                  double aspectRatio = (constraints.maxWidth > 500) ?0.67: 0.6 ;
+                  double aspectRatio =
+                      (constraints.maxWidth > 500) ? 0.67 : 0.6;
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: GridView.builder(
                       physics: const BouncingScrollPhysics(),
-                      gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: constraints.maxWidth > 500?3:2,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: constraints.maxWidth > 500 ? 3 : 2,
                           mainAxisSpacing: 10,
                           crossAxisSpacing: 10,
-                          childAspectRatio: aspectRatio
-                      ),
+                          childAspectRatio: aspectRatio),
                       itemCount: filteredByOccasion.length,
                       itemBuilder: (context, index) {
                         return filteredByOccasion.isNotEmpty
                             ? InkWell(
-
-
-                          splashColor:  Colors.pink.withOpacity(.2),
-                          borderRadius: BorderRadius.circular(12),
-                          highlightColor: Colors.pink.withOpacity(0.1),
-
-                          onTap: () {
-                            /// go to details
-                            log('go to details');
-                            /// go to details
-                            /// go to details
-                            /// go to details
-                            /// go to details
-                          },
-                              child: CartProduct(
-                                                      productsEntities: filteredByOccasion[index],
-                                                    ),
-                            )
+                                splashColor: Colors.pink.withOpacity(.2),
+                                borderRadius: BorderRadius.circular(12),
+                                highlightColor: Colors.pink.withOpacity(0.1),
+                                onTap: () {
+                                  log('go to details');
+                                  filteredByOccasion[index].id?.isNotEmpty ==
+                                          true
+                                      ? Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                ProductDetailsView(
+                                                    productId:
+                                                        filteredByOccasion[
+                                                                    index]
+                                                                .id ??
+                                                            ''),
+                                          ),
+                                        )
+                                      : null;
+                                },
+                                child: CartProduct(
+                                  productsEntities: filteredByOccasion[index],
+                                ),
+                              )
                             : const SkeletonBody();
                       },
                     ),
                   );
                 },
-
               );
             } else {
               return const SkeletonBody();
@@ -138,7 +146,6 @@ enum EnumPage {
     return name;
   }
 }
-
 
 Map<String, dynamic> getGridConfig(double screenWidth) {
   int crossAxisCount = 2; // افتراضي 2 عمود

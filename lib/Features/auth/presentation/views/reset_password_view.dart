@@ -84,21 +84,14 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                     children: [
                       const SizedBox(height: AppSize.s48),
                       const Text(AppStrings.resetPassword,
-                        style:TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold
-                        )),
-                      const Text(AppStrings.resetPassword,
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold)),
                       const SizedBox(height: AppSize.s48),
                       const Text(
-                       AppStrings.resetPasswordMessage,
-                      Text(
                         AppStrings.resetPasswordMessage,
                         textAlign: TextAlign.center,
                       ),
-                      SizedBox(height: AppSize.s48),
+                      const SizedBox(height: AppSize.s48),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -118,7 +111,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                                   message: AppStrings.passwordNotMatch),
                             ),
                           ),
-                          SizedBox(height: AppSize.s24),
+                          const SizedBox(height: AppSize.s24),
                           SizedBox(
                             width: double.infinity,
                             child: CustomTextFormField(
@@ -133,7 +126,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                                   message: AppStrings.passwordNotMatch),
                             ),
                           ),
-                          SizedBox(height: AppSize.s48),
+                          const SizedBox(height: AppSize.s48),
                         ],
                       ),
                       BlocBuilder<ResetPasswordViewModel, ResetPasswordState>(
