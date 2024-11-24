@@ -18,7 +18,9 @@ class HomeCubit extends Cubit<HomeState> {
     switch (result) {
       case Success<HomeEntity>():
         {
-          emit(HomeSuccess(result.data));
+          if (!isClosed) {
+            emit(HomeSuccess(result.data));
+          }
           log('HomeCubit: getHomeData: ${result.data}');
         }
 

@@ -6,15 +6,24 @@ import '../../../../core/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-
 import '../../../../core/resources/cashed_image.dart';
 import '../../../../core/resources/color_manager.dart';
-import '../../domain/entities/ProductsEntities.dart';
+
 
 class CartProduct extends StatelessWidget {
-  const CartProduct({super.key, required this.productsEntities});
+  const CartProduct({
+    super.key,
+    this.imgCover,
+    this.title,
+    this.priceAfterDiscount,
+    this.price,
+  });
 
-  final ProductsEntities productsEntities;
+  final String? imgCover;
+  final String? title;
+
+  final num? priceAfterDiscount;
+  final num? price;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +44,7 @@ class CartProduct extends StatelessWidget {
                   decoration:
                       BoxDecoration(borderRadius: BorderRadius.circular(12)),
                   child: CustomImage(
-                    url: productsEntities.imgCover ?? '',
+                    url: imgCover ?? '',
                     width: double.infinity,
                     placeholder: Skeletonizer(
                         child: Padding(
@@ -60,7 +69,7 @@ class CartProduct extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    productsEntities.title ?? '',
+                    title ?? '',
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: getRegularStyle(
@@ -77,14 +86,14 @@ class CartProduct extends StatelessWidget {
                         width: AppSize.s5,
                       ),
                       Text(
-                        productsEntities.priceAfterDiscount.toString(),
+                        priceAfterDiscount.toString(),
                         style: getBoldStyle(fontSize: AppSize.s14),
                       ),
                       const SizedBox(
                         width: AppSize.s8,
                       ),
                       Text(
-                        productsEntities.price.toString(),
+                        price.toString(),
                         style: getRegularStyle(
                           fontSize: AppSize.s12,
                           color: ColorManager.blackPrice,
@@ -96,8 +105,8 @@ class CartProduct extends StatelessWidget {
                       ),
                       Text(
                         calculateDiscountPercentage(
-                                productsEntities.priceAfterDiscount!.toDouble(),
-                                productsEntities.price!.toDouble())
+                                priceAfterDiscount!.toDouble(),
+                                price!.toDouble())
                             .toString()
                             .substring(0, 2),
                         style: getRegularStyle(

@@ -1,4 +1,4 @@
-import 'package:device_preview/device_preview.dart';
+
 import 'core/di/di.dart';
 import 'core/resources/color_manager.dart';
 import 'core/resources/routes_manager.dart';
@@ -17,13 +17,13 @@ void main() {
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
       overlays: [SystemUiOverlay.top]);
   runApp(
-    DevicePreview(
-      enabled: !kReleaseMode,
-      builder: (context) {
-        return const FlowerApp();
-      },
-    ),
-    // const FlowerApp(),
+    // DevicePreview(
+    //   enabled: !kReleaseMode,
+    //   builder: (context) {
+    //     return const FlowerApp();
+    //   },
+    // ),
+    const FlowerApp(),
   );
 }
 

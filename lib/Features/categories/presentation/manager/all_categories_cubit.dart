@@ -26,8 +26,10 @@ class AllCategoriesViewModel extends Cubit<AllCategoriesState> {
 
     switch (result) {
       case Success<AllCategoriesEntities?>():
-        print(result.data?.categories?.length);
-        emit(SuccessAllCategoriesState(result.data));
+        if (!isClosed) {
+          emit(SuccessAllCategoriesState(result.data));
+        }
+
       case Fail<AllCategoriesEntities?>():
         print(result.exception);
         emit(ErrorAllCategoriesState(result.exception));

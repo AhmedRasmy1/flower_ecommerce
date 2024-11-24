@@ -25,8 +25,9 @@ class AllProductsViewModel extends Cubit<AllProductsState> {
 
     switch (result) {
       case Success<AllProductsEntities?>():
-        // print(result.data!.products?[0].title);
-        emit(SuccessAllProductsState(result.data));
+        if (!isClosed) {
+          emit(SuccessAllProductsState(result.data));
+        }
       case Fail<AllProductsEntities?>():
         // print(result.exception);
         emit(ErrorAllProductsState(result.exception));

@@ -24,34 +24,64 @@ class _SplashViewState extends State<SplashView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: ColorManager.white,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(
-            child: SvgPicture.asset(
-              AssetsManager.logo,
-              width: context.screenWidth / AppSize.w2_5,
-              height: context.screenWidth / AppSize.w2_5,
-            ),
+    return Container(
+      height: context.screenHeight,
+      width: context.screenWidth,
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(
+            AssetsManager.background,
           ),
-          const SizedBox(
-            height: AppSize.s24,
+
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: SafeArea(
+          child: Column(
+           crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const SizedBox(height: AppSize.s100,),
+              Center(
+                child: SvgPicture.asset(
+                  AssetsManager.logo,
+                  width:  AppSize.s54,
+                  height:  AppSize.s54,
+                ),
+              ),
+
+              const Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      AppStrings.appName,
+              
+                      style: TextStyle(
+                        fontSize: 35,
+                        color: ColorManager.pink,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                    SizedBox(width: 10,),
+
+                  ],
+                ),
+              ),
+          
+            ],
           ),
-          const Text(AppStrings.appName,
-              style: TextStyle(
-                  fontSize: 35,
-                  color: ColorManager.pink,
-                  fontWeight: FontWeight.w800)),
-        ],
+        ),
       ),
     );
   }
 
   void movedToNextPage() {
     Future.delayed(
-      const Duration(seconds: AppConstants.splashDelay),
+      const Duration(seconds: AppConstants.splashDelay
+      ),
       () {
         if (mounted) {
           Navigator.pushNamedAndRemoveUntil(

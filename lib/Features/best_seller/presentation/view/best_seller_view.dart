@@ -1,12 +1,12 @@
+
+import 'package:flower_ecommerce/Features/products/presentation/pages/products.dart';
+import '../../../products/presentation/widgets/skeleton_body.dart';
 import '../best_seller_view_model/best_seller_state.dart';
-import '../widgets/list_best_seller_widget.dart';
 import '../../../../core/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../core/di/di.dart';
 import '../../../../core/resources/values_manager.dart';
-
 import '../../domain/entities/best_seller_entity.dart';
 import '../best_seller_view_model/best_seller_cubit.dart';
 
@@ -53,13 +53,16 @@ class _BestSellerViewState extends State<BestSellerView> {
               BlocBuilder<BestSellerViewModel, BestSellerState>(
                 builder: (context, state) {
                   if (state is LoadingBestSellerState) {
-                    return const Center(child: CircularProgressIndicator());
+                    return const Expanded(child: SkeletonBody());
+
                   } else if (state is SuccessBestSellerState) {
                     List<BestSellerEntity>? listOfBestSeller =
                         state.bestSellerEntities;
 
                     return Expanded(
-                        child: ListBestSellerGrid(items: listOfBestSeller));
+                        child: CustomCardAll(bestSellerEntity: listOfBestSeller,)
+
+                       );
                   } else if (state is ErrorBestSellerState) {
                     return Container(
                       color: Colors.red,
