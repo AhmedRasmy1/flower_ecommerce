@@ -11,7 +11,7 @@ import '../../../../core/common/api_result.dart';
 
 import '../data_sourses/occasion_datasource.dart';
 import '../models/occasion_response/occasion_response.dart';
-import '../models/occasion_response/occasion_detail_response.dart';
+
 @Injectable(as: OccasionOnLineDataSource)
 class OccasionOnLineDataSourceImpl implements OccasionOnLineDataSource {
   final ApiService _occasionRetrofit;

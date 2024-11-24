@@ -12,17 +12,17 @@ part 'occasion_response.g.dart';
 @JsonSerializable()
 class OccasionResponse {
     OccasionResponse({
-        required this.metadata,
-        required this.occasions,
-        required this.message,
+         this.metadata,
+         this.occasions,
+        this.message,
     });
 
     factory OccasionResponse.fromJson(Map<String, dynamic> json) =>
         _$OccasionResponseFromJson(json);
 
-    Metadata metadata;
-    List<Occasion> occasions;
-    String message;
+    Metadata? metadata;
+    List<Occasion>? occasions;
+    String? message;
 
     Map<String, dynamic> toJson() => _$OccasionResponseToJson(this);
 }
