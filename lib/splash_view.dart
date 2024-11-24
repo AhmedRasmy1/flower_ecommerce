@@ -1,9 +1,9 @@
+import 'package:google_fonts/google_fonts.dart';
 import 'core/functions/extenstions.dart';
 import 'core/resources/assets_manager.dart';
 import 'core/resources/strings_manager.dart';
 import 'core/resources/values_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import '../../../../core/resources/app_constants.dart';
 import 'core/resources/color_manager.dart';
 import 'core/resources/routes_manager.dart';
@@ -32,7 +32,6 @@ class _SplashViewState extends State<SplashView> {
           image: AssetImage(
             AssetsManager.background,
           ),
-
           fit: BoxFit.cover,
         ),
       ),
@@ -40,37 +39,39 @@ class _SplashViewState extends State<SplashView> {
         backgroundColor: Colors.transparent,
         body: SafeArea(
           child: Column(
-           crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: AppSize.s100,),
+              const SizedBox(
+                height: AppSize.s100,
+              ),
               Center(
-                child: SvgPicture.asset(
-                  AssetsManager.logo,
-                  width:  AppSize.s54,
-                  height:  AppSize.s54,
+                child: Image.asset(
+                  'assets/images/splashLogo.png',
+                  width: AppSize.s54,
+                  height: AppSize.s54,
                 ),
               ),
-
-              const Padding(
-                padding: EdgeInsets.all(16.0),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      AppStrings.appName,
-              
+                      AppStrings.flowry,
                       style: TextStyle(
-                        fontSize: 35,
+                        fontSize: 50,
                         color: ColorManager.pink,
                         fontWeight: FontWeight.w800,
+                        fontFamily:
+                            GoogleFonts.eduNswActFoundation().fontFamily,
                       ),
                     ),
-                    SizedBox(width: 10,),
-
+                    const SizedBox(
+                      width: 10,
+                    ),
                   ],
                 ),
               ),
-          
             ],
           ),
         ),
@@ -80,8 +81,7 @@ class _SplashViewState extends State<SplashView> {
 
   void movedToNextPage() {
     Future.delayed(
-      const Duration(seconds: AppConstants.splashDelay
-      ),
+      const Duration(seconds: AppConstants.splashDelay),
       () {
         if (mounted) {
           Navigator.pushNamedAndRemoveUntil(

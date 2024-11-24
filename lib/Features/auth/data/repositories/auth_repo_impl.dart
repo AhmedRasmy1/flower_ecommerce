@@ -1,7 +1,7 @@
 import '../../domain/entities/forget_password_entity.dart';
 
 import '../../domain/entities/verify_password_entity.dart';
-import '../models/request/LoginModelDto.dart';
+import '../models/request/login_model_dto.dart';
 import '../../domain/entities/login_entities.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/common/api_result.dart';
@@ -10,7 +10,7 @@ import '../../domain/entities/reset_password_entity.dart';
 import '../data_sources/auth_online_datasource.dart';
 import '../../domain/repositories/auth_repo.dart';
 import '../data_sources/auth_offline_datasource.dart';
-import '../models/request/RegisterModelDto.dart';
+import '../models/request/register_model_dto.dart';
 import '../models/request/forget_password_request/reset_password_request.dart';
 
 @Injectable(as: AuthRepo)

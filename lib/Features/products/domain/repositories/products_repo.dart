@@ -1,4 +1,4 @@
-import '../entities/ProductsEntities.dart';
+import '../entities/products_entities.dart';
 
 import '../../../../core/common/api_result.dart';
 

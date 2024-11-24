@@ -44,28 +44,6 @@ class _OccasionsViewState extends State<OccasionsView> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        // appBar: AppBar(
-        //   title: const Column(
-        //     crossAxisAlignment: CrossAxisAlignment.start,
-        //     children: [
-        //       Text(
-        //         'Occasions',
-        //         style: TextStyle(
-        //           fontSize: 20,
-        //           fontWeight: FontWeight.w400,
-        //         ),
-        //         textAlign: TextAlign.start,
-        //       ),
-        //       Text(
-        //         'Bloom with exquisite best sellers',
-        //         style: TextStyle(
-        //           fontSize: 13,
-        //           fontWeight: FontWeight.w400,
-        //         ),
-        //       ),
-        //     ],
-        //   ),
-        // ),
         body: Padding(
           padding: const EdgeInsets.only(
             top: 8.0,
@@ -106,7 +84,7 @@ class _OccasionsViewState extends State<OccasionsView> {
                                       selectedIndex = index;
                                       id = occasions?[index].id;
                                     });
-                                    print(id);
+                                    // print(id);
                                   },
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
@@ -31,7 +33,7 @@ class AllCategoriesViewModel extends Cubit<AllCategoriesState> {
         }
 
       case Fail<AllCategoriesEntities?>():
-        print(result.exception);
+        log(result.exception.toString());
         emit(ErrorAllCategoriesState(result.exception));
     }
   }

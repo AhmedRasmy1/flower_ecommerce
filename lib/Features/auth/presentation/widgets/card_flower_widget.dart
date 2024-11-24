@@ -7,6 +7,7 @@ class FlowerCard extends StatelessWidget {
   final String imageUrl;
 
   const FlowerCard({
+    super.key,
     required this.title,
     required this.price,
     required this.discount,
@@ -19,16 +20,17 @@ class FlowerCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-        Image.asset('assets/images/Flower.svg'),
+          Image.asset('assets/images/Flower.svg'),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
+            child: Text(title,
+                style: const TextStyle(fontWeight: FontWeight.bold)),
           ),
-          Text('EGP $price', style: TextStyle(color: Colors.green)),
-          Text('$discount% OFF', style: TextStyle(color: Colors.red)),
+          Text('EGP $price', style: const TextStyle(color: Colors.green)),
+          Text('$discount% OFF', style: const TextStyle(color: Colors.red)),
           ElevatedButton(
             onPressed: () {},
-            child: Text("Add to cart"),
+            child: const Text("Add to cart"),
           ),
         ],
       ),

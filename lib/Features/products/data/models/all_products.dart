@@ -1,9 +1,10 @@
-import '../../domain/entities/ProductsEntities.dart';
+import '../../domain/entities/products_entities.dart';
 
 class AllProducts {
   AllProducts({
     this.message,
-    this.products,});
+    this.products,
+  });
 
   AllProducts.fromJson(dynamic json) {
     message = json['message'];
@@ -17,13 +18,11 @@ class AllProducts {
   String? message;
   List<Products>? products;
 
-  AllProductsEntities toAllProductsEntities(){
+  AllProductsEntities toAllProductsEntities() {
     return AllProductsEntities(
-      message: message,
-      products: products?.map((products)=>products.toProduct()).toList()
-    );
+        message: message,
+        products: products?.map((products) => products.toProduct()).toList());
   }
-
 }
 
 class Products {
@@ -42,7 +41,8 @@ class Products {
     this.createdAt,
     this.updatedAt,
     this.v,
-    this.id2,});
+    this.id2,
+  });
 
   Products.fromJson(dynamic json) {
     id = json['_id'];
@@ -96,19 +96,19 @@ class Products {
     map['id'] = id2;
     return map;
   }
-  ProductsEntities toProduct(){
+
+  ProductsEntities toProduct() {
     return ProductsEntities(
-      id: id,
-      category: category,
-      description: description,
-      images: images,
-      imgCover: imgCover,
-      occasion: occasion,
-      price: price,
-      priceAfterDiscount: priceAfterDiscount,
-      quantity: quantity,
-      slug: slug,
-      title: title
-    );
+        id: id,
+        category: category,
+        description: description,
+        images: images,
+        imgCover: imgCover,
+        occasion: occasion,
+        price: price,
+        priceAfterDiscount: priceAfterDiscount,
+        quantity: quantity,
+        slug: slug,
+        title: title);
   }
 }

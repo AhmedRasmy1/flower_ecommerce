@@ -103,6 +103,7 @@ class Product {
       price: price,
       quantity: quantity,
       title: title,
+      priceAfterDiscount: priceAfterDiscount,
     );
   }
 }

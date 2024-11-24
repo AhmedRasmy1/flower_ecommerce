@@ -1,8 +1,4 @@
-
-
-
-import '../../domain/entities/ProductsEntities.dart';
-
+import '../../domain/entities/products_entities.dart';
 
 sealed class AllProductsState {}
 
@@ -15,7 +11,6 @@ class SuccessAllProductsState extends AllProductsState {
 }
 
 class LoadingAllProductsState extends AllProductsState {
-
   LoadingAllProductsState();
 }
 
@@ -25,12 +20,8 @@ class ErrorAllProductsState extends AllProductsState {
   ErrorAllProductsState(this.exception);
 }
 
-
-
 sealed class AllProductsToAction {}
 
 class GetAllProductsAction extends AllProductsToAction {
-
   GetAllProductsAction();
 }
-

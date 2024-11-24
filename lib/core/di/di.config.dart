@@ -22,7 +22,7 @@ import '../../Features/auth/data/data_sources/auth_online_datasource.dart'
     as _i318;
 import '../../Features/auth/data/repositories/auth_repo_impl.dart' as _i118;
 import '../../Features/auth/domain/repositories/auth_repo.dart' as _i1049;
-import '../../Features/auth/domain/use_cases/forget_Password_usecase.dart'
+import '../../Features/auth/domain/use_cases/forget_password_usecase.dart'
     as _i251;
 import '../../Features/auth/domain/use_cases/login_usecases.dart' as _i526;
 import '../../Features/auth/domain/use_cases/register_usecase.dart' as _i284;

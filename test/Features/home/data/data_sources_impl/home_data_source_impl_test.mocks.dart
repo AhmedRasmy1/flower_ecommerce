@@ -12,9 +12,9 @@ import 'package:flower_ecommerce/Features/auth/data/models/request/forget_passwo
     as _i18;
 import 'package:flower_ecommerce/Features/auth/data/models/request/forget_password_request/verify_request.dart'
     as _i16;
-import 'package:flower_ecommerce/Features/auth/data/models/request/LoginModelDto.dart'
+import 'package:flower_ecommerce/Features/auth/data/models/request/login_model_dto.dart'
     as _i17;
-import 'package:flower_ecommerce/Features/auth/data/models/request/RegisterModelDto.dart'
+import 'package:flower_ecommerce/Features/auth/data/models/request/register_model_dto.dart'
     as _i14;
 import 'package:flower_ecommerce/Features/auth/data/models/response/forget_password_response/forget_password_response.dart'
     as _i3;
@@ -22,9 +22,9 @@ import 'package:flower_ecommerce/Features/auth/data/models/response/forget_passw
     as _i6;
 import 'package:flower_ecommerce/Features/auth/data/models/response/forget_password_response/verify_response.dart'
     as _i4;
-import 'package:flower_ecommerce/Features/auth/data/models/response/LoginResponseDto.dart'
+import 'package:flower_ecommerce/Features/auth/data/models/response/login_response_dto.dart'
     as _i5;
-import 'package:flower_ecommerce/Features/auth/data/models/response/RegisterResponseDto.dart'
+import 'package:flower_ecommerce/Features/auth/data/models/response/register_response_dto.dart'
     as _i2;
 import 'package:flower_ecommerce/Features/best_seller/data/model/best_seller_response.dart'
     as _i10;

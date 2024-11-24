@@ -1,15 +1,11 @@
-
-
 import '../../../data/models/occasion_response/occasion_response.dart';
-
-
 
 sealed class OccasionState {}
 
 class InitialState extends OccasionState {}
 
 class SuccessOccasionState extends OccasionState {
-OccasionResponse? occasionResponse ;
+  OccasionResponse? occasionResponse;
 
   SuccessOccasionState(this.occasionResponse);
 }

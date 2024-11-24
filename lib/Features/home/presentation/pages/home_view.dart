@@ -70,7 +70,7 @@ class _HomeViewState extends State<HomeView> {
               },
               builder: (context, state) {
                 if (state is HomeLoading) {
-                  return SkeletonHome();
+                  return const SkeletonHome();
                   //   Center(
                   //   child: Image.asset(
                   //     AssetsManager.loadingLoading1,

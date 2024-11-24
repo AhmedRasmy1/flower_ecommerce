@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'verify_password_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -22,7 +24,7 @@ class VerifyPasswordViewModel extends Cubit<VerifyPasswordState> {
 
     var result = await verifyUseCase.invoke(intent.otp);
     var testOtp = intent.otp;
-    print("ttttttttttttttttttttttttttttttttttttt$testOtp");
+    log("ttttttttttttttttttttttttttttttttttttt$testOtp");
     switch (result) {
       case Success<VerifyPasswordEntity?>():
         emit(SuccessVerifyPasswordState(result.data));

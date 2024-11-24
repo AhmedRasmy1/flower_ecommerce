@@ -17,8 +17,9 @@ class BestSellerItem extends StatelessWidget {
         bestSellerEntity?.priceAfterDiscount ?? 0);
     return Card(
       shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppSize.s8),
-          side: const BorderSide(color: ColorManager.lightGrey3)),
+        borderRadius: BorderRadius.circular(AppSize.s8),
+        side: const BorderSide(color: ColorManager.lightGrey3),
+      ),
       child: Padding(
         padding: const EdgeInsets.all(AppSize.s8),
         child: Column(
@@ -79,9 +80,7 @@ class BestSellerItem extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton.icon(
-                onPressed: () {
-                  // Action
-                },
+                onPressed: () {},
                 icon:
                     const Icon(Icons.shopping_cart, color: ColorManager.white),
                 label: const Text(

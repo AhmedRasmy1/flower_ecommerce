@@ -101,21 +101,21 @@ class SkeletonHome extends StatelessWidget {
               ),
             ),
             const SizedBox(height: AppSize.s24),
-            CustomHeader(
+            const CustomHeader(
               title: AppStrings.bestSeller,
               viewAll: AppStrings.viewAll,
             ),
             const SizedBox(height: AppSize.s16),
-            CustomBestSellerContainer(
+            const CustomBestSellerContainer(
               bestSeller: [],
             ),
             const SizedBox(height: AppSize.s16),
-            CustomHeader(
+            const CustomHeader(
               title: AppStrings.occasion,
               viewAll: AppStrings.viewAll,
             ),
             const SizedBox(height: AppSize.s16),
-            CustomOccasionContainer(
+            const CustomOccasionContainer(
               occasion: [],
             )
           ],

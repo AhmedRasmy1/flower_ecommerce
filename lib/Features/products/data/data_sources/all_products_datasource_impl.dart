@@ -1,4 +1,4 @@
-import '../../domain/entities/ProductsEntities.dart';
+import '../../domain/entities/products_entities.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/api/api_extentions.dart';
 import '../../../../core/api/api_manager/api_manager.dart';

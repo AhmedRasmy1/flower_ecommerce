@@ -5,13 +5,14 @@ import '../resources/font_manager.dart';
 import '../resources/values_manager.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar(
-      {super.key,
-      this.title,
-      this.onTap,
-      this.color,
-      this.image,
-      this.subtitle});
+  const CustomAppBar({
+    super.key,
+    this.title,
+    this.onTap,
+    this.color,
+    this.image,
+    this.subtitle,
+  });
 
   final String? title;
   final void Function()? onTap;
@@ -21,25 +22,24 @@ class CustomAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (onTap != null)
-          GestureDetector(
-            onTap: onTap,
-            child: SvgPicture.asset(AssetsManager.vector),
-          ),
-        const SizedBox(width: AppSize.s8),
-        if (image != null)
-          SvgPicture.asset(
-            width: AppSize.s20,
-            height: AppSize.s20,
-            image!,
-            fit: BoxFit.scaleDown,
-          ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        Row(
           children: [
+            if (onTap != null)
+              GestureDetector(
+                onTap: onTap,
+                child: SvgPicture.asset(AssetsManager.vector),
+              ),
+            const SizedBox(width: AppSize.s8),
+            if (image != null)
+              SvgPicture.asset(
+                width: AppSize.s20,
+                height: AppSize.s20,
+                image!,
+                fit: BoxFit.scaleDown,
+              ),
             if (title != null)
               Text(
                 title!,
@@ -49,17 +49,19 @@ class CustomAppBar extends StatelessWidget {
                   fontWeight: FontWeightManager.bold,
                 ),
               ),
-            if (subtitle != null)
-              Text(
-                subtitle!,
-                style: TextStyle(
-                  fontSize: FontSize.s14,
-                  color: Colors.black,
-                  fontWeight: FontWeightManager.bold,
-                ),
-              ),
           ],
         ),
+        if (subtitle != null)
+          Padding(
+            padding: const EdgeInsets.only(left: AppSize.s32),
+            child: Text(
+              subtitle!,
+              style: const TextStyle(
+                fontSize: FontSize.s14,
+                color: Colors.black,
+              ),
+            ),
+          ),
       ],
     );
   }

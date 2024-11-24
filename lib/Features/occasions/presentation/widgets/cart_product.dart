@@ -7,7 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../core/resources/cashed_image.dart';
 import '../../../../core/resources/color_manager.dart';
-import '../../../products/domain/entities/ProductsEntities.dart';
+import '../../../products/domain/entities/products_entities.dart';
 
 class CartProduct extends StatelessWidget {
   const CartProduct({super.key, required this.productsEntities});
@@ -123,12 +123,7 @@ class CartProduct extends StatelessWidget {
                   backgroundColor: ColorManager.pink,
                 ),
                 onPressed: () {
-                  /// add to cart
-                  /// add to cart
                   log('add to cart');
-
-                  /// add to cart
-                  /// add to cart
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
