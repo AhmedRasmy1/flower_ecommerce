@@ -1,4 +1,5 @@
 import 'package:flower_ecommerce/Features/home/presentation/widgets/skeleton_home.dart';
+import 'package:flower_ecommerce/Features/layout/presentation/cubit/layout_cubit.dart';
 
 import '../viewmodels/home_cubit.dart';
 import '../widgets/custom_bestseller_container.dart';
@@ -112,7 +113,7 @@ class _HomeViewState extends State<HomeView> {
                           title: AppStrings.categories,
                           viewAll: AppStrings.viewAll,
                           onTap: () {
-                            /// Navigate to CategoriesView
+                            LayoutCubit.get(context).changeIndex(1);
                           },
                         ),
                         const SizedBox(height: AppSize.s16),
