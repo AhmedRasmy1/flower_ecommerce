@@ -6,10 +6,9 @@ import '../../../../core/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-
 import '../../../../core/resources/cashed_image.dart';
 import '../../../../core/resources/color_manager.dart';
-import '../../domain/entities/ProductsEntities.dart';
+
 
 class CartProduct extends StatelessWidget {
   const CartProduct({

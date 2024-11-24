@@ -1,7 +1,6 @@
-import '../../../products/presentation/widgets/skeleton_body.dart';
+
 import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-
 import '../../../../core/resources/color_manager.dart';
 import '../../../products/presentation/widgets/cart_product.dart';
 

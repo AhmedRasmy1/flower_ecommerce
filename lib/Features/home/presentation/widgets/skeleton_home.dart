@@ -1,9 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flower_ecommerce/core/functions/extenstions.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-
 import '../../../../core/resources/assets_manager.dart';
 import '../../../../core/resources/color_manager.dart';
 import '../../../../core/resources/strings_manager.dart';
@@ -11,7 +9,6 @@ import '../../../../core/resources/values_manager.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
 import 'custom_bestseller_container.dart';
 import 'custom_card.dart';
-import 'custom_category_container.dart';
 import 'custom_header.dart';
 import 'custom_location.dart';
 import 'custom_occasion_container.dart';

@@ -139,12 +139,6 @@ class CustomCardAll extends StatelessWidget {
                         ),
                       );
                     }
-                  } else if (activeList is List<BestSellerEntity>) {
-                    final product =
-                    activeList[index] as BestSellerEntity;
-                    // قم بتوجيه المستخدم إلى الشاشة المناسبة
-                    // (افترض أنه لا يوجد `id` هنا، ولكن يمكنك تخصيصها حسب الحاجة)
-                    log('Navigate to best seller details');
                   }
                 },
                 child: activeList is List<ProductsEntities>

@@ -1,4 +1,4 @@
-import 'package:device_preview/device_preview.dart';
+
 import 'core/di/di.dart';
 import 'core/resources/color_manager.dart';
 import 'core/resources/routes_manager.dart';
