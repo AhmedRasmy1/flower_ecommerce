@@ -1,12 +1,15 @@
 import 'dart:developer';
 
-import 'package:flower_ecommerce/Features/products/presentation/manager/all_products_state.dart';
-import 'package:flower_ecommerce/Features/products_details/presentation/views/product_details_view.dart';
-import 'package:flower_ecommerce/core/resources/color_manager.dart';
+import 'package:flower_ecommerce/Features/best_seller/domain/entities/best_seller_entity.dart';
+import 'package:flutter_svg/svg.dart';
+
+import '../manager/all_products_state.dart';
+import '../../../products_details/presentation/views/product_details_view.dart';
+import '../../../../core/resources/color_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/di/di.dart';
-import '../../domain/entities/ProductsEntities.dart';
+import '../../domain/entities/products_entities.dart';
 import '../manager/all_products_cubit.dart';
 import '../widgets/cart_product.dart';
 import '../widgets/skeleton_body.dart';
@@ -43,8 +46,6 @@ class _GirdBodyOfProductsState extends State<GirdBodyOfProducts> {
 
   @override
   Widget build(BuildContext context) {
-    print("page id ---------------- ${widget.pageId}");
-
     return RefreshIndicator(
       color: ColorManager.pink,
       onRefresh: () async {
@@ -53,14 +54,11 @@ class _GirdBodyOfProductsState extends State<GirdBodyOfProducts> {
       child: BlocProvider(
         create: (context) => viewModel,
         child: BlocConsumer<AllProductsViewModel, AllProductsState>(
-          listener: (context, state) {
-            // TODO: implement listener
-          },
+          listener: (context, state) {},
           builder: (context, state) {
             if (state is SuccessAllProductsState) {
               List<ProductsEntities> allData =
-
-                  /// FROM CHATGPT
+                  //! chat gpt
                   state.categoriesEntities?.products ?? [];
               List<ProductsEntities> filteredByOccasion =
                   allData.where((product) {
@@ -75,61 +73,111 @@ class _GirdBodyOfProductsState extends State<GirdBodyOfProducts> {
                   return true;
                 }
               }).toList();
-
-              return LayoutBuilder(
-                builder: (context, constraints) {
-                  double aspectRatio =
-                      (constraints.maxWidth > 500) ? 0.67 : 0.6;
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: GridView.builder(
-                      physics: const BouncingScrollPhysics(),
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: constraints.maxWidth > 500 ? 3 : 2,
-                          mainAxisSpacing: 10,
-                          crossAxisSpacing: 10,
-                          childAspectRatio: aspectRatio),
-                      itemCount: filteredByOccasion.length,
-                      itemBuilder: (context, index) {
-                        return filteredByOccasion.isNotEmpty
-                            ? InkWell(
-                                splashColor: Colors.pink.withOpacity(.2),
-                                borderRadius: BorderRadius.circular(12),
-                                highlightColor: Colors.pink.withOpacity(0.1),
-                                onTap: () {
-                                  log('go to details');
-                                  filteredByOccasion[index].id?.isNotEmpty ==
-                                          true
-                                      ? Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                ProductDetailsView(
-                                                    productId:
-                                                        filteredByOccasion[
-                                                                    index]
-                                                                .id ??
-                                                            ''),
-                                          ),
-                                        )
-                                      : null;
-                                },
-                                child: CartProduct(
-                                  productsEntities: filteredByOccasion[index],
-                                ),
-                              )
-                            : const SkeletonBody();
-                      },
-                    ),
-                  );
-                },
-              );
+              return CustomCardAll(filteredByOccasion: filteredByOccasion);
             } else {
               return const SkeletonBody();
             }
           },
         ),
       ),
+    );
+  }
+}
+
+class CustomCardAll extends StatelessWidget {
+  const CustomCardAll({
+    super.key,
+    this.filteredByOccasion,
+    this.bestSellerEntity,
+  });
+
+  final List<ProductsEntities>? filteredByOccasion;
+  final List<BestSellerEntity>? bestSellerEntity;
+
+  @override
+  Widget build(BuildContext context) {
+    final activeList = filteredByOccasion?.isNotEmpty == true
+        ? filteredByOccasion
+        : bestSellerEntity;
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        double aspectRatio = (constraints.maxWidth > 500) ? 0.67 : 0.6;
+
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: activeList != null && activeList.isNotEmpty
+              ? GridView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: constraints.maxWidth > 500 ? 3 : 2,
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 10,
+                    childAspectRatio: aspectRatio,
+                  ),
+                  itemCount: activeList.length,
+                  itemBuilder: (context, index) {
+                    //! here we change InkWell to GestureDetector
+                    return GestureDetector(
+                      // splashColor: Colors.pink.withOpacity(.2),
+                      // borderRadius: BorderRadius.circular(12),
+                      // highlightColor: Colors.pink.withOpacity(0.1),
+                      onTap: () {
+                        log('go to details');
+                        if (activeList is List<ProductsEntities>) {
+                          final product = activeList[index];
+
+                          if (product.id?.isNotEmpty == true) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ProductDetailsView(
+                                  productId: product.id ?? '',
+                                ),
+                              ),
+                            );
+                          }
+                        } else if (activeList is List<BestSellerEntity>) {
+                          final bestSeller = activeList[index];
+
+                          if (bestSeller.id?.isNotEmpty == true) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ProductDetailsView(
+                                  productId: bestSeller.id ?? '',
+                                ),
+                              ),
+                            );
+                          }
+                        }
+                      },
+                      child: activeList is List<ProductsEntities>
+                          ? CartProduct(
+                              priceAfterDiscount:
+                                  activeList[index].priceAfterDiscount,
+                              price: activeList[index].price,
+                              imgCover: activeList[index].imgCover,
+                              title: activeList[index].title,
+                            )
+                          : CartProduct(
+                              priceAfterDiscount:
+                                  (activeList as List<BestSellerEntity>)[index]
+                                      .priceAfterDiscount,
+                              price: (activeList)[index].price,
+                              imgCover: (activeList)[index].imgCover,
+                              title: (activeList)[index].title,
+                            ),
+                    );
+                  },
+                )
+              : Center(
+                  child: SvgPicture.asset(
+                    'assets/images/rose-day.svg',
+                  ),
+                ),
+        );
+      },
     );
   }
 }
@@ -145,24 +193,4 @@ enum EnumPage {
   String getName() {
     return name;
   }
-}
-
-Map<String, dynamic> getGridConfig(double screenWidth) {
-  int crossAxisCount = 2; // افتراضي 2 عمود
-  if (screenWidth > 600) {
-    crossAxisCount = 3; // 3 أعمدة للشاشات الكبيرة (مثل التابلت)
-  }
-  if (screenWidth > 1200) {
-    crossAxisCount = 4; // 4 أعمدة للشاشات الكبيرة جدًا (مثل الشاشات الكبيرة)
-  }
-
-  double aspectRatio = 0.67; // القيمة الافتراضية
-  if (screenWidth > 600) {
-    aspectRatio = 0.75; // يمكن تعديل النسبة للأعمدة الأكبر
-  }
-
-  return {
-    'crossAxisCount': crossAxisCount,
-    'aspectRatio': aspectRatio,
-  };
 }

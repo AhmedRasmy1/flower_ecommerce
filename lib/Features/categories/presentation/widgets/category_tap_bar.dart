@@ -1,10 +1,8 @@
-import 'package:flower_ecommerce/Features/categories/presentation/manager/all_categories_cubit.dart';
-import 'package:flower_ecommerce/Features/categories/presentation/widgets/skeleton_bar.dart';
-import 'package:flower_ecommerce/core/resources/strings_manager.dart';
+import '../manager/all_categories_cubit.dart';
+import 'skeleton_bar.dart';
+import '../../../../core/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../core/di/di.dart';
 import '../../../../core/resources/color_manager.dart';
 import '../../../../core/resources/style_manager.dart';
@@ -54,7 +52,6 @@ class _CategoryTapBarState extends State<CategoryTapBar> {
               (tab) {
                 return Tab(
                   text: tab.name,
-
                 );
               },
             ).toList();
@@ -97,7 +94,6 @@ class _CategoryTapBarState extends State<CategoryTapBar> {
                       indexTab = value;
                     },
                   ),
-
                   const SizedBox(height: AppSize.s14),
                   Expanded(
                     child: TabBarView(

@@ -1,7 +1,7 @@
-import 'package:flower_ecommerce/Features/auth/presentation/view_model/verify_password_view_model/verify_password_state.dart';
-import 'package:flower_ecommerce/Features/auth/presentation/views/reset_password_view.dart';
-import 'package:flower_ecommerce/core/widgets/show_error_dialog.dart';
-import 'package:flower_ecommerce/core/widgets/show_loading_dialog.dart';
+import '../view_model/verify_password_view_model/verify_password_state.dart';
+import '../views/reset_password_view.dart';
+import '../../../../core/widgets/show_error_dialog.dart';
+import '../../../../core/widgets/show_loading_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../view_model/verify_password_view_model/verify_password_cubit.dart';
@@ -33,7 +33,7 @@ class BlocConsumerForOtpVerificationPage extends StatelessWidget {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => ResetPasswordView(),
+                    builder: (context) => const ResetPasswordView(),
                     settings: RouteSettings(arguments: email)));
           }
         },
@@ -45,7 +45,7 @@ class BlocConsumerForOtpVerificationPage extends StatelessWidget {
           }
           return false;
         },
-        child: SizedBox.shrink() // Placeholder when no loading state
+        child: const SizedBox.shrink() // Placeholder when no loading state
 
         );
   }

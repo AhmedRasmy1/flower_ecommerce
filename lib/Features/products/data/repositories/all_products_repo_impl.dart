@@ -1,10 +1,8 @@
-import 'package:flower_ecommerce/Features/categories/domain/entities/categories_entities.dart';
-import 'package:flower_ecommerce/Features/products/domain/entities/ProductsEntities.dart';
-import 'package:flower_ecommerce/Features/products/domain/repositories/products_repo.dart';
+import '../../domain/entities/products_entities.dart';
+import '../../domain/repositories/products_repo.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/common/api_result.dart';
 import '../data_sources/all_products_datasource.dart';
-
 
 @Injectable(as: ProductsRepo)
 class CategoriesRepoImpl implements ProductsRepo {

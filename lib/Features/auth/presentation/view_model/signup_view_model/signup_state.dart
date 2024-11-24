@@ -1,4 +1,4 @@
-import 'package:flower_ecommerce/Features/auth/domain/entities/register_entities.dart';
+import '../../../domain/entities/register_entities.dart';
 
 sealed class RegisterState {}
 

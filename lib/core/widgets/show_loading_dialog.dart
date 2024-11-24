@@ -5,7 +5,7 @@ void showLoadingDialog(BuildContext context) {
     context: context,
     barrierDismissible: false,
     builder: (context) {
-      return AlertDialog(
+      return const AlertDialog(
         content: Row(
           children: [
             CircularProgressIndicator(),

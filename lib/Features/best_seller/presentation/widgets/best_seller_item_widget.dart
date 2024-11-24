@@ -1,16 +1,15 @@
-import 'package:flower_ecommerce/Features/best_seller/domain/entities/best_seller_entity.dart';
-import 'package:flower_ecommerce/Features/best_seller/presentation/usefull_methods/precentage_calculate.dart';
-import 'package:flower_ecommerce/core/resources/color_manager.dart';
-import 'package:flower_ecommerce/core/resources/strings_manager.dart';
-import 'package:flower_ecommerce/core/resources/values_manager.dart';
+import '../../domain/entities/best_seller_entity.dart';
+import '../usefull_methods/precentage_calculate.dart';
+import '../../../../core/resources/color_manager.dart';
+import '../../../../core/resources/strings_manager.dart';
+import '../../../../core/resources/values_manager.dart';
 import 'package:flutter/material.dart';
-
 import '../usefull_methods/part_title.dart';
 
 class BestSellerItem extends StatelessWidget {
-  BestSellerItem({required this.bestSellerEntity, super.key});
+  const BestSellerItem({required this.bestSellerEntity, super.key});
 
-  BestSellerEntity? bestSellerEntity;
+  final BestSellerEntity? bestSellerEntity;
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +17,9 @@ class BestSellerItem extends StatelessWidget {
         bestSellerEntity?.priceAfterDiscount ?? 0);
     return Card(
       shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppSize.s8),
-          side: const BorderSide(color: ColorManager.lightGrey3)),
+        borderRadius: BorderRadius.circular(AppSize.s8),
+        side: const BorderSide(color: ColorManager.lightGrey3),
+      ),
       child: Padding(
         padding: const EdgeInsets.all(AppSize.s8),
         child: Column(
@@ -80,9 +80,7 @@ class BestSellerItem extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton.icon(
-                onPressed: () {
-                  // Action
-                },
+                onPressed: () {},
                 icon:
                     const Icon(Icons.shopping_cart, color: ColorManager.white),
                 label: const Text(

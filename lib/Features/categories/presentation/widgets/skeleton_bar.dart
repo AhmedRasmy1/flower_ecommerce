@@ -1,7 +1,6 @@
-import 'package:flower_ecommerce/Features/products/presentation/widgets/skeleton_body.dart';
+
 import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-
 import '../../../../core/resources/color_manager.dart';
 import '../../../products/presentation/widgets/cart_product.dart';
 
@@ -19,9 +18,7 @@ class SkeletonBar extends StatelessWidget {
               tabAlignment: TabAlignment.start,
               indicatorSize: TabBarIndicatorSize.tab,
               dividerColor: Colors.transparent,
-              indicatorPadding:
-              const EdgeInsets.symmetric(horizontal: 16),
-
+              indicatorPadding: const EdgeInsets.symmetric(horizontal: 16),
               isScrollable: true,
               indicator: const UnderlineTabIndicator(
                 borderRadius: BorderRadius.only(
@@ -57,25 +54,33 @@ class SkeletonBar extends StatelessWidget {
                   text: 'dddddddd',
                 ),
               ],
-
             ),
             const SizedBox(height: 14),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: SizedBox(
-                height: MediaQuery.sizeOf(context).height*.6,
+                height: MediaQuery
+                    .sizeOf(context)
+                    .height > 600 ? MediaQuery
+                    .sizeOf(context)
+                    .width * 0.99:MediaQuery
+                    .sizeOf(context)
+                    .width * 1.2,
                 child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
+                  gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount:MediaQuery
+                          .sizeOf(context).width > 600 ? 3 : 2,
                       mainAxisSpacing: 10,
                       crossAxisSpacing: 10,
-                      childAspectRatio: .6
-
-                  ),
-                  itemCount: 6,
+                      childAspectRatio: .6),
+                  itemCount: 10,
                   itemBuilder: (context, index) {
-                    return CartProduct(
-                      productsEntities: productsEntities,
+                    return const CartProduct(
+                      imgCover:
+                      'https://flower.elevateegy.com/uploads/39c641a6-4ec4-421a-8f55-5d8f5eeba5c3-flowers.png',
+                      title: 'hhhhh',
+                      price: 5454,
+                      priceAfterDiscount: 5452,
                     );
                   },
                 ),

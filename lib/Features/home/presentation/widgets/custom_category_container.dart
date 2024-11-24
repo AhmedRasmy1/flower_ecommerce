@@ -1,5 +1,5 @@
-import 'package:flower_ecommerce/core/functions/extenstions.dart';
-import 'package:flower_ecommerce/core/resources/color_manager.dart';
+import '../../../../core/functions/extenstions.dart';
+import '../../../../core/resources/color_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 

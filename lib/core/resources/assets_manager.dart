@@ -18,4 +18,5 @@ class AssetsManager {
   static const String loadingLoading1 = 'assets/images/Circle_Loader.gif';
   static const String circleLoading = 'assets/images/Circle_Loader_1.gif';
   static const String loading = 'assets/images/Loading.mp4';
+  static const String background = 'assets/images/background.jpeg';
 }

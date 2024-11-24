@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flower_ecommerce/core/api/api_constants.dart';
+import 'api_constants.dart';
 import 'package:injectable/injectable.dart';
 
 @module

@@ -1,6 +1,5 @@
-import 'package:flower_ecommerce/Features/auth/domain/entities/register_entities.dart';
-import 'package:flower_ecommerce/Features/categories/domain/entities/categories_entities.dart';
-import 'package:flower_ecommerce/Features/categories/domain/repositories/categories_repo.dart';
+import '../entities/categories_entities.dart';
+import '../repositories/categories_repo.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/common/api_result.dart';
 

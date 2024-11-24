@@ -1,5 +1,5 @@
-import 'package:flower_ecommerce/core/resources/values_manager.dart';
-import 'package:flower_ecommerce/core/functions/extenstions.dart';
+import '../../../../core/resources/values_manager.dart';
+import '../../../../core/functions/extenstions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

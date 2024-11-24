@@ -1,8 +1,8 @@
 import 'dart:developer';
 import 'package:bloc/bloc.dart';
-import 'package:flower_ecommerce/Features/home/domain/entities/home_entity.dart';
-import 'package:flower_ecommerce/Features/home/domain/use_cases/home_use_case.dart';
-import 'package:flower_ecommerce/core/common/api_result.dart';
+import '../../domain/entities/home_entity.dart';
+import '../../domain/use_cases/home_use_case.dart';
+import '../../../../core/common/api_result.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 part 'home_state.dart';
@@ -18,7 +18,9 @@ class HomeCubit extends Cubit<HomeState> {
     switch (result) {
       case Success<HomeEntity>():
         {
-          emit(HomeSuccess(result.data));
+          if (!isClosed) {
+            emit(HomeSuccess(result.data));
+          }
           log('HomeCubit: getHomeData: ${result.data}');
         }
 

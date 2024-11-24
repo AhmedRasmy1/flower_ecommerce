@@ -1,7 +1,3 @@
-
-
-import 'package:flower_ecommerce/Features/auth/domain/entities/register_entities.dart';
-
 import '../../domain/entities/categories_entities.dart';
 
 sealed class AllCategoriesState {}
@@ -15,7 +11,6 @@ class SuccessAllCategoriesState extends AllCategoriesState {
 }
 
 class LoadingAllCategoriesState extends AllCategoriesState {
-
   LoadingAllCategoriesState();
 }
 
@@ -25,12 +20,8 @@ class ErrorAllCategoriesState extends AllCategoriesState {
   ErrorAllCategoriesState(this.exception);
 }
 
-
-
 sealed class AllCategoriesToAction {}
 
 class GetAllCategoriesAction extends AllCategoriesToAction {
-
-
   GetAllCategoriesAction();
 }

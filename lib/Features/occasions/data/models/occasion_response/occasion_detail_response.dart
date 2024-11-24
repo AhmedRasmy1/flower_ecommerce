@@ -1,5 +1,3 @@
-import 'package:flower_ecommerce/Features/occasions/domain/entities/occassionResponse_entity.dart';
-
 class Occasion {
   Occasion({
     this.image,
@@ -56,6 +54,4 @@ class Occasion {
       "stack": stack,
     };
   }
-
-
 }

@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
-import 'package:flower_ecommerce/Features/products_details/domain/entities/product_details_entity.dart';
-import 'package:flower_ecommerce/Features/products_details/domain/use_cases/product_details_usecases.dart';
-import 'package:flower_ecommerce/Features/products_details/presentation/view_model/product_details_state.dart';
-import 'package:flower_ecommerce/core/common/api_result.dart';
+import '../../domain/entities/product_details_entity.dart';
+import '../../domain/use_cases/product_details_usecases.dart';
+import 'product_details_state.dart';
+import '../../../../core/common/api_result.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable

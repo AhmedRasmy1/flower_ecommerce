@@ -1,4 +1,6 @@
-import 'package:flower_ecommerce/Features/auth/presentation/view_model/verify_password_view_model/verify_password_state.dart';
+import 'dart:developer';
+
+import 'verify_password_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../../core/common/api_result.dart';
@@ -22,7 +24,7 @@ class VerifyPasswordViewModel extends Cubit<VerifyPasswordState> {
 
     var result = await verifyUseCase.invoke(intent.otp);
     var testOtp = intent.otp;
-    print("ttttttttttttttttttttttttttttttttttttt$testOtp");
+    log("ttttttttttttttttttttttttttttttttttttt$testOtp");
     switch (result) {
       case Success<VerifyPasswordEntity?>():
         emit(SuccessVerifyPasswordState(result.data));

@@ -1,33 +1,43 @@
+import 'package:flower_ecommerce/Features/layout/presentation/cubit/layout_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/resources/app_constants.dart';
 import '../widgets/custom_button_navigation_bar.dart';
 
-int selectIndex = 0;
 
-class LayoutView extends StatefulWidget {
+class LayoutView extends StatelessWidget {
   const LayoutView({super.key});
-
-  @override
-  State<LayoutView> createState() => _LayoutViewState();
-}
-
-class _LayoutViewState extends State<LayoutView> {
-  void _onItemTapped(int index) {
-    setState(() {
-      selectIndex = index;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        body: AppConstants.viewOptions[selectIndex],
-        bottomNavigationBar: CustomBottomNavigationBar(
-          currentIndex: selectIndex,
-          onItemTapped: _onItemTapped,
-        ),
+      child: BlocProvider(
+        create: (context) => LayoutCubit(),
+        child: const LayoutBody(),
       ),
+    );
+  }
+}
+
+class LayoutBody extends StatelessWidget {
+  const LayoutBody({super.key});
+
+
+  @override
+  Widget build(BuildContext context) {
+    var cubit = LayoutCubit.get(context);
+    return BlocBuilder<LayoutCubit, LayoutState>(
+      builder: (context, state) {
+        return Scaffold(
+          body: AppConstants.viewOptions[cubit.index],
+          bottomNavigationBar: CustomBottomNavigationBar(
+            currentIndex: cubit.index,
+            onItemTapped: (index) {
+              cubit.changeIndex(index);
+            },
+          ),
+        );
+      },
     );
   }
 }

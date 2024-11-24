@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flower_ecommerce/core/resources/color_manager.dart';
+import 'color_manager.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';

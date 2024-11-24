@@ -1,7 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import '../../../../../core/common/api_result.dart';
 
+import '../../../../../core/common/api_result.dart';
 import '../../domain/entities/categories_entities.dart';
 import '../../domain/use_cases/all_categories_usecase.dart';
 import 'all_categories_state.dart';
@@ -26,10 +28,12 @@ class AllCategoriesViewModel extends Cubit<AllCategoriesState> {
 
     switch (result) {
       case Success<AllCategoriesEntities?>():
-        print(result.data?.categories?.length);
-        emit(SuccessAllCategoriesState(result.data));
+        if (!isClosed) {
+          emit(SuccessAllCategoriesState(result.data));
+        }
+
       case Fail<AllCategoriesEntities?>():
-        print(result.exception);
+        log(result.exception.toString());
         emit(ErrorAllCategoriesState(result.exception));
     }
   }

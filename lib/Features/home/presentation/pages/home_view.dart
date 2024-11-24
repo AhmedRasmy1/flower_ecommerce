@@ -1,21 +1,21 @@
-import 'package:flower_ecommerce/Features/categories/data/models/response/all_categories.dart';
-import 'package:flower_ecommerce/Features/categories/presentation/pages/categories_view.dart';
-import 'package:flower_ecommerce/Features/home/presentation/viewmodels/home_cubit.dart';
-import 'package:flower_ecommerce/Features/home/presentation/widgets/custom_bestseller_container.dart';
-import 'package:flower_ecommerce/Features/home/presentation/widgets/custom_card.dart';
-import 'package:flower_ecommerce/Features/home/presentation/widgets/custom_category_container.dart';
-import 'package:flower_ecommerce/Features/home/presentation/widgets/custom_header.dart';
-import 'package:flower_ecommerce/Features/home/presentation/widgets/custom_location.dart';
-import 'package:flower_ecommerce/Features/home/presentation/widgets/custom_occasion_container.dart';
-import 'package:flower_ecommerce/Features/home/presentation/widgets/custom_search_field.dart';
-import 'package:flower_ecommerce/Features/layout/presentation/pages/layout_view.dart';
-import 'package:flower_ecommerce/core/di/di.dart';
-import 'package:flower_ecommerce/core/resources/assets_manager.dart';
-import 'package:flower_ecommerce/core/resources/color_manager.dart';
-import 'package:flower_ecommerce/core/resources/routes_manager.dart';
-import 'package:flower_ecommerce/core/resources/strings_manager.dart';
-import 'package:flower_ecommerce/core/resources/values_manager.dart';
-import 'package:flower_ecommerce/core/widgets/custom_app_bar.dart';
+import 'package:flower_ecommerce/Features/home/presentation/widgets/skeleton_home.dart';
+import 'package:flower_ecommerce/Features/layout/presentation/cubit/layout_cubit.dart';
+
+import '../viewmodels/home_cubit.dart';
+import '../widgets/custom_bestseller_container.dart';
+import '../widgets/custom_card.dart';
+import '../widgets/custom_category_container.dart';
+import '../widgets/custom_header.dart';
+import '../widgets/custom_location.dart';
+import '../widgets/custom_occasion_container.dart';
+import '../widgets/custom_search_field.dart';
+import '../../../../core/di/di.dart';
+import '../../../../core/resources/assets_manager.dart';
+import '../../../../core/resources/color_manager.dart';
+import '../../../../core/resources/routes_manager.dart';
+import '../../../../core/resources/strings_manager.dart';
+import '../../../../core/resources/values_manager.dart';
+import '../../../../core/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -54,33 +54,34 @@ class _HomeViewState extends State<HomeView> {
             ),
             child: BlocConsumer<HomeCubit, HomeState>(
               listener: (context, state) {
-                if (state is HomeLoading) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Loading...'),
-                    ),
-                  );
-                } else if (state is HomeFail) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(state.exception.toString()),
-                    ),
-                  );
-                }
+                // if (state is HomeLoading) {
+                //   ScaffoldMessenger.of(context).showSnackBar(
+                //     const SnackBar(
+                //       content: Text('Loading...'),
+                //     ),
+                //   );
+                // } else if (state is HomeFail) {
+                //   ScaffoldMessenger.of(context).showSnackBar(
+                //     SnackBar(
+                //       content: Text(state.exception.toString()),
+                //     ),
+                //   );
+                // }
               },
               builder: (context, state) {
                 if (state is HomeLoading) {
-                  return Center(
-                    child: Image.asset(
-                      AssetsManager.loadingLoading1,
-                      width: 100,
-                      height: 100,
-                    ),
-                  );
+                  return const SkeletonHome();
+                  //   Center(
+                  //   child: Image.asset(
+                  //     AssetsManager.loadingLoading1,
+                  //     width: 100,
+                  //     height: 100,
+                  //   ),
+                  // );
                 } else if (state is HomeSuccess) {
                   var bestSeller = state.homeEntity.bestSeller;
                   var occasions = state.homeEntity.occasions;
-                  var product = state.homeEntity.products;
+                  // var product = state.homeEntity.products;
                   return SingleChildScrollView(
                     child: Column(
                       children: [
@@ -112,7 +113,7 @@ class _HomeViewState extends State<HomeView> {
                           title: AppStrings.categories,
                           viewAll: AppStrings.viewAll,
                           onTap: () {
-                            /// Navigate to CategoriesView
+                            LayoutCubit.get(context).changeIndex(1);
                           },
                         ),
                         const SizedBox(height: AppSize.s16),
