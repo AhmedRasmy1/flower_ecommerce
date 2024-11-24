@@ -1,5 +1,7 @@
 import 'dart:developer';
 
+import 'package:flower_ecommerce/Features/best_seller/domain/entities/best_seller_entity.dart';
+
 import '../manager/all_products_state.dart';
 import '../../../products_details/presentation/views/product_details_view.dart';
 import '../../../../core/resources/color_manager.dart';
@@ -43,8 +45,6 @@ class _GirdBodyOfProductsState extends State<GirdBodyOfProducts> {
 
   @override
   Widget build(BuildContext context) {
-    // print("page id ---------------- ${widget.pageId}");
-
     return RefreshIndicator(
       color: ColorManager.pink,
       onRefresh: () async {
@@ -76,54 +76,7 @@ class _GirdBodyOfProductsState extends State<GirdBodyOfProducts> {
                 }
               }).toList();
 
-              return LayoutBuilder(
-                builder: (context, constraints) {
-                  double aspectRatio =
-                      (constraints.maxWidth > 500) ? 0.67 : 0.6;
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: GridView.builder(
-                      physics: const BouncingScrollPhysics(),
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: constraints.maxWidth > 500 ? 3 : 2,
-                          mainAxisSpacing: 10,
-                          crossAxisSpacing: 10,
-                          childAspectRatio: aspectRatio),
-                      itemCount: filteredByOccasion.length,
-                      itemBuilder: (context, index) {
-                        return filteredByOccasion.isNotEmpty
-                            ? InkWell(
-                                splashColor: Colors.pink.withOpacity(.2),
-                                borderRadius: BorderRadius.circular(12),
-                                highlightColor: Colors.pink.withOpacity(0.1),
-                                onTap: () {
-                                  log('go to details');
-                                  filteredByOccasion[index].id?.isNotEmpty ==
-                                          true
-                                      ? Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                ProductDetailsView(
-                                                    productId:
-                                                        filteredByOccasion[
-                                                                    index]
-                                                                .id ??
-                                                            ''),
-                                          ),
-                                        )
-                                      : null;
-                                },
-                                child: CartProduct(
-                                  productsEntities: filteredByOccasion[index],
-                                ),
-                              )
-                            : const SkeletonBody();
-                      },
-                    ),
-                  );
-                },
-              );
+              return CustomCardAll(filteredByOccasion: filteredByOccasion);
             } else {
               return const SkeletonBody();
             }
@@ -133,6 +86,91 @@ class _GirdBodyOfProductsState extends State<GirdBodyOfProducts> {
     );
   }
 }
+
+class CustomCardAll extends StatelessWidget {
+  const CustomCardAll({
+    super.key,
+    this.filteredByOccasion,
+    this.bestSellerEntity,
+  });
+
+  final List<ProductsEntities>? filteredByOccasion;
+  final List<BestSellerEntity>? bestSellerEntity;
+
+  @override
+  Widget build(BuildContext context) {
+    // تحديد القائمة النشطة
+    final activeList = filteredByOccasion?.isNotEmpty == true
+        ? filteredByOccasion
+        : bestSellerEntity;
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        double aspectRatio = (constraints.maxWidth > 500) ? 0.67 : 0.6;
+
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: activeList != null && activeList.isNotEmpty
+              ? GridView.builder(
+            physics: const BouncingScrollPhysics(),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: constraints.maxWidth > 500 ? 3 : 2,
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 10,
+              childAspectRatio: aspectRatio,
+            ),
+            itemCount: activeList.length,
+            itemBuilder: (context, index) {
+              return InkWell(
+                splashColor: Colors.pink.withOpacity(.2),
+                borderRadius: BorderRadius.circular(12),
+                highlightColor: Colors.pink.withOpacity(0.1),
+                onTap: () {
+                  log('go to details');
+                  if (activeList is List<ProductsEntities>) {
+                    final product = activeList[index] as ProductsEntities;
+                    if (product.id?.isNotEmpty == true) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ProductDetailsView(
+                            productId: product.id ?? '',
+                          ),
+                        ),
+                      );
+                    }
+                  } else if (activeList is List<BestSellerEntity>) {
+                    final product =
+                    activeList[index] as BestSellerEntity;
+                    // قم بتوجيه المستخدم إلى الشاشة المناسبة
+                    // (افترض أنه لا يوجد `id` هنا، ولكن يمكنك تخصيصها حسب الحاجة)
+                    log('Navigate to best seller details');
+                  }
+                },
+                child: activeList is List<ProductsEntities>
+                    ? CartProduct(
+                  priceAfterDiscount:activeList[index].priceAfterDiscount ,
+                  price:activeList[index].price ,
+                  imgCover:activeList[index].imgCover,
+                  title:activeList[index].title ,
+
+                )
+                    : CartProduct(
+                  priceAfterDiscount: (activeList as List<BestSellerEntity>)[index].priceAfterDiscount,
+                  price: (activeList)[index].price,
+                  imgCover: (activeList)[index].imgCover,
+                  title: (activeList)[index].title,
+                ),
+              );
+            },
+          )
+              : const Center(child: Text('No data available')),
+        );
+      },
+    );
+  }
+}
+
 
 enum EnumPage {
   category('Category'),
@@ -145,24 +183,4 @@ enum EnumPage {
   String getName() {
     return name;
   }
-}
-
-Map<String, dynamic> getGridConfig(double screenWidth) {
-  int crossAxisCount = 2; // افتراضي 2 عمود
-  if (screenWidth > 600) {
-    crossAxisCount = 3; // 3 أعمدة للشاشات الكبيرة (مثل التابلت)
-  }
-  if (screenWidth > 1200) {
-    crossAxisCount = 4; // 4 أعمدة للشاشات الكبيرة جدًا (مثل الشاشات الكبيرة)
-  }
-
-  double aspectRatio = 0.67; // القيمة الافتراضية
-  if (screenWidth > 600) {
-    aspectRatio = 0.75; // يمكن تعديل النسبة للأعمدة الأكبر
-  }
-
-  return {
-    'crossAxisCount': crossAxisCount,
-    'aspectRatio': aspectRatio,
-  };
 }

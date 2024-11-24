@@ -17,13 +17,13 @@ void main() {
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
       overlays: [SystemUiOverlay.top]);
   runApp(
-    DevicePreview(
-      enabled: !kReleaseMode,
-      builder: (context) {
-        return const FlowerApp();
-      },
-    ),
-    // const FlowerApp(),
+    // DevicePreview(
+    //   enabled: !kReleaseMode,
+    //   builder: (context) {
+    //     return const FlowerApp();
+    //   },
+    // ),
+    const FlowerApp(),
   );
 }
 

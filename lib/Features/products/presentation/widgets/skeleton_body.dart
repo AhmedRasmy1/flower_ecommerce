@@ -1,7 +1,5 @@
-import '../../domain/entities/ProductsEntities.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-
 import 'cart_product.dart';
 
 class SkeletonBody extends StatelessWidget {
@@ -13,15 +11,19 @@ class SkeletonBody extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: MediaQuery.sizeOf(context).width > 600 ? 3 : 2,
               mainAxisSpacing: 10,
               crossAxisSpacing: 10,
               childAspectRatio: .6),
-          itemCount: 6,
+          itemCount: 10,
           itemBuilder: (context, index) {
-            return CartProduct(
-              productsEntities: productsEntities,
+            return const CartProduct(
+              title: '',
+              imgCover:
+                  'https://flower.elevateegy.com/uploads/39c641a6-4ec4-421a-8f55-5d8f5eeba5c3-flowers.png',
+              price: 555,
+              priceAfterDiscount: 66,
             );
           },
         ),
@@ -29,21 +31,3 @@ class SkeletonBody extends StatelessWidget {
     );
   }
 }
-
-ProductsEntities productsEntities = ProductsEntities(
-    title: 'dddddddd',
-    slug: 'sss',
-    quantity: 1000,
-    priceAfterDiscount: 100,
-    price: 55,
-    occasion: 'dddd',
-    imgCover:
-        'https://flower.elevateegy.com/uploads/f286e018-63bb-4e6b-9d6b-feefdf28cdf3-image_one.png',
-    images: [
-      'https://flower.elevateegy.com/uploads/f286e018-63bb-4e6b-9d6b-feefdf28cdf3-image_one.png',
-      'https://flower.elevateegy.com/uploads/f286e018-63bb-4e6b-9d6b-feefdf28cdf3-image_one.png',
-      'https://flower.elevateegy.com/uploads/f286e018-63bb-4e6b-9d6b-feefdf28cdf3-image_one.png',
-    ],
-    description: 'kkkkkk',
-    category: 'jjjj',
-    id: 'jjjjjjjjjj');

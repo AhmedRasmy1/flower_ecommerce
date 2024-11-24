@@ -1,3 +1,5 @@
+import 'package:flower_ecommerce/Features/home/presentation/widgets/skeleton_home.dart';
+
 import '../viewmodels/home_cubit.dart';
 import '../widgets/custom_bestseller_container.dart';
 import '../widgets/custom_card.dart';
@@ -51,29 +53,30 @@ class _HomeViewState extends State<HomeView> {
             ),
             child: BlocConsumer<HomeCubit, HomeState>(
               listener: (context, state) {
-                if (state is HomeLoading) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Loading...'),
-                    ),
-                  );
-                } else if (state is HomeFail) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(state.exception.toString()),
-                    ),
-                  );
-                }
+                // if (state is HomeLoading) {
+                //   ScaffoldMessenger.of(context).showSnackBar(
+                //     const SnackBar(
+                //       content: Text('Loading...'),
+                //     ),
+                //   );
+                // } else if (state is HomeFail) {
+                //   ScaffoldMessenger.of(context).showSnackBar(
+                //     SnackBar(
+                //       content: Text(state.exception.toString()),
+                //     ),
+                //   );
+                // }
               },
               builder: (context, state) {
                 if (state is HomeLoading) {
-                  return Center(
-                    child: Image.asset(
-                      AssetsManager.loadingLoading1,
-                      width: 100,
-                      height: 100,
-                    ),
-                  );
+                  return SkeletonHome();
+                  //   Center(
+                  //   child: Image.asset(
+                  //     AssetsManager.loadingLoading1,
+                  //     width: 100,
+                  //     height: 100,
+                  //   ),
+                  // );
                 } else if (state is HomeSuccess) {
                   var bestSeller = state.homeEntity.bestSeller;
                   var occasions = state.homeEntity.occasions;
