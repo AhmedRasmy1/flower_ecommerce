@@ -29,10 +29,10 @@ class _OccasionsViewState extends State<OccasionsView> {
     viewModel.stream.listen(
       (state) {
         if (state is SuccessOccasionState &&
-            state.occasionResponse?.occasions.isNotEmpty == true) {
+            state.occasionResponse?.occasions?.isNotEmpty == true) {
           setState(
             () {
-              id = state.occasionResponse?.occasions.first.id;
+              id = state.occasionResponse?.occasions?.first.id;
             },
           );
         }

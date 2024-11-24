@@ -8,11 +8,13 @@ part of 'occasion_response.dart';
 
 OccasionResponse _$OccasionResponseFromJson(Map<String, dynamic> json) =>
     OccasionResponse(
-      metadata: Metadata.fromJson(json['metadata'] as Map<String, dynamic>),
-      occasions: (json['occasions'] as List<dynamic>)
-          .map((e) => Occasion.fromJson(e as Map<String, dynamic>))
+      metadata: json['metadata'] == null
+          ? null
+          : Metadata.fromJson(json['metadata'] as Map<String, dynamic>),
+      occasions: (json['occasions'] as List<dynamic>?)
+          ?.map((e) => Occasion.fromJson(e as Map<String, dynamic>))
           .toList(),
-      message: json['message'] as String,
+      message: json['message'] as String?,
     );
 
 Map<String, dynamic> _$OccasionResponseToJson(OccasionResponse instance) =>

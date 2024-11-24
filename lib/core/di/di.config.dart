@@ -23,7 +23,7 @@ import '../../Features/auth/data/data_sources/auth_online_datasource.dart'
 import '../../Features/auth/data/repositories/auth_repo_impl.dart' as _i118;
 import '../../Features/auth/domain/repositories/auth_repo.dart' as _i1049;
 import '../../Features/auth/domain/use_cases/forget_password_usecase.dart'
-    as _i251;
+    as _i762;
 import '../../Features/auth/domain/use_cases/login_usecases.dart' as _i526;
 import '../../Features/auth/domain/use_cases/register_usecase.dart' as _i284;
 import '../../Features/auth/domain/use_cases/reset_password_usecase.dart'
@@ -182,8 +182,6 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i491.AllProductsViewModel(gh<_i232.ProductsUseCase>()));
     gh.factory<_i942.ProductDetailsViewModel>(() =>
         _i942.ProductDetailsViewModel(gh<_i364.ProductDetailsUseCases>()));
-    gh.factory<_i251.ForgetPasswordUseCase>(
-        () => _i251.ForgetPasswordUseCase(gh<_i1049.AuthRepo>()));
     gh.factory<_i526.LoginUseCases>(
         () => _i526.LoginUseCases(gh<_i1049.AuthRepo>()));
     gh.factory<_i284.RegisterUseCase>(
@@ -192,6 +190,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i785.ResetPasswordUseCase(gh<_i1049.AuthRepo>()));
     gh.factory<_i753.VerifyUseCase>(
         () => _i753.VerifyUseCase(gh<_i1049.AuthRepo>()));
+    gh.factory<_i762.ForgetPasswordUseCase>(
+        () => _i762.ForgetPasswordUseCase(gh<_i1049.AuthRepo>()));
     gh.factory<_i920.LoginViewModel>(
         () => _i920.LoginViewModel(gh<_i526.LoginUseCases>()));
     gh.factory<_i251.OccasionViewModel>(
@@ -199,7 +199,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i674.RegisterViewModel>(
         () => _i674.RegisterViewModel(gh<_i284.RegisterUseCase>()));
     gh.factory<_i191.ForgetPasswordViewModel>(
-        () => _i191.ForgetPasswordViewModel(gh<_i251.ForgetPasswordUseCase>()));
+        () => _i191.ForgetPasswordViewModel(gh<_i762.ForgetPasswordUseCase>()));
     gh.factory<_i396.VerifyPasswordViewModel>(
         () => _i396.VerifyPasswordViewModel(gh<_i753.VerifyUseCase>()));
     gh.factory<_i14.ResetPasswordViewModel>(
