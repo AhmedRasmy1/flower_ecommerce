@@ -1,5 +1,6 @@
 import 'package:flower_ecommerce/Features/home/presentation/widgets/skeleton_home.dart';
 import 'package:flower_ecommerce/Features/layout/presentation/cubit/layout_cubit.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../viewmodels/home_cubit.dart';
 import '../widgets/custom_bestseller_container.dart';
@@ -85,17 +86,19 @@ class _HomeViewState extends State<HomeView> {
                   return SingleChildScrollView(
                     child: Column(
                       children: [
-                        const Row(
+                        Row(
                           children: [
                             CustomAppBar(
                               image: AssetsManager.appLogo,
                               title: AppStrings.flowry,
                               color: ColorManager.pink,
+                              fontFamily:
+                                  GoogleFonts.imFellEnglish().fontFamily,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: AppSize.s16,
                             ),
-                            Expanded(child: CustomTextFieldForSearch())
+                            const Expanded(child: CustomTextFieldForSearch())
                           ],
                         ),
                         const SizedBox(height: AppSize.s16),

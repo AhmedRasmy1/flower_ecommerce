@@ -12,6 +12,7 @@ class CustomAppBar extends StatelessWidget {
     this.color,
     this.image,
     this.subtitle,
+    this.fontFamily,
   });
 
   final String? title;
@@ -19,6 +20,7 @@ class CustomAppBar extends StatelessWidget {
   final Color? color;
   final String? image;
   final String? subtitle;
+  final String? fontFamily;
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +49,7 @@ class CustomAppBar extends StatelessWidget {
                   fontSize: FontSize.s22,
                   color: color ?? Colors.black,
                   fontWeight: FontWeightManager.bold,
+                  fontFamily: fontFamily,
                 ),
               ),
           ],
