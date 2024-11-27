@@ -5,6 +5,7 @@ import '../../Features/occasions/presentation/views/occasions_view.dart';
 import '../../Features/products_details/presentation/views/product_details_view.dart';
 import '../../Features/products_details/presentation/widgets/try_screen.dart';
 import '../../Features/profile/presentation/pages/profile_view.dart';
+import '../../Features/profile_reset_password/presentation/view/change_password_view.dart';
 import '../../splash_view.dart';
 import 'package:flutter/material.dart';
 import '../../Features/auth/presentation/views/email_verification_view.dart';
@@ -30,6 +31,9 @@ class RoutesManager {
   static const String tryScreenRoute = '/tryScreenRoute';
   static const String bestSellerRoute = '/bestSellerRoute';
   static const String occassionViewRoute = '/occassionViewRoute';
+  static const String changePasswordViewRoute = '/chanePasswordViewRoute';
+
+
 }
 
 class RouteGenerator {
@@ -77,6 +81,9 @@ class RouteGenerator {
       //   return MaterialPageRoute(builder: (_) =>  ProductDetailsView(productId: "673e2d1b1159920171828146",));
       case RoutesManager.bestSellerRoute:
         return MaterialPageRoute(builder: (_) => const BestSellerView());
+      case RoutesManager.changePasswordViewRoute:
+        return MaterialPageRoute(builder: (_) => const ChangePasswordScreen());
+
       default:
         return unDefinedRoute();
     }

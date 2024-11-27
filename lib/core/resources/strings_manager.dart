@@ -28,7 +28,10 @@ class AppStrings {
       "Mobile number must be at least 11 digits";
   static const String phoneNumberStartWithZeroError =
       "Mobile number must start with 0";
+  static const String currentPassword = "Current Password";
+  static const String newPassword = "New Password";
   static const String confirmPassword = "Confirm Password";
+  static const String update = "Update";
   static const String confirmButton = "Confirm";
   static const String enterYourConfirmPassword = "confirm password";
   static const String emailVerification = "Email verification";

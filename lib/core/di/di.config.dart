@@ -109,6 +109,18 @@ import '../../Features/products_details/domain/use_cases/product_details_usecase
     as _i364;
 import '../../Features/products_details/presentation/view_model/product_details_cubit.dart'
     as _i942;
+import '../../Features/profile_reset_password/data/data_source/change_password_online_data_source.dart'
+    as _i390;
+import '../../Features/profile_reset_password/data/data_source/change_password_online_data_source_impl.dart'
+    as _i505;
+import '../../Features/profile_reset_password/data/repositories/change_password_repository_impl.dart'
+    as _i344;
+import '../../Features/profile_reset_password/domain/repositories/change_password_repository.dart'
+    as _i485;
+import '../../Features/profile_reset_password/domain/use_case/change_password_use_case.dart'
+    as _i290;
+import '../../Features/profile_reset_password/presentation/view_model/change_password_cubit.dart'
+    as _i537;
 import '../api/api_manager/api_manager.dart' as _i680;
 import '../api/dio_module.dart' as _i784;
 
@@ -138,6 +150,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i824.HomeDataSourceImpl(gh<_i680.ApiService>()));
     gh.factory<_i2.CategoriesRepo>(
         () => _i485.CategoriesRepoImpl(gh<_i939.AllCategoriesDatasource>()));
+    gh.factory<_i390.ChangePasswordOnlineDataSource>(
+        () => _i505.ChangePasswordOnlineDataSourceImpl(gh<_i680.ApiService>()));
     gh.factory<_i178.ProductDetailsOnlineDataSource>(
         () => _i696.ProductDetailsOnlineDataSourceImp(gh<_i680.ApiService>()));
     gh.factory<_i97.BestOnLineDataSource>(
@@ -156,6 +170,9 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i971.OccasionRepoImpl(gh<_i679.OccasionOnLineDataSource>()));
     gh.factory<_i232.ProductsUseCase>(
         () => _i232.ProductsUseCase(gh<_i540.ProductsRepo>()));
+    gh.factory<_i485.ChangePasswordRepository>(() =>
+        _i344.ChangePasswordRepositoryImpl(
+            gh<_i390.ChangePasswordOnlineDataSource>()));
     gh.factory<_i1010.BestRepo>(
         () => _i762.BestRepoImpl(gh<_i97.BestOnLineDataSource>()));
     gh.factory<_i439.BestSellerUseCase>(
@@ -170,6 +187,8 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i406.AuthOffLineDataSource>(),
           gh<_i318.AuthOnLineDataSource>(),
         ));
+    gh.factory<_i290.ChangePasswordUseCase>(() =>
+        _i290.ChangePasswordUseCase(gh<_i485.ChangePasswordRepository>()));
     gh.factory<_i71.OccasionDetailsUseCase>(
         () => _i71.OccasionDetailsUseCase(gh<_i390.OccasionRepo>()));
     gh.factory<_i536.OccasionUseCase>(
@@ -178,6 +197,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i185.HomeUseCase(gh<_i143.HomeRepo>()));
     gh.factory<_i1022.HomeCubit>(
         () => _i1022.HomeCubit(gh<_i185.HomeUseCase>()));
+    gh.factory<_i537.ChangePasswordViewModel>(
+        () => _i537.ChangePasswordViewModel(gh<_i290.ChangePasswordUseCase>()));
     gh.factory<_i491.AllProductsViewModel>(
         () => _i491.AllProductsViewModel(gh<_i232.ProductsUseCase>()));
     gh.factory<_i942.ProductDetailsViewModel>(() =>
