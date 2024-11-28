@@ -1,4 +1,4 @@
-import '../../Features/cart/presentation/pages/cart_view.dart';
+import '../../Features/cart/presentation/views/cart_view.dart';
 import '../../Features/home/presentation/pages/home_view.dart';
 import '../../Features/layout/presentation/pages/layout_view.dart';
 import '../../Features/occasions/presentation/views/occasions_view.dart';

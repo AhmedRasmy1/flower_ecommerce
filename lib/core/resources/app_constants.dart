@@ -1,4 +1,4 @@
-import '../../Features/cart/presentation/pages/cart_view.dart';
+import '../../Features/cart/presentation/views/cart_view.dart';
 import '../../Features/home/presentation/pages/home_view.dart';
 import '../../Features/profile/presentation/pages/profile_view.dart';
 import 'package:flutter/material.dart';

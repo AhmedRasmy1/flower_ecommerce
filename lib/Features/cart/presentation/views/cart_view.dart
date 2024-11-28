@@ -1,4 +1,4 @@
-import 'package:flower_ecommerce/Features/cart/presentation/pages/widgets/cart_view_body.dart';
+import 'package:flower_ecommerce/Features/cart/presentation/views/widgets/cart_view_body.dart';
 import 'package:flutter/material.dart';
 
 class CartView extends StatelessWidget {
