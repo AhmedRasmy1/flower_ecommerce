@@ -1,3 +1,4 @@
+import 'package:flower_ecommerce/Features/cart/presentation/pages/widgets/cart_view_body.dart';
 import 'package:flutter/material.dart';
 
 class CartView extends StatelessWidget {
@@ -5,9 +6,9 @@ class CartView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('CartView'),
+    return const Scaffold(
+      body: SafeArea(
+        child: CartViewBody(),
       ),
     );
   }
