@@ -121,6 +121,16 @@ import '../../Features/products_details/domain/use_cases/product_details_usecase
     as _i364;
 import '../../Features/products_details/presentation/view_model/product_details_cubit.dart'
     as _i942;
+import '../../Features/profile/data/data_source/profile_data_source.dart'
+    as _i537;
+import '../../Features/profile/data/data_source_impl/profile_data_source_impl.dart'
+    as _i917;
+import '../../Features/profile/data/repositories/profile_repo_imp.dart'
+    as _i663;
+import '../../Features/profile/domain/repository/profile_repo.dart' as _i1054;
+import '../../Features/profile/domain/use_cases/profile_usecase.dart' as _i937;
+import '../../Features/profile/presentation/view_model/profile_view_model.dart'
+    as _i149;
 import '../../Features/profile_reset_password/data/data_source/change_password_online_data_source.dart'
     as _i390;
 import '../../Features/profile_reset_password/data/data_source/change_password_online_data_source_impl.dart'
@@ -133,16 +143,6 @@ import '../../Features/profile_reset_password/domain/use_case/change_password_us
     as _i290;
 import '../../Features/profile_reset_password/presentation/view_model/change_password_cubit.dart'
     as _i537;
-import '../../Features/profile/data/data_source/profile_data_source.dart'
-    as _i537;
-import '../../Features/profile/data/data_source_impl/profile_data_source_impl.dart'
-    as _i917;
-import '../../Features/profile/data/repositories/profile_repo_imp.dart'
-    as _i663;
-import '../../Features/profile/domain/repository/profile_repo.dart' as _i1054;
-import '../../Features/profile/domain/use_cases/profile_usecase.dart' as _i937;
-import '../../Features/profile/presentation/view_model/profile_view_model.dart'
-    as _i149;
 import '../api/api_manager/api_manager.dart' as _i680;
 import '../api/dio_module.dart' as _i784;
 

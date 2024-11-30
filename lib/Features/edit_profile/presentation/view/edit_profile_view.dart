@@ -6,6 +6,7 @@ import 'package:flower_ecommerce/core/common/custom_exception.dart';
 import 'package:flower_ecommerce/core/di/di.dart';
 import 'package:flower_ecommerce/core/functions/helper.dart';
 import 'package:flower_ecommerce/core/resources/custom_loading.dart';
+import 'package:flower_ecommerce/core/resources/routes_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -147,8 +148,8 @@ class _ProfileViewState extends State<EditProfileView> {
                         // obscureText: true,
                         suffix: InkWell(
                           onTap: () {
-                            // Navigator.pushNamed(
-                            //     context, RoutesManager.changePasswordRoute);
+                            Navigator.pushNamed(
+                                context, RoutesManager.changePasswordViewRoute);
                           },
                           child: Padding(
                             padding:

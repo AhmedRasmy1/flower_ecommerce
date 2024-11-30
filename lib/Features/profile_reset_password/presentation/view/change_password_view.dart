@@ -1,16 +1,16 @@
+import 'package:flower_ecommerce/Features/auth/presentation/views/login_view.dart';
+import 'package:flower_ecommerce/core/resources/custom_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:motion_toast/motion_toast.dart';
 import '../../../../core/di/di.dart';
 import '../../../../core/functions/helper.dart';
 import '../../../../core/resources/color_manager.dart';
-import '../../../../core/resources/routes_manager.dart';
 import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../../../../core/utils/cashed_data_shared_preferences.dart';
 import '../../../../core/utils/utils.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
-import '../../../../core/widgets/show_error_dialog.dart';
-import '../../../../core/widgets/show_loading_dialog.dart';
 import '../view_model/change_password_cubit.dart';
 import '../view_model/change_password_state.dart';
 
@@ -24,14 +24,14 @@ class ChangePasswordScreen extends StatefulWidget {
 }
 
 class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
-
   @override
   void initState() {
-
     super.initState();
   }
+
   // Field injection
-  ChangePasswordViewModel changePasswordViewModel = getIt.get<ChangePasswordViewModel>();
+  ChangePasswordViewModel changePasswordViewModel =
+      getIt.get<ChangePasswordViewModel>();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -41,17 +41,14 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
 
   final TextEditingController rePasswordController = TextEditingController();
 
-  bool isButtonEnabled=false;
+  bool isButtonEnabled = false;
 
-  void validateInputs(){
-
-    isButtonEnabled=_formKey.currentState?.validate()??false;
-
+  void validateInputs() {
+    isButtonEnabled = _formKey.currentState?.validate() ?? false;
   }
 
   @override
   Widget build(BuildContext context) {
-
     return BlocProvider(
       create: (context) => changePasswordViewModel,
       child: Scaffold(
@@ -60,24 +57,33 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
         ),
         body: BlocListener<ChangePasswordViewModel, ChangePasswordState>(
           listenWhen: (previous, current) {
-            if(current is ChangePasswordLoadingState || current is ChangePasswordErrorState || current is ChangePasswordSuccessState)
-            {
+            if (current is ChangePasswordLoadingState ||
+                current is ChangePasswordErrorState ||
+                current is ChangePasswordSuccessState) {
               return true;
             }
-            return false ;
+            return false;
           },
           listener: (context, state) {
             if (state is ChangePasswordLoadingState) {
-              showLoadingDialog(context);
+              CustomLoadingDialog.show(context);
             } else if (state is ChangePasswordErrorState) {
               var message = extractErrorMessage(state.exception);
-              Navigator.of(context).pop(); // Close loading dialog
-              showErrorDialog(context, message);
+              MotionToast.error(
+                description: Text(message),
+                animationType: AnimationType.fromLeft,
+              ).show(context);
             } else if (state is ChangePasswordSuccessState) {
-
-              Navigator.of(context).popUntil((route)=>route.isFirst); // Close dialogs before showing success
-              Navigator.pushNamed(context, RoutesManager.loginRoute);
-
+              MotionToast.success(
+                description: const Text(AppStrings.passwordChangedSuccessfuly),
+                animationType: AnimationType.fromLeft,
+              ).show(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const LoginView(),
+                ),
+              );
             }
           },
           child: Padding(
@@ -88,7 +94,6 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-
                   children: [
                     Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -103,9 +108,9 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                             validator: (value) => validatePassword(
                                 password: oldPasswordController.text,
                                 messageInvalid:
-                                AppStrings.passwordInvalidFormat,
+                                    AppStrings.passwordInvalidFormat,
                                 messageLength:
-                                AppStrings.passwordCharactersLong,
+                                    AppStrings.passwordCharactersLong,
                                 message: AppStrings.passwordNotMatch),
                           ),
                         ),
@@ -120,9 +125,9 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                             validator: (value) => validatePassword(
                                 password: newPasswordController.text,
                                 messageInvalid:
-                                AppStrings.passwordInvalidFormat,
+                                    AppStrings.passwordInvalidFormat,
                                 messageLength:
-                                AppStrings.passwordCharactersLong,
+                                    AppStrings.passwordCharactersLong,
                                 message: AppStrings.passwordNotMatch),
                           ),
                         ),
@@ -146,34 +151,32 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                     ),
                     BlocBuilder<ChangePasswordViewModel, ChangePasswordState>(
                       builder: (context, state) {
-                        if (state is ChangePasswordLoadingState) {
-                          return const Center(child: CircularProgressIndicator());
-                        } else {
-                          return SizedBox(
-                            height: AppSize.s48,
-                            width: double.infinity,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                if (isButtonEnabled == true) {
-                                 String savedToken=SharedData.getData(key:StringCache.userToken);
-                                 String token="Bearer $savedToken";
-                                  changePassword(token);
-                                }
-                              },
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: isButtonEnabled? ColorManager.pink:ColorManager.lightGrey2),
-                              child: const Text(
-                                AppStrings.update,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: ColorManager.white),
-                              ),
+                        return SizedBox(
+                          height: AppSize.s48,
+                          width: double.infinity,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              if (isButtonEnabled == true) {
+                                String savedToken = SharedData.getData(
+                                    key: StringCache.userToken);
+                                String token = "Bearer $savedToken";
+                                changePassword(token);
+                              }
+                            },
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: isButtonEnabled
+                                    ? ColorManager.pink
+                                    : ColorManager.lightGrey2),
+                            child: const Text(
+                              AppStrings.update,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: ColorManager.white),
                             ),
-                          );
-                        }
+                          ),
+                        );
                       },
                     ),
-
                   ],
                 ),
               ),
@@ -189,8 +192,10 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
     String newPassword = newPasswordController.text;
     String rePassword = rePasswordController.text;
 
-
-
-    changePasswordViewModel.doIntent(ChangePasswordIntent(oldPassword: currentPassword, newPassword: newPassword, rePassword: rePassword, token: token));
+    changePasswordViewModel.doIntent(ChangePasswordIntent(
+        oldPassword: currentPassword,
+        newPassword: newPassword,
+        rePassword: rePassword,
+        token: token));
   }
 }

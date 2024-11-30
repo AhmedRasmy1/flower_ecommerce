@@ -36,6 +36,13 @@ class _LoginScreenState extends State<LoginView> {
   }
 
   @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => viewModel,
@@ -204,24 +211,16 @@ class _LoginScreenState extends State<LoginView> {
                     width: context.screenWidth * 0.9,
                     height: context.screenHeight * 0.063,
                     child: ElevatedButton(
-//                       onPressed: () {
-//                         Navigator.pushNamed(context, RoutesManager.tryScreenRoute);
-//                       },
-
                       onPressed: () {
-                        Navigator.pushNamed(context, RoutesManager.layoutRoute);
+                        Navigator.pushNamedAndRemoveUntil(context,
+                            RoutesManager.layoutRoute, (route) => false);
                       },
-
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(100),
                               side: const BorderSide(
                                   color: ColorManager.placeHolderColor))),
-//                       onPressed: () {
-//                         Navigator.pushReplacementNamed(context, RoutesManager.layoutRoute);
-//                       },
-
                       child: const Text(
                         AppStrings.continueAsGuest,
                         style: TextStyle(
