@@ -82,6 +82,7 @@ class _HomeViewState extends State<HomeView> {
                 } else if (state is HomeSuccess) {
                   var bestSeller = state.homeEntity.bestSeller;
                   var occasions = state.homeEntity.occasions;
+                  var homeCategories = state.homeEntity.categories;
                   // var product = state.homeEntity.products;
                   return SingleChildScrollView(
                     child: Column(
@@ -120,7 +121,9 @@ class _HomeViewState extends State<HomeView> {
                           },
                         ),
                         const SizedBox(height: AppSize.s16),
-                        const CustomCategoryContainer(),
+                        CustomCategoryContainer(
+                          categories: homeCategories ?? [],
+                        ),
                         const SizedBox(height: AppSize.s24),
                         CustomHeader(
                           title: AppStrings.bestSeller,

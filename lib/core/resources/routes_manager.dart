@@ -1,3 +1,5 @@
+import 'package:flower_ecommerce/Features/edit_profile/presentation/view/edit_profile_view.dart';
+
 import '../../Features/cart/presentation/pages/cart_view.dart';
 import '../../Features/home/presentation/pages/home_view.dart';
 import '../../Features/layout/presentation/pages/layout_view.dart';
@@ -30,12 +32,12 @@ class RoutesManager {
   static const String tryScreenRoute = '/tryScreenRoute';
   static const String bestSellerRoute = '/bestSellerRoute';
   static const String occassionViewRoute = '/occassionViewRoute';
+  static const String editProfileRoute = '/editProfileRoute';
 }
 
 class RouteGenerator {
   static Route<dynamic> getRoute(RouteSettings settings) {
     final args = settings.arguments;
-    //final args ="673e2d1b1159920171828146";
     switch (settings.name) {
       case RoutesManager.splashRoute:
         return MaterialPageRoute(builder: (_) => const SplashView());
@@ -77,6 +79,8 @@ class RouteGenerator {
       //   return MaterialPageRoute(builder: (_) =>  ProductDetailsView(productId: "673e2d1b1159920171828146",));
       case RoutesManager.bestSellerRoute:
         return MaterialPageRoute(builder: (_) => const BestSellerView());
+      case RoutesManager.editProfileRoute:
+        return MaterialPageRoute(builder: (_) => const EditProfileView());
       default:
         return unDefinedRoute();
     }

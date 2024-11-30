@@ -1,3 +1,5 @@
+import 'package:flower_ecommerce/core/resources/custom_loading.dart';
+import 'package:motion_toast/motion_toast.dart';
 import '../view_model/login_view_model/login_cubit.dart';
 import '../../../../core/functions/extenstions.dart';
 import '../../../../core/functions/helper.dart';
@@ -40,13 +42,17 @@ class _LoginScreenState extends State<LoginView> {
       child: Scaffold(
         body: BlocListener<LoginViewModel, LoginState>(
           listener: (context, state) {
-            if (state is SuccessLoginState) {
+            if (state is LoadingLoginState) {
+              CustomLoadingDialog.show(context);
+            } else if (state is SuccessLoginState) {
               Navigator.pushReplacementNamed(
                   context, RoutesManager.layoutRoute);
             } else if (state is ErrorLoginState) {
-              setState(() {
-                _errorMessage = AppStrings.invalidEmailOrPassword;
-              });
+              MotionToast.error(
+                description: const Text("Invalid Email or Password"),
+                title: const Text("Error"),
+                animationType: AnimationType.fromLeft,
+              ).show(context);
             }
           },
           child: Form(
