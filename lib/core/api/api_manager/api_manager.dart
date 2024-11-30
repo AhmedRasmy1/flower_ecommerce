@@ -58,7 +58,6 @@ abstract class ApiService {
   @GET("https://flower.elevateegy.com/api/v1/auth/profile-data")
   Future<ProfileResponse?> getProfileData(
       @Header("Authorization") String token);
-
   @PUT(ApiConstants.editProfileRoute)
   Future<EditProfile> editProfile(
     @Header("Authorization") String token,
