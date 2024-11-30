@@ -80,7 +80,8 @@ class RouteGenerator {
       case RoutesManager.bestSellerRoute:
         return MaterialPageRoute(builder: (_) => const BestSellerView());
       case RoutesManager.editProfileRoute:
-        return MaterialPageRoute(builder: (_) => const EditProfileView());
+        return MaterialPageRoute(
+            builder: (_) => const EditProfileView(), settings: settings);
       default:
         return unDefinedRoute();
     }

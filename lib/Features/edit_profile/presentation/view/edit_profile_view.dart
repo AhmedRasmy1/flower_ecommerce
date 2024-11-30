@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flower_ecommerce/Features/edit_profile/presentation/viewmodels/editprofile_cubit.dart';
+import 'package:flower_ecommerce/Features/profile/domain/entities/profile_entity.dart';
 import 'package:flower_ecommerce/core/common/custom_exception.dart';
 import 'package:flower_ecommerce/core/di/di.dart';
 import 'package:flower_ecommerce/core/functions/helper.dart';
@@ -8,6 +9,7 @@ import 'package:flower_ecommerce/core/resources/custom_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:injectable/injectable.dart';
 import 'package:motion_toast/motion_toast.dart';
 import '../widgets/custom_circle_avatar.dart';
 import '../../../../core/functions/extenstions.dart';
@@ -28,12 +30,13 @@ class EditProfileView extends StatefulWidget {
 }
 
 class _ProfileViewState extends State<EditProfileView> {
-  final TextEditingController _firstNameController = TextEditingController();
-  final TextEditingController _lastNameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
+  late ProfileEntity profileInfo;
+  late TextEditingController _firstNameController;
+  late TextEditingController _lastNameController;
+  late TextEditingController _emailController;
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
-  final TextEditingController _userGenderController = TextEditingController();
+  late TextEditingController _phoneController;
+  late TextEditingController _userGenderController;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   Color buttonColor = ColorManager.pink;
   late EditprofileCubit viewModel;
@@ -42,6 +45,26 @@ class _ProfileViewState extends State<EditProfileView> {
   void initState() {
     viewModel = getIt<EditprofileCubit>();
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    profileInfo = ModalRoute.of(context)!.settings.arguments as ProfileEntity;
+    _firstNameController =
+        TextEditingController(text: profileInfo.user?.firstName ?? '');
+    _lastNameController =
+        TextEditingController(text: profileInfo.user?.lastName ?? '');
+    _emailController =
+        TextEditingController(text: profileInfo.user?.email ?? '');
+    _phoneController =
+        TextEditingController(text: profileInfo.user?.phone ?? '');
+    _userGenderController = TextEditingController(
+        text: profileInfo.user?.gender == 'male'
+            ? AppStrings.male
+            : profileInfo.user?.gender == 'female'
+                ? AppStrings.female
+                : '');
   }
 
   @override

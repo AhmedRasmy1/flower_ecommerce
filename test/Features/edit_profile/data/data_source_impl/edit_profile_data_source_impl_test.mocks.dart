@@ -40,6 +40,8 @@ import 'package:flower_ecommerce/Features/products/data/models/all_products.dart
     as _i9;
 import 'package:flower_ecommerce/Features/products_details/data/models/response/product_details_dto.dart'
     as _i7;
+import 'package:flower_ecommerce/Features/profile/data/model/profile_response.dart'
+    as _i21;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -355,6 +357,16 @@ class MockApiService extends _i1.Mock implements _i13.ApiService {
         ),
         returnValue: _i14.Future<_i20.OccasionResponse?>.value(),
       ) as _i14.Future<_i20.OccasionResponse?>);
+
+  @override
+  _i14.Future<_i21.ProfileResponse?> getProfileData(String? token) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getProfileData,
+          [token],
+        ),
+        returnValue: _i14.Future<_i21.ProfileResponse?>.value(),
+      ) as _i14.Future<_i21.ProfileResponse?>);
 
   @override
   _i14.Future<_i12.EditProfile> editProfile(

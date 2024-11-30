@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 import '../../../../core/di/di.dart';
 import '../../../../core/resources/assets_manager.dart';
 import '../../../../core/resources/strings_manager.dart';
@@ -41,45 +40,39 @@ class _ProfileViewState extends State<ProfileView> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  const EdgeInsets.only(
+      padding: const EdgeInsets.only(
         top: AppPadding.p8,
         right: AppPadding.p16,
         left: AppPadding.p16,
       ),
       child: Scaffold(
-
-
-
         body: Column(
           children: [
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CustomAppBar(
                   image: AssetsManager.appLogo,
                   title: AppStrings.flowry,
                   color: ColorManager.pink,
-                  fontFamily:
-                  GoogleFonts.imFellEnglish().fontFamily,
-
+                  fontFamily: GoogleFonts.imFellEnglish().fontFamily,
                 ),
                 const Stack(
                   children: [
-                    const Icon(Icons.notifications, size: 28, color: Colors.grey),
-                    const Positioned(
+                    Icon(Icons.notifications, size: 28, color: Colors.grey),
+                    Positioned(
                       right: 0,
                       child: CircleAvatar(
                         radius: 8,
                         backgroundColor: Colors.red,
-                        child: const Text(
+                        child: Text(
                           '3',
                           style: TextStyle(color: Colors.white, fontSize: 12),
                         ),
                       ),
                     ),
-
                   ],
                 ),
-
               ],
             ),
             BlocProvider(
@@ -90,7 +83,8 @@ class _ProfileViewState extends State<ProfileView> {
                     return const Center(child: CircularProgressIndicator());
                   } else if (state is SuccessProfileState) {
                     final profile = state.profileEntity;
-                    return Expanded(child: buildProfileContent(profile));
+                    return Expanded(
+                        child: buildProfileContent(context, profile));
                   } else if (state is ErrorProfileState) {
                     return Center(
                       child: Text(
@@ -111,5 +105,4 @@ class _ProfileViewState extends State<ProfileView> {
       ),
     );
   }
-
 }

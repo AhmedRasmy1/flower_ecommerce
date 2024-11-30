@@ -1,10 +1,11 @@
+import 'package:flower_ecommerce/core/resources/routes_manager.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/resources/color_manager.dart';
 import '../../domain/entities/profile_entity.dart';
 import 'option_item.dart';
 
-Widget buildProfileContent(ProfileEntity? profile) {
+Widget buildProfileContent(BuildContext context, ProfileEntity? profile) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -14,36 +15,36 @@ Widget buildProfileContent(ProfileEntity? profile) {
         child: Column(
           children: [
             const CircleAvatar(
-              radius: 40,
-              backgroundImage: AssetImage('assets/images/Photo.png'), // Replace with your image
+              backgroundColor: Colors.transparent,
+              radius: 60,
+              backgroundImage: AssetImage(
+                  'assets/images/icon__avatar.png'), // Replace with your image
             ),
             const SizedBox(height: 8),
-            Row(mainAxisAlignment:MainAxisAlignment.center ,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   profile?.user?.firstName ?? '',
-                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.w500),
                 ),
-                InkWell(onTap: (){
-                  /*Navigator.of(context).popUntil((route) =>
-                    route.isFirst); // Close dialogs before showing success
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const ,
-                            settings: RouteSettings(arguments: profile)));*/
-
-
-
-
-                },
-                    child: const ImageIcon(AssetImage("assets/images/noto_pen.png")))
+                InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(
+                          context, RoutesManager.editProfileRoute,
+                          arguments: profile);
+                    },
+                    child: const ImageIcon(
+                        AssetImage("assets/images/noto_pen.png")))
               ],
             ),
             Text(
               profile?.user?.email ?? '',
-              style: const TextStyle(color: Colors.grey,fontSize: 18,
-                  fontWeight:FontWeight.w500),
+              style: const TextStyle(
+                  color: Colors.grey,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500),
             ),
           ],
         ),
@@ -54,43 +55,66 @@ Widget buildProfileContent(ProfileEntity? profile) {
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
           children: [
-            OptionItem(icon: Icons.event_note_outlined, text: 'My orders',imageIconExists: true,),
-            OptionItem(icon: Icons.location_on, text: 'Saved address',imageIconExists: true,),
+            OptionItem(
+              icon: Icons.event_note_outlined,
+              text: 'My orders',
+              imageIconExists: true,
+            ),
+            OptionItem(
+              icon: Icons.location_on,
+              text: 'Saved address',
+              imageIconExists: true,
+            ),
             const Divider(thickness: 1, color: Colors.grey),
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children:[ Row(
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     children: [
-                      Switch(activeTrackColor: Colors.pink,
+                      Switch(
+                        activeTrackColor: Colors.pink,
                         value: true,
                         onChanged: (value) {},
                         activeColor: ColorManager.white,
                         inactiveThumbColor: Colors.pink,
                       ),
                       const SizedBox(width: 10),
-                      const Text('Notification', style: TextStyle(fontSize: 16)),
-
+                      const Text('Notification',
+                          style: TextStyle(fontSize: 16)),
                     ],
                   ),
                 ],
-              ), const
-
-              ImageIcon(AssetImage("assets/images/side_arrow.png"))
-              ]
+              ),
+              const ImageIcon(AssetImage("assets/images/side_arrow.png"))
+            ]),
+            const Divider(thickness: 1, color: Colors.grey),
+            OptionItem(
+              icon: Icons.language,
+              text: 'Language',
+              trailingText: 'English',
+              imageIconExists: false,
+            ),
+            OptionItem(
+              text: 'About us',
+              imageIconExists: true,
+            ),
+            OptionItem(
+              text: 'Terms & conditions',
+              imageIconExists: true,
             ),
             const Divider(thickness: 1, color: Colors.grey),
-            OptionItem(icon: Icons.language, text: 'Language', trailingText: 'English',imageIconExists: false,),
-            OptionItem( text: 'About us',imageIconExists: true,),
-            OptionItem( text: 'Terms & conditions',imageIconExists: true,),
-            const Divider(thickness: 1, color: Colors.grey),
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                InkWell
-                  (onTap: (){},
-                    child: OptionItem(icon: Icons.logout, text: 'Logout',imageIconExists: false,)),
-              const Icon(Icons.logout)
+                InkWell(
+                    onTap: () {},
+                    child: OptionItem(
+                      icon: Icons.logout,
+                      text: 'Logout',
+                      imageIconExists: false,
+                    )),
+                const Icon(Icons.logout)
               ],
             ),
           ],
@@ -108,4 +132,3 @@ Widget buildProfileContent(ProfileEntity? profile) {
     ],
   );
 }
-

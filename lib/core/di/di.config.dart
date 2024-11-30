@@ -121,6 +121,16 @@ import '../../Features/products_details/domain/use_cases/product_details_usecase
     as _i364;
 import '../../Features/products_details/presentation/view_model/product_details_cubit.dart'
     as _i942;
+import '../../Features/profile/data/data_source/profile_data_source.dart'
+    as _i537;
+import '../../Features/profile/data/data_source_impl/profile_data_source_impl.dart'
+    as _i917;
+import '../../Features/profile/data/repositories/profile_repo_imp.dart'
+    as _i663;
+import '../../Features/profile/domain/repository/profile_repo.dart' as _i1054;
+import '../../Features/profile/domain/use_cases/profile_usecase.dart' as _i937;
+import '../../Features/profile/presentation/view_model/profile_view_model.dart'
+    as _i149;
 import '../api/api_manager/api_manager.dart' as _i680;
 import '../api/dio_module.dart' as _i784;
 
@@ -144,8 +154,12 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i34.AllProductsDatasourceImpl(gh<_i680.ApiService>()));
     gh.factory<_i939.AllCategoriesDatasource>(
         () => _i421.AuthOnLineDataSourceImpl(gh<_i680.ApiService>()));
+    gh.factory<_i537.ProfileDataSource>(
+        () => _i917.ProfileDataSourceImpl(gh<_i680.ApiService>()));
     gh.factory<_i964.EditProfileDataSource>(
         () => _i602.EditProfileDataSourceImpl(gh<_i680.ApiService>()));
+    gh.factory<_i1054.ProfileRepo>(
+        () => _i663.ProfileRepoImpl(gh<_i537.ProfileDataSource>()));
     gh.factory<_i679.OccasionOnLineDataSource>(
         () => _i864.OccasionOnLineDataSourceImpl(gh<_i680.ApiService>()));
     gh.factory<_i448.HomeDataSource>(
@@ -158,6 +172,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i840.BestOnLineDataSourceImpl(gh<_i680.ApiService>()));
     gh.factory<_i953.CategoriesUseCase>(
         () => _i953.CategoriesUseCase(gh<_i2.CategoriesRepo>()));
+    gh.factory<_i937.ProfileUseCase>(
+        () => _i937.ProfileUseCase(gh<_i1054.ProfileRepo>()));
     gh.factory<_i318.AuthOnLineDataSource>(
         () => _i453.AuthOnLineDataSourceImpl(gh<_i680.ApiService>()));
     gh.factory<_i471.EditProfileRepo>(
@@ -170,6 +186,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i173.CategoriesRepoImpl(gh<_i711.AllProductsDatasource>()));
     gh.factory<_i390.OccasionRepo>(
         () => _i971.OccasionRepoImpl(gh<_i679.OccasionOnLineDataSource>()));
+    gh.factory<_i149.ProfileViewModel>(
+        () => _i149.ProfileViewModel(gh<_i937.ProfileUseCase>()));
     gh.factory<_i232.ProductsUseCase>(
         () => _i232.ProductsUseCase(gh<_i540.ProductsRepo>()));
     gh.factory<_i1010.BestRepo>(
