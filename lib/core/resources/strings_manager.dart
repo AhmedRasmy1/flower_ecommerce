@@ -82,5 +82,11 @@ class AppStrings {
       'Its time to celebrate all grads with happiness';
   static const String giftNow = 'Gift Now';
   static const String viewAll = 'View All';
+  static const String change = 'Change';
+  static const String update = 'Update';
   static const String occasion = 'Occasion';
+  static const String editProfile =
+      "Edit Profile"; // Edit Profile in the profile screen
+  static const String profileUpdated =
+      "Profile updated Successfuly"; // Edit in the profile screen
 }

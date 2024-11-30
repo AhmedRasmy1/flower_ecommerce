@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flower_ecommerce/Features/edit_profile/data/models/edit_profile.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
@@ -52,4 +53,12 @@ abstract class ApiService {
   Future<HomeModel> getHomeData();
   @GET('https://flower.elevateegy.com/api/v1/occasions')
   Future<OccasionResponse?> getOccasions();
+  @PUT(ApiConstants.editProfileRoute)
+  Future<EditProfile> editProfile(
+    @Header("Authorization") String token,
+    @Field("firstName") String? firstName,
+    @Field("lastName") String? lastName,
+    @Field("email") String? email,
+    @Field("phone") String? phone,
+  );
 }

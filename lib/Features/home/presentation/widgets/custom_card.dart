@@ -1,4 +1,6 @@
 import 'dart:ui';
+import 'package:flower_ecommerce/core/resources/routes_manager.dart';
+
 import '../../../../core/functions/extenstions.dart';
 import '../../../../core/resources/assets_manager.dart';
 import '../../../../core/resources/color_manager.dart';
@@ -117,7 +119,8 @@ class CustomCard extends StatelessWidget {
                               const SizedBox(height: 12),
                               GestureDetector(
                                 onTap: () {
-                                  // Add your button action here
+                                  Navigator.pushNamed(context,
+                                      RoutesManager.editProfileRoute); //todo!
                                 },
                                 child: AnimatedContainer(
                                   duration: const Duration(milliseconds: 200),

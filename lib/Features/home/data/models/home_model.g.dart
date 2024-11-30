@@ -17,11 +17,14 @@ HomeModel _$HomeModelFromJson(Map<String, dynamic> json) => HomeModel(
       occasions: (json['occasions'] as List<dynamic>?)
           ?.map((e) => Occasion.fromJson(e as Map<String, dynamic>))
           .toList(),
-    );
+    )..categories = (json['categories'] as List<dynamic>?)
+        ?.map((e) => HomeCategories.fromJson(e as Map<String, dynamic>))
+        .toList();
 
 Map<String, dynamic> _$HomeModelToJson(HomeModel instance) => <String, dynamic>{
       'message': instance.message,
       'products': instance.products,
       'bestSeller': instance.bestSeller,
       'occasions': instance.occasions,
+      'categories': instance.categories,
     };

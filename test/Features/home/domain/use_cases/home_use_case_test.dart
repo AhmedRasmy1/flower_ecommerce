@@ -17,7 +17,11 @@ void main() {
     var homeRepo = MockHomeRepo();
     var homeUseCase = HomeUseCase(homeRepo);
     var mockedResult = Success<HomeEntity>(HomeEntity(
-        message: 'Fake message', bestSeller: [], occasions: [], products: []));
+        message: 'Fake message',
+        bestSeller: [],
+        occasions: [],
+        products: [],
+        categories: []));
     when(homeRepo.getHomeData()).thenAnswer((_) async => mockedResult);
     //Act
     var result = await homeUseCase.getHomeData();
