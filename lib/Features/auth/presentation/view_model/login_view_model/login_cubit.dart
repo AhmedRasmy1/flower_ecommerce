@@ -32,6 +32,7 @@ import 'package:flower_ecommerce/Features/auth/domain/entities/login_entities.da
 import 'package:flower_ecommerce/Features/auth/domain/use_cases/login_usecases.dart';
 import 'package:flower_ecommerce/Features/auth/presentation/view_model/login_view_model/login_state.dart';
 import 'package:flower_ecommerce/core/common/api_result.dart';
+import 'package:flower_ecommerce/core/utils/cashed_data_shared_preferences.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -52,6 +53,7 @@ class LoginViewModel extends Cubit<LoginState> {
         if (rememberMe && result.data.token != null) {
           await _saveToken(result.data.token!);
         }
+        await _saveToken(result.data.token!);
         emit(SuccessLoginState(result.data));
       case Fail<LoginEntitie>():
         emit(ErrorLoginState(result.exception));
@@ -59,8 +61,9 @@ class LoginViewModel extends Cubit<LoginState> {
   }
 
   Future<void> _saveToken(String token) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('user_token', token);
+    SharedData.setData(key: StringCache.userToken, value: token);
+    //final prefs = await SharedPreferences.getInstance();
+    //await prefs.setString('user_token', token);
   }
 
   Future<void> logout() async {
