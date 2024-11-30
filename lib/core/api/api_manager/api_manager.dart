@@ -19,6 +19,8 @@ import '../../../Features/home/data/models/home_model.dart';
 import '../../../Features/occasions/data/models/occasion_response/occasion_response.dart';
 import '../../../Features/products/data/models/all_products.dart';
 import '../../../Features/products_details/data/models/response/product_details_dto.dart';
+import '../../../Features/profile_reset_password/data/model/change_password_request.dart';
+import '../../../Features/profile_reset_password/data/model/change_password_response.dart';
 import '../../../Features/profile/data/model/profile_response.dart';
 import '../api_constants.dart';
 part 'api_manager.g.dart';
@@ -54,6 +56,10 @@ abstract class ApiService {
   Future<HomeModel> getHomeData();
   @GET('https://flower.elevateegy.com/api/v1/occasions')
   Future<OccasionResponse?> getOccasions();
+  @PATCH(ApiConstants.changePasswordRoute)
+  Future<ChangePasswordResponse> changePassword(
+      @Body() ChangePasswordRequest changePasswordRequest,
+      @Header("Authorization") String token);
 
   @GET("https://flower.elevateegy.com/api/v1/auth/profile-data")
   Future<ProfileResponse?> getProfileData(
