@@ -1,5 +1,6 @@
 import 'package:flower_ecommerce/Features/auth/presentation/views/login_view.dart';
 import 'package:flower_ecommerce/core/resources/custom_loading.dart';
+import 'package:flower_ecommerce/core/resources/routes_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:motion_toast/motion_toast.dart';
@@ -78,12 +79,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                 description: const Text(AppStrings.passwordChangedSuccessfuly),
                 animationType: AnimationType.fromLeft,
               ).show(context);
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const LoginView(),
-                ),
-              );
+              Navigator.pushNamed(context, RoutesManager.loginRoute);
             }
           },
           child: Padding(
