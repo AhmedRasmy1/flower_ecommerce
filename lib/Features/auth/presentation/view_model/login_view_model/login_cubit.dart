@@ -36,6 +36,8 @@ import 'package:flower_ecommerce/core/utils/cashed_data_shared_preferences.dart'
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../../../core/utils/cashed_data_shared_preferences.dart';
+
 @injectable
 class LoginViewModel extends Cubit<LoginState> {
   final LoginUseCases loginUseCases;
@@ -54,6 +56,11 @@ class LoginViewModel extends Cubit<LoginState> {
           await _saveToken(result.data.token!);
         }
         await _saveToken(result.data.token!);
+        // print("===========================================");
+        // print(result.data.token);
+        // print("===========================================");
+        // print(StringCache.userToken);
+        await _saveToken(result.data.token!);
         emit(SuccessLoginState(result.data));
       case Fail<LoginEntitie>():
         emit(ErrorLoginState(result.exception));
@@ -62,12 +69,16 @@ class LoginViewModel extends Cubit<LoginState> {
 
   Future<void> _saveToken(String token) async {
     SharedData.setData(key: StringCache.userToken, value: token);
+    // final prefs = await SharedPreferences.getInstance();
+    // await prefs.setString('user_token', token);
+    // StringCache.userToken = token;
+    SharedData.setData(key: StringCache.userToken, value: token);
     //final prefs = await SharedPreferences.getInstance();
     //await prefs.setString('user_token', token);
   }
 
-  Future<void> logout() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.remove('user_token');
-  }
+  // Future<void> logout() async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   await prefs.remove('user_token');
+  // }
 }

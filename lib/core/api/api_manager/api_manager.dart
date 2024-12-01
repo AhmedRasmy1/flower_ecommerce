@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:flower_ecommerce/Features/auth/data/models/response/logout_response_dto.dart';
+import 'package:flower_ecommerce/Features/auth/domain/entities/logout_entity.dart';
 import 'package:flower_ecommerce/Features/edit_profile/data/models/edit_profile.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/error_logger.dart';
@@ -56,6 +58,9 @@ abstract class ApiService {
   Future<HomeModel> getHomeData();
   @GET('https://flower.elevateegy.com/api/v1/occasions')
   Future<OccasionResponse?> getOccasions();
+  @GET(ApiConstants.logoutRoute)
+  Future<LogoutResponseDto> logout(@Header("Authorization") String token);
+
   @PATCH(ApiConstants.changePasswordRoute)
   Future<ChangePasswordResponse> changePassword(
       @Body() ChangePasswordRequest changePasswordRequest,

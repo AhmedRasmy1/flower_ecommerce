@@ -1,3 +1,5 @@
+import 'package:flower_ecommerce/Features/auth/domain/entities/logout_entity.dart';
+
 import '../../domain/entities/forget_password_entity.dart';
 
 import '../../domain/entities/verify_password_entity.dart';
@@ -15,11 +17,9 @@ import '../models/request/forget_password_request/reset_password_request.dart';
 
 @Injectable(as: AuthRepo)
 class AuthRepoImpl implements AuthRepo {
-  AuthOffLineDataSource offLineDataSource;
   AuthOnLineDataSource onLineDataSource;
 
   AuthRepoImpl(
-    this.offLineDataSource,
     this.onLineDataSource,
   );
 
@@ -66,5 +66,10 @@ class AuthRepoImpl implements AuthRepo {
       String email, String newPassword) {
     return onLineDataSource.resetPassword(
         ResetPasswordRequest(email: email, newPassword: newPassword));
+  }
+
+  @override
+  Future<Result<LogoutEntity>> logout(String token) {
+    return onLineDataSource.logout(token);
   }
 }

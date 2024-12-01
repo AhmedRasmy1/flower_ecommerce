@@ -1,3 +1,5 @@
+import 'package:flower_ecommerce/Features/auth/presentation/widgets/logout_confirmation_dialog.dart';
+
 import 'package:flower_ecommerce/Features/edit_profile/presentation/view/edit_profile_view.dart';
 
 import '../../Features/cart/presentation/pages/cart_view.dart';
@@ -33,6 +35,8 @@ class RoutesManager {
   static const String tryScreenRoute = '/tryScreenRoute';
   static const String bestSellerRoute = '/bestSellerRoute';
   static const String occassionViewRoute = '/occassionViewRoute';
+  static const String logoutViewRoute = '/logout';
+
   static const String changePasswordViewRoute = '/chanePasswordViewRoute';
 
   static const String editProfileRoute = '/editProfileRoute';

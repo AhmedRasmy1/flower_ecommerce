@@ -1,7 +1,11 @@
+import 'package:flower_ecommerce/Features/auth/presentation/widgets/logout_confirmation_dialog.dart';
+import 'package:flower_ecommerce/core/resources/routes_manager.dart';
 import 'package:flower_ecommerce/core/resources/color_manager.dart';
 import 'package:flower_ecommerce/core/utils/cashed_data_shared_preferences.dart';
 
 import 'package:flutter/material.dart';
+
+class ProfileView extends StatefulWidget {
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -14,7 +18,9 @@ import '../../domain/entities/profile_entity.dart';
 import '../view_model/profile_state.dart';
 import '../view_model/profile_view_model.dart';
 import '../widgets/build_profile_content.dart';
-import '../widgets/option_item.dart';
+import 
+
+  ProfileView({super.key});'../widgets/option_item.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
@@ -38,12 +44,37 @@ class _ProfileViewState extends State<ProfileView> {
   }
 
   @override
+  State<ProfileView> createState() => _ProfileViewState();
+}
+
+class _ProfileViewState extends State<ProfileView> {
+  @override
   Widget build(BuildContext context) {
+    return Scaffold(
+      // backgroundColor: Colors.grey.shade400,
+      appBar: AppBar(
+        title: const Text('ProfileView'),
     return Padding(
       padding: const EdgeInsets.only(
         top: AppPadding.p8,
         right: AppPadding.p16,
         left: AppPadding.p16,
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Center(
+              child: IconButton(
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        builder: (_) => const LogoutConfirmationDialog(),
+                        barrierDismissible: false);
+                  },
+                  icon: const Icon(Icons.logout,))),
+         // LogoutConfirmationDialog(),
+        ],
       ),
       child: Scaffold(
         body: Column(
