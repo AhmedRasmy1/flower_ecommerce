@@ -222,14 +222,14 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i762.ForgetPasswordUseCase(gh<_i1049.AuthRepo>()));
     gh.factory<_i526.LoginUseCases>(
         () => _i526.LoginUseCases(gh<_i1049.AuthRepo>()));
+    gh.factory<_i266.LogoutUseCases>(
+        () => _i266.LogoutUseCases(gh<_i1049.AuthRepo>()));
     gh.factory<_i284.RegisterUseCase>(
         () => _i284.RegisterUseCase(gh<_i1049.AuthRepo>()));
     gh.factory<_i785.ResetPasswordUseCase>(
         () => _i785.ResetPasswordUseCase(gh<_i1049.AuthRepo>()));
     gh.factory<_i753.VerifyUseCase>(
         () => _i753.VerifyUseCase(gh<_i1049.AuthRepo>()));
-    gh.factory<_i266.LogoutUseCases>(
-        () => _i266.LogoutUseCases(gh<_i1049.AuthRepo>()));
     gh.factory<_i143.HomeRepo>(
         () => _i288.HomeRepoImpl(gh<_i448.HomeDataSource>()));
     gh.factory<_i1012.BestSellerViewModel>(
