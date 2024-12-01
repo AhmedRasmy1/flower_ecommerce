@@ -65,7 +65,6 @@ class _LoginScreenState extends State<LoginView> {
               // );
               EasyLoading.show(
                 status: 'loading...',
-                maskType: EasyLoadingMaskType.black,
               );
               Future.delayed(const Duration(milliseconds: 600), () {
                 EasyLoading.dismiss();
