@@ -1,4 +1,5 @@
 import 'package:flower_ecommerce/core/resources/custom_loading.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:motion_toast/motion_toast.dart';
 import '../view_model/login_view_model/login_cubit.dart';
 import '../../../../core/functions/extenstions.dart';
@@ -50,7 +51,18 @@ class _LoginScreenState extends State<LoginView> {
         body: BlocListener<LoginViewModel, LoginState>(
           listener: (context, state) {
             if (state is LoadingLoginState) {
-              CustomLoadingDialog.show(context);
+              showDialog(
+                context: context,
+                barrierDismissible: false,
+                builder: (BuildContext context) {
+                  return const Center(
+                    child: SpinKitCircle(
+                      color: Colors.pink,
+                      size: 50.0,
+                    ),
+                  );
+                },
+              );
             } else if (state is SuccessLoginState) {
               Navigator.pushReplacementNamed(
                   context, RoutesManager.layoutRoute);
