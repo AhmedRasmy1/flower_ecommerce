@@ -1,11 +1,11 @@
-import '../../../../../core/utils/cashed_data_shared_preferences.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import '../../../../../core/common/api_result.dart';
-import '../../../domain/entities/register_entities.dart';
-import 'signup_state.dart';
 
+import '../../../../../core/common/api_result.dart';
+import '../../../../../core/utils/cashed_data_shared_preferences.dart';
+import '../../../domain/entities/register_entities.dart';
 import '../../../domain/use_cases/register_usecase.dart';
+import 'signup_state.dart';
 
 @injectable
 class RegisterViewModel extends Cubit<RegisterState> {

@@ -1,10 +1,10 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:flower_ecommerce/Features/edit_profile/domain/entities/edit_profile_entity.dart';
-import 'package:flower_ecommerce/Features/edit_profile/domain/use_cases/edit_profile_use_case.dart';
-import 'package:flower_ecommerce/core/common/api_result.dart';
-import 'package:flower_ecommerce/core/utils/cashed_data_shared_preferences.dart';
+import '../../domain/entities/edit_profile_entity.dart';
+import '../../domain/use_cases/edit_profile_use_case.dart';
+import '../../../../core/common/api_result.dart';
+import '../../../../core/utils/cashed_data_shared_preferences.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 

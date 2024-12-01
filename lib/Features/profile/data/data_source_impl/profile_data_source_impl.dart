@@ -1,4 +1,4 @@
-import 'package:flower_ecommerce/Features/profile/domain/entities/profile_entity.dart';
+import '../../domain/entities/profile_entity.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/api/api_extentions.dart';
@@ -15,7 +15,7 @@ class ProfileDataSourceImpl implements ProfileDataSource {
   @override
   Future<Result<ProfileEntity?>> getProfileData(String token) {
     return executeApi(() async {
-      var response = await _authRetrofit.getProfileData( token);
+      var response = await _authRetrofit.getProfileData(token);
       return response?.toProfileEntity();
     });
   }

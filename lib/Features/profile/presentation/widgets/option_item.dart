@@ -4,10 +4,14 @@ class OptionItem extends StatelessWidget {
   final IconData? icon;
   final String text;
   final String? trailingText;
-  final bool imageIconExists ;
+  final bool imageIconExists;
 
-  OptionItem({this.icon, required this.text, this.trailingText,
-  required this.imageIconExists});
+  const OptionItem(
+      {super.key,
+      this.icon,
+      required this.text,
+      this.trailingText,
+      required this.imageIconExists});
 
   @override
   Widget build(BuildContext context) {
@@ -19,12 +23,12 @@ class OptionItem extends StatelessWidget {
           Row(
             children: [
               Row(
-                children: [if (icon != null)
-                  Icon(icon, color: Colors.black),
-                  SizedBox(width: 10),
+                children: [
+                  if (icon != null) Icon(icon, color: Colors.black),
+                  const SizedBox(width: 10),
                   Text(
                     text,
-                    style: TextStyle(fontSize: 13),
+                    style: const TextStyle(fontSize: 13),
                   ),
                 ],
               ),
@@ -33,12 +37,10 @@ class OptionItem extends StatelessWidget {
           if (trailingText != null)
             Text(
               trailingText!,
-              style: TextStyle(color: Colors.pink),
+              style: const TextStyle(color: Colors.pink),
             ),
-          if(imageIconExists )
-          const
-
-          ImageIcon(AssetImage("assets/images/side_arrow.png"))
+          if (imageIconExists)
+            const ImageIcon(AssetImage("assets/images/side_arrow.png"))
         ],
       ),
     );

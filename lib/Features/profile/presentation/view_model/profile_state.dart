@@ -1,6 +1,4 @@
-import 'package:flower_ecommerce/Features/profile/domain/entities/profile_entity.dart';
-
-import '../../data/model/profile_response.dart';
+import '../../domain/entities/profile_entity.dart';
 
 sealed class ProfileState {}
 

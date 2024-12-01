@@ -1,6 +1,4 @@
-import 'package:flower_ecommerce/Features/auth/domain/entities/logout_entity.dart';
-
-import '../../../domain/entities/login_entities.dart';
+import '../../../domain/entities/logout_entity.dart';
 
 sealed class LogoutState {}
 

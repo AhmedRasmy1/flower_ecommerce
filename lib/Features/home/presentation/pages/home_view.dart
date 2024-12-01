@@ -1,5 +1,5 @@
-import 'package:flower_ecommerce/Features/home/presentation/widgets/skeleton_home.dart';
-import 'package:flower_ecommerce/Features/layout/presentation/cubit/layout_cubit.dart';
+import '../widgets/skeleton_home.dart';
+import '../../../layout/presentation/cubit/layout_cubit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../viewmodels/home_cubit.dart';

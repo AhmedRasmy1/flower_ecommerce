@@ -1,4 +1,4 @@
-import 'package:flower_ecommerce/Features/auth/domain/entities/logout_entity.dart';
+import '../../domain/entities/logout_entity.dart';
 
 import '../../domain/entities/forget_password_entity.dart';
 
@@ -11,7 +11,6 @@ import '../../domain/entities/register_entities.dart';
 import '../../domain/entities/reset_password_entity.dart';
 import '../data_sources/auth_online_datasource.dart';
 import '../../domain/repositories/auth_repo.dart';
-import '../data_sources/auth_offline_datasource.dart';
 import '../models/request/register_model_dto.dart';
 import '../models/request/forget_password_request/reset_password_request.dart';
 

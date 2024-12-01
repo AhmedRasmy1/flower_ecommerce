@@ -1,4 +1,4 @@
-import 'package:flower_ecommerce/Features/auth/domain/entities/logout_entity.dart';
+import '../entities/logout_entity.dart';
 
 import '../entities/forget_password_entity.dart';
 

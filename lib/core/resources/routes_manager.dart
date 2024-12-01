@@ -1,7 +1,4 @@
-import 'package:flower_ecommerce/Features/auth/presentation/widgets/logout_confirmation_dialog.dart';
-
-import 'package:flower_ecommerce/Features/edit_profile/presentation/view/edit_profile_view.dart';
-
+import '../../Features/edit_profile/presentation/view/edit_profile_view.dart';
 import '../../Features/cart/presentation/pages/cart_view.dart';
 import '../../Features/home/presentation/pages/home_view.dart';
 import '../../Features/layout/presentation/pages/layout_view.dart';

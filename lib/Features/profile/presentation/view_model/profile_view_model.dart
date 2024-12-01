@@ -1,7 +1,8 @@
 import 'package:bloc/bloc.dart';
-import 'package:flower_ecommerce/Features/profile/domain/entities/profile_entity.dart';
-import 'package:flower_ecommerce/Features/profile/presentation/view_model/profile_state.dart';
-import 'package:flower_ecommerce/core/utils/cashed_data_shared_preferences.dart';
+import '../../domain/entities/profile_entity.dart';
+import 'profile_state.dart';
+import '../../../../core/utils/cashed_data_shared_preferences.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/common/api_result.dart';
@@ -11,8 +12,8 @@ import '../../domain/use_cases/profile_usecase.dart';
 @injectable
 class ProfileViewModel extends Cubit<ProfileState> {
   ProfileUseCase profileUseCase;
-  ProfileViewModel(this.profileUseCase) : super(InitialState());
 
+  ProfileViewModel(this.profileUseCase) : super(InitialState());
   void getProfileData(String token) async {
     emit(LoadingProfileState());
     var result = await profileUseCase.getProfileData(token);

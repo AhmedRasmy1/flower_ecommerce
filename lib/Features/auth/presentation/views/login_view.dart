@@ -1,5 +1,4 @@
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:motion_toast/motion_toast.dart';
 import '../view_model/login_view_model/login_cubit.dart';
 import '../../../../core/functions/extenstions.dart';

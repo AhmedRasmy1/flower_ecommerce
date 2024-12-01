@@ -1,5 +1,4 @@
-
-import 'package:flower_ecommerce/Features/profile_reset_password/domain/entities/change_password_entity.dart';
+import '../../domain/entities/change_password_entity.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/common/api_result.dart';
@@ -12,11 +11,10 @@ class ChangePasswordRepositoryImpl implements ChangePasswordRepository {
 
   ChangePasswordRepositoryImpl(this.changePasswordOnlineDataSource);
 
-
   @override
-  Future<Result<ChangePasswordEntity?>>changePassword (String oldPassword,String newPassword,String rePassword,String token) {
-    return changePasswordOnlineDataSource.changePassword(oldPassword,newPassword,rePassword,token);
+  Future<Result<ChangePasswordEntity?>> changePassword(
+      String oldPassword, String newPassword, String rePassword, String token) {
+    return changePasswordOnlineDataSource.changePassword(
+        oldPassword, newPassword, rePassword, token);
   }
-
-
 }

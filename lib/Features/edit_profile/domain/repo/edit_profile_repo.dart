@@ -1,5 +1,5 @@
-import 'package:flower_ecommerce/Features/edit_profile/domain/entities/edit_profile_entity.dart';
-import 'package:flower_ecommerce/core/common/api_result.dart';
+import '../entities/edit_profile_entity.dart';
+import '../../../../core/common/api_result.dart';
 
 abstract class EditProfileRepo {
   Future<Result<EditProfileEntity>> editProfile(

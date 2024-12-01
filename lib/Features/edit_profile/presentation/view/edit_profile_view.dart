@@ -1,16 +1,16 @@
 import 'dart:developer';
-import 'package:flower_ecommerce/Features/edit_profile/presentation/viewmodels/editprofile_cubit.dart';
-import 'package:flower_ecommerce/Features/profile/domain/entities/profile_entity.dart';
-import 'package:flower_ecommerce/core/common/custom_exception.dart';
-import 'package:flower_ecommerce/core/di/di.dart';
-import 'package:flower_ecommerce/core/functions/helper.dart';
-import 'package:flower_ecommerce/core/resources/custom_loading.dart';
-import 'package:flower_ecommerce/core/resources/routes_manager.dart';
-import 'package:flower_ecommerce/core/utils/cashed_data_shared_preferences.dart';
+import '../viewmodels/editprofile_cubit.dart';
+import '../../../profile/domain/entities/profile_entity.dart';
+import '../../../profile/presentation/view_model/profile_view_model.dart';
+import '../../../../core/common/custom_exception.dart';
+import '../../../../core/di/di.dart';
+import '../../../../core/functions/helper.dart';
+import '../../../../core/resources/custom_loading.dart';
+import '../../../../core/resources/routes_manager.dart';
+import '../../../../core/utils/cashed_data_shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:injectable/injectable.dart';
 import 'package:motion_toast/motion_toast.dart';
 import '../widgets/custom_circle_avatar.dart';
 import '../../../../core/functions/extenstions.dart';
@@ -49,10 +49,12 @@ class _ProfileViewState extends State<EditProfileView> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   Color buttonColor = ColorManager.pink;
   late EditprofileCubit viewModel;
+  late ProfileViewModel profileViewModel;
 
   @override
   void initState() {
     viewModel = getIt<EditprofileCubit>();
+    profileViewModel = getIt<ProfileViewModel>();
     super.initState();
   }
 
@@ -271,6 +273,7 @@ class _ProfileViewState extends State<EditProfileView> {
                                   const Text(AppStrings.profileUpdated),
                               animationType: AnimationType.fromLeft,
                             ).show(context);
+                            Navigator.pop(context);
                           } else if (state is EditprofileFail) {
                             String? message;
                             if (state.exception is ServerError) {
@@ -300,6 +303,9 @@ class _ProfileViewState extends State<EditProfileView> {
                                     _emailController.text,
                                     _phoneController.text,
                                   );
+                                  profileViewModel.getProfileData(
+                                      SharedData.getData(
+                                          key: StringCache.userToken));
                                 },
                                 updateButtonColor: (Color color) {
                                   setState(() {

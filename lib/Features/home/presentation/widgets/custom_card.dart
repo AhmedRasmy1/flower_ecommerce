@@ -1,5 +1,5 @@
 import 'dart:ui';
-import 'package:flower_ecommerce/core/resources/routes_manager.dart';
+import '../../../../core/resources/routes_manager.dart';
 
 import '../../../../core/functions/extenstions.dart';
 import '../../../../core/resources/assets_manager.dart';

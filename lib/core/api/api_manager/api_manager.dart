@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:flower_ecommerce/Features/auth/data/models/response/logout_response_dto.dart';
-import 'package:flower_ecommerce/Features/auth/domain/entities/logout_entity.dart';
-import 'package:flower_ecommerce/Features/edit_profile/data/models/edit_profile.dart';
+import '../../../Features/auth/data/models/response/logout_response_dto.dart';
+import '../../../Features/edit_profile/data/models/edit_profile.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';

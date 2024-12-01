@@ -1,8 +1,8 @@
-import 'package:flower_ecommerce/Features/edit_profile/data/data_source/edit_profile_data_source.dart';
-import 'package:flower_ecommerce/Features/edit_profile/domain/entities/edit_profile_entity.dart';
-import 'package:flower_ecommerce/core/api/api_extentions.dart';
-import 'package:flower_ecommerce/core/api/api_manager/api_manager.dart';
-import 'package:flower_ecommerce/core/common/api_result.dart';
+import '../data_source/edit_profile_data_source.dart';
+import '../../domain/entities/edit_profile_entity.dart';
+import '../../../../core/api/api_extentions.dart';
+import '../../../../core/api/api_manager/api_manager.dart';
+import '../../../../core/common/api_result.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: EditProfileDataSource)

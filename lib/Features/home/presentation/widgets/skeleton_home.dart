@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flower_ecommerce/core/functions/extenstions.dart';
+import '../../../../core/functions/extenstions.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../core/resources/assets_manager.dart';

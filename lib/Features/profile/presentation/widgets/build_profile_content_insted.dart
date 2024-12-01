@@ -1,12 +1,11 @@
 import '../../../auth/presentation/widgets/logout_confirmation_dialog.dart';
-import '../../../../core/resources/routes_manager.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../core/resources/color_manager.dart';
 import '../../domain/entities/profile_entity.dart';
 import 'option_item.dart';
 
-Widget buildProfileContent(BuildContext context, ProfileEntity? profile) {
+Widget buildProfileContentInstent(
+    BuildContext context, ProfileEntity? profile) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -30,14 +29,6 @@ Widget buildProfileContent(BuildContext context, ProfileEntity? profile) {
                   style: const TextStyle(
                       fontSize: 18, fontWeight: FontWeight.w500),
                 ),
-                InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(
-                          context, RoutesManager.editProfileRoute,
-                          arguments: profile);
-                    },
-                    child: const ImageIcon(
-                        AssetImage("assets/images/noto_pen.png")))
               ],
             ),
             Text(

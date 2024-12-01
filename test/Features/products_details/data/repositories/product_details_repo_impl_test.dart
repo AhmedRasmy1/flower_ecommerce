@@ -1,4 +1,3 @@
-import 'package:bloc_test/bloc_test.dart';
 import 'package:flower_ecommerce/Features/products_details/data/data_sources/product_details_online_datasource.dart';
 import 'package:flower_ecommerce/Features/products_details/data/repositories/product_details_repo_impl.dart';
 import 'package:flutter_test/flutter_test.dart';

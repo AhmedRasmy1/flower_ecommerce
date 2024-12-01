@@ -1,6 +1,6 @@
-import 'package:flower_ecommerce/Features/edit_profile/domain/entities/edit_profile_entity.dart';
-import 'package:flower_ecommerce/Features/edit_profile/domain/repo/edit_profile_repo.dart';
-import 'package:flower_ecommerce/core/common/api_result.dart';
+import '../entities/edit_profile_entity.dart';
+import '../repo/edit_profile_repo.dart';
+import '../../../../core/common/api_result.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable

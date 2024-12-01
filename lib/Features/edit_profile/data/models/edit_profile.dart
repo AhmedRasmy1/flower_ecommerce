@@ -1,4 +1,4 @@
-import 'package:flower_ecommerce/Features/edit_profile/domain/entities/edit_profile_entity.dart';
+import '../../domain/entities/edit_profile_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'user.dart';

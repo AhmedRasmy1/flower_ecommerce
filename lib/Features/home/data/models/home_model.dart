@@ -1,4 +1,4 @@
-import 'package:flower_ecommerce/Features/home/data/models/home_categories.dart';
+import 'home_categories.dart';
 
 import '../../domain/entities/home_entity.dart';
 import 'package:json_annotation/json_annotation.dart';

@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flower_ecommerce/Features/home/data/models/home_categories.dart';
+import '../../data/models/home_categories.dart';
 
 import '../../../../core/functions/extenstions.dart';
 import '../../../../core/resources/color_manager.dart';

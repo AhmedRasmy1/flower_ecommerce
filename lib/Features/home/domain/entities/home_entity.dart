@@ -1,4 +1,4 @@
-import 'package:flower_ecommerce/Features/home/data/models/home_categories.dart';
+import '../../data/models/home_categories.dart';
 
 import '../../data/models/best_seller.dart';
 import '../../data/models/occasion.dart';

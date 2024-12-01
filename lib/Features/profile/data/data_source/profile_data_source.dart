@@ -1,5 +1,4 @@
-
-import 'package:flower_ecommerce/Features/profile/domain/entities/profile_entity.dart';
+import '../../domain/entities/profile_entity.dart';
 
 import '../../../../core/common/api_result.dart';
 

@@ -1,4 +1,4 @@
-import 'package:flower_ecommerce/Features/auth/domain/entities/logout_entity.dart';
+import '../../domain/entities/logout_entity.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/api/api_extentions.dart';

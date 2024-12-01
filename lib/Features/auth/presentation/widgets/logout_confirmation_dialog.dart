@@ -1,8 +1,8 @@
-import 'package:flower_ecommerce/Features/auth/presentation/view_model/logout_view_model/logout_cubit.dart';
-import 'package:flower_ecommerce/Features/auth/presentation/view_model/logout_view_model/logout_state.dart';
-import 'package:flower_ecommerce/core/resources/routes_manager.dart';
-import 'package:flower_ecommerce/core/resources/strings_manager.dart';
-import 'package:flower_ecommerce/core/utils/cashed_data_shared_preferences.dart';
+import '../view_model/logout_view_model/logout_cubit.dart';
+import '../view_model/logout_view_model/logout_state.dart';
+import '../../../../core/resources/routes_manager.dart';
+import '../../../../core/resources/strings_manager.dart';
+import '../../../../core/utils/cashed_data_shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/di/di.dart';

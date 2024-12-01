@@ -1,12 +1,12 @@
-import 'package:flower_ecommerce/Features/auth/presentation/widgets/logout_confirmation_dialog.dart';
-import 'package:flower_ecommerce/Features/profile/presentation/view_model/profile_view_model.dart';
-import 'package:flower_ecommerce/core/di/di.dart';
-import 'package:flower_ecommerce/core/resources/color_manager.dart';
-import 'package:flower_ecommerce/core/resources/assets_manager.dart';
-import 'package:flower_ecommerce/core/resources/strings_manager.dart';
-import 'package:flower_ecommerce/core/resources/values_manager.dart';
-import 'package:flower_ecommerce/core/utils/cashed_data_shared_preferences.dart';
-import 'package:flower_ecommerce/core/widgets/custom_app_bar.dart';
+import '../view_model/profile_view_model.dart';
+import '../widgets/build_profile_content_insted.dart';
+import '../../../../core/di/di.dart';
+import '../../../../core/resources/color_manager.dart';
+import '../../../../core/resources/assets_manager.dart';
+import '../../../../core/resources/strings_manager.dart';
+import '../../../../core/resources/values_manager.dart';
+import '../../../../core/utils/cashed_data_shared_preferences.dart';
+import '../../../../core/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -31,6 +31,11 @@ class _ProfileViewState extends State<ProfileView> {
     savedToken = SharedData.getData(key: StringCache.userToken) ?? '';
     viewModel = getIt<ProfileViewModel>();
     viewModel.getProfileData("Bearer $savedToken");
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override
@@ -82,12 +87,7 @@ class _ProfileViewState extends State<ProfileView> {
                   } else if (state is SuccessProfileState) {
                     return buildProfileContent(context, state.profileEntity);
                   } else if (state is ErrorProfileState) {
-                    return Center(
-                      child: Text(
-                        state.exception?.toString() ?? "An error occurred",
-                        style: const TextStyle(color: Colors.red),
-                      ),
-                    );
+                    return buildProfileContentInstent(context, null);
                   } else {
                     return const Center(
                       child: Text("No data available"),

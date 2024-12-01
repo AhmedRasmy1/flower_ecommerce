@@ -1,9 +1,8 @@
-import 'package:flower_ecommerce/Features/layout/presentation/cubit/layout_cubit.dart';
+import '../cubit/layout_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/resources/app_constants.dart';
 import '../widgets/custom_button_navigation_bar.dart';
-
 
 class LayoutView extends StatelessWidget {
   const LayoutView({super.key});
@@ -21,7 +20,6 @@ class LayoutView extends StatelessWidget {
 
 class LayoutBody extends StatelessWidget {
   const LayoutBody({super.key});
-
 
   @override
   Widget build(BuildContext context) {

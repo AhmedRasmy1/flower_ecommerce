@@ -1,6 +1,4 @@
-import 'package:flower_ecommerce/Features/auth/data/models/response/logout_response_dto.dart';
-import 'package:flower_ecommerce/Features/auth/domain/entities/logout_entity.dart';
-
+import '../../domain/entities/logout_entity.dart';
 import '../../../../core/common/api_result.dart';
 import '../../domain/entities/forget_password_entity.dart';
 import '../../domain/entities/login_entities.dart';
@@ -19,6 +17,5 @@ abstract class AuthOnLineDataSource {
   Future<Result<ResetPasswordEntity?>> resetPassword(
       ResetPasswordRequest resetPasswordRequest);
   Future<Result<LoginEntitie>> login(LoginModelDto loginModelDto);
-  Future<Result<LogoutEntity >> logout (String token);
-
+  Future<Result<LogoutEntity>> logout(String token);
 }

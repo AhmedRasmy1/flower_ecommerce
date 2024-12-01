@@ -1,7 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:flower_ecommerce/Features/products_details/data/data_sources/product_details_online_datasource.dart';
 import 'package:flower_ecommerce/Features/products_details/data/data_source_imp/product_details_online_datasource_impl.dart';
 import 'package:flower_ecommerce/Features/products_details/data/models/response/product_details_dto.dart';
 import 'package:flower_ecommerce/Features/products_details/domain/entities/product_details_entity.dart';
@@ -26,8 +25,8 @@ void main() {
     test('should return Success when the API call is successful', () async {
       // Arrange
       final productDto = ProductDetailsDto(
-        product: Product (id: productId,
-            title: 'Product A', description: 'Description A'),
+        product: Product(
+            id: productId, title: 'Product A', description: 'Description A'),
       );
 
       when(mockApiService.getProductDetails(productId))
@@ -45,7 +44,8 @@ void main() {
 
     test('should return Fail when the API call returns null product', () async {
       // Arrange
-      final productDto = ProductDetailsDto(product: null, message: 'Product not found');
+      final productDto =
+          ProductDetailsDto(product: null, message: 'Product not found');
 
       when(mockApiService.getProductDetails(productId))
           .thenAnswer((_) async => productDto);
@@ -57,7 +57,8 @@ void main() {
       expect(result, isA<Fail<ProductDetailsEntity>>());
       final failResult = result as Fail<ProductDetailsEntity>;
       expect(failResult.exception, isA<Exception>());
-      expect(failResult.exception.toString(), contains('Failed to fetch product details'));
+      expect(failResult.exception.toString(),
+          contains('Failed to fetch product details'));
     });
 
     test('should throw Exception when API call fails', () async {

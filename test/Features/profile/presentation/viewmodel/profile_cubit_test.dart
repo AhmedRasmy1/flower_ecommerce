@@ -1,7 +1,4 @@
-
-
 import 'package:bloc_test/bloc_test.dart';
-import 'package:flower_ecommerce/Features/profile/data/model/profile_response.dart';
 import 'package:flower_ecommerce/Features/profile/domain/entities/profile_entity.dart';
 import 'package:flower_ecommerce/Features/profile/domain/use_cases/profile_usecase.dart';
 import 'package:flower_ecommerce/Features/profile/presentation/view_model/profile_state.dart';
@@ -10,10 +7,7 @@ import 'package:flower_ecommerce/core/common/api_result.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-
 import 'profile_cubit_test.mocks.dart';
-
-
 
 @GenerateMocks([ProfileUseCase])
 void main() {
@@ -30,10 +24,12 @@ void main() {
     blocTest<ProfileViewModel, ProfileState>(
       'when calling getProfile, it should call getProfile from the useCase and change state correctly',
       build: () {
-        String token ="token";
+        String token = "token";
         // Prepare a mock result
-        var result = Success<ProfileEntity?>(ProfileEntity()); // Mock a successful response
-        when(mockProfileUseCase.getProfileData(token)).thenAnswer((_) async =>result);
+        var result = Success<ProfileEntity?>(
+            ProfileEntity()); // Mock a successful response
+        when(mockProfileUseCase.getProfileData(token))
+            .thenAnswer((_) async => result);
 
         return profileViewModel;
       },
@@ -52,16 +48,18 @@ void main() {
       build: () {
         // Prepare a mock failure result
         var result = Fail<ProfileEntity?>(Exception("Some error occurred"));
-        when(mockProfileUseCase.getProfileData("token")).thenAnswer((_) async => result);
+        when(mockProfileUseCase.getProfileData("token"))
+            .thenAnswer((_) async => result);
 
         return profileViewModel;
       },
       act: (viewModel) {
-        viewModel.getProfileData("token"); // Trigger the action to get occasions
+        viewModel
+            .getProfileData("token"); // Trigger the action to get occasions
       },
       expect: () => [
         isA<LoadingProfileState>(), // Expect Loading state first
-        isA<ErrorProfileState>(),   // Then expect Error state
+        isA<ErrorProfileState>(), // Then expect Error state
       ],
     );
   });

@@ -1,7 +1,7 @@
-import 'package:flower_ecommerce/Features/edit_profile/data/data_source/edit_profile_data_source.dart';
-import 'package:flower_ecommerce/Features/edit_profile/domain/entities/edit_profile_entity.dart';
-import 'package:flower_ecommerce/Features/edit_profile/domain/repo/edit_profile_repo.dart';
-import 'package:flower_ecommerce/core/common/api_result.dart';
+import '../data_source/edit_profile_data_source.dart';
+import '../../domain/entities/edit_profile_entity.dart';
+import '../../domain/repo/edit_profile_repo.dart';
+import '../../../../core/common/api_result.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: EditProfileRepo)

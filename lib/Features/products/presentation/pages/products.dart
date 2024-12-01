@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:flower_ecommerce/Features/best_seller/domain/entities/best_seller_entity.dart';
+import '../../../best_seller/domain/entities/best_seller_entity.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../manager/all_products_state.dart';
@@ -174,6 +174,8 @@ class CustomCardAll extends StatelessWidget {
               : Center(
                   child: SvgPicture.asset(
                     'assets/images/rose-day.svg',
+                    width: 300,
+                    height: 300,
                   ),
                 ),
         );
