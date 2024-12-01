@@ -34,7 +34,7 @@ class _LogoutConfirmationDialogState extends State<LogoutConfirmationDialog> {
       child: BlocListener<LogoutViewModel, LogoutState>(
         listener: (context, state) {
           if (state is SuccessLogoutState) {
-            Navigator.pushReplacementNamed(context, RoutesManager.layoutRoute);
+            Navigator.pushReplacementNamed(context, RoutesManager.loginRoute);
           } else if (state is ErrorLogoutState) {
             setState(() {
               _errorMessage = AppStrings.errorMsg;
@@ -45,21 +45,21 @@ class _LogoutConfirmationDialogState extends State<LogoutConfirmationDialog> {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             backgroundColor: Colors.white,
-            child: Container(
+            child: SizedBox(
               height: 177,
               width: 280,
               child: Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 32),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 32),
                     child: Text(
                       AppStrings.logout,
                       style:
                           TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 6),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 6),
                     child: Text(
                       AppStrings.confirmLogout,
                       style:
@@ -75,11 +75,11 @@ class _LogoutConfirmationDialogState extends State<LogoutConfirmationDialog> {
                         style: const TextStyle(color: Colors.red, fontSize: 14),
                       ),
                     ),
-                  SizedBox(
+                  const SizedBox(
                     height: 18,
                   ),
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                    Container(
+                    SizedBox(
                       height: 40,
                       width: 100,
                       child: ElevatedButton(
@@ -101,10 +101,10 @@ class _LogoutConfirmationDialogState extends State<LogoutConfirmationDialog> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 16,
                     ),
-                    Container(
+                    SizedBox(
                       height: 40,
                       width: 100,
                       child: ElevatedButton(

@@ -1,3 +1,5 @@
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+
 import 'core/di/di.dart';
 import 'core/resources/color_manager.dart';
 import 'core/resources/routes_manager.dart';
@@ -30,14 +32,15 @@ class FlowerApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle(
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: const SystemUiOverlayStyle(
         statusBarColor: ColorManager.white,
         statusBarIconBrightness: Brightness.dark,
         systemNavigationBarColor: Colors.white,
         systemNavigationBarIconBrightness: Brightness.dark,
       ),
       child: MaterialApp(
+        builder: EasyLoading.init(),
         debugShowCheckedModeBanner: false,
         onGenerateRoute: RouteGenerator.getRoute,
         initialRoute: RoutesManager.splashRoute,

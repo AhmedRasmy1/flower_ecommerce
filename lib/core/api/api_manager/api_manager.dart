@@ -65,7 +65,6 @@ abstract class ApiService {
   Future<ChangePasswordResponse> changePassword(
       @Body() ChangePasswordRequest changePasswordRequest,
       @Header("Authorization") String token);
-
   @GET("https://flower.elevateegy.com/api/v1/auth/profile-data")
   Future<ProfileResponse?> getProfileData(
       @Header("Authorization") String token);

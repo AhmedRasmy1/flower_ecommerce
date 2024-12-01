@@ -1,3 +1,4 @@
+import 'package:flower_ecommerce/Features/auth/presentation/widgets/logout_confirmation_dialog.dart';
 import 'package:flower_ecommerce/core/resources/routes_manager.dart';
 import 'package:flutter/material.dart';
 
@@ -108,7 +109,13 @@ Widget buildProfileContent(BuildContext context, ProfileEntity? profile) {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (_) => const LogoutConfirmationDialog(),
+                        barrierDismissible: false,
+                      );
+                    },
                     child: OptionItem(
                       icon: Icons.logout,
                       text: 'Logout',

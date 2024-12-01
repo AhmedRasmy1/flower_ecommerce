@@ -1,6 +1,6 @@
-import 'package:flower_ecommerce/Features/auth/presentation/views/login_view.dart';
 import 'package:flower_ecommerce/core/resources/custom_loading.dart';
 import 'package:flower_ecommerce/core/resources/routes_manager.dart';
+import 'package:flower_ecommerce/core/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:motion_toast/motion_toast.dart';
@@ -52,128 +52,136 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => changePasswordViewModel,
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text(AppStrings.resetPassword),
-        ),
-        body: BlocListener<ChangePasswordViewModel, ChangePasswordState>(
-          listenWhen: (previous, current) {
-            if (current is ChangePasswordLoadingState ||
-                current is ChangePasswordErrorState ||
-                current is ChangePasswordSuccessState) {
-              return true;
-            }
-            return false;
-          },
-          listener: (context, state) {
-            if (state is ChangePasswordLoadingState) {
-              CustomLoadingDialog.show(context);
-            } else if (state is ChangePasswordErrorState) {
-              var message = extractErrorMessage(state.exception);
-              MotionToast.error(
-                description: Text(message),
-                animationType: AnimationType.fromLeft,
-              ).show(context);
-            } else if (state is ChangePasswordSuccessState) {
-              MotionToast.success(
-                description: const Text(AppStrings.passwordChangedSuccessfuly),
-                animationType: AnimationType.fromLeft,
-              ).show(context);
-              Navigator.pushNamed(context, RoutesManager.loginRoute);
-            }
-          },
-          child: Padding(
-            padding: const EdgeInsets.all(AppPadding.p16),
-            child: Form(
-              key: _formKey,
-              onChanged: validateInputs,
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SizedBox(
-                          width: double.infinity,
-                          child: CustomTextFormField(
-                            controller: oldPasswordController,
-                            labelText: AppStrings.currentPassword,
-                            hintText: AppStrings.enterYourPassword,
-                            obscureText: true,
-                            validator: (value) => validatePassword(
-                                password: oldPasswordController.text,
-                                messageInvalid:
-                                    AppStrings.passwordInvalidFormat,
-                                messageLength:
-                                    AppStrings.passwordCharactersLong,
-                                message: AppStrings.passwordNotMatch),
-                          ),
-                        ),
-                        const SizedBox(height: AppSize.s24),
-                        SizedBox(
-                          width: double.infinity,
-                          child: CustomTextFormField(
-                            controller: newPasswordController,
-                            labelText: AppStrings.newPassword,
-                            hintText: AppStrings.enterYourPassword,
-                            obscureText: true,
-                            validator: (value) => validatePassword(
-                                password: newPasswordController.text,
-                                messageInvalid:
-                                    AppStrings.passwordInvalidFormat,
-                                messageLength:
-                                    AppStrings.passwordCharactersLong,
-                                message: AppStrings.passwordNotMatch),
-                          ),
-                        ),
-                        const SizedBox(height: AppSize.s24),
-                        SizedBox(
-                          width: double.infinity,
-                          child: CustomTextFormField(
-                            controller: rePasswordController,
-                            labelText: AppStrings.confirmPassword,
-                            hintText: AppStrings.enterYourConfirmPassword,
-                            obscureText: true,
-                            validator: (value) => validatePasswordMatch(
-                                messageIsEmpty: AppStrings.passwordIsEmpty,
-                                password: newPasswordController.text,
-                                confirmPassword: rePasswordController.text,
-                                message: AppStrings.passwordNotMatch),
-                          ),
-                        ),
-                        const SizedBox(height: AppSize.s48),
-                      ],
-                    ),
-                    BlocBuilder<ChangePasswordViewModel, ChangePasswordState>(
-                      builder: (context, state) {
-                        return SizedBox(
-                          height: AppSize.s48,
-                          width: double.infinity,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              if (isButtonEnabled == true) {
-                                String savedToken = SharedData.getData(
-                                    key: StringCache.userToken);
-                                String token = "Bearer $savedToken";
-                                changePassword(token);
-                              }
+      child: SafeArea(
+        child: Scaffold(
+          body: BlocListener<ChangePasswordViewModel, ChangePasswordState>(
+            listenWhen: (previous, current) {
+              if (current is ChangePasswordLoadingState ||
+                  current is ChangePasswordErrorState ||
+                  current is ChangePasswordSuccessState) {
+                return true;
+              }
+              return false;
+            },
+            listener: (context, state) {
+              if (state is ChangePasswordLoadingState) {
+                CustomLoadingDialog.show(context);
+              } else if (state is ChangePasswordErrorState) {
+                var message = extractErrorMessage(state.exception);
+                MotionToast.error(
+                  description: Text(message),
+                  animationType: AnimationType.fromLeft,
+                ).show(context);
+              } else if (state is ChangePasswordSuccessState) {
+                MotionToast.success(
+                  description:
+                      const Text(AppStrings.passwordChangedSuccessfuly),
+                  animationType: AnimationType.fromLeft,
+                ).show(context);
+                Navigator.pushNamed(context, RoutesManager.loginRoute);
+              }
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(AppPadding.p16),
+              child: Form(
+                key: _formKey,
+                onChanged: validateInputs,
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          CustomAppBar(
+                            title: AppStrings.resetPassword,
+                            onTap: () {
+                              Navigator.pop(context);
                             },
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: isButtonEnabled
-                                    ? ColorManager.pink
-                                    : ColorManager.lightGrey2),
-                            child: const Text(
-                              AppStrings.update,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: ColorManager.white),
+                          ),
+                          const SizedBox(height: AppSize.s32),
+                          SizedBox(
+                            width: double.infinity,
+                            child: CustomTextFormField(
+                              controller: oldPasswordController,
+                              labelText: AppStrings.currentPassword,
+                              hintText: AppStrings.enterYourPassword,
+                              obscureText: true,
+                              validator: (value) => validatePassword(
+                                  password: oldPasswordController.text,
+                                  messageInvalid:
+                                      AppStrings.passwordInvalidFormat,
+                                  messageLength:
+                                      AppStrings.passwordCharactersLong,
+                                  message: AppStrings.passwordNotMatch),
                             ),
                           ),
-                        );
-                      },
-                    ),
-                  ],
+                          const SizedBox(height: AppSize.s24),
+                          SizedBox(
+                            width: double.infinity,
+                            child: CustomTextFormField(
+                              controller: newPasswordController,
+                              labelText: AppStrings.newPassword,
+                              hintText: AppStrings.enterYourPassword,
+                              obscureText: true,
+                              validator: (value) => validatePassword(
+                                  password: newPasswordController.text,
+                                  messageInvalid:
+                                      AppStrings.passwordInvalidFormat,
+                                  messageLength:
+                                      AppStrings.passwordCharactersLong,
+                                  message: AppStrings.passwordNotMatch),
+                            ),
+                          ),
+                          const SizedBox(height: AppSize.s24),
+                          SizedBox(
+                            width: double.infinity,
+                            child: CustomTextFormField(
+                              controller: rePasswordController,
+                              labelText: AppStrings.confirmPassword,
+                              hintText: AppStrings.enterYourConfirmPassword,
+                              obscureText: true,
+                              validator: (value) => validatePasswordMatch(
+                                  messageIsEmpty: AppStrings.passwordIsEmpty,
+                                  password: newPasswordController.text,
+                                  confirmPassword: rePasswordController.text,
+                                  message: AppStrings.passwordNotMatch),
+                            ),
+                          ),
+                          const SizedBox(height: AppSize.s48),
+                        ],
+                      ),
+                      BlocBuilder<ChangePasswordViewModel, ChangePasswordState>(
+                        builder: (context, state) {
+                          return SizedBox(
+                            height: AppSize.s48,
+                            width: double.infinity,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                if (isButtonEnabled == true) {
+                                  String savedToken = SharedData.getData(
+                                      key: StringCache.userToken);
+                                  String token = "Bearer $savedToken";
+                                  changePassword(token);
+                                }
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: isButtonEnabled
+                                    ? ColorManager.lightGrey2
+                                    : ColorManager.pink,
+                              ),
+                              child: const Text(
+                                AppStrings.update,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: ColorManager.white),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

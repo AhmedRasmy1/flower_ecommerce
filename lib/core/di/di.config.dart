@@ -218,32 +218,6 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i439.BestSellerUseCase(gh<_i1010.BestRepo>()));
     gh.factory<_i364.ProductDetailsUseCases>(
         () => _i364.ProductDetailsUseCases(gh<_i368.ProductDetailsRepo>()));
-    gh.factory<_i143.HomeRepo>(
-        () => _i288.HomeRepoImpl(gh<_i448.HomeDataSource>()));
-    gh.factory<_i1012.BestSellerViewModel>(
-        () => _i1012.BestSellerViewModel(gh<_i439.BestSellerUseCase>()));
-    gh.factory<_i728.EditProfileUseCase>(
-        () => _i728.EditProfileUseCase(gh<_i471.EditProfileRepo>()));
-    gh.factory<_i1049.AuthRepo>(() => _i118.AuthRepoImpl(
-          gh<_i406.AuthOffLineDataSource>(),
-          gh<_i318.AuthOnLineDataSource>(),
-        ));
-    gh.factory<_i290.ChangePasswordUseCase>(() =>
-        _i290.ChangePasswordUseCase(gh<_i485.ChangePasswordRepository>()));
-    gh.factory<_i71.OccasionDetailsUseCase>(
-        () => _i71.OccasionDetailsUseCase(gh<_i390.OccasionRepo>()));
-    gh.factory<_i536.OccasionUseCase>(
-        () => _i536.OccasionUseCase(gh<_i390.OccasionRepo>()));
-    gh.factory<_i185.HomeUseCase>(
-        () => _i185.HomeUseCase(gh<_i143.HomeRepo>()));
-    gh.factory<_i1022.HomeCubit>(
-        () => _i1022.HomeCubit(gh<_i185.HomeUseCase>()));
-    gh.factory<_i537.ChangePasswordViewModel>(
-        () => _i537.ChangePasswordViewModel(gh<_i290.ChangePasswordUseCase>()));
-    gh.factory<_i491.AllProductsViewModel>(
-        () => _i491.AllProductsViewModel(gh<_i232.ProductsUseCase>()));
-    gh.factory<_i942.ProductDetailsViewModel>(() =>
-        _i942.ProductDetailsViewModel(gh<_i364.ProductDetailsUseCases>()));
     gh.factory<_i762.ForgetPasswordUseCase>(
         () => _i762.ForgetPasswordUseCase(gh<_i1049.AuthRepo>()));
     gh.factory<_i526.LoginUseCases>(
@@ -256,22 +230,22 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i753.VerifyUseCase(gh<_i1049.AuthRepo>()));
     gh.factory<_i266.LogoutUseCases>(
         () => _i266.LogoutUseCases(gh<_i1049.AuthRepo>()));
-    gh.factory<_i762.ForgetPasswordUseCase>(
-        () => _i762.ForgetPasswordUseCase(gh<_i1049.AuthRepo>()));
     gh.factory<_i143.HomeRepo>(
         () => _i288.HomeRepoImpl(gh<_i448.HomeDataSource>()));
     gh.factory<_i1012.BestSellerViewModel>(
         () => _i1012.BestSellerViewModel(gh<_i439.BestSellerUseCase>()));
+    gh.factory<_i728.EditProfileUseCase>(
+        () => _i728.EditProfileUseCase(gh<_i471.EditProfileRepo>()));
     gh.factory<_i706.LogoutViewModel>(
         () => _i706.LogoutViewModel(gh<_i266.LogoutUseCases>()));
-    gh.factory<_i516.EditprofileCubit>(
-        () => _i516.EditprofileCubit(gh<_i728.EditProfileUseCase>()));
     gh.factory<_i920.LoginViewModel>(
         () => _i920.LoginViewModel(gh<_i526.LoginUseCases>()));
     gh.factory<_i674.RegisterViewModel>(
         () => _i674.RegisterViewModel(gh<_i284.RegisterUseCase>()));
     gh.factory<_i191.ForgetPasswordViewModel>(
         () => _i191.ForgetPasswordViewModel(gh<_i762.ForgetPasswordUseCase>()));
+    gh.factory<_i290.ChangePasswordUseCase>(() =>
+        _i290.ChangePasswordUseCase(gh<_i485.ChangePasswordRepository>()));
     gh.factory<_i71.OccasionDetailsUseCase>(
         () => _i71.OccasionDetailsUseCase(gh<_i390.OccasionRepo>()));
     gh.factory<_i536.OccasionUseCase>(
@@ -282,12 +256,16 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i1022.HomeCubit(gh<_i185.HomeUseCase>()));
     gh.factory<_i396.VerifyPasswordViewModel>(
         () => _i396.VerifyPasswordViewModel(gh<_i753.VerifyUseCase>()));
+    gh.factory<_i537.ChangePasswordViewModel>(
+        () => _i537.ChangePasswordViewModel(gh<_i290.ChangePasswordUseCase>()));
     gh.factory<_i491.AllProductsViewModel>(
         () => _i491.AllProductsViewModel(gh<_i232.ProductsUseCase>()));
     gh.factory<_i942.ProductDetailsViewModel>(() =>
         _i942.ProductDetailsViewModel(gh<_i364.ProductDetailsUseCases>()));
     gh.factory<_i14.ResetPasswordViewModel>(
         () => _i14.ResetPasswordViewModel(gh<_i785.ResetPasswordUseCase>()));
+    gh.factory<_i516.EditprofileCubit>(
+        () => _i516.EditprofileCubit(gh<_i728.EditProfileUseCase>()));
     gh.factory<_i251.OccasionViewModel>(
         () => _i251.OccasionViewModel(gh<_i536.OccasionUseCase>()));
     return this;
