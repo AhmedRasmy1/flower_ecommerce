@@ -1,3 +1,5 @@
+import 'package:flower_ecommerce/Features/auth/presentation/widgets/logout_confirmation_dialog.dart';
+
 import '../../Features/cart/presentation/pages/cart_view.dart';
 import '../../Features/home/presentation/pages/home_view.dart';
 import '../../Features/layout/presentation/pages/layout_view.dart';
@@ -30,6 +32,8 @@ class RoutesManager {
   static const String tryScreenRoute = '/tryScreenRoute';
   static const String bestSellerRoute = '/bestSellerRoute';
   static const String occassionViewRoute = '/occassionViewRoute';
+  static const String logoutViewRoute = '/logout';
+
 }
 
 class RouteGenerator {

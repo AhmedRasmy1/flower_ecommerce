@@ -15,6 +15,7 @@ class SharedData {
     }
     if (value is String) {
       await sharedPreferences.setString(key, value);
+       //StringCache.userToken = value;
       return true;
     }
     if (value is double) {
@@ -45,4 +46,6 @@ class StringCache {
   static const String selectGender = 'selectGender';
   //!for Example ! for Example ! for Example ! for Example ! for Example
   static const String userToken = 'userToken';
+//static late final String userToken ;
+
 }

@@ -83,4 +83,9 @@ class AppStrings {
   static const String giftNow = 'Gift Now';
   static const String viewAll = 'View All';
   static const String occasion = 'Occasion';
+  static const String errorMsg = "something went wrong!";
+  static const String logout = "LOGOUT";
+  static const String confirmLogout = "Confirm logout!!";
+  static const String cancle = "Cancle";
+  static const String logoutS = "Logout";
 }
