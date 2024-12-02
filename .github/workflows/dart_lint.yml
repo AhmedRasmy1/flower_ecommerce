@@ -12,7 +12,7 @@ jobs:
       - name: Install Dart
         uses: dart-lang/setup-dart@v1
         with:
-          sdk: stable
+          sdk: 3.5.4
 
       - name: Run Dart Lint
         run: dart analyze
