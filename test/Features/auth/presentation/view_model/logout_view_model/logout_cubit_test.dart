@@ -64,7 +64,7 @@ void main() {
 
       return logoutViewModel;
     },
-    act: (LogoutViewModel) => LogoutViewModel.logout(
+    act: (logoutviewmodel) => logoutviewmodel.logout(
       'Fake_token',
     ),
     expect: () => [

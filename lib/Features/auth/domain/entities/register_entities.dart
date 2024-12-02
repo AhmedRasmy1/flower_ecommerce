@@ -19,7 +19,7 @@ class UserEntity {
   final String? phone;
   final String? photo;
   final String? role;
-  final String? Id;
+  final String? id;
   final String? createdAt;
   UserEntity({
     this.firstName,
@@ -29,7 +29,7 @@ class UserEntity {
     this.phone,
     this.photo,
     this.role,
-    this.Id,
+    this.id,
     this.createdAt,
   });
 }
