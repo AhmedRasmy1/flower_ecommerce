@@ -6,17 +6,19 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart'; // Import test package
 import 'occasion_repo_imp_test.mocks.dart';
+
 @GenerateMocks([OccasionOnLineDataSource])
 void main() {
   test(
     'Verify that invoking getOccasions on OccasionRepoImpl correctly triggers the getOccasions method of OccasionOnLineDataSource',
-        () async {
+    () async {
       // Initialize the mock object properly
       final onlineDataSource = MockOccasionOnLineDataSource();
       // Create an instance of OccasionRepoImpl with the mock
       final occasionRepo = OccasionRepoImpl(onlineDataSource);
       // Result that simulates a successful response
-      var result = Success<OccasionResponse?>(OccasionResponse()); // Adjust based on your actual Success class.
+      var result = Success<OccasionResponse?>(
+          OccasionResponse()); // Adjust based on your actual Success class.
 
       // Stubbing the method call
       when(onlineDataSource.getOccasions()).thenAnswer((_) async => result);

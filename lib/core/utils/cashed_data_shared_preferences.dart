@@ -43,7 +43,12 @@ class CacheService {
 
 class CacheConstants {
   static const String selectGender = 'selectGender';
-  //!for Example ! for Example ! for Example ! for Example ! for Example
   static const String userToken = 'userToken';
+//static late final String userToken ;
+
+  static const String userFirstName = 'userFirstName';
+  static const String userLastName = 'userLastName';
+  static const String userEmail = 'userEmail';
+  static const String userPhone = 'userPhone';
   static const String isRememberMe = 'isRememberMe';
 }

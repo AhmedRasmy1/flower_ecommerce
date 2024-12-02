@@ -1,11 +1,12 @@
-import '../view_model/verify_password_view_model/verify_password_state.dart';
-import '../views/reset_password_view.dart';
-import '../../../../core/widgets/show_error_dialog.dart';
-import '../../../../core/widgets/show_loading_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../view_model/verify_password_view_model/verify_password_cubit.dart';
+
 import '../../../../core/utils/utils.dart';
+import '../../../../core/widgets/show_error_dialog.dart';
+import '../../../../core/widgets/show_loading_dialog.dart';
+import '../view_model/verify_password_view_model/verify_password_cubit.dart';
+import '../view_model/verify_password_view_model/verify_password_state.dart';
+import '../views/reset_password_view.dart';
 
 class BlocConsumerForOtpVerificationPage extends StatelessWidget {
   final ValueChanged<bool> onCodeInvalid; // Callback for invalid code

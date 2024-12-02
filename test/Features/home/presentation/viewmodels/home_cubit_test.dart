@@ -24,7 +24,8 @@ void main() {
           message: 'Fake message',
           bestSeller: [],
           occasions: [],
-          products: []));
+          products: [],
+          categories: []));
       when(homeUseCase.getHomeData()).thenAnswer((_) async => mockedResult);
       return homeCubit;
     },

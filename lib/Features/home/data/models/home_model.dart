@@ -1,3 +1,5 @@
+import 'home_categories.dart';
+
 import '../../domain/entities/home_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'best_seller.dart';
@@ -11,6 +13,7 @@ class HomeModel {
   List<Product>? products;
   List<BestSeller>? bestSeller;
   List<Occasion>? occasions;
+  List<HomeCategories>? categories;
 
   HomeModel({this.message, this.products, this.bestSeller, this.occasions});
 
@@ -23,6 +26,7 @@ class HomeModel {
       products: products,
       bestSeller: bestSeller,
       occasions: occasions,
+      categories: categories,
     );
   }
 }

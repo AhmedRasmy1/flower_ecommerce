@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+
 import 'core/di/di.dart';
 import 'core/resources/color_manager.dart';
 import 'core/resources/routes_manager.dart';
@@ -40,6 +42,7 @@ class FlowerApp extends StatelessWidget {
         systemNavigationBarIconBrightness: Brightness.dark,
       ),
       child: MaterialApp(
+        builder: EasyLoading.init(),
         theme: getApplicationTheme(),
         debugShowCheckedModeBanner: false,
         onGenerateRoute: RouteGenerator.getRoute,

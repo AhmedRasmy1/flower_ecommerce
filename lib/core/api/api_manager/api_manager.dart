@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import '../../../Features/auth/data/models/response/logout_response_dto.dart';
+import '../../../Features/edit_profile/data/models/edit_profile.dart';
 import 'package:flower_ecommerce/Features/cart&checkout/data/models/request/update_quantity_request.dart';
 import 'package:flower_ecommerce/Features/cart&checkout/data/models/response/delete_product_response/delete_product_response.dart';
 import 'package:flower_ecommerce/Features/cart&checkout/data/models/response/fetch_user_cart_response/fetch_user_cart_response.dart';
@@ -23,6 +25,9 @@ import '../../../Features/home/data/models/home_model.dart';
 import '../../../Features/occasions/data/models/occasion_response/occasion_response.dart';
 import '../../../Features/products/data/models/all_products.dart';
 import '../../../Features/products_details/data/models/response/product_details_dto.dart';
+import '../../../Features/profile_reset_password/data/model/change_password_request.dart';
+import '../../../Features/profile_reset_password/data/model/change_password_response.dart';
+import '../../../Features/profile/data/model/profile_response.dart';
 import '../api_constants.dart';
 
 part 'api_manager.g.dart';
@@ -58,6 +63,24 @@ abstract class ApiService {
   Future<HomeModel> getHomeData();
   @GET('https://flower.elevateegy.com/api/v1/occasions')
   Future<OccasionResponse?> getOccasions();
+  @GET(ApiConstants.logoutRoute)
+  Future<LogoutResponseDto> logout(@Header("Authorization") String token);
+
+  @PATCH(ApiConstants.changePasswordRoute)
+  Future<ChangePasswordResponse> changePassword(
+      @Body() ChangePasswordRequest changePasswordRequest,
+      @Header("Authorization") String token);
+  @GET("https://flower.elevateegy.com/api/v1/auth/profile-data")
+  Future<ProfileResponse?> getProfileData(
+      @Header("Authorization") String token);
+  @PUT(ApiConstants.editProfileRoute)
+  Future<EditProfile> editProfile(
+    @Header("Authorization") String token,
+    @Field("firstName") String? firstName,
+    @Field("lastName") String? lastName,
+    @Field("email") String? email,
+    @Field("phone") String? phone,
+  );
   @GET(ApiConstants.cartEndPoint)
   Future<FetchUserCartResponse?> fetchUserCart(
     @Header("Authorization") String token,

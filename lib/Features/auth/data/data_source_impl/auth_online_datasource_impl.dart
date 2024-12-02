@@ -1,3 +1,4 @@
+import '../../domain/entities/logout_entity.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/api/api_extentions.dart';
@@ -62,6 +63,14 @@ class AuthOnLineDataSourceImpl implements AuthOnLineDataSource {
     return executeApi(() async {
       var response = await _authRetrofit.resetPassword(resetPasswordRequest);
       return response.toResetPasswordEntity();
+    });
+  }
+
+  @override
+  Future<Result<LogoutEntity>> logout(String token) {
+    return executeApi(() async {
+      var response = await _authRetrofit.logout(token);
+      return response.toLogoutEntity();
     });
   }
 }

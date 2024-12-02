@@ -1,40 +1,15 @@
-// import 'package:flower_ecommerce/Features/auth/domain/entities/login_entities.dart';
-// import 'package:flower_ecommerce/Features/auth/domain/use_cases/login_usecases.dart';
-// import 'package:flower_ecommerce/Features/auth/presentation/view_model/login_view_model/login_state.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:injectable/injectable.dart';
-// import '../../../../../core/common/api_result.dart';
-//
-// @injectable
-// class LoginViewModel extends Cubit<LoginState> {
-//   LoginUseCases loginUseCases;
-//   LoginViewModel(this.loginUseCases) : super(InitialState());
-//
-//   void login() async {
-//     var result = await loginUseCases.login(
-//       'dhhhass@gmail.com',
-//       'As@1hbhj12233',
-//     );
-//
-//     switch (result) {
-//       case Success<LoginEntitie>():
-//         emit(SuccessLoginState(result.data));
-//         print('===========${result.data}');
-//       case Fail<LoginEntitie>():
-//         print(result.exception);
-//         emit(ErrorLoginState(result.exception));
-//     }
-//   }
-// }
-
 import 'package:bloc/bloc.dart';
+import '../../../domain/entities/login_entities.dart';
+import '../../../domain/use_cases/login_usecases.dart';
+import 'login_state.dart';
+import '../../../../../core/common/api_result.dart';
+import '../../../../../core/utils/cashed_data_shared_preferences.dart';
 import 'package:flower_ecommerce/Features/auth/domain/entities/login_entities.dart';
 import 'package:flower_ecommerce/Features/auth/domain/use_cases/login_usecases.dart';
 import 'package:flower_ecommerce/Features/auth/presentation/view_model/login_view_model/login_state.dart';
 import 'package:flower_ecommerce/core/common/api_result.dart';
 import 'package:flower_ecommerce/core/utils/cashed_data_shared_preferences.dart';
 import 'package:injectable/injectable.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 @injectable
 class LoginViewModel extends Cubit<LoginState> {
@@ -54,6 +29,12 @@ class LoginViewModel extends Cubit<LoginState> {
           await _saveToken(result.data.token!);
           await _saveRememberMe(rememberMe);
         }
+        await _saveToken(result.data.token!);
+        // print("===========================================");
+        // print(result.data.token);
+        // print("===========================================");
+        // print(StringCache.userToken);
+        await _saveToken(result.data.token!);
         emit(SuccessLoginState(result.data));
       case Fail<LoginEntitie>():
         emit(ErrorLoginState(result.exception));
@@ -69,8 +50,8 @@ class LoginViewModel extends Cubit<LoginState> {
         key: CacheConstants.isRememberMe, value: rememberMe);
   }
 
-  Future<void> logout() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.remove(CacheConstants.userToken);
-  }
+  // Future<void> logout() async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   await prefs.remove(CacheConstants.userToken);
+  // }
 }

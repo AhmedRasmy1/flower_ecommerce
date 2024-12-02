@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'color_manager.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
+import 'color_manager.dart';
 
 String getFileExtensionFromUrl(String url) {
   List<String> parts = url.split('.');

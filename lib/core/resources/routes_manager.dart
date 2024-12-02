@@ -1,3 +1,4 @@
+import '../../Features/edit_profile/presentation/view/edit_profile_view.dart';
 import 'package:flower_ecommerce/Features/cart&checkout/presentation/views/check_out_view.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +15,7 @@ import '../../Features/occasions/presentation/views/occasions_view.dart';
 import '../../Features/products_details/presentation/views/product_details_view.dart';
 import '../../Features/products_details/presentation/widgets/try_screen.dart';
 import '../../Features/profile/presentation/pages/profile_view.dart';
+import '../../Features/profile_reset_password/presentation/view/change_password_view.dart';
 import '../../splash_view.dart';
 
 class RoutesManager {
@@ -32,12 +34,16 @@ class RoutesManager {
   static const String tryScreenRoute = '/tryScreenRoute';
   static const String bestSellerRoute = '/bestSellerRoute';
   static const String occassionViewRoute = '/occassionViewRoute';
+  static const String logoutViewRoute = '/logout';
+
+  static const String changePasswordViewRoute = '/chanePasswordViewRoute';
+
+  static const String editProfileRoute = '/editProfileRoute';
 }
 
 class RouteGenerator {
   static Route<dynamic> getRoute(RouteSettings settings) {
     final args = settings.arguments;
-    //final args ="673e2d1b1159920171828146";
     switch (settings.name) {
       case RoutesManager.splashRoute:
         return MaterialPageRoute(builder: (_) => const SplashView());
@@ -83,6 +89,12 @@ class RouteGenerator {
       //   return MaterialPageRoute(builder: (_) =>  ProductDetailsView(productId: "673e2d1b1159920171828146",));
       case RoutesManager.bestSellerRoute:
         return MaterialPageRoute(builder: (_) => const BestSellerView());
+      case RoutesManager.changePasswordViewRoute:
+        return MaterialPageRoute(builder: (_) => const ChangePasswordScreen());
+
+      case RoutesManager.editProfileRoute:
+        return MaterialPageRoute(
+            builder: (_) => const EditProfileView(), settings: settings);
       default:
         return unDefinedRoute();
     }

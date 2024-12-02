@@ -25,6 +25,7 @@ import '../../Features/auth/domain/repositories/auth_repo.dart' as _i1049;
 import '../../Features/auth/domain/use_cases/forget_Password_usecase.dart'
     as _i251;
 import '../../Features/auth/domain/use_cases/login_usecases.dart' as _i526;
+import '../../Features/auth/domain/use_cases/logout_usecases.dart' as _i266;
 import '../../Features/auth/domain/use_cases/register_usecase.dart' as _i284;
 import '../../Features/auth/domain/use_cases/reset_password_usecase.dart'
     as _i785;
@@ -33,6 +34,8 @@ import '../../Features/auth/presentation/view_model/forget_password_view_model/f
     as _i191;
 import '../../Features/auth/presentation/view_model/login_view_model/login_cubit.dart'
     as _i920;
+import '../../Features/auth/presentation/view_model/logout_view_model/logout_cubit.dart'
+    as _i706;
 import '../../Features/auth/presentation/view_model/reset_password_view_model/reset_password_cubit.dart'
     as _i14;
 import '../../Features/auth/presentation/view_model/signup_view_model/signup_cubit.dart'
@@ -81,6 +84,18 @@ import '../../Features/categories/domain/use_cases/all_categories_usecase.dart'
     as _i953;
 import '../../Features/categories/presentation/manager/all_categories_cubit.dart'
     as _i1001;
+import '../../Features/edit_profile/data/data_source/edit_profile_data_source.dart'
+    as _i964;
+import '../../Features/edit_profile/data/data_source_impl/edit_profile_data_source_impl.dart'
+    as _i602;
+import '../../Features/edit_profile/data/repo_impl/edit_profile_repo_impl.dart'
+    as _i615;
+import '../../Features/edit_profile/domain/repo/edit_profile_repo.dart'
+    as _i471;
+import '../../Features/edit_profile/domain/use_cases/edit_profile_use_case.dart'
+    as _i728;
+import '../../Features/edit_profile/presentation/viewmodels/editprofile_cubit.dart'
+    as _i516;
 import '../../Features/home/data/data_sources/home_data_source.dart' as _i448;
 import '../../Features/home/data/data_sources_impl/home_data_source_impl.dart'
     as _i824;
@@ -127,6 +142,28 @@ import '../../Features/products_details/domain/use_cases/product_details_usecase
     as _i364;
 import '../../Features/products_details/presentation/view_model/product_details_cubit.dart'
     as _i942;
+import '../../Features/profile/data/data_source/profile_data_source.dart'
+    as _i537;
+import '../../Features/profile/data/data_source_impl/profile_data_source_impl.dart'
+    as _i917;
+import '../../Features/profile/data/repositories/profile_repo_imp.dart'
+    as _i663;
+import '../../Features/profile/domain/repository/profile_repo.dart' as _i1054;
+import '../../Features/profile/domain/use_cases/profile_usecase.dart' as _i937;
+import '../../Features/profile/presentation/view_model/profile_view_model.dart'
+    as _i149;
+import '../../Features/profile_reset_password/data/data_source/change_password_online_data_source.dart'
+    as _i390;
+import '../../Features/profile_reset_password/data/data_source/change_password_online_data_source_impl.dart'
+    as _i505;
+import '../../Features/profile_reset_password/data/repositories/change_password_repository_impl.dart'
+    as _i344;
+import '../../Features/profile_reset_password/domain/repositories/change_password_repository.dart'
+    as _i485;
+import '../../Features/profile_reset_password/domain/use_case/change_password_use_case.dart'
+    as _i290;
+import '../../Features/profile_reset_password/presentation/view_model/change_password_cubit.dart'
+    as _i537;
 import '../api/api_manager/api_manager.dart' as _i680;
 import '../api/dio_module.dart' as _i784;
 
@@ -150,24 +187,38 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i34.AllProductsDatasourceImpl(gh<_i680.ApiService>()));
     gh.factory<_i939.AllCategoriesDatasource>(
         () => _i421.AuthOnLineDataSourceImpl(gh<_i680.ApiService>()));
+    gh.factory<_i537.ProfileDataSource>(
+        () => _i917.ProfileDataSourceImpl(gh<_i680.ApiService>()));
+    gh.factory<_i964.EditProfileDataSource>(
+        () => _i602.EditProfileDataSourceImpl(gh<_i680.ApiService>()));
+    gh.factory<_i1054.ProfileRepo>(
+        () => _i663.ProfileRepoImpl(gh<_i537.ProfileDataSource>()));
     gh.factory<_i679.OccasionOnLineDataSource>(
         () => _i864.OccasionOnLineDataSourceImpl(gh<_i680.ApiService>()));
     gh.factory<_i448.HomeDataSource>(
         () => _i824.HomeDataSourceImpl(gh<_i680.ApiService>()));
     gh.factory<_i2.CategoriesRepo>(
         () => _i485.CategoriesRepoImpl(gh<_i939.AllCategoriesDatasource>()));
+    gh.factory<_i390.ChangePasswordOnlineDataSource>(
+        () => _i505.ChangePasswordOnlineDataSourceImpl(gh<_i680.ApiService>()));
     gh.factory<_i178.ProductDetailsOnlineDataSource>(
         () => _i696.ProductDetailsOnlineDataSourceImp(gh<_i680.ApiService>()));
     gh.factory<_i97.BestOnLineDataSource>(
         () => _i840.BestOnLineDataSourceImpl(gh<_i680.ApiService>()));
     gh.factory<_i953.CategoriesUseCase>(
         () => _i953.CategoriesUseCase(gh<_i2.CategoriesRepo>()));
+    gh.factory<_i937.ProfileUseCase>(
+        () => _i937.ProfileUseCase(gh<_i1054.ProfileRepo>()));
     gh.factory<_i318.AuthOnLineDataSource>(
         () => _i453.AuthOnLineDataSourceImpl(gh<_i680.ApiService>()));
     gh.factory<_i469.CartOnlineDataSource>(
         () => _i742.CartOnlineDataSourceImpl(gh<_i680.ApiService>()));
+    gh.factory<_i471.EditProfileRepo>(
+        () => _i615.EditProfileRepoImpl(gh<_i964.EditProfileDataSource>()));
     gh.factory<_i1001.AllCategoriesViewModel>(
         () => _i1001.AllCategoriesViewModel(gh<_i953.CategoriesUseCase>()));
+    gh.factory<_i1049.AuthRepo>(
+        () => _i118.AuthRepoImpl(gh<_i318.AuthOnLineDataSource>()));
     gh.factory<_i368.ProductDetailsRepo>(() => _i174.ProductDetailsRepoImpl(
         gh<_i178.ProductDetailsOnlineDataSource>()));
     gh.factory<_i540.ProductsRepo>(
@@ -182,10 +233,15 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i126.DeleteProductUseCase(gh<_i539.CartRepo>()));
     gh.factory<_i390.OccasionRepo>(
         () => _i971.OccasionRepoImpl(gh<_i679.OccasionOnLineDataSource>()));
+    gh.factory<_i149.ProfileViewModel>(
+        () => _i149.ProfileViewModel(gh<_i937.ProfileUseCase>()));
     gh.factory<_i779.DeleteProductViewModel>(
         () => _i779.DeleteProductViewModel(gh<_i126.DeleteProductUseCase>()));
     gh.factory<_i232.ProductsUseCase>(
         () => _i232.ProductsUseCase(gh<_i540.ProductsRepo>()));
+    gh.factory<_i485.ChangePasswordRepository>(() =>
+        _i344.ChangePasswordRepositoryImpl(
+            gh<_i390.ChangePasswordOnlineDataSource>()));
     gh.factory<_i1010.BestRepo>(
         () => _i762.BestRepoImpl(gh<_i97.BestOnLineDataSource>()));
     gh.factory<_i439.BestSellerUseCase>(
@@ -196,10 +252,6 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i288.HomeRepoImpl(gh<_i448.HomeDataSource>()));
     gh.factory<_i1012.BestSellerViewModel>(
         () => _i1012.BestSellerViewModel(gh<_i439.BestSellerUseCase>()));
-    gh.factory<_i1049.AuthRepo>(() => _i118.AuthRepoImpl(
-          gh<_i406.AuthOffLineDataSource>(),
-          gh<_i318.AuthOnLineDataSource>(),
-        ));
     gh.factory<_i263.FetchUserCartViewModel>(
         () => _i263.FetchUserCartViewModel(gh<_i78.FetchUserCartUseCase>()));
     gh.factory<_i71.OccasionDetailsUseCase>(
@@ -223,22 +275,51 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i284.RegisterUseCase(gh<_i1049.AuthRepo>()));
     gh.factory<_i526.LoginUseCases>(
         () => _i526.LoginUseCases(gh<_i1049.AuthRepo>()));
+    gh.factory<_i266.LogoutUseCases>(
+        () => _i266.LogoutUseCases(gh<_i1049.AuthRepo>()));
+    gh.factory<_i284.RegisterUseCase>(
+        () => _i284.RegisterUseCase(gh<_i1049.AuthRepo>()));
     gh.factory<_i785.ResetPasswordUseCase>(
         () => _i785.ResetPasswordUseCase(gh<_i1049.AuthRepo>()));
     gh.factory<_i753.VerifyUseCase>(
         () => _i753.VerifyUseCase(gh<_i1049.AuthRepo>()));
+    gh.factory<_i143.HomeRepo>(
+        () => _i288.HomeRepoImpl(gh<_i448.HomeDataSource>()));
+    gh.factory<_i1012.BestSellerViewModel>(
+        () => _i1012.BestSellerViewModel(gh<_i439.BestSellerUseCase>()));
+    gh.factory<_i728.EditProfileUseCase>(
+        () => _i728.EditProfileUseCase(gh<_i471.EditProfileRepo>()));
+
     gh.factory<_i920.LoginViewModel>(
         () => _i920.LoginViewModel(gh<_i526.LoginUseCases>()));
-    gh.factory<_i251.OccasionViewModel>(
-        () => _i251.OccasionViewModel(gh<_i536.OccasionUseCase>()));
     gh.factory<_i674.RegisterViewModel>(
         () => _i674.RegisterViewModel(gh<_i284.RegisterUseCase>()));
     gh.factory<_i191.ForgetPasswordViewModel>(
         () => _i191.ForgetPasswordViewModel(gh<_i251.ForgetPasswordUseCase>()));
+    gh.factory<_i290.ChangePasswordUseCase>(() =>
+        _i290.ChangePasswordUseCase(gh<_i485.ChangePasswordRepository>()));
+    gh.factory<_i71.OccasionDetailsUseCase>(
+        () => _i71.OccasionDetailsUseCase(gh<_i390.OccasionRepo>()));
+    gh.factory<_i536.OccasionUseCase>(
+        () => _i536.OccasionUseCase(gh<_i390.OccasionRepo>()));
+    gh.factory<_i185.HomeUseCase>(
+        () => _i185.HomeUseCase(gh<_i143.HomeRepo>()));
+    gh.factory<_i1022.HomeCubit>(
+        () => _i1022.HomeCubit(gh<_i185.HomeUseCase>()));
     gh.factory<_i396.VerifyPasswordViewModel>(
         () => _i396.VerifyPasswordViewModel(gh<_i753.VerifyUseCase>()));
+    gh.factory<_i537.ChangePasswordViewModel>(
+        () => _i537.ChangePasswordViewModel(gh<_i290.ChangePasswordUseCase>()));
+    gh.factory<_i491.AllProductsViewModel>(
+        () => _i491.AllProductsViewModel(gh<_i232.ProductsUseCase>()));
+    gh.factory<_i942.ProductDetailsViewModel>(() =>
+        _i942.ProductDetailsViewModel(gh<_i364.ProductDetailsUseCases>()));
     gh.factory<_i14.ResetPasswordViewModel>(
         () => _i14.ResetPasswordViewModel(gh<_i785.ResetPasswordUseCase>()));
+    gh.factory<_i516.EditprofileCubit>(
+        () => _i516.EditprofileCubit(gh<_i728.EditProfileUseCase>()));
+    gh.factory<_i251.OccasionViewModel>(
+        () => _i251.OccasionViewModel(gh<_i536.OccasionUseCase>()));
     return this;
   }
 }

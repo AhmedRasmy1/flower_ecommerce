@@ -10,6 +10,8 @@ import 'package:flower_ecommerce/Features/auth/domain/entities/forget_password_e
     as _i6;
 import 'package:flower_ecommerce/Features/auth/domain/entities/login_entities.dart'
     as _i9;
+import 'package:flower_ecommerce/Features/auth/domain/entities/logout_entity.dart'
+    as _i10;
 import 'package:flower_ecommerce/Features/auth/domain/entities/register_entities.dart'
     as _i5;
 import 'package:flower_ecommerce/Features/auth/domain/entities/reset_password_entity.dart'
@@ -179,4 +181,21 @@ class MockAuthRepo extends _i1.Mock implements _i3.AuthRepo {
           ),
         )),
       ) as _i4.Future<_i2.Result<_i9.LoginEntitie>>);
+
+  @override
+  _i4.Future<_i2.Result<_i10.LogoutEntity>> logout(String? token) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #logout,
+          [token],
+        ),
+        returnValue: _i4.Future<_i2.Result<_i10.LogoutEntity>>.value(
+            _FakeResult_0<_i10.LogoutEntity>(
+          this,
+          Invocation.method(
+            #logout,
+            [token],
+          ),
+        )),
+      ) as _i4.Future<_i2.Result<_i10.LogoutEntity>>);
 }
