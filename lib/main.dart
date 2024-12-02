@@ -2,7 +2,6 @@ import 'package:flower_ecommerce/core/resources/theme_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import 'core/di/di.dart';

@@ -1,4 +1,3 @@
-import '../../Features/edit_profile/presentation/view/edit_profile_view.dart';
 import 'package:flower_ecommerce/Features/cart&checkout/presentation/views/check_out_view.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +8,7 @@ import '../../Features/auth/presentation/views/register_view.dart';
 import '../../Features/auth/presentation/views/reset_password_view.dart';
 import '../../Features/best_seller/presentation/view/best_seller_view.dart';
 import '../../Features/cart&checkout/presentation/views/cart_view.dart';
+import '../../Features/edit_profile/presentation/view/edit_profile_view.dart';
 import '../../Features/home/presentation/pages/home_view.dart';
 import '../../Features/layout/presentation/pages/layout_view.dart';
 import '../../Features/occasions/presentation/views/occasions_view.dart';
