@@ -1,4 +1,3 @@
-
 import '../../domain/entities/best_seller_entity.dart';
 
 sealed class BestSellerState {}

@@ -6,4 +6,5 @@ class AppAssets {
   static const cartDeleteSvgIcon = "assets/images/cart_delete_icon.svg";
   static const cartMinusSvgIcon = "assets/images/cart_minus_icon.svg";
   static const cartPlusSvgIcon = "assets/images/cart_plus_icon.svg";
+  static const emptyCartImage = "assets/images/cart.png";
 }

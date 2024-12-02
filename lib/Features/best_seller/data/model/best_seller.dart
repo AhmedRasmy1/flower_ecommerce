@@ -88,19 +88,19 @@ class BestSeller {
   BestSellerEntity toBestSellerEntity() {
     return BestSellerEntity(
       id: id,
-      title : title,
-      slug :slug,
-      description :description,
+      title: title,
+      slug: slug,
+      description: description,
       imgCover: imgCover,
-      images : images,
-      price :price,
-      priceAfterDiscount : priceAfterDiscount,
-      quantity :quantity,
-      category :category,
-      occasion :occasion,
-      createdAt : createdAt,
-      updatedAt : updatedAt,
-      v : v,
+      images: images,
+      price: price,
+      priceAfterDiscount: priceAfterDiscount,
+      quantity: quantity,
+      category: category,
+      occasion: occasion,
+      createdAt: createdAt,
+      updatedAt: updatedAt,
+      v: v,
     );
   }
 }

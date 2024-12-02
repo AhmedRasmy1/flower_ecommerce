@@ -1,5 +1,3 @@
-
-
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/common/api_result.dart';
@@ -11,11 +9,9 @@ import '../repositories/occasion_repo.dart';
 class OccasionUseCase {
   OccasionRepo occasionRepo;
 
- OccasionUseCase(this.occasionRepo);
+  OccasionUseCase(this.occasionRepo);
 
-  Future<Result<OccasionResponse?>>getOccasions(
-
-      ) {
+  Future<Result<OccasionResponse?>> getOccasions() {
     return occasionRepo.getOccasions();
   }
 }

@@ -1,6 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SharedData {
+class CacheService {
   static late SharedPreferences sharedPreferences;
 
   static void cacheInitialization() async {
@@ -41,8 +41,9 @@ class SharedData {
   }
 }
 
-class StringCache {
+class CacheConstants {
   static const String selectGender = 'selectGender';
   //!for Example ! for Example ! for Example ! for Example ! for Example
   static const String userToken = 'userToken';
+  static const String isRememberMe = 'isRememberMe';
 }

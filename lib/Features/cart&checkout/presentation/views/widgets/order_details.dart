@@ -1,4 +1,4 @@
-import 'package:flower_ecommerce/Features/cart/presentation/views/widgets/order_info_row.dart';
+import 'package:flower_ecommerce/Features/cart&checkout/presentation/views/widgets/order_info_row.dart';
 import 'package:flower_ecommerce/core/resources/color_manager.dart';
 import 'package:flower_ecommerce/core/resources/values_manager.dart';
 import 'package:flutter/material.dart';
@@ -6,38 +6,39 @@ import 'package:flutter/material.dart';
 class OrderDetails extends StatelessWidget {
   const OrderDetails({
     super.key,
+    required this.total,
   });
-
+  final double total;
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       children: [
         OrderInfoRow(
           title: "Sub Total",
-          value: r'100$',
+          value: "${total.toStringAsFixed(2)}\$",
         ),
-        SizedBox(
+        const SizedBox(
           height: 8,
         ),
-        OrderInfoRow(
+        const OrderInfoRow(
           title: "Delivery Fee",
           value: r'10$',
         ),
-        SizedBox(
+        const SizedBox(
           height: 16,
         ),
-        Divider(
+        const Divider(
           height: 0,
           thickness: 0.5,
           color: ColorManager.offWhite,
         ),
-        SizedBox(
+        const SizedBox(
           height: 8,
         ),
         OrderInfoRow(
           title: "Total",
-          value: r'110$',
-          style: TextStyle(
+          value: "${(total + 10).toStringAsFixed(2)}\$",
+          style: const TextStyle(
             fontSize: AppSize.s18,
             fontWeight: FontWeight.w500,
           ),

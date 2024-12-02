@@ -5,8 +5,9 @@ import 'best_seller.dart';
 
 class BestSellerResponse {
   BestSellerResponse({
-      this.message, 
-      this.bestSeller,});
+    this.message,
+    this.bestSeller,
+  });
 
   BestSellerResponse.fromJson(dynamic json) {
     message = json['message'];
@@ -28,5 +29,4 @@ class BestSellerResponse {
     }
     return map;
   }
-
 }

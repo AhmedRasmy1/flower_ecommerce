@@ -4,7 +4,6 @@ import '../../../../../../../core/common/api_result.dart';
 import '../entities/best_seller_entity.dart';
 import '../repositories/best_repo.dart';
 
-
 @injectable
 class BestSellerUseCase {
   BestRepo bestRepo;

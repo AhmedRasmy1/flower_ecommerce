@@ -5,7 +5,8 @@ class Assets {
   static const String imagesAppLogo = 'assets/images/AppLogo.svg';
   static const String imagesArrow = 'assets/images/arrow.svg';
   static const String imagesBackground = 'assets/images/background.jpeg';
-  static const String imagesBestsellerimage = 'assets/images/bestsellerimage.jpg';
+  static const String imagesBestsellerimage =
+      'assets/images/bestsellerimage.jpg';
   static const String imagesBouqeut2 = 'assets/images/bouqeut2.png';
   static const String imagesBouquet = 'assets/images/bouquet.png';
   static const String imagesCart = 'assets/images/cart.svg';
@@ -14,7 +15,8 @@ class Assets {
   static const String imagesCircleLoader1 = 'assets/images/Circle_Loader_1.gif';
   static const String imagesEducation = 'assets/images/education.jpg';
   static const String imagesFilter = 'assets/images/filter.svg';
-  static const String imagesFloweeeeeeeeeeeer = 'assets/images/floweeeeeeeeeeeer.jpg';
+  static const String imagesFloweeeeeeeeeeeer =
+      'assets/images/floweeeeeeeeeeeer.jpg';
   static const String imagesFlower = 'assets/images/Flower.svg';
   static const String imagesFlowerrrrrr = 'assets/images/flowerrrrrr.svg';
   static const String imagesGift = 'assets/images/Gift.svg';
@@ -28,5 +30,4 @@ class Assets {
   static const String imagesSearch = 'assets/images/search.svg';
   static const String imagesSearchIcon = 'assets/images/searchIcon.svg';
   static const String imagesVector = 'assets/images/Vector.svg';
-
 }

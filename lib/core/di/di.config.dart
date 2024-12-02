@@ -22,8 +22,8 @@ import '../../Features/auth/data/data_sources/auth_online_datasource.dart'
     as _i318;
 import '../../Features/auth/data/repositories/auth_repo_impl.dart' as _i118;
 import '../../Features/auth/domain/repositories/auth_repo.dart' as _i1049;
-import '../../Features/auth/domain/use_cases/forget_password_usecase.dart'
-    as _i762;
+import '../../Features/auth/domain/use_cases/forget_Password_usecase.dart'
+    as _i251;
 import '../../Features/auth/domain/use_cases/login_usecases.dart' as _i526;
 import '../../Features/auth/domain/use_cases/register_usecase.dart' as _i284;
 import '../../Features/auth/domain/use_cases/reset_password_usecase.dart'
@@ -51,6 +51,24 @@ import '../../Features/best_seller/domain/use_case/best_seller_use_case.dart'
     as _i439;
 import '../../Features/best_seller/presentation/best_seller_view_model/best_seller_cubit.dart'
     as _i1012;
+import '../../Features/cart&checkout/data/contracts/cart_online_data_source.dart'
+    as _i469;
+import '../../Features/cart&checkout/data/data_sources/cart_online_data_source_impl.dart'
+    as _i742;
+import '../../Features/cart&checkout/data/repos/cart_repo_impl.dart' as _i127;
+import '../../Features/cart&checkout/domain/repos/cart_repo.dart' as _i539;
+import '../../Features/cart&checkout/domain/use_cases/delete_product_use_case.dart'
+    as _i126;
+import '../../Features/cart&checkout/domain/use_cases/fetch_user_cart_usecase.dart'
+    as _i78;
+import '../../Features/cart&checkout/domain/use_cases/update_product_quantity_use_case.dart'
+    as _i191;
+import '../../Features/cart&checkout/presentation/manager/delete_product/delete_product_view_model.dart'
+    as _i779;
+import '../../Features/cart&checkout/presentation/manager/fetch_user_cart/fetch_user_cart_view_model.dart'
+    as _i263;
+import '../../Features/cart&checkout/presentation/manager/update_product_quantity/update_product_quantity_view_model.dart'
+    as _i923;
 import '../../Features/categories/data/data_sources/all_categories_datasource.dart'
     as _i939;
 import '../../Features/categories/data/data_sources/all_categories_datasource_impl.dart'
@@ -146,14 +164,26 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i953.CategoriesUseCase(gh<_i2.CategoriesRepo>()));
     gh.factory<_i318.AuthOnLineDataSource>(
         () => _i453.AuthOnLineDataSourceImpl(gh<_i680.ApiService>()));
+    gh.factory<_i469.CartOnlineDataSource>(
+        () => _i742.CartOnlineDataSourceImpl(gh<_i680.ApiService>()));
     gh.factory<_i1001.AllCategoriesViewModel>(
         () => _i1001.AllCategoriesViewModel(gh<_i953.CategoriesUseCase>()));
     gh.factory<_i368.ProductDetailsRepo>(() => _i174.ProductDetailsRepoImpl(
         gh<_i178.ProductDetailsOnlineDataSource>()));
     gh.factory<_i540.ProductsRepo>(
         () => _i173.CategoriesRepoImpl(gh<_i711.AllProductsDatasource>()));
+    gh.factory<_i539.CartRepo>(
+        () => _i127.CartRepoImpl(gh<_i469.CartOnlineDataSource>()));
+    gh.factory<_i78.FetchUserCartUseCase>(
+        () => _i78.FetchUserCartUseCase(gh<_i539.CartRepo>()));
+    gh.factory<_i191.UpdateProductQuantityUseCase>(
+        () => _i191.UpdateProductQuantityUseCase(gh<_i539.CartRepo>()));
+    gh.factory<_i126.DeleteProductUseCase>(
+        () => _i126.DeleteProductUseCase(gh<_i539.CartRepo>()));
     gh.factory<_i390.OccasionRepo>(
         () => _i971.OccasionRepoImpl(gh<_i679.OccasionOnLineDataSource>()));
+    gh.factory<_i779.DeleteProductViewModel>(
+        () => _i779.DeleteProductViewModel(gh<_i126.DeleteProductUseCase>()));
     gh.factory<_i232.ProductsUseCase>(
         () => _i232.ProductsUseCase(gh<_i540.ProductsRepo>()));
     gh.factory<_i1010.BestRepo>(
@@ -170,6 +200,8 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i406.AuthOffLineDataSource>(),
           gh<_i318.AuthOnLineDataSource>(),
         ));
+    gh.factory<_i263.FetchUserCartViewModel>(
+        () => _i263.FetchUserCartViewModel(gh<_i78.FetchUserCartUseCase>()));
     gh.factory<_i71.OccasionDetailsUseCase>(
         () => _i71.OccasionDetailsUseCase(gh<_i390.OccasionRepo>()));
     gh.factory<_i536.OccasionUseCase>(
@@ -178,20 +210,23 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i185.HomeUseCase(gh<_i143.HomeRepo>()));
     gh.factory<_i1022.HomeCubit>(
         () => _i1022.HomeCubit(gh<_i185.HomeUseCase>()));
+    gh.factory<_i923.UpdateProductQuantityViewModel>(() =>
+        _i923.UpdateProductQuantityViewModel(
+            gh<_i191.UpdateProductQuantityUseCase>()));
     gh.factory<_i491.AllProductsViewModel>(
         () => _i491.AllProductsViewModel(gh<_i232.ProductsUseCase>()));
     gh.factory<_i942.ProductDetailsViewModel>(() =>
         _i942.ProductDetailsViewModel(gh<_i364.ProductDetailsUseCases>()));
-    gh.factory<_i526.LoginUseCases>(
-        () => _i526.LoginUseCases(gh<_i1049.AuthRepo>()));
+    gh.factory<_i251.ForgetPasswordUseCase>(
+        () => _i251.ForgetPasswordUseCase(gh<_i1049.AuthRepo>()));
     gh.factory<_i284.RegisterUseCase>(
         () => _i284.RegisterUseCase(gh<_i1049.AuthRepo>()));
+    gh.factory<_i526.LoginUseCases>(
+        () => _i526.LoginUseCases(gh<_i1049.AuthRepo>()));
     gh.factory<_i785.ResetPasswordUseCase>(
         () => _i785.ResetPasswordUseCase(gh<_i1049.AuthRepo>()));
     gh.factory<_i753.VerifyUseCase>(
         () => _i753.VerifyUseCase(gh<_i1049.AuthRepo>()));
-    gh.factory<_i762.ForgetPasswordUseCase>(
-        () => _i762.ForgetPasswordUseCase(gh<_i1049.AuthRepo>()));
     gh.factory<_i920.LoginViewModel>(
         () => _i920.LoginViewModel(gh<_i526.LoginUseCases>()));
     gh.factory<_i251.OccasionViewModel>(
@@ -199,7 +234,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i674.RegisterViewModel>(
         () => _i674.RegisterViewModel(gh<_i284.RegisterUseCase>()));
     gh.factory<_i191.ForgetPasswordViewModel>(
-        () => _i191.ForgetPasswordViewModel(gh<_i762.ForgetPasswordUseCase>()));
+        () => _i191.ForgetPasswordViewModel(gh<_i251.ForgetPasswordUseCase>()));
     gh.factory<_i396.VerifyPasswordViewModel>(
         () => _i396.VerifyPasswordViewModel(gh<_i753.VerifyUseCase>()));
     gh.factory<_i14.ResetPasswordViewModel>(

@@ -9,7 +9,6 @@ import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../core/resources/cashed_image.dart';
 import '../../../../core/resources/color_manager.dart';
 
-
 class CartProduct extends StatelessWidget {
   const CartProduct({
     super.key,

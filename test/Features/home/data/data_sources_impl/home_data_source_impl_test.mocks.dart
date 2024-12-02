@@ -28,6 +28,14 @@ import 'package:flower_ecommerce/Features/auth/data/models/response/register_res
     as _i2;
 import 'package:flower_ecommerce/Features/best_seller/data/model/best_seller_response.dart'
     as _i10;
+import 'package:flower_ecommerce/Features/cart/data/models/request/update_quantity_request.dart'
+    as _i22;
+import 'package:flower_ecommerce/Features/cart/data/models/response/delete_product_response/delete_product_response.dart'
+    as _i23;
+import 'package:flower_ecommerce/Features/cart/data/models/response/fetch_user_cart_response/fetch_user_cart_response.dart'
+    as _i20;
+import 'package:flower_ecommerce/Features/cart/data/models/response/update_product_quantity/update_product_quantity.dart'
+    as _i21;
 import 'package:flower_ecommerce/Features/categories/data/models/response/all_categories.dart'
     as _i8;
 import 'package:flower_ecommerce/Features/home/data/models/home_model.dart'
@@ -343,4 +351,49 @@ class MockApiService extends _i1.Mock implements _i12.ApiService {
         ),
         returnValue: _i13.Future<_i19.OccasionResponse?>.value(),
       ) as _i13.Future<_i19.OccasionResponse?>);
+
+  @override
+  _i13.Future<_i20.FetchUserCartResponse?> fetchUserCart(String? token) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #fetchUserCart,
+          [token],
+        ),
+        returnValue: _i13.Future<_i20.FetchUserCartResponse?>.value(),
+      ) as _i13.Future<_i20.FetchUserCartResponse?>);
+
+  @override
+  _i13.Future<_i21.UpdateProductQuantityResponse?> updateProductQuantity(
+    _i22.UpdateQuantityRequest? updateQuantityRequest,
+    String? productId,
+    String? token,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #updateProductQuantity,
+          [
+            updateQuantityRequest,
+            productId,
+            token,
+          ],
+        ),
+        returnValue: _i13.Future<_i21.UpdateProductQuantityResponse?>.value(),
+      ) as _i13.Future<_i21.UpdateProductQuantityResponse?>);
+
+  @override
+  _i13.Future<_i23.DeleteProductResponse?> deleteProductFromCart({
+    String? productId,
+    String? token,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #deleteProductFromCart,
+          [],
+          {
+            #productId: productId,
+            #token: token,
+          },
+        ),
+        returnValue: _i13.Future<_i23.DeleteProductResponse?>.value(),
+      ) as _i13.Future<_i23.DeleteProductResponse?>);
 }

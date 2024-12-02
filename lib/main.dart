@@ -11,7 +11,7 @@ import 'core/utils/my_bloc_observer.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  SharedData.cacheInitialization();
+  CacheService.cacheInitialization();
   Bloc.observer = MyBlocObserver();
   configureDependencies();
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,

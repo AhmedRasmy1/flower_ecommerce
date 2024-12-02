@@ -1,5 +1,3 @@
-
-
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
 
@@ -9,7 +7,7 @@ import '../../domain/use_case/best_seller_use_case.dart';
 import 'best_seller_state.dart';
 
 @injectable
-class BestSellerViewModel extends Cubit<BestSellerState>{
+class BestSellerViewModel extends Cubit<BestSellerState> {
   BestSellerUseCase bestSellerUseCase;
   BestSellerViewModel(this.bestSellerUseCase) : super(InitialState());
 

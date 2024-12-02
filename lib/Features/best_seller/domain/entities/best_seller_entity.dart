@@ -1,5 +1,5 @@
 class BestSellerEntity {
-  BestSellerEntity( {
+  BestSellerEntity({
     this.id,
     this.title,
     this.slug,
@@ -30,6 +30,4 @@ class BestSellerEntity {
   String? createdAt;
   String? updatedAt;
   num? v;
-
-
 }

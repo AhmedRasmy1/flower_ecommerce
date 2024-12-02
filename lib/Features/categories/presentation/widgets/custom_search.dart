@@ -11,7 +11,7 @@ class CustomSearch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return     Padding(
+    return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Row(
         children: [
@@ -30,8 +30,8 @@ class CustomSearch extends StatelessWidget {
               borderSideColor: ColorManager.lightGrey3,
               labelText: '',
               hintText: 'Search',
-              hintStyle: getBoldStyle(
-                  color: ColorManager.lightGrey3, fontSize: 14),
+              hintStyle:
+                  getBoldStyle(color: ColorManager.lightGrey3, fontSize: 14),
             ),
           ),
           const SizedBox(
@@ -42,9 +42,8 @@ class CustomSearch extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
-                borderRadius:
-                const BorderRadius.all(Radius.circular(6)),
-                border: Border.all(color: ColorManager.lightGrey3,width: 1.5),
+                borderRadius: const BorderRadius.all(Radius.circular(6)),
+                border: Border.all(color: ColorManager.lightGrey3, width: 1.5),
               ),
               child: SvgPicture.asset(
                 AssetsManager.menu,

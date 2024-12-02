@@ -1,0 +1,33 @@
+import 'package:flower_ecommerce/Features/cart&checkout/domain/entities/cart_item_entity.dart';
+import 'package:flower_ecommerce/Features/cart&checkout/domain/use_cases/fetch_user_cart_usecase.dart';
+import 'package:flower_ecommerce/core/common/api_result.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
+
+part 'fetch_user_cart_view_state.dart';
+
+@injectable
+class FetchUserCartViewModel extends Cubit<FetchUserCartState> {
+  final FetchUserCartUseCase _fetchUserCartUseCase;
+  FetchUserCartViewModel(this._fetchUserCartUseCase)
+      : super(FetchUserCartInitial());
+  static FetchUserCartViewModel of(BuildContext context) =>
+      BlocProvider.of(context);
+
+  Future<void> fetchUserCart() async {
+    emit(FetchUserCartLoading());
+    final result = await _fetchUserCartUseCase.invoke();
+    switch (result) {
+      case Success():
+        {
+          emit(FetchUserCartSuccess(result.data));
+        }
+
+      case Fail():
+        {
+          emit(FetchUserCartFailure(result.exception));
+        }
+    }
+  }
+}

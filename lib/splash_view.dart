@@ -1,12 +1,14 @@
+import 'package:flower_ecommerce/core/utils/cashed_data_shared_preferences.dart';
+import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../../../core/resources/app_constants.dart';
 import 'core/functions/extenstions.dart';
 import 'core/resources/assets_manager.dart';
-import 'core/resources/strings_manager.dart';
-import 'core/resources/values_manager.dart';
-import 'package:flutter/material.dart';
-import '../../../../core/resources/app_constants.dart';
 import 'core/resources/color_manager.dart';
 import 'core/resources/routes_manager.dart';
+import 'core/resources/strings_manager.dart';
+import 'core/resources/values_manager.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -83,9 +85,14 @@ class _SplashViewState extends State<SplashView> {
     Future.delayed(
       const Duration(seconds: AppConstants.splashDelay),
       () {
+        final rememberMe =
+            CacheService.getData(key: CacheConstants.isRememberMe);
+        final isRemeberMe = rememberMe != null && rememberMe == true;
         if (mounted) {
-          Navigator.pushNamedAndRemoveUntil(
-              context, RoutesManager.loginRoute, (route) => false);
+          Navigator.pushReplacementNamed(
+            context,
+            isRemeberMe ? RoutesManager.layoutRoute : RoutesManager.loginRoute,
+          );
         }
       },
     );
