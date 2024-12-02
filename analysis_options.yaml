@@ -8,7 +8,7 @@
 # The following line activates a set of recommended lints for Flutter apps,
 # packages, and plugins designed to encourage good coding practices.
 include: package:flutter_lints/flutter.yaml
-
+include: package:very_good_analysis/analysis_options.yaml
 linter:
   # The lint rules applied to this project can be customized in the
   # section below to disable rules from the `package:flutter_lints/flutter.yaml`
@@ -20,9 +20,7 @@ linter:
   # or a specific dart file by using the `// ignore: name_of_lint` and
   # `// ignore_for_file: name_of_lint` syntax on the line or in the file
   # producing the lint.
-  rules:
-    analyzer:
-      exclude:
-        - "**/*.mocks.dart"
+  analyzer:
+    exclude: [build/**, lib/**.freezed.dart, lib/**.g.dart , lib/**.injectable.dart, lib/**.retrofit.dart, lib/**.json.g.dart, lib/**.json.g.dart, lib/**.retrofit.g.dart, lib/**.retrofit, test/**.mocks.dart]
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options

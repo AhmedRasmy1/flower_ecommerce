@@ -14,5 +14,13 @@ jobs:
         with:
           sdk: 3.5.4
 
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+          flutter-version: 3.24.5
+
+      - name: Install dependencies
+        run: flutter pub get
+
       - name: Run Dart Lint
         run: dart analyze
