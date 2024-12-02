@@ -1,5 +1,4 @@
 import 'package:flower_ecommerce/core/resources/values_manager.dart';
-import 'package:flower_ecommerce/core/utils/app_assets.dart';
 import 'package:flutter/material.dart';
 
 class EmptyCart extends StatelessWidget {
@@ -18,7 +17,7 @@ class EmptyCart extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
-                  AppAssets.emptyCartImage,
+                  'assets/images/empty_cartt.png',
                   fit: BoxFit.cover,
                   height: MediaQuery.sizeOf(context).height * 0.4,
                   filterQuality: FilterQuality.high,
