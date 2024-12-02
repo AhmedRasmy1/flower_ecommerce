@@ -30,14 +30,14 @@ import 'package:flower_ecommerce/Features/auth/data/models/response/register_res
     as _i2;
 import 'package:flower_ecommerce/Features/best_seller/data/model/best_seller_response.dart'
     as _i10;
-import 'package:flower_ecommerce/Features/cart/data/models/request/update_quantity_request.dart'
-    as _i22;
-import 'package:flower_ecommerce/Features/cart/data/models/response/delete_product_response/delete_product_response.dart'
-    as _i23;
-import 'package:flower_ecommerce/Features/cart/data/models/response/fetch_user_cart_response/fetch_user_cart_response.dart'
-    as _i20;
-import 'package:flower_ecommerce/Features/cart/data/models/response/update_product_quantity/update_product_quantity.dart'
-    as _i21;
+import 'package:flower_ecommerce/Features/cart&checkout/data/models/request/update_quantity_request.dart'
+    as _i27;
+import 'package:flower_ecommerce/Features/cart&checkout/data/models/response/delete_product_response/delete_product_response.dart'
+    as _i28;
+import 'package:flower_ecommerce/Features/cart&checkout/data/models/response/fetch_user_cart_response/fetch_user_cart_response.dart'
+    as _i25;
+import 'package:flower_ecommerce/Features/cart&checkout/data/models/response/update_product_quantity/update_product_quantity.dart'
+    as _i26;
 import 'package:flower_ecommerce/Features/categories/data/models/response/all_categories.dart'
     as _i8;
 import 'package:flower_ecommerce/Features/edit_profile/data/models/edit_profile.dart'
@@ -480,22 +480,20 @@ class MockApiService extends _i1.Mock implements _i15.ApiService {
           ),
         )),
       ) as _i16.Future<_i14.EditProfile>);
-        returnValue: _i13.Future<_i19.OccasionResponse?>.value(),
-      ) as _i13.Future<_i19.OccasionResponse?>);
 
   @override
-  _i13.Future<_i20.FetchUserCartResponse?> fetchUserCart(String? token) =>
+  _i16.Future<_i25.FetchUserCartResponse?> fetchUserCart(String? token) =>
       (super.noSuchMethod(
         Invocation.method(
           #fetchUserCart,
           [token],
         ),
-        returnValue: _i13.Future<_i20.FetchUserCartResponse?>.value(),
-      ) as _i13.Future<_i20.FetchUserCartResponse?>);
+        returnValue: _i16.Future<_i25.FetchUserCartResponse?>.value(),
+      ) as _i16.Future<_i25.FetchUserCartResponse?>);
 
   @override
-  _i13.Future<_i21.UpdateProductQuantityResponse?> updateProductQuantity(
-    _i22.UpdateQuantityRequest? updateQuantityRequest,
+  _i16.Future<_i26.UpdateProductQuantityResponse?> updateProductQuantity(
+    _i27.UpdateQuantityRequest? updateQuantityRequest,
     String? productId,
     String? token,
   ) =>
@@ -508,23 +506,22 @@ class MockApiService extends _i1.Mock implements _i15.ApiService {
             token,
           ],
         ),
-        returnValue: _i13.Future<_i21.UpdateProductQuantityResponse?>.value(),
-      ) as _i13.Future<_i21.UpdateProductQuantityResponse?>);
+        returnValue: _i16.Future<_i26.UpdateProductQuantityResponse?>.value(),
+      ) as _i16.Future<_i26.UpdateProductQuantityResponse?>);
 
   @override
-  _i13.Future<_i23.DeleteProductResponse?> deleteProductFromCart({
+  _i16.Future<_i28.DeleteProductResponse?> deleteProductFromCart(
     String? productId,
     String? token,
-  }) =>
+  ) =>
       (super.noSuchMethod(
         Invocation.method(
           #deleteProductFromCart,
-          [],
-          {
-            #productId: productId,
-            #token: token,
-          },
+          [
+            productId,
+            token,
+          ],
         ),
-        returnValue: _i13.Future<_i23.DeleteProductResponse?>.value(),
-      ) as _i13.Future<_i23.DeleteProductResponse?>);
+        returnValue: _i16.Future<_i28.DeleteProductResponse?>.value(),
+      ) as _i16.Future<_i28.DeleteProductResponse?>);
 }

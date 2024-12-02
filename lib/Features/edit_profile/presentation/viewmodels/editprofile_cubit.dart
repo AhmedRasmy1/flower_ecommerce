@@ -1,12 +1,13 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import '../../domain/entities/edit_profile_entity.dart';
-import '../../domain/use_cases/edit_profile_use_case.dart';
-import '../../../../core/common/api_result.dart';
-import '../../../../core/utils/cashed_data_shared_preferences.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
+
+import '../../../../core/common/api_result.dart';
+import '../../../../core/utils/cashed_data_shared_preferences.dart';
+import '../../domain/entities/edit_profile_entity.dart';
+import '../../domain/use_cases/edit_profile_use_case.dart';
 
 part 'editprofile_state.dart';
 
@@ -23,7 +24,7 @@ class EditprofileCubit extends Cubit<EditprofileState> {
     String? phone,
   ) async {
     emit(EditprofileLoading());
-    var token = "Bearer ${SharedData.getData(key: StringCache.userToken)}";
+    var token = "Bearer ${CacheService.getData(key: CacheConstants.userToken)}";
     log('===========$token');
     if (token.isEmpty) {
       emit(

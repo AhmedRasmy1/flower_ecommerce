@@ -1,4 +1,5 @@
 import 'package:flower_ecommerce/Features/cart&checkout/data/models/request/update_quantity_request.dart';
+import 'package:flower_ecommerce/Features/cart&checkout/presentation/manager/delete_product/delete_product_view_model.dart';
 import 'package:flower_ecommerce/Features/cart&checkout/presentation/manager/fetch_user_cart/fetch_user_cart_view_model.dart';
 import 'package:flower_ecommerce/Features/cart&checkout/presentation/manager/update_product_quantity/update_product_quantity_view_model.dart';
 import 'package:flower_ecommerce/core/resources/values_manager.dart';
@@ -6,6 +7,7 @@ import 'package:flower_ecommerce/core/utils/app_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get_it/get_it.dart';
 
 class ControlItemQuantity extends StatelessWidget {
   const ControlItemQuantity({
@@ -21,18 +23,26 @@ class ControlItemQuantity extends StatelessWidget {
 
     return Row(
       children: [
-        InkWell(
-          onTap: () {
-            updateQuantity(
-              context: context,
-              productQuantity: --productQuantity,
+        BlocProvider<DeleteProductViewModel>.value(
+          value: GetIt.instance.get<DeleteProductViewModel>(),
+          child: Builder(builder: (context) {
+            return InkWell(
+              onTap: () {
+                final deleteProductViewModel =
+                    DeleteProductViewModel.of(context);
+                updateQuantity(
+                  context: context,
+                  productQuantity: --productQuantity,
+                  deleteProductViewModel: deleteProductViewModel,
+                );
+              },
+              child: SvgPicture.asset(
+                AppAssets.cartMinusSvgIcon,
+                width: 24,
+                height: 24,
+              ),
             );
-          },
-          child: SvgPicture.asset(
-            AppAssets.cartMinusSvgIcon,
-            width: 24,
-            height: 24,
-          ),
+          }),
         ),
         const SizedBox(
           width: 8,
@@ -68,10 +78,20 @@ class ControlItemQuantity extends StatelessWidget {
     );
   }
 
-  void updateQuantity(
-      {required int productQuantity, required BuildContext context}) async {
-    debugPrint(productQuantity.toString());
-    debugPrint(productId);
+  void updateQuantity({
+    required int productQuantity,
+    required BuildContext context,
+    DeleteProductViewModel? deleteProductViewModel,
+  }) async {
+    final fetchCartViewModel = FetchUserCartViewModel.of(context);
+
+    if (productQuantity == 0) {
+      deleteProductViewModel!.deleteProduct(productId).then(
+        (_) async {
+          await fetchCartViewModel.fetchUserCart();
+        },
+      );
+    }
     final updateProductReq = UpdateQuantityRequest(
       quantity: productQuantity,
     );
@@ -83,7 +103,7 @@ class ControlItemQuantity extends StatelessWidget {
         .then(
       (_) async {
         if (context.mounted) {
-          await FetchUserCartViewModel.of(context).fetchUserCart();
+          await fetchCartViewModel.fetchUserCart();
         }
       },
     );

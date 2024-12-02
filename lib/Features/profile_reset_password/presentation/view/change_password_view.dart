@@ -1,16 +1,17 @@
-import '../../../../core/resources/custom_loading.dart';
-import '../../../../core/resources/routes_manager.dart';
-import '../../../../core/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:motion_toast/motion_toast.dart';
+
 import '../../../../core/di/di.dart';
 import '../../../../core/functions/helper.dart';
 import '../../../../core/resources/color_manager.dart';
+import '../../../../core/resources/custom_loading.dart';
+import '../../../../core/resources/routes_manager.dart';
 import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../../../../core/utils/cashed_data_shared_preferences.dart';
 import '../../../../core/utils/utils.dart';
+import '../../../../core/widgets/custom_app_bar.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 import '../view_model/change_password_cubit.dart';
 import '../view_model/change_password_state.dart';
@@ -159,8 +160,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                             child: ElevatedButton(
                               onPressed: () {
                                 if (isButtonEnabled == true) {
-                                  String savedToken = SharedData.getData(
-                                      key: StringCache.userToken);
+                                  String savedToken = CacheService.getData(
+                                      key: CacheConstants.userToken);
                                   String token = "Bearer $savedToken";
                                   changePassword(token);
                                 }

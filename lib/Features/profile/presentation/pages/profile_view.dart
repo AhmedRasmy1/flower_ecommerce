@@ -1,18 +1,18 @@
-import '../view_model/profile_view_model.dart';
-import '../widgets/build_profile_content_insted.dart';
-import '../../../../core/di/di.dart';
-import '../../../../core/resources/color_manager.dart';
-import '../../../../core/resources/assets_manager.dart';
-import '../../../../core/resources/strings_manager.dart';
-import '../../../../core/resources/values_manager.dart';
-import '../../../../core/utils/cashed_data_shared_preferences.dart';
-import '../../../../core/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../../core/di/di.dart';
+import '../../../../core/resources/assets_manager.dart';
+import '../../../../core/resources/color_manager.dart';
+import '../../../../core/resources/strings_manager.dart';
+import '../../../../core/resources/values_manager.dart';
+import '../../../../core/utils/cashed_data_shared_preferences.dart';
+import '../../../../core/widgets/custom_app_bar.dart';
 import '../view_model/profile_state.dart';
+import '../view_model/profile_view_model.dart';
 import '../widgets/build_profile_content.dart';
+import '../widgets/build_profile_content_insted.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
@@ -28,7 +28,7 @@ class _ProfileViewState extends State<ProfileView> {
   @override
   void initState() {
     super.initState();
-    savedToken = SharedData.getData(key: StringCache.userToken) ?? '';
+    savedToken = CacheService.getData(key: CacheConstants.userToken) ?? '';
     viewModel = getIt<ProfileViewModel>();
     viewModel.getProfileData("Bearer $savedToken");
   }

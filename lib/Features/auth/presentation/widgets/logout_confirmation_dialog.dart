@@ -1,13 +1,14 @@
-import '../view_model/logout_view_model/logout_cubit.dart';
-import '../view_model/logout_view_model/logout_state.dart';
-import '../../../../core/resources/routes_manager.dart';
-import '../../../../core/resources/strings_manager.dart';
-import '../../../../core/utils/cashed_data_shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../core/di/di.dart';
 import '../../../../core/resources/color_manager.dart';
+import '../../../../core/resources/routes_manager.dart';
+import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/resources/values_manager.dart';
+import '../../../../core/utils/cashed_data_shared_preferences.dart';
+import '../view_model/logout_view_model/logout_cubit.dart';
+import '../view_model/logout_view_model/logout_state.dart';
 
 class LogoutConfirmationDialog extends StatefulWidget {
   const LogoutConfirmationDialog({super.key});
@@ -110,7 +111,7 @@ class _LogoutConfirmationDialogState extends State<LogoutConfirmationDialog> {
                       child: ElevatedButton(
                         onPressed: () {
                           viewModel.logout(
-                              "Bearer ${SharedData.getData(key: StringCache.userToken)}");
+                              "Bearer ${CacheService.getData(key: CacheConstants.userToken)}");
                         },
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.pink,
