@@ -16,10 +16,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: SDart/Flutter Package Analyzer
-        uses: axel-op/dart-package-analyzer@v3
+      - name: Setup Dart
+        uses: dart-lang/setup-dart@v1
         with:
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          sdk: stable
 
       - name: Install dependencies
         run: dart pub get
