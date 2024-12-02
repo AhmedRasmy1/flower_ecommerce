@@ -24,7 +24,6 @@ void main() {
       'when call login function it should call '
       'api service and get login entity', () async {
     final mockResponse = LoginResponseDto();
-    final mockResult = Success(LoginEntitie());
 
     var loginModelDto = LoginModelDto(email: 'email', password: 'password');
 
