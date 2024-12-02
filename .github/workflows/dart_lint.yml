@@ -1,28 +1,26 @@
 name: Dart Linting
 
-on:
-  push:
-    branches:
-      - development
-  pull_request:
-    branches:
-      - development
+on: [push, pull_request]
 
 jobs:
-  lint:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v2
 
-      - name: Setup Dart
+      - name: Install Dart
         uses: dart-lang/setup-dart@v1
         with:
           sdk: stable
 
+      - name: Install Flutter
+        run: |
+          git clone https://github.com/flutter/flutter.git -b stable --depth 1
+          echo "$GITHUB_WORKSPACE/flutter/bin" >> $GITHUB_PATH
+
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Run Dart analysis
+      - name: Run Dart Lint
         run: dart analyze
