@@ -50,3 +50,4 @@ class FlowerApp extends StatelessWidget {
     );
   }
 }
+// Compare this snippet from lib/Features/cart%26checkout/presentation/views/widgets/check_out_view_body.dart:
