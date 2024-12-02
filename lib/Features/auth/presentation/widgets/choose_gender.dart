@@ -1,10 +1,11 @@
-import '../view_model/signup_view_model/signup_cubit.dart';
+import 'package:flutter/material.dart';
+
 import '../../../../core/resources/color_manager.dart';
 import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/resources/style_manager.dart';
 import '../../../../core/resources/values_manager.dart';
-import 'package:flutter/material.dart';
 import '../../../../core/utils/cashed_data_shared_preferences.dart';
+import '../view_model/signup_view_model/signup_cubit.dart';
 
 class ChooseGender extends StatefulWidget {
   const ChooseGender({super.key, required this.viewModel});
@@ -45,8 +46,8 @@ class _ChooseGenderState extends State<ChooseGender> {
                   widget.viewModel.isSelectGender2 = true;
                   _selectedValue = value;
                   _isActive = !_isActive;
-                  SharedData.setData(
-                      key: StringCache.selectGender, value: value);
+                  CacheService.setData(
+                      key: CacheConstants.selectGender, value: value);
                 });
               },
             ),
@@ -71,8 +72,8 @@ class _ChooseGenderState extends State<ChooseGender> {
                   widget.viewModel.isSelectGender = false;
                   _selectedValue = value;
                   _isActive = !_isActive;
-                  SharedData.setData(
-                      key: StringCache.selectGender, value: value);
+                  CacheService.setData(
+                      key: CacheConstants.selectGender, value: value);
                 });
               },
             ),

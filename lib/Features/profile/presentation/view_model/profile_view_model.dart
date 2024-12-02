@@ -1,13 +1,12 @@
 import 'package:bloc/bloc.dart';
-import '../../domain/entities/profile_entity.dart';
-import 'profile_state.dart';
-import '../../../../core/utils/cashed_data_shared_preferences.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/common/api_result.dart';
-
+import '../../../../core/utils/cashed_data_shared_preferences.dart';
+import '../../domain/entities/profile_entity.dart';
 import '../../domain/use_cases/profile_usecase.dart';
+import 'profile_state.dart';
 
 @injectable
 class ProfileViewModel extends Cubit<ProfileState> {
@@ -20,17 +19,17 @@ class ProfileViewModel extends Cubit<ProfileState> {
     switch (result) {
       case Success<ProfileEntity?>():
         await Future.wait([
-          SharedData.setData(
-              key: StringCache.userFirstName,
+          CacheService.setData(
+              key: CacheConstants.userFirstName,
               value: result.data!.user!.firstName ?? ''),
-          SharedData.setData(
-              key: StringCache.userLastName,
+          CacheService.setData(
+              key: CacheConstants.userLastName,
               value: result.data!.user!.lastName ?? ''),
-          SharedData.setData(
-              key: StringCache.userEmail,
+          CacheService.setData(
+              key: CacheConstants.userEmail,
               value: result.data!.user!.email ?? ''),
-          SharedData.setData(
-              key: StringCache.userPhone,
+          CacheService.setData(
+              key: CacheConstants.userPhone,
               value: result.data!.user!.phone ?? ''),
         ]);
         emit(SuccessProfileState(result.data));

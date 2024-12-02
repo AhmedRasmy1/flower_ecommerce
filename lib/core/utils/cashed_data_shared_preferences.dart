@@ -1,6 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SharedData {
+class CacheService {
   static late SharedPreferences sharedPreferences;
 
   static void cacheInitialization() async {
@@ -15,7 +15,6 @@ class SharedData {
     }
     if (value is String) {
       await sharedPreferences.setString(key, value);
-      //StringCache.userToken = value;
       return true;
     }
     if (value is double) {
@@ -42,7 +41,7 @@ class SharedData {
   }
 }
 
-class StringCache {
+class CacheConstants {
   static const String selectGender = 'selectGender';
   static const String userToken = 'userToken';
 //static late final String userToken ;
@@ -51,4 +50,5 @@ class StringCache {
   static const String userLastName = 'userLastName';
   static const String userEmail = 'userEmail';
   static const String userPhone = 'userPhone';
+  static const String isRememberMe = 'isRememberMe';
 }

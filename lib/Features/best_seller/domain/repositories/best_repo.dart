@@ -1,4 +1,3 @@
-
 import '../../../../../../../core/common/api_result.dart';
 import '../entities/best_seller_entity.dart';
 

@@ -1,10 +1,11 @@
 import 'package:bloc/bloc.dart';
+import 'package:injectable/injectable.dart';
+
+import '../../../../../core/common/api_result.dart';
+import '../../../../../core/utils/cashed_data_shared_preferences.dart';
 import '../../../domain/entities/login_entities.dart';
 import '../../../domain/use_cases/login_usecases.dart';
 import 'login_state.dart';
-import '../../../../../core/common/api_result.dart';
-import '../../../../../core/utils/cashed_data_shared_preferences.dart';
-import 'package:injectable/injectable.dart';
 
 @injectable
 class LoginViewModel extends Cubit<LoginState> {
@@ -22,6 +23,7 @@ class LoginViewModel extends Cubit<LoginState> {
       case Success<LoginEntitie>():
         if (rememberMe && result.data.token != null) {
           await _saveToken(result.data.token!);
+          await _saveRememberMe(rememberMe);
         }
         await _saveToken(result.data.token!);
         // print("===========================================");
@@ -36,17 +38,16 @@ class LoginViewModel extends Cubit<LoginState> {
   }
 
   Future<void> _saveToken(String token) async {
-    SharedData.setData(key: StringCache.userToken, value: token);
-    // final prefs = await SharedPreferences.getInstance();
-    // await prefs.setString('user_token', token);
-    // StringCache.userToken = token;
-    SharedData.setData(key: StringCache.userToken, value: token);
-    //final prefs = await SharedPreferences.getInstance();
-    //await prefs.setString('user_token', token);
+    await CacheService.setData(key: CacheConstants.userToken, value: token);
+  }
+
+  Future<void> _saveRememberMe(bool rememberMe) async {
+    await CacheService.setData(
+        key: CacheConstants.isRememberMe, value: rememberMe);
   }
 
   // Future<void> logout() async {
   //   final prefs = await SharedPreferences.getInstance();
-  //   await prefs.remove('user_token');
+  //   await prefs.remove(CacheConstants.userToken);
   // }
 }

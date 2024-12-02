@@ -1,5 +1,14 @@
+import 'package:flower_ecommerce/Features/cart&checkout/presentation/views/check_out_view.dart';
+import 'package:flutter/material.dart';
+
+import '../../Features/auth/presentation/views/email_verification_view.dart';
+import '../../Features/auth/presentation/views/forget_password.dart';
+import '../../Features/auth/presentation/views/login_view.dart';
+import '../../Features/auth/presentation/views/register_view.dart';
+import '../../Features/auth/presentation/views/reset_password_view.dart';
+import '../../Features/best_seller/presentation/view/best_seller_view.dart';
+import '../../Features/cart&checkout/presentation/views/cart_view.dart';
 import '../../Features/edit_profile/presentation/view/edit_profile_view.dart';
-import '../../Features/cart/presentation/pages/cart_view.dart';
 import '../../Features/home/presentation/pages/home_view.dart';
 import '../../Features/layout/presentation/pages/layout_view.dart';
 import '../../Features/occasions/presentation/views/occasions_view.dart';
@@ -8,13 +17,6 @@ import '../../Features/products_details/presentation/widgets/try_screen.dart';
 import '../../Features/profile/presentation/pages/profile_view.dart';
 import '../../Features/profile_reset_password/presentation/view/change_password_view.dart';
 import '../../splash_view.dart';
-import 'package:flutter/material.dart';
-import '../../Features/auth/presentation/views/email_verification_view.dart';
-import '../../Features/auth/presentation/views/forget_password.dart';
-import '../../Features/auth/presentation/views/login_view.dart';
-import '../../Features/auth/presentation/views/register_view.dart';
-import '../../Features/auth/presentation/views/reset_password_view.dart';
-import '../../Features/best_seller/presentation/view/best_seller_view.dart';
 
 class RoutesManager {
   static const String splashRoute = '/';
@@ -27,7 +29,7 @@ class RoutesManager {
   static const String emailVerificationRoute = '/emailVerification';
   static const String resetPasswordRoute = '/resetPassword';
   static const String layoutRoute = '/layoutRoute';
-
+  static const String checkOutRoute = '/checkOutRoute';
   static const String productDetailsRoute = '/productDetailsRoute';
   static const String tryScreenRoute = '/tryScreenRoute';
   static const String bestSellerRoute = '/bestSellerRoute';
@@ -58,6 +60,10 @@ class RouteGenerator {
             builder: (_) => const RegisterView(), settings: settings);
       case RoutesManager.cartRoute:
         return MaterialPageRoute(builder: (_) => const CartView());
+      case RoutesManager.checkOutRoute:
+        return MaterialPageRoute(
+          builder: (_) => const CheckOutView(),
+        );
       case RoutesManager.occassionViewRoute:
         return MaterialPageRoute(builder: (_) => const OccasionsView());
       case RoutesManager.forgetPasswordRoute:

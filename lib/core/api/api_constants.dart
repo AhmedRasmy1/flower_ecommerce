@@ -14,4 +14,5 @@ class ApiConstants {
   static const String changePasswordRoute = "auth/change-password";
   static const String profileEndpoint = "auth/profile-data";
   static const String editProfileRoute = "auth/editProfile";
+  static const String cartEndPoint = "cart";
 }

@@ -1,5 +1,3 @@
-
-
 import 'package:injectable/injectable.dart';
 
 import '../../../../../../../core/api/api_extentions.dart';
@@ -14,20 +12,16 @@ class BestOnLineDataSourceImpl implements BestOnLineDataSource {
 
   BestOnLineDataSourceImpl(this._homeRetrofit);
 
-
   @override
   Future<Result<List<BestSellerEntity>?>> getBestSeller() {
-
     return executeApi(() async {
       var response = await _homeRetrofit.getBestSeller();
-      var listOfBestSeller=response.bestSeller;
-      List<BestSellerEntity>? listBestSellerEntity=listOfBestSeller
-      ?.map((itemBestSeller)=>itemBestSeller.toBestSellerEntity())
-      .toList();
+      var listOfBestSeller = response.bestSeller;
+      List<BestSellerEntity>? listBestSellerEntity = listOfBestSeller
+          ?.map((itemBestSeller) => itemBestSeller.toBestSellerEntity())
+          .toList();
 
       return listBestSellerEntity;
     });
   }
-
-
 }

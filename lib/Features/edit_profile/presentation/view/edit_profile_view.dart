@@ -1,27 +1,29 @@
 import 'dart:developer';
-import '../viewmodels/editprofile_cubit.dart';
-import '../../../profile/domain/entities/profile_entity.dart';
-import '../../../profile/presentation/view_model/profile_view_model.dart';
-import '../../../../core/common/custom_exception.dart';
-import '../../../../core/di/di.dart';
-import '../../../../core/functions/helper.dart';
-import '../../../../core/resources/custom_loading.dart';
-import '../../../../core/resources/routes_manager.dart';
-import '../../../../core/utils/cashed_data_shared_preferences.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:motion_toast/motion_toast.dart';
-import '../widgets/custom_circle_avatar.dart';
+
+import '../../../../core/common/custom_exception.dart';
+import '../../../../core/di/di.dart';
 import '../../../../core/functions/extenstions.dart';
+import '../../../../core/functions/helper.dart';
 import '../../../../core/resources/app_constants.dart';
 import '../../../../core/resources/color_manager.dart';
+import '../../../../core/resources/custom_loading.dart';
 import '../../../../core/resources/font_manager.dart';
-import '../../../../core/widgets/custom_app_bar.dart';
+import '../../../../core/resources/routes_manager.dart';
 import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/resources/values_manager.dart';
+import '../../../../core/utils/cashed_data_shared_preferences.dart';
+import '../../../../core/widgets/custom_app_bar.dart';
 import '../../../../core/widgets/custom_elevated_button.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
+import '../../../profile/domain/entities/profile_entity.dart';
+import '../../../profile/presentation/view_model/profile_view_model.dart';
+import '../viewmodels/editprofile_cubit.dart';
+import '../widgets/custom_circle_avatar.dart';
 
 class EditProfileView extends StatefulWidget {
   const EditProfileView({super.key});
@@ -33,16 +35,16 @@ class EditProfileView extends StatefulWidget {
 class _ProfileViewState extends State<EditProfileView> {
   late ProfileEntity profileInfo;
   final TextEditingController _firstNameController = TextEditingController(
-    text: SharedData.getData(key: StringCache.userFirstName),
+    text: CacheService.getData(key: CacheConstants.userFirstName),
   );
   final TextEditingController _lastNameController = TextEditingController(
-    text: SharedData.getData(key: StringCache.userLastName),
+    text: CacheService.getData(key: CacheConstants.userLastName),
   );
   final TextEditingController _emailController = TextEditingController(
-    text: SharedData.getData(key: StringCache.userEmail),
+    text: CacheService.getData(key: CacheConstants.userEmail),
   );
   final TextEditingController _phoneController = TextEditingController(
-    text: SharedData.getData(key: StringCache.userPhone),
+    text: CacheService.getData(key: CacheConstants.userPhone),
   );
   final TextEditingController _passwordController = TextEditingController();
   late TextEditingController _userGenderController;
@@ -304,8 +306,10 @@ class _ProfileViewState extends State<EditProfileView> {
                                     _phoneController.text,
                                   );
                                   profileViewModel.getProfileData(
-                                      SharedData.getData(
-                                          key: StringCache.userToken));
+                                    CacheService.getData(
+                                      key: CacheConstants.userToken,
+                                    ),
+                                  );
                                 },
                                 updateButtonColor: (Color color) {
                                   setState(() {

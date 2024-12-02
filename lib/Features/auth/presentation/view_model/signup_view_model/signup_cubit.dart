@@ -26,7 +26,8 @@ class RegisterViewModel extends Cubit<RegisterState> {
 
   void _register(RegisterAction registerAction) async {
     emit(LoadingRegisterState());
-    String gender = SharedData.getData(key: StringCache.selectGender) ?? '';
+    String gender =
+        CacheService.getData(key: CacheConstants.selectGender) ?? '';
     var result = await _registerUseCase.register(
         registerAction.firstName,
         registerAction.lastName,

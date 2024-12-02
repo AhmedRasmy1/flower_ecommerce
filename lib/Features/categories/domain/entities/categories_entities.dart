@@ -2,7 +2,7 @@ class AllCategoriesEntities {
   final String? message;
   final List<CategoriesEntities>? categories;
 
-  AllCategoriesEntities({required this.message,required this.categories});
+  AllCategoriesEntities({required this.message, required this.categories});
 }
 
 class CategoriesEntities {

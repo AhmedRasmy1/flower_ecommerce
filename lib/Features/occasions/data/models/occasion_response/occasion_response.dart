@@ -6,12 +6,11 @@ part 'occasion_response.g.dart';
 
 @JsonSerializable()
 class OccasionResponse {
-
-    OccasionResponse({
-         this.metadata,
-         this.occasions,
-        this.message,
-    });
+  OccasionResponse({
+    this.metadata,
+    this.occasions,
+    this.message,
+  });
 
 //   OccasionResponse({
 //     required this.metadata,
@@ -19,19 +18,16 @@ class OccasionResponse {
 //     required this.message,
 //   });
 
-
   factory OccasionResponse.fromJson(Map<String, dynamic> json) =>
       _$OccasionResponseFromJson(json);
 
-
-    Metadata? metadata;
-    List<Occasion>? occasions;
-    String? message;
+  Metadata? metadata;
+  List<Occasion>? occasions;
+  String? message;
 
 //   Metadata metadata;
 //   List<Occasion> occasions;
 //   String message;
-
 
   Map<String, dynamic> toJson() => _$OccasionResponseToJson(this);
 }
