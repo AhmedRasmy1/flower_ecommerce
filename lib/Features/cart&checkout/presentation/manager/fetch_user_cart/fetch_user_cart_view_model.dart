@@ -14,13 +14,16 @@ class FetchUserCartViewModel extends Cubit<FetchUserCartState> {
       : super(FetchUserCartInitial());
   static FetchUserCartViewModel of(BuildContext context) =>
       BlocProvider.of(context);
-
+  List<CartItemEntity>? _items;
   Future<void> fetchUserCart() async {
-    emit(FetchUserCartLoading());
+    emit(
+      FetchUserCartLoading(isFirst: _items == null),
+    );
     final result = await _fetchUserCartUseCase.invoke();
     switch (result) {
       case Success():
         {
+          _items = result.data;
           emit(FetchUserCartSuccess(result.data));
         }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+
 import '../../../../core/resources/color_manager.dart';
 import '../../../products/presentation/widgets/cart_product.dart';
 
@@ -71,6 +72,7 @@ class SkeletonBar extends StatelessWidget {
                   itemCount: 10,
                   itemBuilder: (context, index) {
                     return const CartProduct(
+                      productId: null,
                       imgCover:
                           'https://flower.elevateegy.com/uploads/39c641a6-4ec4-421a-8f55-5d8f5eeba5c3-flowers.png',
                       title: 'hhhhh',

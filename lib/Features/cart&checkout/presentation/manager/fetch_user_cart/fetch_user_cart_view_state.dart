@@ -5,7 +5,11 @@ sealed class FetchUserCartState {}
 
 final class FetchUserCartInitial extends FetchUserCartState {}
 
-final class FetchUserCartLoading extends FetchUserCartState {}
+final class FetchUserCartLoading extends FetchUserCartState {
+  final bool isFirst;
+
+  FetchUserCartLoading({required this.isFirst});
+}
 
 final class FetchUserCartSuccess extends FetchUserCartState {
   final List<CartItemEntity>? cartItems;

@@ -1,9 +1,9 @@
-import '../../../categories/presentation/widgets/skeleton_bar.dart';
-import '../../../../core/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/di/di.dart';
+import '../../../../core/widgets/custom_app_bar.dart';
+import '../../../categories/presentation/widgets/skeleton_bar.dart';
 import '../../../products/presentation/pages/products.dart';
 import '../viewmodel/occasion_view_model/occasion_cubit.dart';
 import '../viewmodel/occasion_view_model/occasion_state.dart';
@@ -61,13 +61,17 @@ class _OccasionsViewState extends State<OccasionsView> {
                       var occasions = state.occasionResponse?.occasions;
                       return Column(
                         children: [
-                          CustomAppBar(
-                            title: 'Occasions',
-                            subtitle: 'Bloom with exquisite best sellers',
-                            image: null,
-                            onTap: () {
-                              Navigator.pop(context);
-                            },
+                          Padding(
+                            padding:
+                                const EdgeInsetsDirectional.only(start: 16),
+                            child: CustomAppBar(
+                              title: 'Occasions',
+                              subtitle: 'Bloom with exquisite best sellers',
+                              image: null,
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
+                            ),
                           ),
                           // Top section: List of occasions with underline
                           SizedBox(
