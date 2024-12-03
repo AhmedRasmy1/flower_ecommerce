@@ -3,6 +3,8 @@
         android:label="flower_ecommerce"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyD9muKr3jbebuye6Frinp1dY-BZZ-Qq6b4"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

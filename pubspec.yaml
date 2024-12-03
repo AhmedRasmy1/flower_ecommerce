@@ -45,6 +45,7 @@ dependencies:
   flutter_svg: ^2.0.14
   get_it: ^8.0.2
   google_fonts: ^6.2.1
+  google_maps_flutter: ^2.10.0
   injectable: ^2.5.0
   json_annotation: ^4.9.0
   logger: ^2.4.0
