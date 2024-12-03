@@ -11,7 +11,6 @@ import 'package:mockito/mockito.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'login_cubit_test.mocks.dart';
 
-
 @GenerateMocks([LoginUseCases])
 void main() {
   late LoginViewModel loginViewModel;
@@ -19,9 +18,9 @@ void main() {
 
   setUp(() async {
     SharedPreferences.setMockInitialValues(
-        {StringCache.userToken: 'fakeToken'});
+        {CacheConstants.userToken: 'fakeToken'});
     final sharedPreferences = await SharedPreferences.getInstance();
-    SharedData.sharedPreferences = sharedPreferences;
+    CacheService.sharedPreferences = sharedPreferences;
     mockLoginUseCases = MockLoginUseCases();
     loginViewModel = LoginViewModel(mockLoginUseCases);
   });

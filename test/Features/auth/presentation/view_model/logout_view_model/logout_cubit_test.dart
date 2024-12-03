@@ -19,9 +19,9 @@ void main() {
 
   setUp(() async {
     SharedPreferences.setMockInitialValues(
-        {StringCache.userToken: 'fakeToken'});
+        {CacheConstants.userToken: 'fakeToken'});
     final sharedPreferences = await SharedPreferences.getInstance();
-    SharedData.sharedPreferences = sharedPreferences;
+    CacheService.sharedPreferences = sharedPreferences;
     mockLogoutUseCases = MockLogoutUseCases();
     logoutViewModel = LogoutViewModel(mockLogoutUseCases);
   });
@@ -64,7 +64,7 @@ void main() {
 
       return logoutViewModel;
     },
-    act: (LogoutViewModel) => LogoutViewModel.logout(
+    act: (logoutviewmodel) => logoutviewmodel.logout(
       'Fake_token',
     ),
     expect: () => [

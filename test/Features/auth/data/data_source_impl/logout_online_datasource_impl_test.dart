@@ -21,7 +21,6 @@ void main() {
       'when call logout function it should call '
       'api service to send token and get success massage', () async {
     var mockedResult = LogoutResponseDto();
-    var mockedEntity = Success(LogoutEntity());
 
     String token = 'token';
 

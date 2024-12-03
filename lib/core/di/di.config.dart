@@ -9,6 +9,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:dio/dio.dart' as _i361;
+import 'package:flower_ecommerce/Features/auth/domain/use_cases/forget_Password_usecase.dart';
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
@@ -24,6 +25,8 @@ import '../../Features/auth/data/repositories/auth_repo_impl.dart' as _i118;
 import '../../Features/auth/domain/repositories/auth_repo.dart' as _i1049;
 import '../../Features/auth/domain/use_cases/forget_password_use_case.dart'
     as _i95;
+import '../../Features/auth/domain/use_cases/forget_password_usecase.dart'
+    as _i762;
 import '../../Features/auth/domain/use_cases/login_usecases.dart' as _i526;
 import '../../Features/auth/domain/use_cases/logout_usecases.dart' as _i266;
 import '../../Features/auth/domain/use_cases/register_usecase.dart' as _i284;
@@ -189,6 +192,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     final dioModule = _$DioModule();
     gh.lazySingleton<_i361.Dio>(() => dioModule.providerDio());
+    gh.factory<_i191.ForgetPasswordViewModel>(() =>
+        _i191.ForgetPasswordViewModel(
+            gh<_i762.ForgetPasswordUseCase>() as ForgetPasswordUseCase));
     gh.factory<_i406.AuthOffLineDataSource>(
         () => _i1004.AuthOffLineDataSourceImpl());
     gh.factory<_i680.ApiService>(() => _i680.ApiService(gh<_i361.Dio>()));
@@ -253,12 +259,16 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i364.ProductDetailsUseCases(gh<_i368.ProductDetailsRepo>()));
     gh.factory<_i284.RegisterUseCase>(
         () => _i284.RegisterUseCase(gh<_i1049.AuthRepo>()));
+    gh.factory<_i762.ForgetPasswordUseCase>(
+        () => _i762.ForgetPasswordUseCase(gh<_i1049.AuthRepo>()));
     gh.factory<_i526.LoginUseCases>(
         () => _i526.LoginUseCases(gh<_i1049.AuthRepo>()));
-    gh.factory<_i785.ResetPasswordUseCase>(
-        () => _i785.ResetPasswordUseCase(gh<_i1049.AuthRepo>()));
     gh.factory<_i266.LogoutUseCases>(
         () => _i266.LogoutUseCases(gh<_i1049.AuthRepo>()));
+    gh.factory<_i284.RegisterUseCase>(
+        () => _i284.RegisterUseCase(gh<_i1049.AuthRepo>()));
+    gh.factory<_i785.ResetPasswordUseCase>(
+        () => _i785.ResetPasswordUseCase(gh<_i1049.AuthRepo>()));
     gh.factory<_i753.VerifyUseCase>(
         () => _i753.VerifyUseCase(gh<_i1049.AuthRepo>()));
     gh.factory<_i95.ForgetPasswordUseCase>(
@@ -269,12 +279,12 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i1012.BestSellerViewModel(gh<_i439.BestSellerUseCase>()));
     gh.factory<_i728.EditProfileUseCase>(
         () => _i728.EditProfileUseCase(gh<_i471.EditProfileRepo>()));
-    gh.factory<_i566.UpdateProductQuantityUseCase>(
-        () => _i566.UpdateProductQuantityUseCase(gh<_i983.CartRepo>()));
     gh.factory<_i1065.DeleteProductUseCase>(
         () => _i1065.DeleteProductUseCase(gh<_i983.CartRepo>()));
     gh.factory<_i403.FetchUserCartUseCase>(
         () => _i403.FetchUserCartUseCase(gh<_i983.CartRepo>()));
+    gh.factory<_i566.UpdateProductQuantityUseCase>(
+        () => _i566.UpdateProductQuantityUseCase(gh<_i983.CartRepo>()));
     gh.factory<_i706.LogoutViewModel>(
         () => _i706.LogoutViewModel(gh<_i266.LogoutUseCases>()));
     gh.factory<_i306.AddToCartRepo>(
