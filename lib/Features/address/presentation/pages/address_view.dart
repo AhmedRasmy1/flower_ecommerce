@@ -2,6 +2,7 @@ import 'package:flower_ecommerce/core/resources/color_manager.dart';
 import 'package:flower_ecommerce/core/widgets/custom_app_bar.dart';
 import 'package:flower_ecommerce/core/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class AddressView extends StatelessWidget {
   const AddressView({super.key});
@@ -65,8 +66,11 @@ class _MyLocationState extends State<MyLocation> {
     return AspectRatio(
       aspectRatio: 16 / 9,
       child: Container(
-        decoration: BoxDecoration(
-         ),
+        decoration: BoxDecoration(),
+        child: GoogleMap(
+
+            initialCameraPosition: CameraPosition(
+                target: LatLng(30.045190011379873, 31.236255172107867))),
       ),
     );
   }
