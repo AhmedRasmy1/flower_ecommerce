@@ -8,7 +8,7 @@ import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../../../../core/utils/utils.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
-import '../../../../core/widgets/show_error_dialog.dart';
+import '../../../../core/widgets/show_error_dialogue.dart';
 import '../../../../core/widgets/show_loading_dialog.dart';
 import '../view_model/forget_password_view_model/forget_password_cubit.dart';
 import '../view_model/forget_password_view_model/forget_password_state.dart';

@@ -8,13 +8,14 @@ import 'package:flower_ecommerce/Features/cart&checkout/presentation/views/widge
 import 'package:flower_ecommerce/core/resources/color_manager.dart';
 import 'package:flower_ecommerce/core/resources/values_manager.dart';
 import 'package:flower_ecommerce/core/utils/app_assets.dart';
+import 'package:flower_ecommerce/core/widgets/warning_dialogue.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
 
-class CartItem extends StatelessWidget {
-  const CartItem({super.key, required this.cartItemEntity});
+class ProductCartItem extends StatelessWidget {
+  const ProductCartItem({super.key, required this.cartItemEntity});
   final CartItemEntity cartItemEntity;
   @override
   Widget build(BuildContext context) {
@@ -78,12 +79,19 @@ class CartItem extends StatelessWidget {
                           FetchUserCartViewModel.of(context);
                       return InkWell(
                         onTap: () async {
-                          deleteProductViewModel
-                              .deleteProduct(cartItemEntity.id!)
-                              .then(
-                            (_) async {
-                              await fetchCartViewModel.fetchUserCart();
+                          showWarningDialogue(
+                            message:
+                                "You are about to delete the Item Permanently!!",
+                            onPressed: () {
+                              deleteProductViewModel
+                                  .deleteProduct(cartItemEntity.id!)
+                                  .then(
+                                (_) async {
+                                  await fetchCartViewModel.fetchUserCart();
+                                },
+                              );
                             },
+                            context: context,
                           );
                         },
                         child: SvgPicture.asset(
