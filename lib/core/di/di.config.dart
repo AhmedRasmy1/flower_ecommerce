@@ -9,7 +9,6 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:dio/dio.dart' as _i361;
-import 'package:flower_ecommerce/Features/auth/domain/use_cases/forget_Password_usecase.dart';
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
@@ -25,8 +24,6 @@ import '../../Features/auth/data/repositories/auth_repo_impl.dart' as _i118;
 import '../../Features/auth/domain/repositories/auth_repo.dart' as _i1049;
 import '../../Features/auth/domain/use_cases/forget_password_use_case.dart'
     as _i95;
-import '../../Features/auth/domain/use_cases/forget_password_usecase.dart'
-    as _i762;
 import '../../Features/auth/domain/use_cases/login_usecases.dart' as _i526;
 import '../../Features/auth/domain/use_cases/logout_usecases.dart' as _i266;
 import '../../Features/auth/domain/use_cases/register_usecase.dart' as _i284;
@@ -192,9 +189,6 @@ extension GetItInjectableX on _i174.GetIt {
     );
     final dioModule = _$DioModule();
     gh.lazySingleton<_i361.Dio>(() => dioModule.providerDio());
-    gh.factory<_i191.ForgetPasswordViewModel>(() =>
-        _i191.ForgetPasswordViewModel(
-            gh<_i762.ForgetPasswordUseCase>() as ForgetPasswordUseCase));
     gh.factory<_i406.AuthOffLineDataSource>(
         () => _i1004.AuthOffLineDataSourceImpl());
     gh.factory<_i680.ApiService>(() => _i680.ApiService(gh<_i361.Dio>()));
@@ -232,8 +226,12 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i615.EditProfileRepoImpl(gh<_i964.EditProfileDataSource>()));
     gh.factory<_i873.AddToCartOnlineDataSource>(
         () => _i675.AddToCartOnlineDataSourceImpl(gh<_i680.ApiService>()));
+    gh.factory<_i306.AddToCartRepo>(
+        () => _i8.AddToCartRepoImpl(gh<_i873.AddToCartOnlineDataSource>()));
     gh.factory<_i983.CartRepo>(
         () => _i459.CartRepoImpl(gh<_i278.CartOnlineDataSource>()));
+    gh.factory<_i611.AddToCartUseCase>(
+        () => _i611.AddToCartUseCase(gh<_i306.AddToCartRepo>()));
     gh.factory<_i1001.AllCategoriesViewModel>(
         () => _i1001.AllCategoriesViewModel(gh<_i953.CategoriesUseCase>()));
     gh.factory<_i1049.AuthRepo>(
@@ -251,6 +249,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i485.ChangePasswordRepository>(() =>
         _i344.ChangePasswordRepositoryImpl(
             gh<_i390.ChangePasswordOnlineDataSource>()));
+    gh.factory<_i566.AddToCartViewModel>(
+        () => _i566.AddToCartViewModel(gh<_i611.AddToCartUseCase>()));
     gh.factory<_i1010.BestRepo>(
         () => _i762.BestRepoImpl(gh<_i97.BestOnLineDataSource>()));
     gh.factory<_i439.BestSellerUseCase>(
@@ -259,36 +259,30 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i364.ProductDetailsUseCases(gh<_i368.ProductDetailsRepo>()));
     gh.factory<_i284.RegisterUseCase>(
         () => _i284.RegisterUseCase(gh<_i1049.AuthRepo>()));
-    gh.factory<_i762.ForgetPasswordUseCase>(
-        () => _i762.ForgetPasswordUseCase(gh<_i1049.AuthRepo>()));
     gh.factory<_i526.LoginUseCases>(
         () => _i526.LoginUseCases(gh<_i1049.AuthRepo>()));
-    gh.factory<_i266.LogoutUseCases>(
-        () => _i266.LogoutUseCases(gh<_i1049.AuthRepo>()));
-    gh.factory<_i284.RegisterUseCase>(
-        () => _i284.RegisterUseCase(gh<_i1049.AuthRepo>()));
-    gh.factory<_i785.ResetPasswordUseCase>(
-        () => _i785.ResetPasswordUseCase(gh<_i1049.AuthRepo>()));
-    gh.factory<_i753.VerifyUseCase>(
-        () => _i753.VerifyUseCase(gh<_i1049.AuthRepo>()));
     gh.factory<_i95.ForgetPasswordUseCase>(
         () => _i95.ForgetPasswordUseCase(gh<_i1049.AuthRepo>()));
+    gh.factory<_i785.ResetPasswordUseCase>(
+        () => _i785.ResetPasswordUseCase(gh<_i1049.AuthRepo>()));
+    gh.factory<_i266.LogoutUseCases>(
+        () => _i266.LogoutUseCases(gh<_i1049.AuthRepo>()));
+    gh.factory<_i753.VerifyUseCase>(
+        () => _i753.VerifyUseCase(gh<_i1049.AuthRepo>()));
     gh.factory<_i143.HomeRepo>(
         () => _i288.HomeRepoImpl(gh<_i448.HomeDataSource>()));
     gh.factory<_i1012.BestSellerViewModel>(
         () => _i1012.BestSellerViewModel(gh<_i439.BestSellerUseCase>()));
     gh.factory<_i728.EditProfileUseCase>(
         () => _i728.EditProfileUseCase(gh<_i471.EditProfileRepo>()));
+    gh.factory<_i566.UpdateProductQuantityUseCase>(
+        () => _i566.UpdateProductQuantityUseCase(gh<_i983.CartRepo>()));
     gh.factory<_i1065.DeleteProductUseCase>(
         () => _i1065.DeleteProductUseCase(gh<_i983.CartRepo>()));
     gh.factory<_i403.FetchUserCartUseCase>(
         () => _i403.FetchUserCartUseCase(gh<_i983.CartRepo>()));
-    gh.factory<_i566.UpdateProductQuantityUseCase>(
-        () => _i566.UpdateProductQuantityUseCase(gh<_i983.CartRepo>()));
     gh.factory<_i706.LogoutViewModel>(
         () => _i706.LogoutViewModel(gh<_i266.LogoutUseCases>()));
-    gh.factory<_i306.AddToCartRepo>(
-        () => _i8.AddToCartRepoImpl(gh<_i873.AddToCartOnlineDataSource>()));
     gh.factory<_i920.LoginViewModel>(
         () => _i920.LoginViewModel(gh<_i526.LoginUseCases>()));
     gh.factory<_i674.RegisterViewModel>(
@@ -306,8 +300,6 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i185.HomeUseCase(gh<_i143.HomeRepo>()));
     gh.factory<_i1022.HomeCubit>(
         () => _i1022.HomeCubit(gh<_i185.HomeUseCase>()));
-    gh.factory<_i611.AddToCartUseCase>(
-        () => _i611.AddToCartUseCase(gh<_i306.AddToCartRepo>()));
     gh.factory<_i396.VerifyPasswordViewModel>(
         () => _i396.VerifyPasswordViewModel(gh<_i753.VerifyUseCase>()));
     gh.factory<_i537.ChangePasswordViewModel>(
@@ -320,8 +312,6 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i300.FetchUserCartViewModel(gh<_i403.FetchUserCartUseCase>()));
     gh.factory<_i191.ForgetPasswordViewModel>(
         () => _i191.ForgetPasswordViewModel(gh<_i95.ForgetPasswordUseCase>()));
-    gh.factory<_i566.AddToCartViewModel>(
-        () => _i566.AddToCartViewModel(gh<_i611.AddToCartUseCase>()));
     gh.factory<_i14.ResetPasswordViewModel>(
         () => _i14.ResetPasswordViewModel(gh<_i785.ResetPasswordUseCase>()));
     gh.factory<_i516.EditprofileCubit>(
