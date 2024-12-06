@@ -3,7 +3,6 @@ import '../../../../core/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/functions/helper.dart';
 import '../../../../core/resources/assets_manager.dart';
-import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/resources/color_manager.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 

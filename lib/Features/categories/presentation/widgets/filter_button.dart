@@ -1,4 +1,3 @@
-import '../../../../core/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../../core/resources/assets_manager.dart';

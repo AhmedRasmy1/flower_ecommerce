@@ -2,7 +2,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flower_ecommerce/core/common/add_to_cart/data/models/request/add_to_cart_req_body.dart';
 import 'package:flower_ecommerce/core/common/add_to_cart/manager/cubit/add_to_cart_view_model.dart';
 import 'package:flower_ecommerce/core/utils/cashed_data_shared_preferences.dart';
-import 'package:flower_ecommerce/core/utils/utils.dart';
 import 'package:flower_ecommerce/core/widgets/custom_elevated_button.dart';
 import 'package:flower_ecommerce/core/widgets/error_toast.dart';
 import 'package:flower_ecommerce/core/widgets/success_toast.dart';
@@ -13,7 +12,6 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../../core/di/di.dart';
 import '../../../../core/resources/color_manager.dart';
-import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/widgets/loading_indicator.dart';
 import '../view_model/product_details_cubit.dart';
 import '../view_model/product_details_state.dart';

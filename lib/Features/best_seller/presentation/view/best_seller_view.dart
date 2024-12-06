@@ -2,7 +2,6 @@ import '../../../products/presentation/pages/products.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
 import '../../../products/presentation/widgets/skeleton_body.dart';
 import '../best_seller_view_model/best_seller_state.dart';
-import '../../../../core/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/di/di.dart';

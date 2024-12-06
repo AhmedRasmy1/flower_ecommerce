@@ -4,7 +4,6 @@ import 'package:flower_ecommerce/core/resources/assets_manager.dart';
 import 'package:flower_ecommerce/core/resources/color_manager.dart';
 import 'package:flower_ecommerce/core/resources/values_manager.dart';
 import 'package:flower_ecommerce/core/utils/cashed_data_shared_preferences.dart';
-import 'package:flower_ecommerce/core/utils/utils.dart';
 import 'package:flower_ecommerce/core/widgets/error_toast.dart';
 import 'package:flower_ecommerce/core/widgets/success_toast.dart';
 import 'package:flutter/material.dart';

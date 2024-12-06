@@ -10,7 +10,6 @@ import '../../../../core/resources/values_manager.dart';
 import '../../../products/presentation/pages/products.dart';
 import '../../domain/entities/categories_entities.dart';
 import '../manager/all_categories_state.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CategoryTapBar extends StatefulWidget {
   const CategoryTapBar({super.key});

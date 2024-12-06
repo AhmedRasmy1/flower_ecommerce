@@ -6,7 +6,6 @@ import '../../../../core/di/di.dart';
 import '../../../../core/functions/helper.dart';
 import '../../../../core/resources/color_manager.dart';
 import '../../../../core/resources/routes_manager.dart';
-import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../../../../core/utils/utils.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
