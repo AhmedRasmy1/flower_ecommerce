@@ -5,6 +5,7 @@ import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CustomTextFieldForSearch extends StatelessWidget {
   const CustomTextFieldForSearch({
@@ -19,7 +20,7 @@ class CustomTextFieldForSearch extends StatelessWidget {
           vertical: AppPadding.p8,
           horizontal: AppPadding.p16,
         ),
-        hintText: AppStrings.search,
+        hintText: AppLocalizations.of(context)!.search,
         hintStyle: TextStyle(
           fontSize: FontSize.s14,
           color: ColorManager.grey,

@@ -6,6 +6,7 @@ import '../../../../core/resources/style_manager.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../../../../core/utils/cashed_data_shared_preferences.dart';
 import '../view_model/signup_view_model/signup_cubit.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ChooseGender extends StatefulWidget {
   const ChooseGender({super.key, required this.viewModel});
@@ -25,7 +26,7 @@ class _ChooseGenderState extends State<ChooseGender> {
     return Row(
       children: [
         Text(
-          AppStrings.gender,
+          AppLocalizations.of(context)!.gender,
           style: getSemiBoldStyle(
               color: widget.viewModel.isSelectGender
                   ? Colors.redAccent
@@ -52,7 +53,7 @@ class _ChooseGenderState extends State<ChooseGender> {
               },
             ),
             Text(
-              AppStrings.female,
+              AppLocalizations.of(context)!.female,
               style: getLightStyle(
                   color: _isActive ? ColorManager.black : ColorManager.grey,
                   fontSize: AppSize.s16),
@@ -77,7 +78,7 @@ class _ChooseGenderState extends State<ChooseGender> {
                 });
               },
             ),
-            Text(AppStrings.male,
+            Text(AppLocalizations.of(context)!.male,
                 style: getLightStyle(
                     color: _isActive ? ColorManager.black : ColorManager.grey,
                     fontSize: AppSize.s16)),

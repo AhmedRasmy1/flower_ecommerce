@@ -10,6 +10,7 @@ import '../../../../core/resources/routes_manager.dart';
 import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/widgets/custom_elevated_button.dart';
 import '../view_model/signup_view_model/signup_cubit.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class BlocConsumerForSignupPage extends StatelessWidget {
   final GlobalKey<FormState> formKey;
@@ -85,7 +86,7 @@ class BlocConsumerForSignupPage extends StatelessWidget {
       builder: (context, state) {
         return CustomElevatedButton(
           buttonColor: buttonColor,
-          title: AppStrings.signUp,
+          title: AppLocalizations.of(context)!.signUp,
           onPressed: () {
             validationMethod(
               actionPress: () {

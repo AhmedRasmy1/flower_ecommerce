@@ -20,15 +20,12 @@ class LogoutViewModel extends Cubit<LogoutState> {
 
     var result = await logoutUseCases.logout(token);
 
-    log(CacheService.getData(key: CacheConstants.userToken));
     switch (result) {
       case Success<LogoutEntity>():
-        CacheService.deleteItem(key: CacheConstants.userToken);
-        log(CacheService.getData(key: CacheConstants.userToken));
+        CacheService.clearItems();
         emit(SuccessLogoutState(result.data));
       case Fail<LogoutEntity>():
         emit(ErrorLogoutState(result.exception));
-        log(result.exception.toString());
     }
   }
 }

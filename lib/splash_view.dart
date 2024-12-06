@@ -1,3 +1,4 @@
+import 'package:flower_ecommerce/core/resources/strings_manager.dart';
 import 'package:flower_ecommerce/core/utils/cashed_data_shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,8 +8,8 @@ import 'core/functions/extenstions.dart';
 import 'core/resources/assets_manager.dart';
 import 'core/resources/color_manager.dart';
 import 'core/resources/routes_manager.dart';
-import 'core/resources/strings_manager.dart';
 import 'core/resources/values_manager.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});

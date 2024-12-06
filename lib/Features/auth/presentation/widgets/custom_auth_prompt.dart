@@ -45,7 +45,7 @@ class AuthPrompt extends StatelessWidget {
             style: TextStyle(
               decoration: TextDecoration.underline,
               decorationColor: color ?? ColorManager.pink,
-              fontSize: FontSize.s16,
+              fontSize: FontSize.s14,
               color: color ?? ColorManager.pink,
               fontWeight: FontWeightManager.semiBold,
               height: 2.0,

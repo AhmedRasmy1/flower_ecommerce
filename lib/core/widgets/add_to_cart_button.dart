@@ -3,6 +3,7 @@ import 'package:flower_ecommerce/core/common/add_to_cart/manager/cubit/add_to_ca
 import 'package:flower_ecommerce/core/resources/assets_manager.dart';
 import 'package:flower_ecommerce/core/resources/color_manager.dart';
 import 'package:flower_ecommerce/core/resources/values_manager.dart';
+import 'package:flower_ecommerce/core/utils/cashed_data_shared_preferences.dart';
 import 'package:flower_ecommerce/core/utils/utils.dart';
 import 'package:flower_ecommerce/core/widgets/error_toast.dart';
 import 'package:flower_ecommerce/core/widgets/success_toast.dart';
@@ -10,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AddToCartButton extends StatelessWidget {
   const AddToCartButton({
@@ -26,11 +28,16 @@ class AddToCartButton extends StatelessWidget {
           if (state is AddToCartSuccess) {
             showSuccessToast(
               context: context,
-              message: "Product Added To Cart Successfully",
-              title: "Done",
+              message: AppLocalizations.of(context)!.addedToCartSuccess,
+              title: AppLocalizations.of(context)!.done,
             );
           } else if (state is AddToCartFailure) {
-            final message = extractErrorMessage(state.exception);
+            final String message;
+            if (CacheConstants.userToken == '') {
+              message = AppLocalizations.of(context)!.loginToPurchase;
+            } else {
+              message = AppLocalizations.of(context)!.loginToPurchase;
+            }
             return showErrorToast(
               context: context,
               message: message,
@@ -83,7 +90,7 @@ class AddToCartButton extends StatelessWidget {
                           width: AppSize.s8,
                         ),
                         Text(
-                          'Add to cart',
+                          AppLocalizations.of(context)!.addToCart,
                           style: const TextStyle().copyWith(
                             color: ColorManager.white,
                             fontSize: AppSize.s13,

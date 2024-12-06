@@ -1,9 +1,11 @@
+import 'package:flower_ecommerce/core/resources/color_manager.dart';
+import 'package:flower_ecommerce/core/resources/routes_manager.dart';
 import 'package:flower_ecommerce/core/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class EmptyCart extends StatelessWidget {
-  const EmptyCart({
+class GuestUserCart extends StatelessWidget {
+  const GuestUserCart({
     super.key,
   });
 
@@ -18,7 +20,7 @@ class EmptyCart extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
-                  'assets/images/empty_cartt.png',
+                  'assets/images/closed_cart.png',
                   fit: BoxFit.cover,
                   height: MediaQuery.sizeOf(context).height * 0.4,
                   filterQuality: FilterQuality.high,
@@ -38,13 +40,36 @@ class EmptyCart extends StatelessWidget {
                   height: 8,
                 ),
                 Text(
-                  AppLocalizations.of(context)!.emptyCartMessage,
+                  AppLocalizations.of(context)!.loginToPurchase,
                   style: const TextStyle().copyWith(
                     fontSize: AppSize.s18,
                     fontWeight: FontWeight.w500,
                   ),
                   textAlign: TextAlign.center,
                 ),
+                const SizedBox(
+                  height: 16,
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.pink, // background color
+                    shape: RoundedRectangleBorder(
+                      borderRadius:
+                          BorderRadius.circular(15), // rounded corners
+                    ),
+                  ),
+                  onPressed: () {
+                    Navigator.pushReplacementNamed(
+                        context, RoutesManager.loginRoute);
+                  },
+                  child: Text(
+                    AppLocalizations.of(context)!.login,
+                    style: const TextStyle().copyWith(
+                        fontSize: AppSize.s18,
+                        fontWeight: FontWeight.w500,
+                        color: ColorManager.white),
+                  ),
+                )
               ],
             ),
           ),

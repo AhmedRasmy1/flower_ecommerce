@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/di/di.dart';
 import '../../domain/entities/best_seller_entity.dart';
 import '../best_seller_view_model/best_seller_cubit.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class BestSellerView extends StatefulWidget {
   const BestSellerView({super.key});
@@ -38,8 +39,9 @@ class _BestSellerViewState extends State<BestSellerView> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomAppBar(
-                  title: AppStrings.bestSeller,
-                  subtitle: AppStrings.bestSellerTitleDescription,
+                  title: AppLocalizations.of(context)!.bestSeller,
+                  subtitle:
+                      AppLocalizations.of(context)!.bestSellerTitleDescription,
                   onTap: () {
                     Navigator.pop(context);
                   },
