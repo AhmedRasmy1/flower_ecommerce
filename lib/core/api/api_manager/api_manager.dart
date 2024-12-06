@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flower_ecommerce/Features/address/saved_address/data/models/response/address_dto.dart';
 import 'package:flower_ecommerce/Features/cart&checkout/data/models/request/update_quantity_request.dart';
 import 'package:flower_ecommerce/Features/cart&checkout/data/models/response/delete_product_response/delete_product_response.dart';
 import 'package:flower_ecommerce/Features/cart&checkout/data/models/response/fetch_user_cart_response/fetch_user_cart_response.dart';
@@ -38,31 +39,43 @@ part 'api_manager.g.dart';
 abstract class ApiService {
   @FactoryMethod()
   factory ApiService(Dio dio) = _ApiService;
+
   @POST(ApiConstants.signupRoute)
   Future<RegisterResponseDto> signUp(@Body() RegisterModelDto registerModelDto);
+
   @POST(ApiConstants.forgetPasswordRoute)
   Future<ForgetPasswordResponse> forgetPassword(
       @Body() ForgetPasswordRequest requestEmail);
+
   @POST(ApiConstants.verifyResetCode)
   Future<VerifyResponse> verifyPassword(@Body() VerifyRequest requestOtp);
+
   @POST(ApiConstants.loginRoute)
   Future<LoginResponseDto> login(@Body() LoginModelDto loginModelDto);
+
   @PUT(ApiConstants.resetPasswordRoute)
   Future<ResetPasswordResponse> resetPassword(
       @Body() ResetPasswordRequest requestOtp);
+
   @GET("${ApiConstants.productDetailsRoute}/{productId}")
   Future<ProductDetailsDto> getProductDetails(
       @Path("productId") String productId);
+
   @GET(ApiConstants.categories)
   Future<AllCategories> getAllCategories();
+
   @GET(ApiConstants.products)
   Future<AllProducts> getAllProducts();
+
   @GET(ApiConstants.bestSellerRoute)
   Future<BestSellerResponse> getBestSeller();
+
   @GET(ApiConstants.homeEndPointApi)
   Future<HomeModel> getHomeData();
+
   @GET('https://flower.elevateegy.com/api/v1/occasions')
   Future<OccasionResponse?> getOccasions();
+
   @GET(ApiConstants.logoutRoute)
   Future<LogoutResponseDto> logout(@Header("Authorization") String token);
 
@@ -70,9 +83,11 @@ abstract class ApiService {
   Future<ChangePasswordResponse> changePassword(
       @Body() ChangePasswordRequest changePasswordRequest,
       @Header("Authorization") String token);
+
   @GET("https://flower.elevateegy.com/api/v1/auth/profile-data")
   Future<ProfileResponse?> getProfileData(
       @Header("Authorization") String token);
+
   @PUT(ApiConstants.editProfileRoute)
   Future<EditProfile> editProfile(
     @Header("Authorization") String token,
@@ -81,19 +96,33 @@ abstract class ApiService {
     @Field("email") String? email,
     @Field("phone") String? phone,
   );
+
   @GET(ApiConstants.cartEndPoint)
   Future<FetchUserCartResponse?> fetchUserCart(
     @Header("Authorization") String token,
   );
+
   @PUT("${ApiConstants.cartEndPoint}/{productId}")
   Future<UpdateProductQuantityResponse?> updateProductQuantity(
     @Body() UpdateQuantityRequest updateQuantityRequest,
     @Path() String productId,
     @Header("Authorization") String token,
   );
+
   @DELETE("${ApiConstants.cartEndPoint}/{productId}")
   Future<DeleteProductResponse?> deleteProductFromCart(
     @Path() String productId,
     @Header("Authorization") String token,
+  );
+
+  @GET(ApiConstants.addressEndPoint)
+  Future<AllAddressesDto> getAddresses(
+    @Header("Authorization") String token,
+  );
+
+  @DELETE("${ApiConstants.addressEndPoint}/{addressId}")
+  Future<AllAddressesDto> removeAddress(
+    @Header("Authorization") String token,
+    @Path() String addressId,
   );
 }

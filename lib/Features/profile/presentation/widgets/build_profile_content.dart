@@ -61,10 +61,15 @@ Widget buildProfileContent(BuildContext context, ProfileEntity? profile) {
               text: 'My orders',
               imageIconExists: true,
             ),
-            const OptionItem(
-              icon: Icons.location_on,
-              text: 'Saved address',
-              imageIconExists: true,
+            InkWell(
+              onTap: (){
+                Navigator.pushNamed(context, RoutesManager.savedAddress);
+              },
+              child: const OptionItem(
+                icon: Icons.location_on,
+                text: 'Saved address',
+                imageIconExists: true,
+              ),
             ),
             const Divider(thickness: 1, color: Colors.grey),
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [

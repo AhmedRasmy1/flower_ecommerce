@@ -10,9 +10,7 @@ class LogoutUseCases {
 
   LogoutUseCases(this.authRepo);
 
-  Future<Result<LogoutEntity>> logout(
-    String token,
-  ) {
+  Future<Result<LogoutEntity>> logout(String token,) {
     return authRepo.logout(token);
   }
 }
