@@ -11,3 +11,4 @@ analyzer:
     use_setters_to_change_properties: ignore
   exclude:
     - test/**
+    - localization/**
