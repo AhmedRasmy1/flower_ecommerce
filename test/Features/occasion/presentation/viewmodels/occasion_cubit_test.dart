@@ -1,5 +1,3 @@
-
-
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flower_ecommerce/Features/occasions/data/models/occasion_response/occasion_response.dart';
 import 'package:flower_ecommerce/Features/occasions/domain/use_cases/occasion_use_case.dart';
@@ -28,8 +26,10 @@ void main() {
       'when calling getOccasions, it should call getOccasions from the useCase and change state correctly',
       build: () {
         // Prepare a mock result
-        var result = Success<OccasionResponse?>(OccasionResponse()); // Mock a successful response
-        when(mockOccasionUseCase.getOccasions()).thenAnswer((_) async =>result);
+        var result = Success<OccasionResponse?>(
+            OccasionResponse()); // Mock a successful response
+        when(mockOccasionUseCase.getOccasions())
+            .thenAnswer((_) async => result);
 
         return occasionViewModel;
       },
@@ -47,7 +47,8 @@ void main() {
       build: () {
         // Prepare a mock failure result
         var result = Fail<OccasionResponse?>(Exception("Some error occurred"));
-        when(mockOccasionUseCase.getOccasions()).thenAnswer((_) async => result);
+        when(mockOccasionUseCase.getOccasions())
+            .thenAnswer((_) async => result);
 
         return occasionViewModel;
       },
@@ -56,7 +57,7 @@ void main() {
       },
       expect: () => [
         isA<LoadingOccasionState>(), // Expect Loading state first
-        isA<ErrorOccasionState>(),   // Then expect Error state
+        isA<ErrorOccasionState>(), // Then expect Error state
       ],
     );
   });

@@ -11,12 +11,13 @@ import '../../../home/data/data_sources_impl/home_data_source_impl_test.mocks.da
 
 @GenerateMocks([ApiService])
 void main() {
-  test('when call BestOnlineDataSource for get best seller it should call it from ApiService', () async {
-    var mockApiService=MockApiService();
-    var bestOnLineDataSource=BestOnLineDataSourceImpl(mockApiService);
+  test(
+      'when call BestOnlineDataSource for get best seller it should call it from ApiService',
+      () async {
+    var mockApiService = MockApiService();
+    var bestOnLineDataSource = BestOnLineDataSourceImpl(mockApiService);
 
     var mockBestSellerResponse = BestSellerResponse();
-
 
     when(mockApiService.getBestSeller())
         .thenAnswer((_) async => mockBestSellerResponse);
