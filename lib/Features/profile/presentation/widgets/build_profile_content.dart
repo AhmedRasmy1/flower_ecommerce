@@ -67,6 +67,16 @@ Widget buildProfileContent(BuildContext context, ProfileEntity? profile) {
               text: AppLocalizations.of(context)!.myOrders,
               imageIconExists: true,
             ),
+
+            InkWell(
+              onTap: (){
+                Navigator.pushNamed(context, RoutesManager.savedAddress);
+              },
+              child: const OptionItem(
+                icon: Icons.location_on,
+                text: 'Saved address',
+                imageIconExists: true,
+              ),
             OptionItem(
               icon: Icons.location_on,
               text: AppLocalizations.of(context)!.savedAddress,

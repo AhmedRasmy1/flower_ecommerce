@@ -62,6 +62,7 @@ dependencies:
   smooth_page_indicator: ^1.2.0+3
   spincircle_bottom_bar: ^2.0.0
   test: ^1.25.7
+  provider: ^6.1.2
 
 dev_dependencies:
   build_runner: ^2.4.13

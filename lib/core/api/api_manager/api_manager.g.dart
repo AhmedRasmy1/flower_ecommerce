@@ -666,7 +666,44 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<AddToCartResModel?> addProductToCart(
+  Future<AllAddressesDto> getAddresses(String token) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<AllAddressesDto>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          'addresses',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late AllAddressesDto _value;
+    try {
+      _value = AllAddressesDto.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<AllAddressesDto> removeAddress(
+    String token,
+    String addressId,
+      Future<AddToCartResModel?> addProductToCart(
     AddToCartReqBody addToCartBody,
     String token,
   ) async {
@@ -674,15 +711,18 @@ class _ApiService implements ApiService {
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{r'Authorization': token};
     _headers.removeWhere((k, v) => v == null);
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<AllAddressesDto>(Options(
+      method: 'DELETE',
     final _data = <String, dynamic>{};
     _data.addAll(addToCartBody.toJson());
     final _options = _setStreamType<AddToCartResModel>(Options(
-      method: 'POST',
-      headers: _headers,
+      method: 'POST',      headers: _headers,
       extra: _extra,
     )
         .compose(
           _dio.options,
+          'addresses/${addressId}',
           'cart',
           queryParameters: queryParameters,
           data: _data,
@@ -692,6 +732,11 @@ class _ApiService implements ApiService {
           _dio.options.baseUrl,
           baseUrl,
         )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late AllAddressesDto _value;
+    try {
+      _value = AllAddressesDto.fromJson(_result.data!);
+
     final _result = await _dio.fetch<Map<String, dynamic>?>(_options);
     late AddToCartResModel? _value;
     try {

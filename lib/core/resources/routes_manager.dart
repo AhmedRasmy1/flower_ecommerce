@@ -1,3 +1,4 @@
+import 'package:flower_ecommerce/Features/address/saved_address/presentation/view/saved_address.dart';
 import 'package:flower_ecommerce/Features/cart&checkout/presentation/views/check_out_view.dart';
 import 'package:flutter/material.dart';
 
@@ -35,10 +36,9 @@ class RoutesManager {
   static const String bestSellerRoute = '/bestSellerRoute';
   static const String occassionViewRoute = '/occassionViewRoute';
   static const String logoutViewRoute = '/logout';
-
   static const String changePasswordViewRoute = '/chanePasswordViewRoute';
-
   static const String editProfileRoute = '/editProfileRoute';
+  static const String savedAddress = '/savedAddress';
 }
 
 class RouteGenerator {
@@ -91,10 +91,12 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const BestSellerView());
       case RoutesManager.changePasswordViewRoute:
         return MaterialPageRoute(builder: (_) => const ChangePasswordScreen());
-
+      case RoutesManager.savedAddress :
+        return MaterialPageRoute (builder: (_)=> const SavedAddress());
       case RoutesManager.editProfileRoute:
         return MaterialPageRoute(
             builder: (_) => const EditProfileView(), settings: settings);
+
       default:
         return unDefinedRoute();
     }
