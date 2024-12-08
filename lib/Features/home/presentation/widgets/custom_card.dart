@@ -5,8 +5,8 @@ import '../../../../core/functions/extenstions.dart';
 import '../../../../core/resources/assets_manager.dart';
 import '../../../../core/resources/color_manager.dart';
 import '../../../../core/resources/font_manager.dart';
-import '../../../../core/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CustomCard extends StatelessWidget {
   const CustomCard({super.key});
@@ -91,8 +91,8 @@ class CustomCard extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text(
-                                AppStrings.graduation,
+                              Text(
+                                AppLocalizations.of(context)!.graduation,
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
@@ -110,7 +110,8 @@ class CustomCard extends StatelessWidget {
                               ),
                               const SizedBox(height: 6),
                               Text(
-                                "Celebrate your special day with us!",
+                                AppLocalizations.of(context)!
+                                    .celebrateSpecialDay,
                                 style: TextStyle(
                                   color: Colors.white.withOpacity(0.8),
                                   fontSize: FontSize.s14,
@@ -139,8 +140,8 @@ class CustomCard extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                  child: const Text(
-                                    "Gift Now",
+                                  child: Text(
+                                    AppLocalizations.of(context)!.giftNow,
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: FontSize.s16,

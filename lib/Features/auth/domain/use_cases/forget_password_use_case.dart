@@ -7,7 +7,6 @@ import '../repositories/auth_repo.dart';
 @injectable
 class ForgetPasswordUseCase {
   AuthRepo authRepo;
-
   ForgetPasswordUseCase(this.authRepo);
 
   Future<Result<ForgetPasswordEntity?>> invoke(String email) {

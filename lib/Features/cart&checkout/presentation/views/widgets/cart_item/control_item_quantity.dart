@@ -4,6 +4,7 @@ import 'package:flower_ecommerce/Features/cart&checkout/presentation/manager/fet
 import 'package:flower_ecommerce/Features/cart&checkout/presentation/manager/update_product_quantity/update_product_quantity_view_model.dart';
 import 'package:flower_ecommerce/core/resources/values_manager.dart';
 import 'package:flower_ecommerce/core/utils/app_assets.dart';
+import 'package:flower_ecommerce/core/widgets/warning_dialogue.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -25,24 +26,26 @@ class ControlItemQuantity extends StatelessWidget {
       children: [
         BlocProvider<DeleteProductViewModel>.value(
           value: GetIt.instance.get<DeleteProductViewModel>(),
-          child: Builder(builder: (context) {
-            return InkWell(
-              onTap: () {
-                final deleteProductViewModel =
-                    DeleteProductViewModel.of(context);
-                updateQuantity(
-                  context: context,
-                  productQuantity: --productQuantity,
-                  deleteProductViewModel: deleteProductViewModel,
-                );
-              },
-              child: SvgPicture.asset(
-                AppAssets.cartMinusSvgIcon,
-                width: 24,
-                height: 24,
-              ),
-            );
-          }),
+          child: Builder(
+            builder: (context) {
+              return InkWell(
+                onTap: () {
+                  final deleteProductViewModel =
+                      DeleteProductViewModel.of(context);
+                  _updateQuantity(
+                    context: context,
+                    productQuantity: --productQuantity,
+                    deleteProductViewModel: deleteProductViewModel,
+                  );
+                },
+                child: SvgPicture.asset(
+                  AppAssets.cartMinusSvgIcon,
+                  width: 24,
+                  height: 24,
+                ),
+              );
+            },
+          ),
         ),
         const SizedBox(
           width: 8,
@@ -63,7 +66,7 @@ class ControlItemQuantity extends StatelessWidget {
         ),
         InkWell(
           onTap: () {
-            updateQuantity(
+            _updateQuantity(
               context: context,
               productQuantity: ++productQuantity,
             );
@@ -78,7 +81,7 @@ class ControlItemQuantity extends StatelessWidget {
     );
   }
 
-  void updateQuantity({
+  void _updateQuantity({
     required int productQuantity,
     required BuildContext context,
     DeleteProductViewModel? deleteProductViewModel,
@@ -86,11 +89,14 @@ class ControlItemQuantity extends StatelessWidget {
     final fetchCartViewModel = FetchUserCartViewModel.of(context);
 
     if (productQuantity == 0) {
-      deleteProductViewModel!.deleteProduct(productId).then(
-        (_) async {
-          await fetchCartViewModel.fetchUserCart();
+      showWarningDialogue(
+        message: "You are about to delete the Item Permanently!!",
+        onPressed: () {
+          _deleteProduct(deleteProductViewModel!, fetchCartViewModel);
         },
+        context: context,
       );
+      return;
     }
     final updateProductReq = UpdateQuantityRequest(
       quantity: productQuantity,
@@ -105,6 +111,15 @@ class ControlItemQuantity extends StatelessWidget {
         if (context.mounted) {
           await fetchCartViewModel.fetchUserCart();
         }
+      },
+    );
+  }
+
+  void _deleteProduct(DeleteProductViewModel deleteProductViewModel,
+      FetchUserCartViewModel fetchCartViewModel) async {
+    deleteProductViewModel.deleteProduct(productId).then(
+      (_) async {
+        await fetchCartViewModel.fetchUserCart();
       },
     );
   }

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+
 import 'cart_product.dart';
 
 class SkeletonBody extends StatelessWidget {
-  const SkeletonBody({super.key});
+  const SkeletonBody({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +22,7 @@ class SkeletonBody extends StatelessWidget {
           itemCount: 10,
           itemBuilder: (context, index) {
             return const CartProduct(
+              productId: null,
               title: '',
               imgCover:
                   'https://flower.elevateegy.com/uploads/39c641a6-4ec4-421a-8f55-5d8f5eeba5c3-flowers.png',

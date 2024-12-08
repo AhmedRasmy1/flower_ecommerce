@@ -1,16 +1,16 @@
 import 'dart:developer';
 
-import '../../../best_seller/domain/entities/best_seller_entity.dart';
-import 'package:flutter_svg/svg.dart';
-
-import '../manager/all_products_state.dart';
-import '../../../products_details/presentation/views/product_details_view.dart';
-import '../../../../core/resources/color_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
+
 import '../../../../core/di/di.dart';
+import '../../../../core/resources/color_manager.dart';
+import '../../../best_seller/domain/entities/best_seller_entity.dart';
+import '../../../products_details/presentation/views/product_details_view.dart';
 import '../../domain/entities/products_entities.dart';
 import '../manager/all_products_cubit.dart';
+import '../manager/all_products_state.dart';
 import '../widgets/cart_product.dart';
 import '../widgets/skeleton_body.dart';
 
@@ -154,6 +154,7 @@ class CustomCardAll extends StatelessWidget {
                       },
                       child: activeList is List<ProductsEntities>
                           ? CartProduct(
+                              productId: activeList[index].id!,
                               priceAfterDiscount:
                                   activeList[index].priceAfterDiscount,
                               price: activeList[index].price,
@@ -164,6 +165,7 @@ class CustomCardAll extends StatelessWidget {
                               priceAfterDiscount:
                                   (activeList as List<BestSellerEntity>)[index]
                                       .priceAfterDiscount,
+                              productId: activeList[index].id!,
                               price: (activeList)[index].price,
                               imgCover: (activeList)[index].imgCover,
                               title: (activeList)[index].title,

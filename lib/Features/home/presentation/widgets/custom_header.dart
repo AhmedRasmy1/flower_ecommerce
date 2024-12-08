@@ -1,6 +1,7 @@
 import '../../../../core/resources/color_manager.dart';
 import '../../../../core/resources/font_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CustomHeader extends StatelessWidget {
   const CustomHeader({
@@ -29,7 +30,7 @@ class CustomHeader extends StatelessWidget {
           GestureDetector(
             onTap: onTap,
             child: Text(
-              viewAll!,
+              AppLocalizations.of(context)!.viewAll,
               style: const TextStyle(
                 fontSize: FontSize.s14,
                 color: ColorManager.pink,

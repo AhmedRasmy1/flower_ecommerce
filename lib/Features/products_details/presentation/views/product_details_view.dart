@@ -1,14 +1,22 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flower_ecommerce/core/common/add_to_cart/data/models/request/add_to_cart_req_body.dart';
+import 'package:flower_ecommerce/core/common/add_to_cart/manager/cubit/add_to_cart_view_model.dart';
+import 'package:flower_ecommerce/core/utils/cashed_data_shared_preferences.dart';
+import 'package:flower_ecommerce/core/widgets/custom_elevated_button.dart';
+import 'package:flower_ecommerce/core/widgets/error_toast.dart';
+import 'package:flower_ecommerce/core/widgets/success_toast.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+import '../../../../core/di/di.dart';
+import '../../../../core/resources/color_manager.dart';
+import '../../../../core/widgets/loading_indicator.dart';
 import '../view_model/product_details_cubit.dart';
 import '../view_model/product_details_state.dart';
 import '../widgets/custom_text.dart';
-import '../../../../core/di/di.dart';
-import '../../../../core/resources/color_manager.dart';
-import '../../../../core/resources/strings_manager.dart';
-import '../../../../core/widgets/loading_indicator.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ProductDetailsView extends StatefulWidget {
   final String productId;
@@ -63,7 +71,6 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                           flexibleSpace: LayoutBuilder(
                             builder: (BuildContext context,
                                 BoxConstraints constraints) {
-                              // Change the color of the title based on the scroll position
                               final double top = constraints.biggest.height;
                               final Color titleColor = top > 100
                                   ? Colors.transparent
@@ -107,7 +114,11 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
-                                      child: buildIndicator(),
+                                      child: buildIndicator(state
+                                              .productDetailsEntity
+                                              .images
+                                              ?.length ??
+                                          0),
                                     ),
                                   ],
                                 ),
@@ -119,33 +130,39 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                         SliverList(
                           delegate: SliverChildListDelegate([
                             Padding(
-                              padding: const EdgeInsets.only(left: 16, top: 5),
+                              padding: const EdgeInsets.all(16.0),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       CustomText(
                                           text:
-                                              "${AppStrings.egyptCurrency} ${state.productDetailsEntity.priceAfterDiscount ?? state.productDetailsEntity.price}",
+                                              "${AppLocalizations.of(context)!.egyptCurrency} ${state.productDetailsEntity.priceAfterDiscount ?? state.productDetailsEntity.price}",
                                           fontWeight: FontWeight.w700,
                                           fontSize: 20),
-                                      const SizedBox(
-                                        width: 150,
+                                      Row(
+                                        children: [
+                                          CustomText(
+                                              text:
+                                                  AppLocalizations.of(context)!
+                                                      .status,
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: 16),
+                                          CustomText(
+                                              text:
+                                                  AppLocalizations.of(context)!
+                                                      .inStock,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 16),
+                                        ],
                                       ),
-                                      const CustomText(
-                                          text: AppStrings.status,
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 16),
-                                      const CustomText(
-                                          text: " In stock",
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 16),
                                     ],
                                   ),
-                                  const CustomText(
-                                      text: AppStrings.taxes,
+                                  CustomText(
+                                      text: AppLocalizations.of(context)!.taxes,
                                       fontWeight: FontWeight.w400,
                                       color: ColorManager.grey,
                                       fontSize: 13),
@@ -156,8 +173,9 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                                   const SizedBox(
                                     height: 8,
                                   ),
-                                  const CustomText(
-                                      text: AppStrings.description,
+                                  CustomText(
+                                      text: AppLocalizations.of(context)!
+                                          .description,
                                       fontWeight: FontWeight.w500,
                                       color: Colors.cyan,
                                       fontSize: 16),
@@ -170,37 +188,22 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                                       fontSize: 14,
                                     ),
                                   ),
-                                  // Padding(
-                                  //   padding: const EdgeInsets.only(right: 12),
-                                  //   child: CustomText(
-                                  //     text: state
-                                  //         .productDetailsEntity.description!,
-                                  //     fontWeight: FontWeight.w400,
-                                  //     fontSize: 14,
-                                  //   ),
-                                  // ),
-                                  // Padding(
-                                  //   padding: const EdgeInsets.only(right: 12),
-                                  //   child: CustomText(
-                                  //     text: state
-                                  //         .productDetailsEntity.description!,
-                                  //     fontWeight: FontWeight.w400,
-                                  //     fontSize: 14,
-                                  //   ),
-                                  // ),
                                   const SizedBox(
                                     height: 8,
                                   ),
-                                  const CustomText(
-                                      text: AppStrings.bouquetInclude,
+                                  CustomText(
+                                      text: AppLocalizations.of(context)!
+                                          .bouquetInclude,
                                       fontWeight: FontWeight.w500,
                                       fontSize: 16),
-                                  const CustomText(
-                                      text: "Pink roses:15",
+                                  CustomText(
+                                      text: AppLocalizations.of(context)!
+                                          .pinkRoses15,
                                       fontWeight: FontWeight.w400,
                                       fontSize: 14),
-                                  const CustomText(
-                                      text: "White wrap",
+                                  CustomText(
+                                      text: AppLocalizations.of(context)!
+                                          .whiteWrap,
                                       fontWeight: FontWeight.w400,
                                       fontSize: 14),
                                   const SizedBox(
@@ -216,24 +219,68 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(16.0),
-                    child: SizedBox(
-                      height: 48,
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: ColorManager.pink,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(100),
-                          ),
-                        ),
-                        child: const Text(
-                          AppStrings.addToCart,
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16),
-                        ),
+                    child: BlocProvider.value(
+                      value: GetIt.instance.get<AddToCartViewModel>(),
+                      child: BlocConsumer<AddToCartViewModel, AddToCartState>(
+                        listener: (context, state) {
+                          if (state is AddToCartSuccess) {
+                            showSuccessToast(
+                              context: context,
+                              message: AppLocalizations.of(context)!
+                                  .addedToCartSuccess,
+                              title: AppLocalizations.of(context)!.done,
+                            );
+                          } else if (state is AddToCartFailure) {
+                            final String message;
+                            if (CacheConstants.userToken == '') {
+                              message =
+                                  AppLocalizations.of(context)!.loginToPurchase;
+                            } else {
+                              message =
+                                  AppLocalizations.of(context)!.loginToPurchase;
+                            }
+                            return showErrorToast(
+                              context: context,
+                              message: message,
+                            );
+                          }
+                        },
+                        builder: (context, state) {
+                          return state is AddToCartLoading
+                              ? const SizedBox(
+                                  height: 4,
+                                  child: Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 100),
+                                    child: LinearProgressIndicator(
+                                      color: ColorManager.pink,
+                                    ),
+                                  ),
+                                )
+                              : SizedBox(
+                                  height: 48,
+                                  width: double.infinity,
+                                  child: CustomElevatedButton(
+                                    buttonColor: ColorManager.pink,
+                                    title:
+                                        AppLocalizations.of(context)!.addToCart,
+                                    onPressed: () async {
+                                      final addToCartBody = AddToCartReqBody(
+                                        productId: widget.productId,
+                                      );
+                                      await AddToCartViewModel.of(context)
+                                          .addProductToCart(
+                                        addToCartBody,
+                                      );
+                                    },
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                );
+                        },
                       ),
                     ),
                   ),
@@ -251,10 +298,10 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
     );
   }
 
-  Widget buildIndicator() {
+  Widget buildIndicator(int count) {
     return AnimatedSmoothIndicator(
       activeIndex: activeIndex,
-      count: carouselSliderItems.length,
+      count: count,
       effect: const SlideEffect(
         dotHeight: 10,
         dotWidth: 10,
@@ -269,7 +316,7 @@ Widget buildImage(String imageUrl, int index) {
     width: double.infinity,
     child: Image.network(
       imageUrl,
-      fit: BoxFit.fill,
+      fit: BoxFit.cover,
     ),
   );
 }

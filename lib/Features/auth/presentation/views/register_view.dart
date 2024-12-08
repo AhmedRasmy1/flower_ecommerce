@@ -7,7 +7,6 @@ import '../../../../core/functions/helper.dart';
 import '../../../../core/resources/app_constants.dart';
 import '../../../../core/resources/color_manager.dart';
 import '../../../../core/resources/routes_manager.dart';
-import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
@@ -15,6 +14,7 @@ import '../view_model/signup_view_model/signup_cubit.dart';
 import '../widgets/bloc_consumer_signin_page.dart';
 import '../widgets/choose_gender.dart';
 import '../widgets/custom_auth_prompt.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});
@@ -75,7 +75,7 @@ class _RegisterViewState extends State<RegisterView> {
                   child: Column(
                     children: [
                       CustomAppBar(
-                        title: AppStrings.signUp,
+                        title: AppLocalizations.of(context)!.signUp,
                         color: ColorManager.black,
                         onTap: () {
                           Navigator.pop(context);
@@ -90,13 +90,18 @@ class _RegisterViewState extends State<RegisterView> {
                                 AppConstants.screenWidthRatio,
                             child: CustomTextFormField(
                               controller: _firstNameController,
-                              labelText: AppStrings.firstName,
-                              hintText: AppStrings.enterYourFirstName,
+                              labelText:
+                                  AppLocalizations.of(context)!.firstName,
+                              hintText: AppLocalizations.of(context)!
+                                  .enterYourFirstName,
                               validator: (value) => validateString(
                                 value: value!,
-                                messageLength: AppStrings.messageLength3,
-                                messageInvalid: AppStrings.invalidInput,
-                                message: AppStrings.entervalidLastName,
+                                messageLength: AppLocalizations.of(context)!
+                                    .messageLength3,
+                                messageInvalid:
+                                    AppLocalizations.of(context)!.invalidInput,
+                                message: AppLocalizations.of(context)!
+                                    .entervalidLastName,
                               ),
                             ),
                           ),
@@ -105,13 +110,17 @@ class _RegisterViewState extends State<RegisterView> {
                                 AppConstants.screenWidthRatio,
                             child: CustomTextFormField(
                               controller: _lastNameController,
-                              labelText: AppStrings.lastName,
-                              hintText: AppStrings.enterYourLastName,
+                              labelText: AppLocalizations.of(context)!.lastName,
+                              hintText: AppLocalizations.of(context)!
+                                  .enterYourLastName,
                               validator: (value) => validateString(
                                 value: value!,
-                                messageLength: AppStrings.messageLength3,
-                                messageInvalid: AppStrings.invalidInput,
-                                message: AppStrings.entervalidLastName,
+                                messageLength: AppLocalizations.of(context)!
+                                    .messageLength3,
+                                messageInvalid:
+                                    AppLocalizations.of(context)!.invalidInput,
+                                message: AppLocalizations.of(context)!
+                                    .entervalidLastName,
                               ),
                             ),
                           ),
@@ -121,12 +130,13 @@ class _RegisterViewState extends State<RegisterView> {
                       CustomTextFormField(
                         keyboardType: TextInputType.emailAddress,
                         controller: _emailController,
-                        labelText: AppStrings.email,
-                        hintText: AppStrings.enterYourEmail,
+                        labelText: AppLocalizations.of(context)!.email,
+                        hintText: AppLocalizations.of(context)!.enterYourEmail,
                         validator: (value) => validateEmail(
                           value: value!,
-                          message: AppStrings.emailIsEmpty,
-                          messageInvalid: AppStrings.enterValidEmail,
+                          message: AppLocalizations.of(context)!.emailIsEmpty,
+                          messageInvalid:
+                              AppLocalizations.of(context)!.enterValidEmail,
                         ),
                       ),
                       const SizedBox(height: AppSize.s24),
@@ -138,16 +148,18 @@ class _RegisterViewState extends State<RegisterView> {
                                 AppConstants.screenWidthRatio,
                             child: CustomTextFormField(
                               controller: _passwordController,
-                              labelText: AppStrings.password,
-                              hintText: AppStrings.enterYourPassword,
+                              labelText: AppLocalizations.of(context)!.password,
+                              hintText: AppLocalizations.of(context)!
+                                  .enterYourPassword,
                               obscureText: true,
                               validator: (value) => validatePassword(
                                   password: _passwordController.text,
-                                  messageInvalid:
-                                      AppStrings.passwordInvalidFormat,
-                                  messageLength:
-                                      AppStrings.passwordCharactersLong,
-                                  message: AppStrings.passwordNotMatch),
+                                  messageInvalid: AppLocalizations.of(context)!
+                                      .passwordInvalidFormat,
+                                  messageLength: AppLocalizations.of(context)!
+                                      .passwordCharactersLong,
+                                  message: AppLocalizations.of(context)!
+                                      .passwordNotMatch),
                             ),
                           ),
                           SizedBox(
@@ -155,14 +167,18 @@ class _RegisterViewState extends State<RegisterView> {
                                 AppConstants.screenWidthRatio,
                             child: CustomTextFormField(
                               controller: _rePasswordController,
-                              labelText: AppStrings.confirmPassword,
-                              hintText: AppStrings.enterYourConfirmPassword,
+                              labelText:
+                                  AppLocalizations.of(context)!.confirmPassword,
+                              hintText: AppLocalizations.of(context)!
+                                  .enterYourConfirmPassword,
                               obscureText: true,
                               validator: (value) => validatePasswordMatch(
-                                  messageIsEmpty: AppStrings.passwordIsEmpty,
+                                  messageIsEmpty: AppLocalizations.of(context)!
+                                      .passwordIsEmpty,
                                   password: _passwordController.text,
                                   confirmPassword: _rePasswordController.text,
-                                  message: AppStrings.passwordNotMatch),
+                                  message: AppLocalizations.of(context)!
+                                      .passwordNotMatch),
                             ),
                           ),
                         ],
@@ -171,20 +187,23 @@ class _RegisterViewState extends State<RegisterView> {
                       CustomTextFormField(
                         controller: _phoneController,
                         keyboardType: TextInputType.phone,
-                        labelText: AppStrings.phoneNumber,
-                        hintText: AppStrings.enterPhoneNumber,
+                        labelText: AppLocalizations.of(context)!.phoneNumber,
+                        hintText:
+                            AppLocalizations.of(context)!.enterPhoneNumber,
                         onChanged: _onTextChanged,
                         obscureText: false,
                         validator: (value) => validateNotEmpty(
                           value,
-                          AppStrings.enterValidPhoneNumber,
+                          AppLocalizations.of(context)!.enterValidPhoneNumber,
                         ),
                       ),
                       const SizedBox(height: AppSize.s16),
                       ChooseGender(viewModel: viewModel),
-                      const AuthPrompt(
-                        message: AppStrings.agreeTermsConditions,
-                        userAccess: AppStrings.termsConditions,
+                      AuthPrompt(
+                        message:
+                            AppLocalizations.of(context)!.agreeTermsConditions,
+                        userAccess:
+                            AppLocalizations.of(context)!.termsConditions,
                         color: ColorManager.black,
                         routeName: RoutesManager.loginRoute,
 
@@ -217,9 +236,10 @@ class _RegisterViewState extends State<RegisterView> {
                           });
                         },
                       ),
-                      const AuthPrompt(
-                        message: AppStrings.alreadyHaveAccount,
-                        userAccess: AppStrings.login,
+                      AuthPrompt(
+                        message:
+                            AppLocalizations.of(context)!.alreadyHaveAccount,
+                        userAccess: AppLocalizations.of(context)!.login,
                         routeName: RoutesManager.loginRoute,
                       )
                     ],

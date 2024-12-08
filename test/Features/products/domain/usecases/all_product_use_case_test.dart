@@ -6,8 +6,6 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import 'all_product_use_case_test.mocks.dart';
-
-
 @GenerateMocks([ProductsRepo])
 void main() {
   test('when call getproducts it calls getproduct of product Repo', () async {

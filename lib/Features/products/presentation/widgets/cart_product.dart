@@ -1,13 +1,12 @@
-import 'dart:developer';
-
-import '../../../../core/resources/assets_manager.dart';
-import '../../../../core/resources/style_manager.dart';
-import '../../../../core/resources/values_manager.dart';
+import 'package:flower_ecommerce/core/widgets/add_to_cart_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+
 import '../../../../core/resources/cashed_image.dart';
 import '../../../../core/resources/color_manager.dart';
+import '../../../../core/resources/style_manager.dart';
+import '../../../../core/resources/values_manager.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CartProduct extends StatelessWidget {
   const CartProduct({
@@ -16,8 +15,9 @@ class CartProduct extends StatelessWidget {
     this.title,
     this.priceAfterDiscount,
     this.price,
+    required this.productId,
   });
-
+  final String? productId;
   final String? imgCover;
   final String? title;
 
@@ -26,6 +26,8 @@ class CartProduct extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint(
+        "$productId =================================================================");
     return IntrinsicHeight(
       child: Container(
         decoration: BoxDecoration(
@@ -78,7 +80,7 @@ class CartProduct extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Text(
-                        'EGP',
+                        AppLocalizations.of(context)!.currencyEGP,
                         style: getBoldStyle(fontSize: AppSize.s14),
                       ),
                       const SizedBox(
@@ -128,40 +130,8 @@ class CartProduct extends StatelessWidget {
             const Spacer(),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: ColorManager.pink,
-                ),
-                onPressed: () {
-                  /// add to cart
-                  /// add to cart
-                  log('add to cart');
-
-                  /// add to cart
-                  /// add to cart
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset(
-                      AssetsManager.cart,
-                      width: 15,
-                      height: 15,
-                      colorFilter: const ColorFilter.mode(
-                        ColorManager.white,
-                        BlendMode.srcIn,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: AppSize.s8,
-                    ),
-                    Text(
-                      'Add to cart',
-                      style: getBoldStyle(
-                          color: ColorManager.white, fontSize: AppSize.s12),
-                    ),
-                  ],
-                ),
+              child: AddToCartButton(
+                productId: productId.toString(),
               ),
             ),
             const Spacer(),

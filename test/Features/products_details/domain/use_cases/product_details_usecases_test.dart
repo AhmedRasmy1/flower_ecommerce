@@ -51,7 +51,8 @@ void main() {
       expect(result, isA<Fail<ProductDetailsEntity>>());
       final failResult = result as Fail<ProductDetailsEntity>;
       expect(failResult.exception, isA<Exception>());
-      expect(failResult.exception.toString(), contains('Failed to fetch product details'));
+      expect(failResult.exception.toString(),
+          contains('Failed to fetch product details'));
       verify(mockRepo.getProductDetails(productId)).called(1);
     });
   });

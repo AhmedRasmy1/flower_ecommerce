@@ -9,6 +9,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import 'change_password_cubit_test.mocks.dart';
+
 @GenerateMocks([ChangePasswordUseCase])
 void main() {
   group('ChangePasswordViewModel Tests', () {
@@ -18,7 +19,8 @@ void main() {
     setUp(() {
       // Initialize the mock and view model
       mockChangePasswordUseCase = MockChangePasswordUseCase();
-      changePasswordViewModel = ChangePasswordViewModel(mockChangePasswordUseCase);
+      changePasswordViewModel =
+          ChangePasswordViewModel(mockChangePasswordUseCase);
     });
 
     blocTest<ChangePasswordViewModel, ChangePasswordState>(
@@ -56,7 +58,8 @@ void main() {
       'when calling doIntent with ChangePasswordIntent, it should emit loading and error states on failure',
       build: () {
         // Prepare a mock failure result
-        var result = Fail<ChangePasswordEntity?>(Exception("Failed to change password"));
+        var result =
+            Fail<ChangePasswordEntity?>(Exception("Failed to change password"));
 
         when(mockChangePasswordUseCase.invoke(
           any,
@@ -78,7 +81,7 @@ void main() {
       },
       expect: () => [
         isA<ChangePasswordLoadingState>(), // Expect Loading state first
-        isA<ChangePasswordErrorState>(),   // Then expect Error state
+        isA<ChangePasswordErrorState>(), // Then expect Error state
       ],
     );
   });

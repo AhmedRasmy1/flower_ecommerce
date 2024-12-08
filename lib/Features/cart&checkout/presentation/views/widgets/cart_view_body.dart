@@ -1,8 +1,10 @@
+import 'package:flower_ecommerce/Features/auth/presentation/widgets/loading_manager.dart';
 import 'package:flower_ecommerce/Features/cart&checkout/domain/entities/cart_item_entity.dart';
 import 'package:flower_ecommerce/Features/cart&checkout/presentation/manager/fetch_user_cart/fetch_user_cart_view_model.dart';
-import 'package:flower_ecommerce/Features/cart&checkout/presentation/views/widgets/cart_item/cart_item.dart';
+import 'package:flower_ecommerce/Features/cart&checkout/presentation/views/widgets/cart_item/product_cart_item.dart';
 import 'package:flower_ecommerce/Features/cart&checkout/presentation/views/widgets/delivered_to.dart';
 import 'package:flower_ecommerce/Features/cart&checkout/presentation/views/widgets/empty_cart_widget.dart';
+import 'package:flower_ecommerce/Features/cart&checkout/presentation/views/widgets/guest_user_cart.dart';
 import 'package:flower_ecommerce/Features/cart&checkout/presentation/views/widgets/order_details.dart';
 import 'package:flower_ecommerce/core/resources/color_manager.dart';
 import 'package:flower_ecommerce/core/resources/routes_manager.dart';
@@ -12,6 +14,7 @@ import 'package:flower_ecommerce/core/widgets/custom_app_bar.dart';
 import 'package:flower_ecommerce/core/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CartViewBody extends StatefulWidget {
   const CartViewBody({super.key});
@@ -35,7 +38,7 @@ class _CartViewBodyState extends State<CartViewBody> {
         }
       },
       builder: (context, state) {
-        if (state is FetchUserCartLoading) {
+        if (state is FetchUserCartLoading && state.isFirst) {
           return const Center(
             child: SizedBox(
               width: 200,
@@ -49,62 +52,61 @@ class _CartViewBodyState extends State<CartViewBody> {
           return const EmptyCart();
         }
         return _cartItems != null
-            ? SingleChildScrollView(
-                padding: const EdgeInsets.all(
-                  AppPadding.p16,
-                ),
-                child: Column(
-                  children: [
-                    CustomAppBar(
-                      title: "Cart (${_cartItems!.length} items)",
-                      color: ColorManager.grey,
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    const DeliveredTo(),
-                    const SizedBox(
-                      height: 24,
-                    ),
-                    ListView.separated(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) => CartItem(
-                        cartItemEntity: _cartItems![index],
+            ? CustomLoadingManager(
+                isLoading: state is FetchUserCartLoading,
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.all(
+                    AppPadding.p16,
+                  ),
+                  child: Column(
+                    children: [
+                      CustomAppBar(
+                        title:
+                            "${AppLocalizations.of(context)!.cart} (${_cartItems!.length} ${AppLocalizations.of(context)!.items})",
+                        color: ColorManager.grey,
                       ),
-                      separatorBuilder: (context, index) => const SizedBox(
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      const DeliveredTo(),
+                      const SizedBox(
                         height: 24,
                       ),
-                      itemCount: _cartItems!.length,
-                    ),
-                    const SizedBox(
-                      height: 33,
-                    ),
-                    OrderDetails(
-                      total: getTotal(_cartItems!),
-                    ),
-                    const SizedBox(
-                      height: 48,
-                    ),
-                    SizedBox(
-                      height: 50,
-                      child: CustomElevatedButton(
-                        buttonColor: ColorManager.pink,
-                        title: "Checkout",
-                        onPressed: () {
-                          handleCheckout();
-                        },
+                      ListView.separated(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (context, index) => ProductCartItem(
+                          cartItemEntity: _cartItems![index],
+                        ),
+                        separatorBuilder: (context, index) => const SizedBox(
+                          height: 24,
+                        ),
+                        itemCount: _cartItems!.length,
                       ),
-                    )
-                  ],
+                      const SizedBox(
+                        height: 33,
+                      ),
+                      OrderDetails(
+                        total: getTotal(_cartItems!),
+                      ),
+                      const SizedBox(
+                        height: 48,
+                      ),
+                      SizedBox(
+                        height: 50,
+                        child: CustomElevatedButton(
+                          buttonColor: ColorManager.pink,
+                          title: AppLocalizations.of(context)!.checkout,
+                          onPressed: () {
+                            handleCheckout();
+                          },
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               )
-            : const Center(
-                child: Text("Some thing went wrong!"),
-              );
+            : GuestUserCart();
       },
     );
   }

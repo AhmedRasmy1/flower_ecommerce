@@ -1,12 +1,13 @@
-import '../../../categories/presentation/widgets/skeleton_bar.dart';
-import '../../../../core/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/di/di.dart';
+import '../../../../core/widgets/custom_app_bar.dart';
+import '../../../categories/presentation/widgets/skeleton_bar.dart';
 import '../../../products/presentation/pages/products.dart';
 import '../viewmodel/occasion_view_model/occasion_cubit.dart';
 import '../viewmodel/occasion_view_model/occasion_state.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class OccasionsView extends StatefulWidget {
   const OccasionsView({super.key});
@@ -61,13 +62,18 @@ class _OccasionsViewState extends State<OccasionsView> {
                       var occasions = state.occasionResponse?.occasions;
                       return Column(
                         children: [
-                          CustomAppBar(
-                            title: 'Occasions',
-                            subtitle: 'Bloom with exquisite best sellers',
-                            image: null,
-                            onTap: () {
-                              Navigator.pop(context);
-                            },
+                          Padding(
+                            padding:
+                                const EdgeInsetsDirectional.only(start: 16),
+                            child: CustomAppBar(
+                              title: AppLocalizations.of(context)!.occasions,
+                              subtitle: AppLocalizations.of(context)!
+                                  .bloomBestSellers,
+                              image: null,
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
+                            ),
                           ),
                           // Top section: List of occasions with underline
                           SizedBox(
@@ -99,7 +105,6 @@ class _OccasionsViewState extends State<OccasionsView> {
                                           style: TextStyle(
                                             fontSize: 16,
                                             fontWeight: FontWeight.w400,
-                                            fontFamily: "inter",
                                             color: isSelected
                                                 ? Colors
                                                     .pink // Highlighted text color

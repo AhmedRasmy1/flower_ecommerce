@@ -36,8 +36,8 @@ import '../../Features/auth/data/data_sources/auth_online_datasource.dart'
     as _i318;
 import '../../Features/auth/data/repositories/auth_repo_impl.dart' as _i118;
 import '../../Features/auth/domain/repositories/auth_repo.dart' as _i1049;
-import '../../Features/auth/domain/use_cases/forget_password_usecase.dart'
-    as _i762;
+import '../../Features/auth/domain/use_cases/forget_password_use_case.dart'
+    as _i95;
 import '../../Features/auth/domain/use_cases/login_usecases.dart' as _i526;
 import '../../Features/auth/domain/use_cases/logout_usecases.dart' as _i266;
 import '../../Features/auth/domain/use_cases/register_usecase.dart' as _i284;
@@ -180,6 +180,15 @@ import '../../Features/profile_reset_password/presentation/view_model/change_pas
     as _i537;
 import '../api/api_manager/api_manager.dart' as _i680;
 import '../api/dio_module.dart' as _i784;
+import '../common/add_to_cart/data/contracts/add_to_cart_online_data_source.dart'
+    as _i873;
+import '../common/add_to_cart/data/data_sources/add_to_cart_online_data_source_impl.dart'
+    as _i675;
+import '../common/add_to_cart/data/repos/add_to_cart_repo_impl.dart' as _i8;
+import '../common/add_to_cart/domain/add_to_cart_repo.dart' as _i306;
+import '../common/add_to_cart/domain/add_to_cart_use_case.dart' as _i611;
+import '../common/add_to_cart/manager/cubit/add_to_cart_view_model.dart'
+    as _i566;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -194,8 +203,6 @@ extension GetItInjectableX on _i174.GetIt {
     );
     final dioModule = _$DioModule();
     gh.lazySingleton<_i361.Dio>(() => dioModule.providerDio());
-    // gh.factory<_i191.ForgetPasswordViewModel>(
-    //     () => _i191.ForgetPasswordViewModel(gh<InvalidType>()));
     gh.factory<_i406.AuthOffLineDataSource>(
         () => _i1004.AuthOffLineDataSourceImpl());
     gh.factory<_i680.ApiService>(() => _i680.ApiService(gh<_i361.Dio>()));
@@ -235,8 +242,14 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i615.EditProfileRepoImpl(gh<_i964.EditProfileDataSource>()));
     gh.factory<_i146.AddressRepo>(
         () => _i93.AddressRepoImpl(gh<_i217.AddressOnlineDataSource>()));
+    gh.factory<_i873.AddToCartOnlineDataSource>(
+        () => _i675.AddToCartOnlineDataSourceImpl(gh<_i680.ApiService>()));
+    gh.factory<_i306.AddToCartRepo>(
+        () => _i8.AddToCartRepoImpl(gh<_i873.AddToCartOnlineDataSource>()));
     gh.factory<_i983.CartRepo>(
         () => _i459.CartRepoImpl(gh<_i278.CartOnlineDataSource>()));
+    gh.factory<_i611.AddToCartUseCase>(
+        () => _i611.AddToCartUseCase(gh<_i306.AddToCartRepo>()));
     gh.factory<_i1001.AllCategoriesViewModel>(
         () => _i1001.AllCategoriesViewModel(gh<_i953.CategoriesUseCase>()));
     gh.factory<_i1049.AuthRepo>(
@@ -254,14 +267,16 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i485.ChangePasswordRepository>(() =>
         _i344.ChangePasswordRepositoryImpl(
             gh<_i390.ChangePasswordOnlineDataSource>()));
+    gh.factory<_i566.AddToCartViewModel>(
+        () => _i566.AddToCartViewModel(gh<_i611.AddToCartUseCase>()));
     gh.factory<_i1010.BestRepo>(
         () => _i762.BestRepoImpl(gh<_i97.BestOnLineDataSource>()));
     gh.factory<_i439.BestSellerUseCase>(
         () => _i439.BestSellerUseCase(gh<_i1010.BestRepo>()));
     gh.factory<_i364.ProductDetailsUseCases>(
         () => _i364.ProductDetailsUseCases(gh<_i368.ProductDetailsRepo>()));
-    gh.factory<_i762.ForgetPasswordUseCase>(
-        () => _i762.ForgetPasswordUseCase(gh<_i1049.AuthRepo>()));
+    gh.factory<_i95.ForgetPasswordUseCase>(
+        () => _i95.ForgetPasswordUseCase(gh<_i1049.AuthRepo>()));
     gh.factory<_i526.LoginUseCases>(
         () => _i526.LoginUseCases(gh<_i1049.AuthRepo>()));
     gh.factory<_i266.LogoutUseCases>(
@@ -319,6 +334,8 @@ extension GetItInjectableX on _i174.GetIt {
         _i942.ProductDetailsViewModel(gh<_i364.ProductDetailsUseCases>()));
     gh.factory<_i300.FetchUserCartViewModel>(
         () => _i300.FetchUserCartViewModel(gh<_i403.FetchUserCartUseCase>()));
+    gh.factory<_i191.ForgetPasswordViewModel>(
+        () => _i191.ForgetPasswordViewModel(gh<_i95.ForgetPasswordUseCase>()));
     gh.factory<_i14.ResetPasswordViewModel>(
         () => _i14.ResetPasswordViewModel(gh<_i785.ResetPasswordUseCase>()));
     gh.factory<_i516.EditprofileCubit>(

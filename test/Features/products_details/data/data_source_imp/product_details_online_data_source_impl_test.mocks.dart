@@ -8,6 +8,11 @@ import 'dart:async' as _i17;
 import 'package:flower_ecommerce/core/api/api_manager/api_manager.dart' as _i16;
 import 'package:flower_ecommerce/Features/address/saved_address/data/models/response/address_dto.dart'
     as _i15;
+import 'package:flower_ecommerce/core/api/api_manager/api_manager.dart' as _i15;
+import 'package:flower_ecommerce/core/common/add_to_cart/data/models/request/add_to_cart_req_body.dart'
+    as _i30;
+import 'package:flower_ecommerce/core/common/add_to_cart/data/models/response/add_to_product_res_model/add_to_product_res_model.dart'
+    as _i29;
 import 'package:flower_ecommerce/Features/auth/data/models/request/forget_password_request/forget_password_request.dart'
     as _i19;
 import 'package:flower_ecommerce/Features/auth/data/models/request/forget_password_request/reset_password_request.dart'
@@ -580,4 +585,22 @@ class MockApiService extends _i1.Mock implements _i16.ApiService {
           ),
         )),
       ) as _i17.Future<_i15.AllAddressesDto>);
+        returnValue: _i16.Future<_i28.DeleteProductResponse?>.value(),
+      ) as _i16.Future<_i28.DeleteProductResponse?>);
+
+  @override
+  _i16.Future<_i29.AddToCartResModel?> addProductToCart(
+    _i30.AddToCartReqBody? addToCartBody,
+    String? token,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #addProductToCart,
+          [
+            addToCartBody,
+            token,
+          ],
+        ),
+        returnValue: _i16.Future<_i29.AddToCartResModel?>.value(),
+      ) as _i16.Future<_i29.AddToCartResModel?>);
 }

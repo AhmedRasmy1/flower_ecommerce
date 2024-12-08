@@ -4,6 +4,8 @@ import 'package:flower_ecommerce/Features/cart&checkout/data/models/request/upda
 import 'package:flower_ecommerce/Features/cart&checkout/data/models/response/delete_product_response/delete_product_response.dart';
 import 'package:flower_ecommerce/Features/cart&checkout/data/models/response/fetch_user_cart_response/fetch_user_cart_response.dart';
 import 'package:flower_ecommerce/Features/cart&checkout/data/models/response/update_product_quantity/update_product_quantity.dart';
+import 'package:flower_ecommerce/core/common/add_to_cart/data/models/request/add_to_cart_req_body.dart';
+import 'package:flower_ecommerce/core/common/add_to_cart/data/models/response/add_to_product_res_model/add_to_product_res_model.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
@@ -115,6 +117,7 @@ abstract class ApiService {
     @Header("Authorization") String token,
   );
 
+
   @GET(ApiConstants.addressEndPoint)
   Future<AllAddressesDto> getAddresses(
     @Header("Authorization") String token,
@@ -124,5 +127,10 @@ abstract class ApiService {
   Future<AllAddressesDto> removeAddress(
     @Header("Authorization") String token,
     @Path() String addressId,
+  );
+  @POST(ApiConstants.cartEndPoint)
+  Future<AddToCartResModel?> addProductToCart(
+    @Body() AddToCartReqBody addToCartBody,
+    @Header("Authorization") String token,
   );
 }
