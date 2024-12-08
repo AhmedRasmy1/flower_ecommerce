@@ -240,12 +240,12 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i453.AuthOnLineDataSourceImpl(gh<_i680.ApiService>()));
     gh.factory<_i471.EditProfileRepo>(
         () => _i615.EditProfileRepoImpl(gh<_i964.EditProfileDataSource>()));
-    gh.factory<_i146.AddressRepo>(
-        () => _i93.AddressRepoImpl(gh<_i217.AddressOnlineDataSource>()));
     gh.factory<_i873.AddToCartOnlineDataSource>(
         () => _i675.AddToCartOnlineDataSourceImpl(gh<_i680.ApiService>()));
     gh.factory<_i306.AddToCartRepo>(
         () => _i8.AddToCartRepoImpl(gh<_i873.AddToCartOnlineDataSource>()));
+    gh.factory<_i146.AddressRepo>(
+        () => _i93.AddressRepoImpl(gh<_i217.AddressOnlineDataSource>()));
     gh.factory<_i983.CartRepo>(
         () => _i459.CartRepoImpl(gh<_i278.CartOnlineDataSource>()));
     gh.factory<_i611.AddToCartUseCase>(
