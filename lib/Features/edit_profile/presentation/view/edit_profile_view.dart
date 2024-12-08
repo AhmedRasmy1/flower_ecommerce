@@ -233,11 +233,11 @@ class _ProfileViewState extends State<EditProfileView> {
                                       ColorManager.pink),
                                   value: AppStrings.male,
                                   groupValue: _userGenderController.text,
-                                  activeColor: ColorManager.pink,
+                                  // activeColor: ColorManager.pink,
                                   onChanged: (String? value) {
-                                    setState(() {
-                                      _userGenderController.text = value!;
-                                    });
+                                    // setState(() {
+                                    //   _userGenderController.text = value!;
+                                    // });
                                   },
                                 ),
                                 Text(
@@ -260,11 +260,11 @@ class _ProfileViewState extends State<EditProfileView> {
                                       ColorManager.pink),
                                   value: AppStrings.female,
                                   groupValue: _userGenderController.text,
-                                  activeColor: ColorManager.pink,
+                                  // activeColor: ColorManager.pink,
                                   onChanged: (String? value) {
-                                    setState(() {
-                                      _userGenderController.text = value!;
-                                    });
+                                    // setState(() {
+                                    //   _userGenderController.text = value!;
+                                    // });
                                   },
                                 ),
                                 Text(
