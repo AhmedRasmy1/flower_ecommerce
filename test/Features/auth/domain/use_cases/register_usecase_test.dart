@@ -9,7 +9,6 @@ import 'register_usecase_test.mocks.dart';
 
 @GenerateMocks([AuthRepo])
 void main() {
-
   late MockAuthRepo authRepo;
   late RegisterUseCase registerUseCase;
 
@@ -28,8 +27,7 @@ void main() {
     var phone = 'phone';
     var gender = 'gender';
 
-
-    var mockedResult=Success(RegisterEntities());
+    var mockedResult = Success(RegisterEntities());
 
     when(authRepo.register(
             firstName, lastName, email, password, rePassword, phone, gender))
@@ -38,8 +36,7 @@ void main() {
     var result = await registerUseCase.register(
         firstName, lastName, email, password, rePassword, phone, gender);
 
-
-    expect(result,mockedResult);
+    expect(result, mockedResult);
     verify(authRepo.register(
             firstName, lastName, email, password, rePassword, phone, gender))
         .called(1);

@@ -1,5 +1,6 @@
 import 'package:flower_ecommerce/core/resources/values_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EmptyCart extends StatelessWidget {
   const EmptyCart({
@@ -26,7 +27,7 @@ class EmptyCart extends StatelessWidget {
                   height: 16,
                 ),
                 Text(
-                  'Whoops!',
+                  AppLocalizations.of(context)!.whoops,
                   style: const TextStyle().copyWith(
                     fontSize: 45,
                     color: Colors.red,
@@ -37,7 +38,7 @@ class EmptyCart extends StatelessWidget {
                   height: 8,
                 ),
                 Text(
-                  "Your cart is empty\n Add something and make me happy:)",
+                  AppLocalizations.of(context)!.emptyCartMessage,
                   style: const TextStyle().copyWith(
                     fontSize: AppSize.s18,
                     fontWeight: FontWeight.w500,

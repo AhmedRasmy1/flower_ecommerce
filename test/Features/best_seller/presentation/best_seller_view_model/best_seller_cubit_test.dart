@@ -26,10 +26,10 @@ void main() {
       'when calling getOccasions, it should call getBestSeller from the useCase and change state correctly',
       build: () {
         // Prepare a mock result
-        var bestSellerList=<BestSellerEntity>[];
-        var result=Success<List<BestSellerEntity>>(bestSellerList);
+        var bestSellerList = <BestSellerEntity>[];
+        var result = Success<List<BestSellerEntity>>(bestSellerList);
 
-        when(mockBestSellerUseCase.invoke()).thenAnswer((_) async =>result);
+        when(mockBestSellerUseCase.invoke()).thenAnswer((_) async => result);
 
         return bestSellerViewModel;
       },
@@ -47,7 +47,8 @@ void main() {
       build: () {
         // Prepare a mock failure result
 
-        var result=Fail<List<BestSellerEntity>>(Exception("Some error occurred"));
+        var result =
+            Fail<List<BestSellerEntity>>(Exception("Some error occurred"));
         when(mockBestSellerUseCase.invoke()).thenAnswer((_) async => result);
 
         return bestSellerViewModel;
@@ -57,7 +58,7 @@ void main() {
       },
       expect: () => [
         isA<LoadingBestSellerState>(), // Expect Loading state first
-        isA<ErrorBestSellerState>(),   // Then expect Error state
+        isA<ErrorBestSellerState>(), // Then expect Error state
       ],
     );
   });

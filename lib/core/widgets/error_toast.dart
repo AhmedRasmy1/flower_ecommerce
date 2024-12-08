@@ -22,9 +22,8 @@ void showErrorToast({
         color: ColorManager.white,
       ),
     ),
-    layoutOrientation: TextDirection
-        .ltr, //TODO: we should handle this when localization is done
-    animationType: AnimationType.fromLeft, //TODO:this also
+    layoutOrientation: TextDirection.ltr,
+    animationType: AnimationType.fromLeft,
     width: MediaQuery.sizeOf(context).width * 0.92,
     height: 100,
   ).show(context);

@@ -3,7 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class CacheService {
   static late SharedPreferences sharedPreferences;
 
-  static void cacheInitialization() async {
+  static cacheInitialization() async {
     sharedPreferences = await SharedPreferences.getInstance();
   }
 
@@ -51,4 +51,5 @@ class CacheConstants {
   static const String userEmail = 'userEmail';
   static const String userPhone = 'userPhone';
   static const String isRememberMe = 'isRememberMe';
+  static const String defaultLanguage = 'defaultLanguage';
 }

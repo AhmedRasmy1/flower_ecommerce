@@ -41,44 +41,44 @@ class _ProfileViewState extends State<ProfileView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(
-              top: AppPadding.p8,
-              right: AppPadding.p16,
-              left: AppPadding.p16,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                CustomAppBar(
-                  image: AssetsManager.appLogo,
-                  title: AppStrings.flowry,
-                  color: ColorManager.pink,
-                  fontFamily: GoogleFonts.imFellEnglish().fontFamily,
-                ),
-                const Stack(
-                  children: [
-                    Icon(Icons.notifications, size: 28, color: Colors.grey),
-                    Positioned(
-                      right: 0,
-                      child: CircleAvatar(
-                        radius: 8,
-                        backgroundColor: Colors.red,
-                        child: Text(
-                          '3',
-                          style: TextStyle(color: Colors.white, fontSize: 12),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(
+                top: AppPadding.p8,
+                right: AppPadding.p16,
+                left: AppPadding.p16,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CustomAppBar(
+                    image: AssetsManager.appLogo,
+                    title: AppStrings.flowry,
+                    color: ColorManager.pink,
+                    fontFamily: GoogleFonts.imFellEnglish().fontFamily,
+                  ),
+                  const Stack(
+                    children: [
+                      Icon(Icons.notifications, size: 28, color: Colors.grey),
+                      Positioned(
+                        right: 0,
+                        child: CircleAvatar(
+                          radius: 8,
+                          backgroundColor: Colors.red,
+                          child: Text(
+                            '3',
+                            style: TextStyle(color: Colors.white, fontSize: 12),
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-          Expanded(
-            child: BlocProvider(
+            BlocProvider(
               create: (_) => viewModel,
               child: BlocBuilder<ProfileViewModel, ProfileState>(
                 builder: (context, state) {
@@ -96,23 +96,23 @@ class _ProfileViewState extends State<ProfileView> {
                 },
               ),
             ),
-          ),
-          // Padding(
-          //   padding: const EdgeInsets.symmetric(vertical: AppPadding.p16),
-          //   child: Center(
-          //     child: IconButton(
-          //       onPressed: () {
-          //         showDialog(
-          //           context: context,
-          //           builder: (_) => const LogoutConfirmationDialog(),
-          //           barrierDismissible: false,
-          //         );
-          //       },
-          //       icon: const Icon(Icons.logout, size: 30, color: Colors.red),
-          //     ),
-          //   ),
-          // ),
-        ],
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(vertical: AppPadding.p16),
+            //   child: Center(
+            //     child: IconButton(
+            //       onPressed: () {
+            //         showDialog(
+            //           context: context,
+            //           builder: (_) => const LogoutConfirmationDialog(),
+            //           barrierDismissible: false,
+            //         );
+            //       },
+            //       icon: const Icon(Icons.logout, size: 30, color: Colors.red),
+            //     ),
+            //   ),
+            // ),
+          ],
+        ),
       ),
     );
   }
