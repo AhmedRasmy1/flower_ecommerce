@@ -13,6 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/di/di.dart';
 import '../view_model/login_view_model/login_state.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -50,21 +51,7 @@ class _LoginScreenState extends State<LoginView> {
         body: BlocListener<LoginViewModel, LoginState>(
           listener: (context, state) {
             if (state is LoadingLoginState) {
-              // showDialog(
-              //   context: context,
-              //   builder: (BuildContext context) {
-              //     return const Center(
-              //       child: SpinKitCircle(
-              //         color: Colors.pink,
-              //         size: 50.0,
-              //         duration: Duration(milliseconds: 500),
-              //       ),
-              //     );
-              //   },
-              // );
-              EasyLoading.show(
-                status: 'loading...',
-              );
+              EasyLoading.show(status: 'loading...');
               Future.delayed(const Duration(milliseconds: 600), () {
                 EasyLoading.dismiss();
               });
@@ -81,214 +68,202 @@ class _LoginScreenState extends State<LoginView> {
           },
           child: Form(
             key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(
-                      top: context.screenHeight * 0.06,
-                      left: context.screenWidth * 0.08),
-                  child: const Text(
-                    AppStrings.login,
-                    style: TextStyle(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(AppPadding.p16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: context.screenHeight * 0.06),
+                    Text(
+                      AppLocalizations.of(context)!.login,
+                      style: TextStyle(
                         color: ColorManager.lightGrey,
                         fontSize: 20,
-                        fontWeight: FontWeight.w500),
-                  ),
-                ),
-                const SizedBox(
-                  height: AppSize.s20,
-                ),
-                Container(
-                  width: context.screenWidth * 0.935,
-                  padding: EdgeInsets.only(left: context.screenWidth * 0.06),
-                  child: CustomTextFormField(
-                    keyboardType: TextInputType.emailAddress,
-                    controller: _emailController,
-                    labelText: AppStrings.email,
-                    hintText: AppStrings.enterYourEmail,
-                    validator: (value) =>
-                        validateNotEmpty(value, AppStrings.enterValidEmail),
-                  ),
-                ),
-                const SizedBox(
-                  height: AppSize.s24,
-                ), //
-                Container(
-                  width: context.screenWidth * 0.935,
-                  padding: EdgeInsets.only(left: context.screenHeight * 0.03),
-                  child: CustomTextFormField(
-                    controller: _passwordController,
-                    labelText: AppStrings.password,
-                    hintText: AppStrings.enterYourPassword,
-                    validator: (value) => validatePasswordMatch(
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                    const SizedBox(height: AppSize.s20),
+                    CustomTextFormField(
+                      keyboardType: TextInputType.emailAddress,
+                      controller: _emailController,
+                      labelText: AppLocalizations.of(context)!.email,
+                      hintText: AppLocalizations.of(context)!.enterYourEmail,
+                      validator: (value) =>
+                          validateNotEmpty(value, AppStrings.enterValidEmail),
+                    ),
+                    const SizedBox(height: AppSize.s24),
+                    CustomTextFormField(
+                      controller: _passwordController,
+                      labelText: AppLocalizations.of(context)!.password,
+                      hintText: AppLocalizations.of(context)!.enterYourPassword,
+                      validator: (value) => validatePasswordMatch(
                         password: _passwordController.text,
                         confirmPassword: _passwordController.text,
-                        message: AppStrings.passwordNotMatch),
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(
-                      left: context.screenWidth * 0.1,
-                      top: context.screenHeight * 0.03),
-                  child: Row(
-                    children: [
-                      Checkbox(
-                        value: rememberMe,
-                        onChanged: (value) {
-                          setState(() {
-                            rememberMe = value ?? false;
-                            viewModel.rememberMe = rememberMe;
-                          });
-                        },
+                        message: AppStrings.passwordNotMatch,
                       ),
-                      const Text(
-                        AppStrings.rememberMe,
-                        style: TextStyle(
+                    ),
+                    Row(
+                      children: [
+                        Checkbox(
+                          value: rememberMe,
+                          onChanged: (value) {
+                            setState(() {
+                              rememberMe = value ?? false;
+                              viewModel.rememberMe = rememberMe;
+                            });
+                          },
+                        ),
+                        Text(
+                          AppLocalizations.of(context)!.rememberMe,
+                          style: TextStyle(
                             color: ColorManager.lightGrey,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 13),
-                      ),
-                      SizedBox(
-                        width: context.screenWidth * 0.22,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.pushNamed(
-                              context, RoutesManager.forgetPasswordRoute);
-                        },
-                        child: Column(
-                          children: [
-                            const Text(AppStrings.forgetPassword,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 13,
+                          ),
+                        ),
+                        const Spacer(),
+                        InkWell(
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, RoutesManager.forgetPasswordRoute);
+                          },
+                          child: Column(
+                            children: [
+                              Text(
+                                AppLocalizations.of(context)!.forgetPassword,
                                 style: TextStyle(
-                                    color: ColorManager.lightGrey,
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 13)),
-                            Container(
-                              width: context.screenWidth * 0.26,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                    width: 0.5, color: ColorManager.lightGrey),
-                                color: Colors.white,
+                                  color: ColorManager.lightGrey,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 13,
+                                  decoration: TextDecoration.underline,
+                                  decorationColor: ColorManager.darkGrey,
+                                  decorationStyle: TextDecorationStyle.solid,
+                                  decorationThickness: 1.5,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: AppSize.s20),
+                    if (_errorMessage != null)
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: AppPadding.p24),
+                        child: Text(
+                          _errorMessage!,
+                          style:
+                              const TextStyle(color: Colors.red, fontSize: 14),
                         ),
                       ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.04,
-                ),
-                if (_errorMessage != null)
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: AppPadding.p24),
-                    child: Text(
-                      _errorMessage!,
-                      style: const TextStyle(color: Colors.red, fontSize: 14),
-                    ),
-                  ),
-                Center(
-                  child: SizedBox(
-                    width: context.screenWidth * 0.91,
-                    height: context.screenHeight * 0.063,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          _errorMessage = null;
-                        });
-                        if (_formKey.currentState?.validate() ?? false) {
-                          viewModel.login(
-                            _emailController.text,
-                            _passwordController.text,
-                          );
-                        }
-                      },
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: ColorManager.pink,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(100))),
-                      child: const Text(
-                        AppStrings.login,
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16),
+                    Center(
+                      child: SizedBox(
+                        width: context.screenWidth * 0.91,
+                        height: context.screenHeight * 0.063,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            setState(() {
+                              _errorMessage = null;
+                            });
+                            if (_formKey.currentState?.validate() ?? false) {
+                              viewModel.login(
+                                _emailController.text,
+                                _passwordController.text,
+                              );
+                            }
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: ColorManager.pink,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(100),
+                            ),
+                          ),
+                          child: Text(
+                            AppLocalizations.of(context)!.login,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.02,
-                ),
-                Center(
-                  child: SizedBox(
-                    width: context.screenWidth * 0.9,
-                    height: context.screenHeight * 0.063,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushNamedAndRemoveUntil(context,
-                            RoutesManager.layoutRoute, (route) => false);
-                      },
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
+                    const SizedBox(height: AppSize.s20),
+                    Center(
+                      child: SizedBox(
+                        width: context.screenWidth * 0.9,
+                        height: context.screenHeight * 0.063,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.pushNamedAndRemoveUntil(
+                              context,
+                              RoutesManager.layoutRoute,
+                              (route) => false,
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(100),
                               side: const BorderSide(
-                                  color: ColorManager.placeHolderColor))),
-                      child: const Text(
-                        AppStrings.continueAsGuest,
-                        style: TextStyle(
-                            color: ColorManager.placeHolderColor,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16),
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  alignment: Alignment.center,
-                  padding: EdgeInsets.only(
-                      top: MediaQuery.of(context).size.height * 0.02),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(AppStrings.notHaveAnAccount,
-                          style: TextStyle(
-                              color: ColorManager.placeHolderColor,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16)),
-                      InkWell(
-                        onTap: () {
-                          Navigator.pushNamed(
-                            context, RoutesManager.registerRoute,
-                            // arguments: {'email':_emailController.text}
-                          );
-                        },
-                        child: Column(
-                          children: [
-                            const Text(AppStrings.signUp,
-                                style: TextStyle(
-                                    color: ColorManager.pink,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 16)),
-                            Container(
-                              height: 0,
-                              width: context.screenWidth * 0.15,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                    width: 0.5, color: ColorManager.pink),
-                              ),
+                                  color: ColorManager.placeHolderColor),
                             ),
-                          ],
+                          ),
+                          child: Text(
+                            AppLocalizations.of(context)!.continueAsGuest,
+                            style: TextStyle(
+                              color: ColorManager.placeHolderColor,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 16,
+                            ),
+                          ),
                         ),
                       ),
-                    ],
-                  ),
-                )
-              ],
+                    ),
+                    const SizedBox(height: AppSize.s20),
+                    Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            AppLocalizations.of(context)!.notHaveAnAccount,
+                            style: TextStyle(
+                              color: ColorManager.placeHolderColor,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Navigator.pushNamed(
+                                  context, RoutesManager.registerRoute);
+                            },
+                            child: Column(
+                              children: [
+                                Text(
+                                  AppLocalizations.of(context)!.signUp,
+                                  style: TextStyle(
+                                    color: ColorManager.pink,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 16,
+                                    decoration: TextDecoration.underline,
+                                    decorationColor: ColorManager.darkGrey,
+                                    decorationStyle: TextDecorationStyle.solid,
+                                    decorationThickness: 1.5,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
         ),

@@ -2,6 +2,7 @@ import 'package:flower_ecommerce/Features/cart&checkout/presentation/views/widge
 import 'package:flower_ecommerce/core/resources/color_manager.dart';
 import 'package:flower_ecommerce/core/resources/values_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class OrderDetails extends StatelessWidget {
   const OrderDetails({
@@ -14,14 +15,14 @@ class OrderDetails extends StatelessWidget {
     return Column(
       children: [
         OrderInfoRow(
-          title: "Sub Total",
+          title: AppLocalizations.of(context)!.subTotal,
           value: "${total.toStringAsFixed(2)}\$",
         ),
         const SizedBox(
           height: 8,
         ),
-        const OrderInfoRow(
-          title: "Delivery Fee",
+        OrderInfoRow(
+          title: AppLocalizations.of(context)!.deliveryFee,
           value: r'10$',
         ),
         const SizedBox(
@@ -36,7 +37,7 @@ class OrderDetails extends StatelessWidget {
           height: 8,
         ),
         OrderInfoRow(
-          title: "Total",
+          title: AppLocalizations.of(context)!.total,
           value: "${(total + 10).toStringAsFixed(2)}\$",
           style: const TextStyle(
             fontSize: AppSize.s18,

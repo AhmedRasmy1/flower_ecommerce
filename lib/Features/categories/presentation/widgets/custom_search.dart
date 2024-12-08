@@ -5,6 +5,7 @@ import '../../../../core/resources/assets_manager.dart';
 import '../../../../core/resources/color_manager.dart';
 import '../../../../core/resources/style_manager.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CustomSearch extends StatelessWidget {
   const CustomSearch({super.key});
@@ -29,7 +30,7 @@ class CustomSearch extends StatelessWidget {
               controller: TextEditingController(),
               borderSideColor: ColorManager.lightGrey3,
               labelText: '',
-              hintText: 'Search',
+              hintText: AppLocalizations.of(context)!.search,
               hintStyle:
                   getBoldStyle(color: ColorManager.lightGrey3, fontSize: 14),
             ),

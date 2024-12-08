@@ -3,8 +3,8 @@ import '../../../../core/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/functions/helper.dart';
 import '../../../../core/resources/assets_manager.dart';
-import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/resources/color_manager.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
   const CustomBottomNavigationBar({
@@ -22,19 +22,19 @@ class CustomBottomNavigationBar extends StatelessWidget {
       items: [
         BottomNavigationBarItem(
           icon: buildIcon(AssetsManager.home, 0, currentIndex),
-          label: AppStrings.home,
+          label: AppLocalizations.of(context)!.home,
         ),
         BottomNavigationBarItem(
           icon: buildIcon(AssetsManager.categories, 1, currentIndex),
-          label: AppStrings.categories,
+          label: AppLocalizations.of(context)!.categories,
         ),
         BottomNavigationBarItem(
           icon: buildIcon(AssetsManager.cart, 2, currentIndex),
-          label: AppStrings.cart,
+          label: AppLocalizations.of(context)!.cart,
         ),
         BottomNavigationBarItem(
           icon: buildIcon(AssetsManager.profile, 3, currentIndex),
-          label: AppStrings.profile,
+          label: AppLocalizations.of(context)!.profile,
         ),
       ],
       selectedFontSize: AppSize.s12,

@@ -7,7 +7,6 @@ import '../../../../core/functions/helper.dart';
 import '../../../../core/resources/color_manager.dart';
 import '../../../../core/resources/custom_loading.dart';
 import '../../../../core/resources/routes_manager.dart';
-import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../../../../core/utils/cashed_data_shared_preferences.dart';
 import '../../../../core/utils/utils.dart';
@@ -15,6 +14,7 @@ import '../../../../core/widgets/custom_app_bar.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 import '../view_model/change_password_cubit.dart';
 import '../view_model/change_password_state.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
   const ChangePasswordScreen({super.key});
@@ -75,8 +75,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                 ).show(context);
               } else if (state is ChangePasswordSuccessState) {
                 MotionToast.success(
-                  description:
-                      const Text(AppStrings.passwordChangedSuccessfuly),
+                  description: Text(
+                      AppLocalizations.of(context)!.passwordChangedSuccessfuly),
                   animationType: AnimationType.fromLeft,
                 ).show(context);
                 Navigator.pushNamed(context, RoutesManager.loginRoute);
@@ -95,7 +95,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           CustomAppBar(
-                            title: AppStrings.resetPassword,
+                            title: AppLocalizations.of(context)!.resetPassword,
                             onTap: () {
                               Navigator.pop(context);
                             },
@@ -105,16 +105,19 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                             width: double.infinity,
                             child: CustomTextFormField(
                               controller: oldPasswordController,
-                              labelText: AppStrings.currentPassword,
-                              hintText: AppStrings.enterYourPassword,
+                              labelText:
+                                  AppLocalizations.of(context)!.currentPassword,
+                              hintText: AppLocalizations.of(context)!
+                                  .enterYourPassword,
                               obscureText: true,
                               validator: (value) => validatePassword(
                                   password: oldPasswordController.text,
-                                  messageInvalid:
-                                      AppStrings.passwordInvalidFormat,
-                                  messageLength:
-                                      AppStrings.passwordCharactersLong,
-                                  message: AppStrings.passwordNotMatch),
+                                  messageInvalid: AppLocalizations.of(context)!
+                                      .passwordInvalidFormat,
+                                  messageLength: AppLocalizations.of(context)!
+                                      .passwordCharactersLong,
+                                  message: AppLocalizations.of(context)!
+                                      .passwordNotMatch),
                             ),
                           ),
                           const SizedBox(height: AppSize.s24),
@@ -122,16 +125,19 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                             width: double.infinity,
                             child: CustomTextFormField(
                               controller: newPasswordController,
-                              labelText: AppStrings.newPassword,
-                              hintText: AppStrings.enterYourPassword,
+                              labelText:
+                                  AppLocalizations.of(context)!.newPassword,
+                              hintText: AppLocalizations.of(context)!
+                                  .enterYourPassword,
                               obscureText: true,
                               validator: (value) => validatePassword(
                                   password: newPasswordController.text,
-                                  messageInvalid:
-                                      AppStrings.passwordInvalidFormat,
-                                  messageLength:
-                                      AppStrings.passwordCharactersLong,
-                                  message: AppStrings.passwordNotMatch),
+                                  messageInvalid: AppLocalizations.of(context)!
+                                      .passwordInvalidFormat,
+                                  messageLength: AppLocalizations.of(context)!
+                                      .passwordCharactersLong,
+                                  message: AppLocalizations.of(context)!
+                                      .passwordNotMatch),
                             ),
                           ),
                           const SizedBox(height: AppSize.s24),
@@ -139,14 +145,18 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                             width: double.infinity,
                             child: CustomTextFormField(
                               controller: rePasswordController,
-                              labelText: AppStrings.confirmPassword,
-                              hintText: AppStrings.enterYourConfirmPassword,
+                              labelText:
+                                  AppLocalizations.of(context)!.confirmPassword,
+                              hintText: AppLocalizations.of(context)!
+                                  .enterYourConfirmPassword,
                               obscureText: true,
                               validator: (value) => validatePasswordMatch(
-                                  messageIsEmpty: AppStrings.passwordIsEmpty,
+                                  messageIsEmpty: AppLocalizations.of(context)!
+                                      .passwordIsEmpty,
                                   password: newPasswordController.text,
                                   confirmPassword: rePasswordController.text,
-                                  message: AppStrings.passwordNotMatch),
+                                  message: AppLocalizations.of(context)!
+                                      .passwordNotMatch),
                             ),
                           ),
                           const SizedBox(height: AppSize.s48),
@@ -171,8 +181,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                                     ? ColorManager.lightGrey2
                                     : ColorManager.pink,
                               ),
-                              child: const Text(
-                                AppStrings.update,
+                              child: Text(
+                                AppLocalizations.of(context)!.update,
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: ColorManager.white),

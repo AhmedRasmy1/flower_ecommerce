@@ -19,6 +19,7 @@ import '../../../../core/resources/values_manager.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -54,31 +55,10 @@ class _HomeViewState extends State<HomeView> {
               left: AppPadding.p16,
             ),
             child: BlocConsumer<HomeCubit, HomeState>(
-              listener: (context, state) {
-                // if (state is HomeLoading) {
-                //   ScaffoldMessenger.of(context).showSnackBar(
-                //     const SnackBar(
-                //       content: Text('Loading...'),
-                //     ),
-                //   );
-                // } else if (state is HomeFail) {
-                //   ScaffoldMessenger.of(context).showSnackBar(
-                //     SnackBar(
-                //       content: Text(state.exception.toString()),
-                //     ),
-                //   );
-                // }
-              },
+              listener: (context, state) {},
               builder: (context, state) {
                 if (state is HomeLoading) {
                   return const SkeletonHome();
-                  //   Center(
-                  //   child: Image.asset(
-                  //     AssetsManager.loadingLoading1,
-                  //     width: 100,
-                  //     height: 100,
-                  //   ),
-                  // );
                 } else if (state is HomeSuccess) {
                   var bestSeller = state.homeEntity.bestSeller;
                   var occasions = state.homeEntity.occasions;
@@ -103,18 +83,19 @@ class _HomeViewState extends State<HomeView> {
                           ],
                         ),
                         const SizedBox(height: AppSize.s16),
-                        const CustomLocation(
+                        CustomLocation(
                           icon: AssetsManager.locationIcon,
-                          address: AppStrings.address,
+                          address: AppLocalizations.of(context)!.address,
                           arrow: AssetsManager.arrowIcon,
                         ),
                         const SizedBox(height: AppSize.s24),
-                        const CustomHeader(title: AppStrings.discover),
+                        CustomHeader(
+                            title: AppLocalizations.of(context)!.discover),
                         const SizedBox(height: AppSize.s16),
                         const CustomCard(),
                         const SizedBox(height: AppSize.s24),
                         CustomHeader(
-                          title: AppStrings.categories,
+                          title: AppLocalizations.of(context)!.categories,
                           viewAll: AppStrings.viewAll,
                           onTap: () {
                             LayoutCubit.get(context).changeIndex(1);
@@ -126,7 +107,7 @@ class _HomeViewState extends State<HomeView> {
                         ),
                         const SizedBox(height: AppSize.s24),
                         CustomHeader(
-                          title: AppStrings.bestSeller,
+                          title: AppLocalizations.of(context)!.bestSeller,
                           viewAll: AppStrings.viewAll,
                           onTap: () {
                             Navigator.pushNamed(
@@ -139,7 +120,7 @@ class _HomeViewState extends State<HomeView> {
                         ),
                         const SizedBox(height: AppSize.s16),
                         CustomHeader(
-                          title: AppStrings.occasion,
+                          title: AppLocalizations.of(context)!.occasion,
                           viewAll: AppStrings.viewAll,
                           onTap: () {
                             Navigator.pushNamed(

@@ -1,3 +1,7 @@
+import 'package:flower_ecommerce/localization/locale_cubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
+
 import '../../../auth/presentation/widgets/logout_confirmation_dialog.dart';
 import '../../../../core/resources/routes_manager.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +9,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/resources/color_manager.dart';
 import '../../domain/entities/profile_entity.dart';
 import 'option_item.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 Widget buildProfileContent(BuildContext context, ProfileEntity? profile) {
   return Column(
@@ -56,14 +61,14 @@ Widget buildProfileContent(BuildContext context, ProfileEntity? profile) {
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
           children: [
-            const OptionItem(
+            OptionItem(
               icon: Icons.event_note_outlined,
-              text: 'My orders',
+              text: AppLocalizations.of(context)!.myOrders,
               imageIconExists: true,
             ),
-            const OptionItem(
+            OptionItem(
               icon: Icons.location_on,
-              text: 'Saved address',
+              text: AppLocalizations.of(context)!.savedAddress,
               imageIconExists: true,
             ),
             const Divider(thickness: 1, color: Colors.grey),
@@ -81,7 +86,7 @@ Widget buildProfileContent(BuildContext context, ProfileEntity? profile) {
                         inactiveThumbColor: Colors.pink,
                       ),
                       const SizedBox(width: 10),
-                      const Text('Notification',
+                      Text(AppLocalizations.of(context)!.notification,
                           style: TextStyle(fontSize: 16)),
                     ],
                   ),
@@ -90,21 +95,68 @@ Widget buildProfileContent(BuildContext context, ProfileEntity? profile) {
               const ImageIcon(AssetImage("assets/images/side_arrow.png"))
             ]),
             const Divider(thickness: 1, color: Colors.grey),
-            const OptionItem(
-              icon: Icons.language,
-              text: 'Language',
-              trailingText: 'English',
-              imageIconExists: false,
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
+              child: Row(
+                children: [
+                  SvgPicture.asset(
+                    'assets/images/language_icon.svg',
+                    width: 16,
+                    height: 16,
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    AppLocalizations.of(context)!.language,
+                    style: TextStyle(fontSize: 16),
+                  ),
+                  const Spacer(),
+                  StatefulBuilder(
+                    builder: (BuildContext context, StateSetter setState) {
+                      String dropdownValue =
+                          context.read<LocaleCubit>().state.languageCode;
+                      return DropdownButton<String>(
+                        value: dropdownValue,
+                        iconEnabledColor: ColorManager.pink,
+                        items: const [
+                          DropdownMenuItem(
+                            value: 'en',
+                            child: Text(
+                              'English',
+                              style: TextStyle(color: ColorManager.pink),
+                            ),
+                          ),
+                          DropdownMenuItem(
+                            value: 'ar',
+                            child: Text(
+                              'العربية',
+                              style: TextStyle(color: ColorManager.pink),
+                            ),
+                          ),
+                        ],
+                        onChanged: (value) {
+                          if (value != null) {
+                            setState(() {
+                              dropdownValue = value;
+                            });
+                            context.read<LocaleCubit>().changeLanguage(value);
+                          }
+                        },
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
-            const OptionItem(
-              text: 'About us',
+            OptionItem(
+              text: AppLocalizations.of(context)!.aboutUs,
               imageIconExists: true,
             ),
-            const OptionItem(
-              text: 'Terms & conditions',
+            OptionItem(
+              text: AppLocalizations.of(context)!.termsAndConditions,
               imageIconExists: true,
             ),
-            const Divider(thickness: 1, color: Colors.grey),
+            Divider(thickness: 1, color: Colors.grey),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -116,25 +168,28 @@ Widget buildProfileContent(BuildContext context, ProfileEntity? profile) {
                         barrierDismissible: false,
                       );
                     },
-                    child: const OptionItem(
+                    child: OptionItem(
                       icon: Icons.logout,
-                      text: 'Logout',
+                      text: AppLocalizations.of(context)!.logout,
                       imageIconExists: false,
                     )),
-                const Icon(Icons.logout)
+                const Icon(
+                  Icons.logout,
+                  size: 30,
+                )
               ],
+            ),
+            const Center(
+              child: Text(
+                'v 6.3.0 - (446)',
+                style: TextStyle(color: Colors.grey),
+              ),
             ),
           ],
         ),
       ),
-      const Spacer(),
       // Footer
-      const Center(
-        child: Text(
-          'v 6.3.0 - (446)',
-          style: TextStyle(color: Colors.grey),
-        ),
-      ),
+
       const SizedBox(height: 10),
     ],
   );

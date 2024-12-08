@@ -24,6 +24,7 @@ import '../../../profile/domain/entities/profile_entity.dart';
 import '../../../profile/presentation/view_model/profile_view_model.dart';
 import '../viewmodels/editprofile_cubit.dart';
 import '../widgets/custom_circle_avatar.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EditProfileView extends StatefulWidget {
   const EditProfileView({super.key});
@@ -98,7 +99,7 @@ class _ProfileViewState extends State<EditProfileView> {
                   child: Column(
                     children: [
                       CustomAppBar(
-                        title: AppStrings.editProfile,
+                        title: AppLocalizations.of(context)!.editProfile,
                         color: ColorManager.black,
                         onTap: () {
                           Navigator.pop(context);
@@ -115,11 +116,15 @@ class _ProfileViewState extends State<EditProfileView> {
                                 AppConstants.screenWidthRatio,
                             child: CustomTextFormField(
                               controller: _firstNameController,
-                              labelText: AppStrings.firstName,
-                              hintText: AppStrings.enterYourFirstName,
+                              labelText:
+                                  AppLocalizations.of(context)!.firstName,
+                              hintText: AppLocalizations.of(context)!
+                                  .enterYourFirstName,
                               obscureText: false,
                               validator: (value) => validateNotEmpty(
-                                  value, AppStrings.entervalidfirstName),
+                                  value,
+                                  AppLocalizations.of(context)!
+                                      .entervalidfirstName),
                             ),
                           ),
                           SizedBox(
@@ -127,11 +132,14 @@ class _ProfileViewState extends State<EditProfileView> {
                                 AppConstants.screenWidthRatio,
                             child: CustomTextFormField(
                               controller: _lastNameController,
-                              labelText: AppStrings.lastName,
-                              hintText: AppStrings.enterYourLastName,
+                              labelText: AppLocalizations.of(context)!.lastName,
+                              hintText: AppLocalizations.of(context)!
+                                  .enterYourLastName,
                               obscureText: false,
                               validator: (value) => validateNotEmpty(
-                                  value, AppStrings.entervalidLastName),
+                                  value,
+                                  AppLocalizations.of(context)!
+                                      .entervalidLastName),
                             ),
                           ),
                         ],
@@ -140,38 +148,42 @@ class _ProfileViewState extends State<EditProfileView> {
                       CustomTextFormField(
                         keyboardType: TextInputType.emailAddress,
                         controller: _emailController,
-                        labelText: AppStrings.email,
-                        hintText: AppStrings.enterYourEmail,
+                        labelText: AppLocalizations.of(context)!.email,
+                        hintText: AppLocalizations.of(context)!.enterYourEmail,
                         obscureText: false,
-                        validator: (value) =>
-                            validateNotEmpty(value, AppStrings.enterValidEmail),
+                        validator: (value) => validateNotEmpty(value,
+                            AppLocalizations.of(context)!.enterValidEmail),
                       ),
                       const SizedBox(height: AppSize.s24),
                       CustomTextFormField(
                         prefixIcon: Padding(
-                          padding: const EdgeInsets.only(left: AppPadding.p16),
+                          padding: const EdgeInsets.only(
+                              left: AppPadding.p16, right: AppPadding.p16),
                           child: SvgPicture.asset('assets/images/password.svg'),
                         ),
                         enabled: true,
                         // keyboardType: TextInputType.visiblePassword,
                         controller: _passwordController,
-                        labelText: AppStrings.password,
+                        labelText: AppLocalizations.of(context)!.password,
                         // hintText: AppStrings.enterYourPassword,
                         // obscureText: true,
-                        suffix: InkWell(
-                          onTap: () {
-                            Navigator.pushNamed(
-                                context, RoutesManager.changePasswordViewRoute);
-                          },
-                          child: Padding(
-                            padding:
-                                const EdgeInsets.only(right: AppPadding.p16),
-                            child: Text(
-                              AppStrings.change,
-                              style: TextStyle(
-                                color: ColorManager.pink,
-                                fontSize: FontSize.s14,
-                                fontWeight: FontWeightManager.semiBold,
+                        suffix: Padding(
+                          padding: const EdgeInsets.only(left: AppPadding.p16),
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.pushNamed(context,
+                                  RoutesManager.changePasswordViewRoute);
+                            },
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.only(right: AppPadding.p16),
+                              child: Text(
+                                AppLocalizations.of(context)!.change,
+                                style: TextStyle(
+                                  color: ColorManager.pink,
+                                  fontSize: FontSize.s14,
+                                  fontWeight: FontWeightManager.semiBold,
+                                ),
                               ),
                             ),
                           ),
@@ -187,18 +199,21 @@ class _ProfileViewState extends State<EditProfileView> {
                         child: CustomTextFormField(
                           keyboardType: TextInputType.phone,
                           controller: _phoneController,
-                          labelText: AppStrings.phoneNumber,
-                          hintText: AppStrings.enterPhoneNumber,
+                          labelText: AppLocalizations.of(context)!.phoneNumber,
+                          hintText:
+                              AppLocalizations.of(context)!.enterPhoneNumber,
                           obscureText: false,
                           validator: (value) => validateNotEmpty(
-                              value, AppStrings.enterValidPhoneNumber),
+                              value,
+                              AppLocalizations.of(context)!
+                                  .enterValidPhoneNumber),
                         ),
                       ),
                       const SizedBox(height: AppSize.s24),
                       Row(
                         children: [
                           Text(
-                            AppStrings.gender,
+                            AppLocalizations.of(context)!.gender,
                             style: TextStyle(
                               color: ColorManager.black,
                               fontSize: FontSize.s22,
@@ -225,8 +240,8 @@ class _ProfileViewState extends State<EditProfileView> {
                                     });
                                   },
                                 ),
-                                const Text(
-                                  AppStrings.male,
+                                Text(
+                                  AppLocalizations.of(context)!.male,
                                   style: TextStyle(
                                     color: ColorManager.black,
                                     fontSize: FontSize.s17,
@@ -252,8 +267,8 @@ class _ProfileViewState extends State<EditProfileView> {
                                     });
                                   },
                                 ),
-                                const Text(
-                                  AppStrings.female,
+                                Text(
+                                  AppLocalizations.of(context)!.female,
                                   style: TextStyle(
                                     color: ColorManager.black,
                                     fontSize: FontSize.s17,
@@ -271,8 +286,8 @@ class _ProfileViewState extends State<EditProfileView> {
                             CustomLoadingDialog.show(context);
                           } else if (state is EditprofileSuccess) {
                             MotionToast.success(
-                              description:
-                                  const Text(AppStrings.profileUpdated),
+                              description: Text(
+                                  AppLocalizations.of(context)!.profileUpdated),
                               animationType: AnimationType.fromLeft,
                             ).show(context);
                             Navigator.pop(context);
@@ -295,7 +310,7 @@ class _ProfileViewState extends State<EditProfileView> {
                         builder: (context, state) {
                           return CustomElevatedButton(
                             buttonColor: buttonColor,
-                            title: AppStrings.update,
+                            title: AppLocalizations.of(context)!.update,
                             onPressed: () {
                               validationMethod(
                                 actionPress: () {

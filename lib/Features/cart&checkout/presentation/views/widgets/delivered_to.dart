@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../../core/resources/color_manager.dart';
 import '../../../../../core/resources/values_manager.dart';
 import '../../../../../core/utils/app_assets.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DeliveredTo extends StatelessWidget {
   const DeliveredTo({
@@ -23,7 +24,7 @@ class DeliveredTo extends StatelessWidget {
           width: 2.5,
         ),
         Text(
-          "Delivered to",
+          AppLocalizations.of(context)!.deliveredTo,
           style: const TextStyle().copyWith(
             color: ColorManager.grey,
             fontSize: AppSize.s16,
@@ -34,7 +35,7 @@ class DeliveredTo extends StatelessWidget {
           width: 8,
         ),
         Text(
-          "2XVP+XC - Sheikh Zayed.....",
+          AppLocalizations.of(context)!.location,
           style: const TextStyle().copyWith(
             color: ColorManager.black,
             fontSize: AppSize.s16,

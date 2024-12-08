@@ -1,10 +1,10 @@
-import '../../../../core/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../../core/resources/assets_manager.dart';
 import '../../../../core/resources/color_manager.dart';
 import '../../../../core/resources/style_manager.dart';
 import '../../../../core/resources/values_manager.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class FilterButton extends StatelessWidget {
   const FilterButton({
@@ -40,7 +40,7 @@ class FilterButton extends StatelessWidget {
               width: AppSize.s12,
             ),
             Text(
-              AppStrings.filter,
+              AppLocalizations.of(context)!.filter,
               style: getBoldStyle(
                   color: ColorManager.white, fontSize: AppSize.s20),
             ),

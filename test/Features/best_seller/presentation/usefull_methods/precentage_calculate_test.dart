@@ -1,10 +1,11 @@
-
 import 'package:flower_ecommerce/Features/best_seller/presentation/usefull_methods/precentage_calculate.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('percentageCalculate Tests', () {
-    test('should return correct percentage when priceNow is less than priceBeforeSale', () {
+    test(
+        'should return correct percentage when priceNow is less than priceBeforeSale',
+        () {
       // Arrange
       num priceBeforeSale = 200;
       num priceNow = 150;

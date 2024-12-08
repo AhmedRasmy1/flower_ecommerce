@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ProductCartItem extends StatelessWidget {
   const ProductCartItem({super.key, required this.cartItemEntity});
@@ -56,7 +57,7 @@ class ProductCartItem extends StatelessWidget {
                       description: cartItemEntity.description!,
                     ),
                     Text(
-                      "EGP ${cartItemEntity.price}",
+                      " ${cartItemEntity.price}${AppLocalizations.of(context)!.currencyEGP}",
                       style: const TextStyle().copyWith(
                         fontWeight: FontWeight.w600,
                         fontSize: AppSize.s14,
@@ -80,8 +81,8 @@ class ProductCartItem extends StatelessWidget {
                       return InkWell(
                         onTap: () async {
                           showWarningDialogue(
-                            message:
-                                "You are about to delete the Item Permanently!!",
+                            message: AppLocalizations.of(context)!
+                                .deleteConfirmation,
                             onPressed: () {
                               deleteProductViewModel
                                   .deleteProduct(cartItemEntity.id!)

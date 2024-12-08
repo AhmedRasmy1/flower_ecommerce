@@ -8,6 +8,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../../best_seller/data/data_source/best_online_data_source_test.mocks.dart';
+
 @GenerateMocks([ApiService])
 void main() {
   late MockApiService mockApiService;
@@ -15,7 +16,8 @@ void main() {
 
   setUp(() {
     mockApiService = MockApiService();
-    changePasswordOnlineDataSource = ChangePasswordOnlineDataSourceImpl(mockApiService);
+    changePasswordOnlineDataSource =
+        ChangePasswordOnlineDataSourceImpl(mockApiService);
   });
 
   test('should call changePassword and return Success', () async {

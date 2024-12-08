@@ -257,16 +257,16 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i439.BestSellerUseCase(gh<_i1010.BestRepo>()));
     gh.factory<_i364.ProductDetailsUseCases>(
         () => _i364.ProductDetailsUseCases(gh<_i368.ProductDetailsRepo>()));
-    gh.factory<_i284.RegisterUseCase>(
-        () => _i284.RegisterUseCase(gh<_i1049.AuthRepo>()));
-    gh.factory<_i526.LoginUseCases>(
-        () => _i526.LoginUseCases(gh<_i1049.AuthRepo>()));
     gh.factory<_i95.ForgetPasswordUseCase>(
         () => _i95.ForgetPasswordUseCase(gh<_i1049.AuthRepo>()));
-    gh.factory<_i785.ResetPasswordUseCase>(
-        () => _i785.ResetPasswordUseCase(gh<_i1049.AuthRepo>()));
+    gh.factory<_i526.LoginUseCases>(
+        () => _i526.LoginUseCases(gh<_i1049.AuthRepo>()));
     gh.factory<_i266.LogoutUseCases>(
         () => _i266.LogoutUseCases(gh<_i1049.AuthRepo>()));
+    gh.factory<_i284.RegisterUseCase>(
+        () => _i284.RegisterUseCase(gh<_i1049.AuthRepo>()));
+    gh.factory<_i785.ResetPasswordUseCase>(
+        () => _i785.ResetPasswordUseCase(gh<_i1049.AuthRepo>()));
     gh.factory<_i753.VerifyUseCase>(
         () => _i753.VerifyUseCase(gh<_i1049.AuthRepo>()));
     gh.factory<_i143.HomeRepo>(
@@ -275,12 +275,12 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i1012.BestSellerViewModel(gh<_i439.BestSellerUseCase>()));
     gh.factory<_i728.EditProfileUseCase>(
         () => _i728.EditProfileUseCase(gh<_i471.EditProfileRepo>()));
-    gh.factory<_i566.UpdateProductQuantityUseCase>(
-        () => _i566.UpdateProductQuantityUseCase(gh<_i983.CartRepo>()));
     gh.factory<_i1065.DeleteProductUseCase>(
         () => _i1065.DeleteProductUseCase(gh<_i983.CartRepo>()));
     gh.factory<_i403.FetchUserCartUseCase>(
         () => _i403.FetchUserCartUseCase(gh<_i983.CartRepo>()));
+    gh.factory<_i566.UpdateProductQuantityUseCase>(
+        () => _i566.UpdateProductQuantityUseCase(gh<_i983.CartRepo>()));
     gh.factory<_i706.LogoutViewModel>(
         () => _i706.LogoutViewModel(gh<_i266.LogoutUseCases>()));
     gh.factory<_i920.LoginViewModel>(

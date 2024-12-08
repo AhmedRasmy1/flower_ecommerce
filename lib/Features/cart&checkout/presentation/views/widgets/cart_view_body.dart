@@ -4,6 +4,7 @@ import 'package:flower_ecommerce/Features/cart&checkout/presentation/manager/fet
 import 'package:flower_ecommerce/Features/cart&checkout/presentation/views/widgets/cart_item/product_cart_item.dart';
 import 'package:flower_ecommerce/Features/cart&checkout/presentation/views/widgets/delivered_to.dart';
 import 'package:flower_ecommerce/Features/cart&checkout/presentation/views/widgets/empty_cart_widget.dart';
+import 'package:flower_ecommerce/Features/cart&checkout/presentation/views/widgets/guest_user_cart.dart';
 import 'package:flower_ecommerce/Features/cart&checkout/presentation/views/widgets/order_details.dart';
 import 'package:flower_ecommerce/core/resources/color_manager.dart';
 import 'package:flower_ecommerce/core/resources/routes_manager.dart';
@@ -13,6 +14,7 @@ import 'package:flower_ecommerce/core/widgets/custom_app_bar.dart';
 import 'package:flower_ecommerce/core/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CartViewBody extends StatefulWidget {
   const CartViewBody({super.key});
@@ -59,7 +61,8 @@ class _CartViewBodyState extends State<CartViewBody> {
                   child: Column(
                     children: [
                       CustomAppBar(
-                        title: "Cart (${_cartItems!.length} items)",
+                        title:
+                            "${AppLocalizations.of(context)!.cart} (${_cartItems!.length} ${AppLocalizations.of(context)!.items})",
                         color: ColorManager.grey,
                       ),
                       const SizedBox(
@@ -93,7 +96,7 @@ class _CartViewBodyState extends State<CartViewBody> {
                         height: 50,
                         child: CustomElevatedButton(
                           buttonColor: ColorManager.pink,
-                          title: "Checkout",
+                          title: AppLocalizations.of(context)!.checkout,
                           onPressed: () {
                             handleCheckout();
                           },
@@ -103,9 +106,7 @@ class _CartViewBodyState extends State<CartViewBody> {
                   ),
                 ),
               )
-            : const Center(
-                child: Text("Some thing went wrong!"),
-              );
+            : GuestUserCart();
       },
     );
   }

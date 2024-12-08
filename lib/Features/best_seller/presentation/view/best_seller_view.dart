@@ -2,12 +2,12 @@ import '../../../products/presentation/pages/products.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
 import '../../../products/presentation/widgets/skeleton_body.dart';
 import '../best_seller_view_model/best_seller_state.dart';
-import '../../../../core/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/di/di.dart';
 import '../../domain/entities/best_seller_entity.dart';
 import '../best_seller_view_model/best_seller_cubit.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class BestSellerView extends StatefulWidget {
   const BestSellerView({super.key});
@@ -38,8 +38,9 @@ class _BestSellerViewState extends State<BestSellerView> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomAppBar(
-                  title: AppStrings.bestSeller,
-                  subtitle: AppStrings.bestSellerTitleDescription,
+                  title: AppLocalizations.of(context)!.bestSeller,
+                  subtitle:
+                      AppLocalizations.of(context)!.bestSellerTitleDescription,
                   onTap: () {
                     Navigator.pop(context);
                   },
