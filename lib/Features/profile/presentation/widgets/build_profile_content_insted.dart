@@ -1,4 +1,5 @@
 import 'package:flower_ecommerce/core/resources/routes_manager.dart';
+import 'package:flower_ecommerce/core/utils/cashed_data_shared_preferences.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -84,7 +85,16 @@ Widget buildProfileContentInstent(
                   ),
                 ],
               ),
-              const ImageIcon(AssetImage("assets/images/side_arrow.png"))
+              Transform(
+                alignment: Alignment.center,
+                transform:
+                    CacheService.getData(key: CacheConstants.defaultLanguage) ==
+                            'ar'
+                        ? Matrix4.rotationY(3.1416)
+                        : Matrix4.identity(),
+                child:
+                    const ImageIcon(AssetImage("assets/images/side_arrow.png")),
+              )
             ]),
             const Divider(thickness: 1, color: Colors.grey),
             // const OptionItem(

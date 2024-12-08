@@ -226,7 +226,7 @@ packages:
     dependency: transitive
     description:
       name: coverage
-      sha256: "4b03e11f6d5b8f6e5bb5e9f7889a56fe6c5cbe942da5378ea4d4d7f73ef9dfe5"
+      sha256: e3493833ea012784c740e341952298f1cc77f1f01b1bbc3eb4eecf6984fb7f43
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.11.1"
@@ -582,7 +582,7 @@ packages:
     dependency: "direct main"
     description:
       name: lottie
-      sha256: "7afc60865a2429d994144f7d66ced2ae4305fe35d82890b8766e3359872d872c"
+      sha256: fa39707f36786707b01eca7626d2c16c32aa603b3f3a146518518458847dc127
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "3.2.0"
@@ -718,7 +718,7 @@ packages:
     dependency: transitive
     description:
       name: path_provider_foundation
-      sha256: f234384a3fdd67f989b4d54a5d73ca2a6c422fa55ae694381ae0f4375cd1ea16
+      sha256: "4843174df4d288f5e29185bd6e72a6fbdf5a4a4602717eed565497429f179942"
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.4.1"
