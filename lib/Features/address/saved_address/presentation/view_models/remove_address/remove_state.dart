@@ -1,4 +1,4 @@
-import 'package:flower_ecommerce/Features/address/saved_address/domain/entities/response/address_entity.dart';
+import '../../../domain/entities/response/address_entity.dart';
 
 sealed class RemoveAddressState {}
 

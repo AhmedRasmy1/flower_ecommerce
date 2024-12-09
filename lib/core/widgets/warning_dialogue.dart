@@ -1,6 +1,6 @@
-import 'package:flower_ecommerce/core/resources/color_manager.dart';
-import 'package:flower_ecommerce/core/resources/values_manager.dart';
-import 'package:flower_ecommerce/core/widgets/custom_elevated_button.dart';
+import '../resources/color_manager.dart';
+import '../resources/values_manager.dart';
+import 'custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 

@@ -1,4 +1,4 @@
-import 'package:flower_ecommerce/Features/add_address/presentation/manager/add_address_cubit.dart';
+import '../manager/add_address_cubit.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/resources/color_manager.dart';
@@ -6,13 +6,11 @@ import '../../../../core/resources/font_manager.dart';
 import '../../../../core/resources/style_manager.dart';
 import '../../../../core/resources/theme_manager.dart';
 import '../../../../core/resources/values_manager.dart';
-import '../pages/address_view.dart';
-
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CityAreaSelection extends StatefulWidget {
   const CityAreaSelection({super.key, required this.viewModel});
-final AddAddressCubit viewModel;
+  final AddAddressCubit viewModel;
   @override
   State<CityAreaSelection> createState() => _CityAreaSelectionState();
 }
@@ -48,12 +46,12 @@ class _CityAreaSelectionState extends State<CityAreaSelection> {
                 setState(() {
                   selectedCity = newCity;
                   selectedCityAreas = areas[cities.indexOf(newCity!)];
-                  widget.viewModel.city=newCity;
+                  widget.viewModel.city = newCity;
                 });
               },
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Please select a city';
+                  return AppLocalizations.of(context)!.please_select_city;
                 }
                 return null;
               },
@@ -67,7 +65,7 @@ class _CityAreaSelectionState extends State<CityAreaSelection> {
               decoration: InputDecoration(
                 fillColor: Colors.white,
                 filled: true,
-                labelText: 'City',
+                labelText: AppLocalizations.of(context)!.city,
                 labelStyle: getRegularStyle(
                   color: ColorManager.grey,
                   fontSize: FontSize.s16,
@@ -123,7 +121,7 @@ class _CityAreaSelectionState extends State<CityAreaSelection> {
               onChanged: (newArea) {},
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Please select an area';
+                  return AppLocalizations.of(context)!.please_select_area;
                 }
                 return null;
               },
@@ -137,7 +135,7 @@ class _CityAreaSelectionState extends State<CityAreaSelection> {
               decoration: InputDecoration(
                 fillColor: Colors.white,
                 filled: true,
-                labelText: 'City',
+                labelText: AppLocalizations.of(context)!.area,
                 labelStyle: getRegularStyle(
                   color: ColorManager.grey,
                   fontSize: FontSize.s16,

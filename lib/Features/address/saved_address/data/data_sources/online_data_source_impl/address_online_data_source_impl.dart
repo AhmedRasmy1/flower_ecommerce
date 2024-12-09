@@ -1,7 +1,7 @@
-import 'package:flower_ecommerce/Features/address/saved_address/domain/entities/response/address_entity.dart';
-import 'package:flower_ecommerce/core/api/api_extentions.dart';
-import 'package:flower_ecommerce/core/api/api_manager/api_manager.dart';
-import 'package:flower_ecommerce/core/common/api_result.dart';
+import '../../../domain/entities/response/address_entity.dart';
+import '../../../../../../core/api/api_extentions.dart';
+import '../../../../../../core/api/api_manager/api_manager.dart';
+import '../../../../../../core/common/api_result.dart';
 import 'package:injectable/injectable.dart';
 import '../online_data_source/address_online_data_source.dart';
 
@@ -20,9 +20,10 @@ class AddressOnlineDataSourceImpl extends AddressOnlineDataSource {
   }
 
   @override
-  Future<Result<AllAddressEntity>> removeAddress(String token, String addressId) {
+  Future<Result<AllAddressEntity>> removeAddress(
+      String token, String addressId) {
     return executeApi(() async {
-      var response = await _addressRetrofit.removeAddress(token,addressId);
+      var response = await _addressRetrofit.removeAddress(token, addressId);
       return response.toAllAddressesEntity();
     });
   }

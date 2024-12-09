@@ -1,12 +1,11 @@
-
-import 'package:flower_ecommerce/Features/cart&checkout/data/models/response/checkout/address_response.dart';
+import '../../../data/models/response/checkout/address_response.dart';
 
 sealed class CheckoutState {}
 
 class InitialState extends CheckoutState {}
 
 class SuccessCheckoutState extends CheckoutState {
- AddressResponse? addressResponse;
+  AddressResponse? addressResponse;
 
   SuccessCheckoutState(this.addressResponse);
 }

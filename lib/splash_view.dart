@@ -1,5 +1,5 @@
-import 'package:flower_ecommerce/core/resources/strings_manager.dart';
-import 'package:flower_ecommerce/core/utils/cashed_data_shared_preferences.dart';
+import 'core/resources/strings_manager.dart';
+import 'core/utils/cashed_data_shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

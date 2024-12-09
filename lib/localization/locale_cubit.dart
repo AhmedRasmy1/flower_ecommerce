@@ -1,4 +1,4 @@
-import 'package:flower_ecommerce/core/utils/cashed_data_shared_preferences.dart';
+import '../core/utils/cashed_data_shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

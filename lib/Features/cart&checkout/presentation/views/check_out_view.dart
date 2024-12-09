@@ -1,7 +1,9 @@
-import 'package:flower_ecommerce/Features/cart&checkout/presentation/views/widgets/checkoutWidgets/addresswidget.dart';
-import 'package:flower_ecommerce/Features/cart&checkout/presentation/views/widgets/checkoutWidgets/build_payment_widget.dart';
-import 'package:flower_ecommerce/Features/cart&checkout/presentation/views/widgets/checkoutWidgets/delivery_time_widget.dart';
-import 'package:flower_ecommerce/Features/cart&checkout/presentation/views/widgets/checkoutWidgets/order_summary_widget.dart';
+import 'widgets/checkoutWidgets/addresswidget.dart';
+import 'widgets/checkoutWidgets/build_payment_widget.dart';
+import 'widgets/checkoutWidgets/delivery_time_widget.dart';
+import 'widgets/checkoutWidgets/order_summary_widget.dart';
+import '../../../../core/resources/routes_manager.dart';
+import '../../../../core/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/di/di.dart';
@@ -20,10 +22,10 @@ class CheckOutView extends StatefulWidget {
 }
 
 class _CheckOutViewState extends State<CheckOutView> {
-  List<CartItemEntity> cartList = []; // Initialize cart list
-  late CheckoutViewModel _checkoutViewModel; // ViewModel for managing checkout
-  bool _isGift = false; // State for gift switch
-  int? _selectedAddressIndex; // Track selected address index
+  List<CartItemEntity> cartList = [];
+  late CheckoutViewModel _checkoutViewModel;
+  bool _isGift = false;
+  int? _selectedAddressIndex;
 
   @override
   void initState() {
@@ -39,7 +41,6 @@ class _CheckOutViewState extends State<CheckOutView> {
     if (arguments is List<CartItemEntity> && arguments.isNotEmpty) {
       setState(() {
         cartList = arguments;
-        // Assign cart items to the list
       });
     } else {
       debugPrint('No cart items received or arguments are not valid');
@@ -52,47 +53,51 @@ class _CheckOutViewState extends State<CheckOutView> {
   @override
   Widget build(BuildContext context) {
     double total = getTotal(cartList);
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: const Text(
-          "Checkout",
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: buildDeliveryTimeSection(),
-            ),
-            const Divider(thickness: 24, color: Color(0xFFEAEAEA)),
-            const SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: buildDeliveryAddressSection(),
-            ),
-            const Divider(thickness: 24, color: Color(0xFFEAEAEA)),
-            const SizedBox(height: 10),
-            BuildPaymentWidget(),
-            const Divider(thickness: 24, color: Color(0xFFEAEAEA)),
-            const SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: buildIsGiftSection(),
-            ),
-            const Divider(thickness: 24, color: Color(0xFFEAEAEA)),
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: buildOrderSummary(total),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: _buildCheckoutButton(),
-            ),
-          ],
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 9, left: 16),
+                child: CustomAppBar(
+                  title: 'Checkout',
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: buildDeliveryTimeSection(),
+              ),
+              const Divider(thickness: 24, color: Color(0xFFEAEAEA)),
+              const SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: buildDeliveryAddressSection(),
+              ),
+              const Divider(thickness: 24, color: Color(0xFFEAEAEA)),
+              const SizedBox(height: 10),
+              BuildPaymentWidget(),
+              const Divider(thickness: 24, color: Color(0xFFEAEAEA)),
+              const SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: buildIsGiftSection(),
+              ),
+              const Divider(thickness: 24, color: Color(0xFFEAEAEA)),
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: buildOrderSummary(total),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: _buildCheckoutButton(),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -151,7 +156,7 @@ class _CheckOutViewState extends State<CheckOutView> {
           width: double.infinity,
           child: ElevatedButton(
             onPressed: () {
-              // Logic to add a new address can go here
+              Navigator.pushNamed(context, RoutesManager.addAddressView);
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: ColorManager.white,

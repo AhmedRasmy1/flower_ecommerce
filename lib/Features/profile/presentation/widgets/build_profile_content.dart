@@ -1,5 +1,5 @@
-import 'package:flower_ecommerce/core/utils/cashed_data_shared_preferences.dart';
-import 'package:flower_ecommerce/localization/locale_cubit.dart';
+import '../../../../core/utils/cashed_data_shared_preferences.dart';
+import '../../../../localization/locale_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -167,7 +167,7 @@ Widget buildProfileContent(BuildContext context, ProfileEntity? profile) {
               onTap: () {
                 Navigator.pushNamed(
                   context,
-                  RoutesManager.AboutUsPageRoute,
+                  RoutesManager.aboutUsPageRoute,
                 );
               },
               child: OptionItem(
@@ -179,7 +179,7 @@ Widget buildProfileContent(BuildContext context, ProfileEntity? profile) {
               onTap: () {
                 Navigator.pushNamed(
                   context,
-                  RoutesManager.TermsAndConditionsPageRoute,
+                  RoutesManager.termsAndConditionsPageRoute,
                 );
               },
               child: OptionItem(

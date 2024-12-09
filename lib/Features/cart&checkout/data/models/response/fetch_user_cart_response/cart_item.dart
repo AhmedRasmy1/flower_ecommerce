@@ -1,4 +1,4 @@
-import 'package:flower_ecommerce/Features/cart&checkout/domain/entities/cart_item_entity.dart';
+import '../../../../domain/entities/cart_item_entity.dart';
 
 import 'product.dart';
 

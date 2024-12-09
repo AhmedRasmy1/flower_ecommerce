@@ -1,6 +1,7 @@
 import 'package:location/location.dart';
-class PermissionService{
- static Future<bool> checkLocationServiceAndPermission() async {
+
+class PermissionService {
+  static Future<bool> checkLocationServiceAndPermission() async {
     Location location = Location();
 
     bool serviceEnabled = await location.serviceEnabled();
@@ -21,4 +22,3 @@ class PermissionService{
     return true;
   }
 }
-

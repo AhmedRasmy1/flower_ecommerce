@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flower_ecommerce/core/resources/color_manager.dart';
+import '../../../../../../core/resources/color_manager.dart';
 import 'package:flutter/material.dart';
 
 class ItemImage extends StatelessWidget {

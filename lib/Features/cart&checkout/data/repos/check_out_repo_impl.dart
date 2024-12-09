@@ -1,6 +1,5 @@
-
-import 'package:flower_ecommerce/Features/cart&checkout/data/models/response/checkout/address_response.dart';
-import 'package:flower_ecommerce/core/common/api_result.dart';
+import '../models/response/checkout/address_response.dart';
+import '../../../../core/common/api_result.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../domain/repos/checkout_repo.dart';

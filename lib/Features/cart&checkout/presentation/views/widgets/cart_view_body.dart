@@ -1,17 +1,19 @@
-import 'package:flower_ecommerce/Features/auth/presentation/widgets/loading_manager.dart';
-import 'package:flower_ecommerce/Features/cart&checkout/domain/entities/cart_item_entity.dart';
-import 'package:flower_ecommerce/Features/cart&checkout/presentation/manager/fetch_user_cart/fetch_user_cart_view_model.dart';
-import 'package:flower_ecommerce/Features/cart&checkout/presentation/views/check_out_view.dart';
-import 'package:flower_ecommerce/Features/cart&checkout/presentation/views/widgets/cart_item/product_cart_item.dart';
-import 'package:flower_ecommerce/Features/cart&checkout/presentation/views/widgets/delivered_to.dart';
-import 'package:flower_ecommerce/Features/cart&checkout/presentation/views/widgets/empty_cart_widget.dart';
-import 'package:flower_ecommerce/Features/cart&checkout/presentation/views/widgets/guest_user_cart.dart';
-import 'package:flower_ecommerce/Features/cart&checkout/presentation/views/widgets/order_details.dart';
-import 'package:flower_ecommerce/core/resources/color_manager.dart';
-import 'package:flower_ecommerce/core/resources/values_manager.dart';
-import 'package:flower_ecommerce/core/utils/cashed_data_shared_preferences.dart';
-import 'package:flower_ecommerce/core/widgets/custom_app_bar.dart';
-import 'package:flower_ecommerce/core/widgets/custom_elevated_button.dart';
+import 'dart:developer';
+
+import '../../../../auth/presentation/widgets/loading_manager.dart';
+import '../../../domain/entities/cart_item_entity.dart';
+import '../../manager/fetch_user_cart/fetch_user_cart_view_model.dart';
+import '../check_out_view.dart';
+import 'cart_item/product_cart_item.dart';
+import 'delivered_to.dart';
+import 'empty_cart_widget.dart';
+import 'guest_user_cart.dart';
+import 'order_details.dart';
+import '../../../../../core/resources/color_manager.dart';
+import '../../../../../core/resources/values_manager.dart';
+import '../../../../../core/utils/cashed_data_shared_preferences.dart';
+import '../../../../../core/widgets/custom_app_bar.dart';
+import '../../../../../core/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -120,23 +122,21 @@ class _CartViewBodyState extends State<CartViewBody> {
   }
 
   void handleCheckout() {
-    double total = getTotal(_cartItems!);
     final cachedToken = CacheService.getData(key: CacheConstants.userToken);
     if (cachedToken != null) {
       Navigator.push(
-          context,
-          MaterialPageRoute(settings:RouteSettings(arguments:total) ,
-              builder: (context) => const CheckOutView()),
-              );
-
+        context,
+        MaterialPageRoute(
+            settings: RouteSettings(arguments: _cartItems),
+            builder: (context) => const CheckOutView()),
+      );
     } else {
       Navigator.push(
         context,
-        MaterialPageRoute(settings:RouteSettings(arguments: total) ,
+        MaterialPageRoute(
+            settings: RouteSettings(arguments: _cartItems),
             builder: (context) => const CheckOutView()),
       );
-
-
     }
   }
 }

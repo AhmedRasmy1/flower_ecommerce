@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
-import 'package:flower_ecommerce/Features/address/saved_address/domain/entities/response/address_entity.dart';
-import 'package:flower_ecommerce/Features/address/saved_address/domain/use_cases/address_use_cases.dart';
-import 'package:flower_ecommerce/Features/address/saved_address/presentation/view_models/get_address/address_state.dart';
-import 'package:flower_ecommerce/core/common/api_result.dart';
+import '../../../domain/entities/response/address_entity.dart';
+import '../../../domain/use_cases/address_use_cases.dart';
+import 'address_state.dart';
+import '../../../../../../core/common/api_result.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable

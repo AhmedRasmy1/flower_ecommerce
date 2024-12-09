@@ -1,6 +1,6 @@
-import 'package:flower_ecommerce/Features/cart&checkout/data/models/request/update_quantity_request.dart';
-import 'package:flower_ecommerce/Features/cart&checkout/domain/use_cases/update_product_quantity_use_case.dart';
-import 'package:flower_ecommerce/core/common/api_result.dart';
+import '../../../data/models/request/update_quantity_request.dart';
+import '../../../domain/use_cases/update_product_quantity_use_case.dart';
+import '../../../../../core/common/api_result.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';

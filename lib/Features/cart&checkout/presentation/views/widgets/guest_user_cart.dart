@@ -1,6 +1,6 @@
-import 'package:flower_ecommerce/core/resources/color_manager.dart';
-import 'package:flower_ecommerce/core/resources/routes_manager.dart';
-import 'package:flower_ecommerce/core/resources/values_manager.dart';
+import '../../../../../core/resources/color_manager.dart';
+import '../../../../../core/resources/routes_manager.dart';
+import '../../../../../core/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 

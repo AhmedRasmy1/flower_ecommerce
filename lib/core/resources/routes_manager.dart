@@ -1,6 +1,7 @@
-import 'package:flower_ecommerce/Features/address/saved_address/presentation/view/saved_address.dart';
-import 'package:flower_ecommerce/Features/cart&checkout/presentation/views/check_out_view.dart';
-import 'package:flower_ecommerce/Features/profile/presentation/pages/terms_and_conditions.dart';
+import '../../Features/add_address/presentation/pages/address_view.dart';
+import '../../Features/address/saved_address/presentation/view/saved_address.dart';
+import '../../Features/cart&checkout/presentation/views/check_out_view.dart';
+import '../../Features/profile/presentation/pages/terms_and_conditions.dart';
 import 'package:flutter/material.dart';
 
 import '../../Features/auth/presentation/views/email_verification_view.dart';
@@ -40,9 +41,11 @@ class RoutesManager {
   static const String logoutViewRoute = '/logout';
   static const String changePasswordViewRoute = '/chanePasswordViewRoute';
   static const String editProfileRoute = '/editProfileRoute';
-  static const String TermsAndConditionsPageRoute = '/TermsAndConditionsPageRoute';
-  static const String AboutUsPageRoute = '/AboutUsPageRoute';
-static const String savedAddress = '/savedAddress';
+  static const String termsAndConditionsPageRoute =
+      '/TermsAndConditionsPageRoute';
+  static const String aboutUsPageRoute = '/AboutUsPageRoute';
+  static const String savedAddress = '/savedAddress';
+  static const String addAddressView = '/addAddressView';
 }
 
 class RouteGenerator {
@@ -79,11 +82,11 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const OtpVerificationPage());
       case RoutesManager.layoutRoute:
         return MaterialPageRoute(builder: (_) => const LayoutView());
-      case RoutesManager.TermsAndConditionsPageRoute:
-        return MaterialPageRoute(builder: (_) => const TermsAndConditionsPage());
-    case RoutesManager.AboutUsPageRoute:
-    return MaterialPageRoute(
-    builder: (_) => const AboutUsPage());
+      case RoutesManager.termsAndConditionsPageRoute:
+        return MaterialPageRoute(
+            builder: (_) => const TermsAndConditionsPage());
+      case RoutesManager.aboutUsPageRoute:
+        return MaterialPageRoute(builder: (_) => const AboutUsPage());
 
       case RoutesManager.tryScreenRoute:
         return MaterialPageRoute(builder: (_) => const TryScreen());
@@ -100,11 +103,14 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const BestSellerView());
       case RoutesManager.changePasswordViewRoute:
         return MaterialPageRoute(builder: (_) => const ChangePasswordScreen());
-      case RoutesManager.savedAddress :
-        return MaterialPageRoute (builder: (_)=> const SavedAddress());
+      case RoutesManager.savedAddress:
+        return MaterialPageRoute(builder: (_) => const SavedAddress());
       case RoutesManager.editProfileRoute:
         return MaterialPageRoute(
             builder: (_) => const EditProfileView(), settings: settings);
+
+      case RoutesManager.addAddressView:
+        return MaterialPageRoute(builder: (_) => const AddressView());
 
       default:
         return unDefinedRoute();

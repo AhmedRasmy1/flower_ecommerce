@@ -1,59 +1,57 @@
-/// YApi QuickType插件生成，具体参考文档:https://plugins.jetbrains.com/plugin/18847-yapi-quicktype/documentation
-
 import 'dart:convert';
 
-AddressResponse addressResponseFromJson(String str) => AddressResponse.fromJson(json.decode(str));
+AddressResponse addressResponseFromJson(String str) =>
+    AddressResponse.fromJson(json.decode(str));
 
-String addressResponseToJson(AddressResponse data) => json.encode(data.toJson());
+String addressResponseToJson(AddressResponse data) =>
+    json.encode(data.toJson());
 
 class AddressResponse {
-    AddressResponse({
-         this.addresses,
-         this.message,
-        this.error
-    });
+  AddressResponse({this.addresses, this.message, this.error});
 
-    List<Address>? addresses;
-    String? message;
-    String? error;
+  List<Address>? addresses;
+  String? message;
+  String? error;
 
-    factory AddressResponse.fromJson(Map<dynamic, dynamic> json) => AddressResponse(
-        addresses: List<Address>.from(json["addresses"].map((x) => Address.fromJson(x))),
+  factory AddressResponse.fromJson(Map<dynamic, dynamic> json) =>
+      AddressResponse(
+        addresses: List<Address>.from(
+            json["addresses"].map((x) => Address.fromJson(x))),
         message: json["message"],
         error: json["error"],
-    );
+      );
 
-    Map<dynamic, dynamic> toJson() => {
+  Map<dynamic, dynamic> toJson() => {
         "addresses": List<dynamic>.from(addresses!.map((x) => x.toJson())),
         "message": message,
         "error": error,
-    };
+      };
 }
 
 class Address {
-    Address({
-       this.phone,
-      this.city,
-        this.street,
-       this.id,
-    });
+  Address({
+    this.phone,
+    this.city,
+    this.street,
+    this.id,
+  });
 
-    String? phone;
-    String ?city;
-    String ?street;
-    String ?id;
+  String? phone;
+  String? city;
+  String? street;
+  String? id;
 
-    factory Address.fromJson(Map<dynamic, dynamic> json) => Address(
+  factory Address.fromJson(Map<dynamic, dynamic> json) => Address(
         phone: json["phone"],
         city: json["city"],
         street: json["street"],
         id: json["_id"],
-    );
+      );
 
-    Map<dynamic, dynamic> toJson() => {
+  Map<dynamic, dynamic> toJson() => {
         "phone": phone,
         "city": city,
         "street": street,
         "_id": id,
-    };
+      };
 }

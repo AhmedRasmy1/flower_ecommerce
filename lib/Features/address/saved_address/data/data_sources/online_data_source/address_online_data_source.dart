@@ -1,5 +1,5 @@
-import 'package:flower_ecommerce/Features/address/saved_address/domain/entities/response/address_entity.dart';
-import 'package:flower_ecommerce/core/common/api_result.dart';
+import '../../../domain/entities/response/address_entity.dart';
+import '../../../../../../core/common/api_result.dart';
 
 abstract class AddressOnlineDataSource {
   Future<Result<AllAddressEntity>> getAddresses(String token);

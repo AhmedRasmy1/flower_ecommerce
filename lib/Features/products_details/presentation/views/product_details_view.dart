@@ -1,10 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flower_ecommerce/core/common/add_to_cart/data/models/request/add_to_cart_req_body.dart';
-import 'package:flower_ecommerce/core/common/add_to_cart/manager/cubit/add_to_cart_view_model.dart';
-import 'package:flower_ecommerce/core/utils/cashed_data_shared_preferences.dart';
-import 'package:flower_ecommerce/core/widgets/custom_elevated_button.dart';
-import 'package:flower_ecommerce/core/widgets/error_toast.dart';
-import 'package:flower_ecommerce/core/widgets/success_toast.dart';
+import '../../../../core/common/add_to_cart/data/models/request/add_to_cart_req_body.dart';
+import '../../../../core/common/add_to_cart/manager/cubit/add_to_cart_view_model.dart';
+import '../../../../core/utils/cashed_data_shared_preferences.dart';
+import '../../../../core/widgets/custom_elevated_button.dart';
+import '../../../../core/widgets/error_toast.dart';
+import '../../../../core/widgets/success_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';

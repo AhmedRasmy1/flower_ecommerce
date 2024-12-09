@@ -1,7 +1,6 @@
 import 'dart:developer';
-import 'package:flower_ecommerce/Features/add_address/domain/entities/add_address_entity.dart';
-import 'package:flower_ecommerce/Features/add_address/domain/use_cases/add_address_usecase.dart';
-import 'package:flower_ecommerce/Features/add_address/presentation/pages/address_view.dart';
+import '../../domain/entities/add_address_entity.dart';
+import '../../domain/use_cases/add_address_usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
@@ -18,7 +17,7 @@ class AddAddressCubit extends Cubit<AddAddressState> {
   static AddAddressCubit get(context) => BlocProvider.of(context);
   String address = 'Enter the add_address';
 
-String city='Cairo';
+  String city = 'Cairo';
 
   // void doIntent(AddAddressToAction intent) async {
   //   if (isClosed) return;
@@ -28,7 +27,7 @@ String city='Cairo';
   //   }
   // }
 
-  void addAddress(String city ,String phone ,String street) async {
+  void addAddress(String city, String phone, String street) async {
     emit(LoadingAddAddressState());
 
     var result = await _addAddressUseCase.addAddress(city, phone, street);
@@ -52,6 +51,4 @@ String city='Cairo';
     address = newAddress;
     emit(ChangeAddressState(address));
   }
-
-
 }

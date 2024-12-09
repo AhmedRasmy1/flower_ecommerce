@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:flower_ecommerce/Features/cart&checkout/data/models/response/checkout/address_response.dart';
+import '../../../data/models/response/checkout/address_response.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../core/common/api_result.dart';
@@ -25,4 +25,3 @@ class CheckoutViewModel extends Cubit<CheckoutState> {
     }
   }
 }
-

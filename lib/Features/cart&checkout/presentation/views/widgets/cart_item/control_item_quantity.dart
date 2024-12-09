@@ -1,10 +1,10 @@
-import 'package:flower_ecommerce/Features/cart&checkout/data/models/request/update_quantity_request.dart';
-import 'package:flower_ecommerce/Features/cart&checkout/presentation/manager/delete_product/delete_product_view_model.dart';
-import 'package:flower_ecommerce/Features/cart&checkout/presentation/manager/fetch_user_cart/fetch_user_cart_view_model.dart';
-import 'package:flower_ecommerce/Features/cart&checkout/presentation/manager/update_product_quantity/update_product_quantity_view_model.dart';
-import 'package:flower_ecommerce/core/resources/values_manager.dart';
-import 'package:flower_ecommerce/core/utils/app_assets.dart';
-import 'package:flower_ecommerce/core/widgets/warning_dialogue.dart';
+import '../../../../data/models/request/update_quantity_request.dart';
+import '../../../manager/delete_product/delete_product_view_model.dart';
+import '../../../manager/fetch_user_cart/fetch_user_cart_view_model.dart';
+import '../../../manager/update_product_quantity/update_product_quantity_view_model.dart';
+import '../../../../../../core/resources/values_manager.dart';
+import '../../../../../../core/utils/app_assets.dart';
+import '../../../../../../core/widgets/warning_dialogue.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';

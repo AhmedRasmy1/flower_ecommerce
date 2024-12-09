@@ -110,7 +110,6 @@ class CustomTextFormField extends StatelessWidget {
       validator: validator,
       onChanged: onChanged,
       autovalidateMode: AutovalidateMode.onUserInteraction,
-
     );
   }
 }

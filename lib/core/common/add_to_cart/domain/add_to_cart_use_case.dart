@@ -1,6 +1,6 @@
-import 'package:flower_ecommerce/core/common/add_to_cart/data/models/request/add_to_cart_req_body.dart';
-import 'package:flower_ecommerce/core/common/add_to_cart/domain/add_to_cart_repo.dart';
-import 'package:flower_ecommerce/core/common/api_result.dart';
+import '../data/models/request/add_to_cart_req_body.dart';
+import 'add_to_cart_repo.dart';
+import '../../api_result.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable

@@ -1,6 +1,6 @@
-import 'package:flower_ecommerce/Features/address/saved_address/domain/entities/response/address_entity.dart';
-import 'package:flower_ecommerce/Features/address/saved_address/domain/repositories/address_repo.dart';
-import 'package:flower_ecommerce/core/common/api_result.dart';
+import '../../domain/entities/response/address_entity.dart';
+import '../../domain/repositories/address_repo.dart';
+import '../../../../../core/common/api_result.dart';
 import 'package:injectable/injectable.dart';
 
 import '../data_sources/online_data_source/address_online_data_source.dart';

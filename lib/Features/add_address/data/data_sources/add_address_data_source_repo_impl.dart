@@ -1,4 +1,4 @@
-import 'package:flower_ecommerce/core/utils/cashed_data_shared_preferences.dart';
+import '../../../../core/utils/cashed_data_shared_preferences.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/api/api_extentions.dart';
@@ -16,13 +16,13 @@ class AddAddressDataSourceRepoImpl implements AddAddressDataSourceRepo {
 
   @override
   Future<Result<AddAddressEntity?>> addAddressRepo(
- String city ,String phone ,String street) {
+      String city, String phone, String street) {
     final cachedToken = CacheService.getData(key: CacheConstants.userToken);
     print(' $cachedToken');
     print('zewin');
     return executeApi(() async {
       var response = await apiService.addAddress(
-        AddAddressRequest(city:city ,phone:phone ,street: street),
+        AddAddressRequest(city: city, phone: phone, street: street),
         "Bearer $cachedToken",
       );
 

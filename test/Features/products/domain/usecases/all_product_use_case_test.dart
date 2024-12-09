@@ -1,8 +1,5 @@
 import 'package:flower_ecommerce/Features/products/domain/repositories/products_repo.dart';
 import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
-
-import 'all_product_use_case_test.mocks.dart';
 
 @GenerateMocks([ProductsRepo])
 void main() {

@@ -1,4 +1,4 @@
-import 'package:flower_ecommerce/core/widgets/custom_app_bar.dart';
+import '../../../../core/widgets/custom_app_bar.dart';
 
 import '../../../../core/resources/color_manager.dart';
 import 'package:flutter/material.dart';

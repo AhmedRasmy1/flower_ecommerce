@@ -1,5 +1,5 @@
-import 'package:flower_ecommerce/core/resources/color_manager.dart';
-import 'package:flower_ecommerce/core/resources/values_manager.dart';
+import '../resources/color_manager.dart';
+import '../resources/values_manager.dart';
 import 'package:flutter/material.dart';
 
 class AppTextStyles {

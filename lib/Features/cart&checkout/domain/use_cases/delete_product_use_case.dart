@@ -1,5 +1,5 @@
-import 'package:flower_ecommerce/Features/cart&checkout/domain/repos/cart_repo.dart';
-import 'package:flower_ecommerce/core/common/api_result.dart';
+import '../repos/cart_repo.dart';
+import '../../../../core/common/api_result.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable

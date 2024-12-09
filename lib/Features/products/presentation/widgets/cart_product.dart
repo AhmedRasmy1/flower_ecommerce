@@ -1,4 +1,4 @@
-import 'package:flower_ecommerce/core/widgets/add_to_cart_button.dart';
+import '../../../../core/widgets/add_to_cart_button.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 

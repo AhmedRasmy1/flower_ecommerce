@@ -1,8 +1,8 @@
-import 'package:flower_ecommerce/Features/cart&checkout/data/contracts/cart_online_data_source.dart';
-import 'package:flower_ecommerce/Features/cart&checkout/data/models/request/update_quantity_request.dart';
-import 'package:flower_ecommerce/Features/cart&checkout/domain/entities/cart_item_entity.dart';
-import 'package:flower_ecommerce/Features/cart&checkout/domain/repos/cart_repo.dart';
-import 'package:flower_ecommerce/core/common/api_result.dart';
+import '../contracts/cart_online_data_source.dart';
+import '../models/request/update_quantity_request.dart';
+import '../../domain/entities/cart_item_entity.dart';
+import '../../domain/repos/cart_repo.dart';
+import '../../../../core/common/api_result.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: CartRepo)

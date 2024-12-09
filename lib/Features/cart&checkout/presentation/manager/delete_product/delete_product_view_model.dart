@@ -1,5 +1,5 @@
-import 'package:flower_ecommerce/Features/cart&checkout/domain/use_cases/delete_product_use_case.dart';
-import 'package:flower_ecommerce/core/common/api_result.dart';
+import '../../../domain/use_cases/delete_product_use_case.dart';
+import '../../../../../core/common/api_result.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';

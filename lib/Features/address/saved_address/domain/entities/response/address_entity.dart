@@ -1,5 +1,4 @@
 class AllAddressEntity {
-
   AllAddressEntity({
     this.message,
     this.addresses,

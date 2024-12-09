@@ -7,8 +7,12 @@ import 'dart:async' as _i17;
 
 import 'package:flower_ecommerce/core/api/api_manager/api_manager.dart' as _i16;
 import 'package:flower_ecommerce/core/common/add_to_cart/data/models/request/add_to_cart_req_body.dart'
-    as _i31;
+    as _i33;
 import 'package:flower_ecommerce/core/common/add_to_cart/data/models/response/add_to_product_res_model/add_to_product_res_model.dart'
+    as _i32;
+import 'package:flower_ecommerce/Features/add_address/data/models/request/add_address_model.dart'
+    as _i31;
+import 'package:flower_ecommerce/Features/add_address/data/models/response/add_address_response.dart'
     as _i30;
 import 'package:flower_ecommerce/Features/address/saved_address/data/models/response/address_dto.dart'
     as _i15;
@@ -39,7 +43,7 @@ import 'package:flower_ecommerce/Features/best_seller/data/model/best_seller_res
 import 'package:flower_ecommerce/Features/cart&checkout/data/models/request/update_quantity_request.dart'
     as _i28;
 import 'package:flower_ecommerce/Features/cart&checkout/data/models/response/checkout/address_response.dart'
-    as _i32;
+    as _i34;
 import 'package:flower_ecommerce/Features/cart&checkout/data/models/response/delete_product_response/delete_product_response.dart'
     as _i29;
 import 'package:flower_ecommerce/Features/cart&checkout/data/models/response/fetch_user_cart_response/fetch_user_cart_response.dart'
@@ -545,6 +549,22 @@ class MockApiService extends _i1.Mock implements _i16.ApiService {
       ) as _i17.Future<_i29.DeleteProductResponse?>);
 
   @override
+  _i17.Future<_i30.AddAddressResponse?> addAddress(
+    _i31.AddAddressRequest? addAddressRequest,
+    String? token,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #addAddress,
+          [
+            addAddressRequest,
+            token,
+          ],
+        ),
+        returnValue: _i17.Future<_i30.AddAddressResponse?>.value(),
+      ) as _i17.Future<_i30.AddAddressResponse?>);
+
+  @override
   _i17.Future<_i15.AllAddressesDto> getAddresses(String? token) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -588,8 +608,8 @@ class MockApiService extends _i1.Mock implements _i16.ApiService {
       ) as _i17.Future<_i15.AllAddressesDto>);
 
   @override
-  _i17.Future<_i30.AddToCartResModel?> addProductToCart(
-    _i31.AddToCartReqBody? addToCartBody,
+  _i17.Future<_i32.AddToCartResModel?> addProductToCart(
+    _i33.AddToCartReqBody? addToCartBody,
     String? token,
   ) =>
       (super.noSuchMethod(
@@ -600,16 +620,16 @@ class MockApiService extends _i1.Mock implements _i16.ApiService {
             token,
           ],
         ),
-        returnValue: _i17.Future<_i30.AddToCartResModel?>.value(),
-      ) as _i17.Future<_i30.AddToCartResModel?>);
+        returnValue: _i17.Future<_i32.AddToCartResModel?>.value(),
+      ) as _i17.Future<_i32.AddToCartResModel?>);
 
   @override
-  _i17.Future<_i32.AddressResponse?> getUserAddresses(String? token) =>
+  _i17.Future<_i34.AddressResponse?> getUserAddresses(String? token) =>
       (super.noSuchMethod(
         Invocation.method(
           #getUserAddresses,
           [token],
         ),
-        returnValue: _i17.Future<_i32.AddressResponse?>.value(),
-      ) as _i17.Future<_i32.AddressResponse?>);
+        returnValue: _i17.Future<_i34.AddressResponse?>.value(),
+      ) as _i17.Future<_i34.AddressResponse?>);
 }

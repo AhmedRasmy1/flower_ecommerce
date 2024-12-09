@@ -24,7 +24,9 @@ class LayoutBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    PermissionService.checkLocationServiceAndPermission();/// location
+    PermissionService.checkLocationServiceAndPermission();
+
+    /// location
     var cubit = LayoutCubit.get(context);
     return BlocBuilder<LayoutCubit, LayoutState>(
       builder: (context, state) {

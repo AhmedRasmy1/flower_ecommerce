@@ -1,4 +1,4 @@
-import 'package:flower_ecommerce/Features/address/saved_address/domain/entities/response/address_entity.dart';
+import '../../../domain/entities/response/address_entity.dart';
 
 class AllAddressesDto {
   AllAddressesDto({
@@ -28,12 +28,11 @@ class AllAddressesDto {
     return map;
   }
 
-  AllAddressEntity toAllAddressesEntity (){
-    return AllAddressEntity (
-      message:message,
-      addresses: addresses
-          ?.map((address)=>
-          address.toAddressEntity()).toList(),
+  AllAddressEntity toAllAddressesEntity() {
+    return AllAddressEntity(
+      message: message,
+      addresses:
+          addresses?.map((address) => address.toAddressEntity()).toList(),
     );
   }
 }
@@ -68,7 +67,6 @@ class Addresses {
   }
 
   AddressesEntity toAddressEntity() {
-    return AddressesEntity
-      (id: id, city: city, street: street);
+    return AddressesEntity(id: id, city: city, street: street);
   }
 }

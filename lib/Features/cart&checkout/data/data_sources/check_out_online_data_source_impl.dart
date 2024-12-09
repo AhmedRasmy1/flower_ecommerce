@@ -1,5 +1,4 @@
-
-import 'package:flower_ecommerce/Features/cart&checkout/data/models/response/checkout/address_response.dart';
+import '../models/response/checkout/address_response.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/api/api_extentions.dart';
@@ -14,8 +13,6 @@ class CheckoutOnlineDataSourceImpl implements CheckoutOnlineDataSource {
   CheckoutOnlineDataSourceImpl(this._apiService);
   @override
   Future<Result<AddressResponse?>> getUserAddresses(String token) async {
-
-
     return executeApi(() async {
       var response = await _apiService.getUserAddresses(token);
       return response;

@@ -1,5 +1,5 @@
-import 'package:flower_ecommerce/Features/cart&checkout/presentation/manager/fetch_user_cart/fetch_user_cart_view_model.dart';
-import 'package:flower_ecommerce/Features/cart&checkout/presentation/views/widgets/cart_view_body.dart';
+import '../manager/fetch_user_cart/fetch_user_cart_view_model.dart';
+import 'widgets/cart_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';

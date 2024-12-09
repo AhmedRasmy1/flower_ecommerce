@@ -1,5 +1,5 @@
-import 'package:flower_ecommerce/core/resources/routes_manager.dart';
-import 'package:flower_ecommerce/core/utils/cashed_data_shared_preferences.dart';
+import '../../../../core/resources/routes_manager.dart';
+import '../../../../core/utils/cashed_data_shared_preferences.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 

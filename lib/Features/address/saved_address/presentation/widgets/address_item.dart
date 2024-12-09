@@ -1,7 +1,7 @@
-import 'package:flower_ecommerce/Features/address/saved_address/domain/entities/response/address_entity.dart';
-import 'package:flower_ecommerce/Features/address/saved_address/presentation/view_models/remove_address/remove_state.dart';
-import 'package:flower_ecommerce/core/resources/color_manager.dart';
-import 'package:flower_ecommerce/core/utils/cashed_data_shared_preferences.dart';
+import '../../domain/entities/response/address_entity.dart';
+import '../view_models/remove_address/remove_state.dart';
+import '../../../../../core/resources/color_manager.dart';
+import '../../../../../core/utils/cashed_data_shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../view_models/remove_address/remove_cubit.dart';
@@ -50,7 +50,10 @@ class _AddressItemState extends State<AddressItem> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 14, left: 20),
+                padding: const EdgeInsets.only(
+                  top: 14,
+                  left: 20,
+                ),
                 child: Row(
                   children: [
                     ImageIcon(
@@ -106,7 +109,7 @@ class _AddressItemState extends State<AddressItem> {
                 height: 8,
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 20),
+                padding: const EdgeInsets.only(left: 20, right: 20),
                 child: Text(
                   widget.addressesEntity.street!,
                   style: TextStyle(

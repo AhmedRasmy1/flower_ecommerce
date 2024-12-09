@@ -2,8 +2,9 @@ import '../../../domain/entities/add_address_entity.dart';
 
 class AddAddressResponse {
   AddAddressResponse({
-      this.message, 
-      this.address,});
+    this.message,
+    this.address,
+  });
 
   AddAddressResponse.fromJson(dynamic json) {
     message = json['message'];
@@ -25,6 +26,7 @@ class AddAddressResponse {
     }
     return map;
   }
+
   AddAddressEntity toAddAddress() {
     return AddAddressEntity(
       message: message,
@@ -34,10 +36,11 @@ class AddAddressResponse {
 
 class Address {
   Address({
-      this.street, 
-      this.phone, 
-      this.city, 
-      this.id,});
+    this.street,
+    this.phone,
+    this.city,
+    this.id,
+  });
 
   Address.fromJson(dynamic json) {
     street = json['street'];
@@ -58,5 +61,4 @@ class Address {
     map['_id'] = id;
     return map;
   }
-
 }

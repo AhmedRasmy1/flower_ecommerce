@@ -1,4 +1,4 @@
-import 'package:flower_ecommerce/core/resources/values_manager.dart';
+import '../../../../core/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:geocoding/geocoding.dart';
@@ -10,7 +10,6 @@ class CustomLocation extends StatefulWidget {
   const CustomLocation({
     super.key,
     this.icon,
-
     this.arrow,
   });
   final String? icon;
@@ -22,7 +21,8 @@ class CustomLocation extends StatefulWidget {
 
 class _CustomLocationState extends State<CustomLocation> {
   String _address = '';
-  LatLng _currentMarkerPosition = LatLng(37.7749, -122.4194); // Default location
+  LatLng _currentMarkerPosition =
+      LatLng(37.7749, -122.4194); // Default location
   late loc.Location location;
 
   @override
@@ -31,7 +31,6 @@ class _CustomLocationState extends State<CustomLocation> {
     location = loc.Location();
     _getCurrentLocation();
   }
-
 
   Future<void> _getCurrentLocation() async {
     bool serviceEnabled = await location.serviceEnabled();
@@ -52,18 +51,16 @@ class _CustomLocationState extends State<CustomLocation> {
       }
     }
     loc.LocationData locationData = await location.getLocation();
-    LatLng currentPosition = LatLng(locationData.latitude!, locationData.longitude!);
+    LatLng currentPosition =
+        LatLng(locationData.latitude!, locationData.longitude!);
     if (mounted) {
       setState(() {
         _currentMarkerPosition = currentPosition;
       });
 
-
       _getAddress(_currentMarkerPosition);
     }
   }
-
-
 
   Future<void> _getAddress(LatLng position) async {
     try {

@@ -1,7 +1,5 @@
-import 'dart:developer';
-
-import 'package:flower_ecommerce/Features/add_address/presentation/manager/add_address_cubit.dart';
-import 'package:flower_ecommerce/core/permissions/permissions.dart';
+import '../manager/add_address_cubit.dart';
+import '../../../../core/permissions/permissions.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';

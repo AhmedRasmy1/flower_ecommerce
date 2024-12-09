@@ -2,7 +2,8 @@ class AddAddressRequest {
   AddAddressRequest({
     this.street,
     this.phone,
-    this.city,});
+    this.city,
+  });
 
   AddAddressRequest.fromJson(dynamic json) {
     street = json['street'];
@@ -20,5 +21,4 @@ class AddAddressRequest {
     map['city'] = city;
     return map;
   }
-
 }

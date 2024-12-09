@@ -4,6 +4,7 @@ import '../../../../core/widgets/custom_text_form_field.dart';
 import '../manager/add_address_cubit.dart';
 import 'button_save_body.dart';
 import 'city_area_selection.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AddAddressBody extends StatefulWidget {
   const AddAddressBody({
@@ -48,21 +49,21 @@ class _AddAddressBodyState extends State<AddAddressBody> {
             const SizedBox(height: 24),
             CustomTextFormField(
               controller: addressController,
-              labelText: 'Address',
-              hintText: 'Enter the add_address',
+              labelText: AppLocalizations.of(context)!.add_address,
+              hintText: AppLocalizations.of(context)!.enter_add_address,
             ),
             const SizedBox(height: 24),
             CustomTextFormField(
               keyboardType: TextInputType.number,
               controller: phoneController,
-              labelText: 'Phone number',
-              hintText: 'Enter the phone number',
+              labelText: AppLocalizations.of(context)!.phone_number,
+              hintText: AppLocalizations.of(context)!.enter_phone_number,
             ),
             const SizedBox(height: 24),
             CustomTextFormField(
               controller: recipientNameController,
-              labelText: 'Recipient name',
-              hintText: 'Enter the recipient name',
+              labelText: AppLocalizations.of(context)!.recipient_name,
+              hintText: AppLocalizations.of(context)!.enter_recipient_name,
             ),
             const SizedBox(height: 24),
             CityAreaSelection(
