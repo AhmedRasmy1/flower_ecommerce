@@ -1,4 +1,4 @@
-import 'package:flower_ecommerce/Features/address/presentation/pages/address_view.dart';
+import 'package:flower_ecommerce/Features/add_address/presentation/pages/address_view.dart';
 import 'package:flutter/material.dart';
 
 import '../../Features/cart&checkout/presentation/views/cart_view.dart';
@@ -15,7 +15,7 @@ class AppConstants {
     CategoriesView(),
     CartView(),
     ProfileView(),
-    AddressView(),
+
   ];
 }
 

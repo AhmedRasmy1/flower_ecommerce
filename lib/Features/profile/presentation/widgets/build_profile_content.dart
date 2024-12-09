@@ -63,7 +63,7 @@ Widget buildProfileContent(BuildContext context, ProfileEntity? profile) {
             ),
             const OptionItem(
               icon: Icons.location_on,
-              text: 'Saved address',
+              text: 'Saved add_address',
               imageIconExists: true,
             ),
             const Divider(thickness: 1, color: Colors.grey),

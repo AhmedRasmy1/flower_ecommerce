@@ -36,10 +36,6 @@ class CustomBottomNavigationBar extends StatelessWidget {
           icon: buildIcon(AssetsManager.profile, 3, currentIndex),
           label: AppStrings.profile,
         ),
-        BottomNavigationBarItem(
-          icon: buildIcon(AssetsManager.profile, 4, currentIndex),
-          label: 'زوين',
-        ),
       ],
       selectedFontSize: AppSize.s12,
       selectedLabelStyle: getLightStyle(color: ColorManager.lightGrey2),

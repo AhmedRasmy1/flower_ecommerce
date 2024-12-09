@@ -44,7 +44,6 @@ class Assets {
   static const String imagesLoadingggggg = 'assets/images/loadingggggg.png';
   static const String imagesLocation = 'assets/images/location.svg';
   static const String imagesMaleCourierPersonHoldingBokeh = 'assets/images/male-courier-person-holding-bokeh.svg';
-  static const String imagesMarker = 'assets/images/marker.svg';
   static const String imagesMegaCreator = 'assets/images/mega-creator.png';
   static const String imagesMenu = 'assets/images/menu.svg';
   static const String imagesNotoPen = 'assets/images/noto_pen.png';
@@ -59,5 +58,6 @@ class Assets {
   static const String imagesSplashBackground = 'assets/images/splashBackground.jpg';
   static const String imagesSplashLogo = 'assets/images/splashLogo.png';
   static const String imagesVector = 'assets/images/Vector.svg';
+  static const String mapStyleMapStyle = 'assets/map_style/map_style.json';
 
 }

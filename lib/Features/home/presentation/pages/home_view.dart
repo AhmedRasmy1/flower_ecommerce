@@ -105,7 +105,6 @@ class _HomeViewState extends State<HomeView> {
                         const SizedBox(height: AppSize.s16),
                         const CustomLocation(
                           icon: AssetsManager.locationIcon,
-                          address: AppStrings.address,
                           arrow: AssetsManager.arrowIcon,
                         ),
                         const SizedBox(height: AppSize.s24),

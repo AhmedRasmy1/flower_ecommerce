@@ -6,6 +6,10 @@
 import 'dart:async' as _i16;
 
 import 'package:flower_ecommerce/core/api/api_manager/api_manager.dart' as _i15;
+import 'package:flower_ecommerce/Features/add_address/data/models/request/add_address_model.dart'
+    as _i30;
+import 'package:flower_ecommerce/Features/add_address/data/models/response/AddAddressResponse.dart'
+    as _i29;
 import 'package:flower_ecommerce/Features/auth/data/models/request/forget_password_request/forget_password_request.dart'
     as _i18;
 import 'package:flower_ecommerce/Features/auth/data/models/request/forget_password_request/reset_password_request.dart'
@@ -524,4 +528,20 @@ class MockApiService extends _i1.Mock implements _i15.ApiService {
         ),
         returnValue: _i16.Future<_i28.DeleteProductResponse?>.value(),
       ) as _i16.Future<_i28.DeleteProductResponse?>);
+
+  @override
+  _i16.Future<_i29.AddAddressResponse?> addAddress(
+    _i30.AddAddressRequest? addAddressRequest,
+    String? token,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #addAddress,
+          [
+            addAddressRequest,
+            token,
+          ],
+        ),
+        returnValue: _i16.Future<_i29.AddAddressResponse?>.value(),
+      ) as _i16.Future<_i29.AddAddressResponse?>);
 }
