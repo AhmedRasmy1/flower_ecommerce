@@ -15,6 +15,7 @@ import '../widgets/block_consumer_for_otp.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
 import '../widgets/custom_field_for_verification.dart';
 import '../view_model/verify_password_view_model/verify_password_cubit.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class OtpVerificationPage extends StatefulWidget {
   const OtpVerificationPage({super.key});
@@ -77,7 +78,7 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
             child: Column(
               children: [
                 CustomAppBar(
-                  title: AppStrings.password,
+                  title: AppLocalizations.of(context)!.password,
                   color: ColorManager.black,
                   onTap: () {
                     Navigator.pop(context);
@@ -85,7 +86,7 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
                 ),
                 const SizedBox(height: AppSize.s40),
                 Text(
-                  AppStrings.emailVerification,
+                  AppLocalizations.of(context)!.emailVerification,
                   style: TextStyle(
                     fontSize: FontSize.s18,
                     color: ColorManager.black,
@@ -94,7 +95,7 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
                 ),
                 const SizedBox(height: AppSize.s16),
                 Text(
-                  AppStrings.subTitleOfEmailVerification,
+                  AppLocalizations.of(context)!.subTitleOfEmailVerification,
                   style: TextStyle(
                     fontSize: FontSize.s14,
                     color: ColorManager.grey,
@@ -148,7 +149,7 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
                   text: TextSpan(
                     children: [
                       TextSpan(
-                        text: AppStrings.dontReciveCode,
+                        text: AppLocalizations.of(context)!.dontReciveCode,
                         style: TextStyle(
                           fontSize: FontSize.s16,
                           fontWeight: FontWeightManager.regular,
@@ -157,7 +158,7 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
                       ),
                       TextSpan(
                         text: isButtonDisabled
-                            ? ' ($_remainingTime s)' // Display remaining time
+                            ? ' ($_remainingTime ث)' // Display remaining time
                             : '',
                         style: const TextStyle(
                           fontSize: FontSize.s16,
@@ -172,7 +173,7 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
                       ? null
                       : resendOTP, // Disable when button is inactive
                   child: Text(
-                    AppStrings.resend,
+                    AppLocalizations.of(context)!.resend,
                     style: TextStyle(
                       fontSize: FontSize.s16,
                       fontWeight: FontWeightManager.regular,

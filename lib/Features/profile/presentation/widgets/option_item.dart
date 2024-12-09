@@ -1,3 +1,4 @@
+import 'package:flower_ecommerce/core/utils/cashed_data_shared_preferences.dart';
 import 'package:flutter/material.dart';
 
 class OptionItem extends StatelessWidget {
@@ -39,8 +40,15 @@ class OptionItem extends StatelessWidget {
               trailingText!,
               style: const TextStyle(color: Colors.pink),
             ),
-          if (imageIconExists)
-            const ImageIcon(AssetImage("assets/images/side_arrow.png"))
+          Transform(
+            alignment: Alignment.center,
+            transform:
+                CacheService.getData(key: CacheConstants.defaultLanguage) ==
+                        'ar'
+                    ? Matrix4.rotationY(3.1416)
+                    : Matrix4.identity(),
+            child: const ImageIcon(AssetImage("assets/images/side_arrow.png")),
+          )
         ],
       ),
     );

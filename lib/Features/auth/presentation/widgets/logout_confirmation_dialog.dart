@@ -9,6 +9,7 @@ import '../../../../core/resources/values_manager.dart';
 import '../../../../core/utils/cashed_data_shared_preferences.dart';
 import '../view_model/logout_view_model/logout_cubit.dart';
 import '../view_model/logout_view_model/logout_state.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LogoutConfirmationDialog extends StatefulWidget {
   const LogoutConfirmationDialog({super.key});
@@ -51,18 +52,18 @@ class _LogoutConfirmationDialogState extends State<LogoutConfirmationDialog> {
               width: 280,
               child: Column(
                 children: [
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.only(top: 32),
                     child: Text(
-                      AppStrings.logout,
+                      AppLocalizations.of(context)!.logout,
                       style:
                           TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
                     ),
                   ),
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.only(top: 6),
                     child: Text(
-                      AppStrings.confirmLogout,
+                      AppLocalizations.of(context)!.confirmLogout,
                       style:
                           TextStyle(fontWeight: FontWeight.w400, fontSize: 16),
                     ),
@@ -93,8 +94,8 @@ class _LogoutConfirmationDialogState extends State<LogoutConfirmationDialog> {
                                 borderRadius: BorderRadius.circular(100),
                                 side: const BorderSide(
                                     color: ColorManager.placeHolderColor))),
-                        child: const Text(
-                          AppStrings.cancle,
+                        child: Text(
+                          AppLocalizations.of(context)!.cancle,
                           style: TextStyle(
                               color: ColorManager.placeHolderColor,
                               fontWeight: FontWeight.w500,
@@ -118,8 +119,8 @@ class _LogoutConfirmationDialogState extends State<LogoutConfirmationDialog> {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(100),
                             )),
-                        child: const Text(
-                          AppStrings.logoutS,
+                        child: Text(
+                          AppLocalizations.of(context)!.logoutS,
                           style: TextStyle(
                               color: ColorManager.white,
                               fontWeight: FontWeight.w500,

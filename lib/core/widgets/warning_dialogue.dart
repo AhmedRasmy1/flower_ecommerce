@@ -1,8 +1,8 @@
 import 'package:flower_ecommerce/core/resources/color_manager.dart';
 import 'package:flower_ecommerce/core/resources/values_manager.dart';
-import 'package:flower_ecommerce/core/utils/app_assets.dart';
 import 'package:flower_ecommerce/core/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void showWarningDialogue({
   required String message,
@@ -17,14 +17,14 @@ void showWarningDialogue({
       title: Row(
         children: [
           Image.asset(
-            AppAssets.warningSignImage,
-            width: 40,
+            'assets/images/warining_icon.png',
+            width: 20,
           ),
           const SizedBox(
             width: 8,
           ),
           Text(
-            "Heads Up!",
+            AppLocalizations.of(context)!.headsUp,
             style: const TextStyle().copyWith(
               color: ColorManager.black,
               fontSize: AppSize.s18,
@@ -46,7 +46,7 @@ void showWarningDialogue({
           width: 110,
           child: CustomElevatedButton(
             buttonColor: ColorManager.black,
-            title: "Cancel",
+            title: AppLocalizations.of(context)!.cancel,
             onPressed: () {
               Navigator.pop(context);
             },
@@ -56,7 +56,7 @@ void showWarningDialogue({
           width: 110,
           child: CustomElevatedButton(
             buttonColor: ColorManager.pink,
-            title: "Ok",
+            title: AppLocalizations.of(context)!.ok,
             onPressed: () {
               onPressed();
               if (Navigator.canPop(context)) {

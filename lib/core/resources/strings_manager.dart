@@ -98,4 +98,7 @@ class AppStrings {
       "Profile updated Successfuly"; // Edit in the profile screen
   static const String passwordChangedSuccessfuly =
       "Password changed Successfuly"; // Edit in the profile screen
+
+  static const String addNewAddress = "Add new address";
+  static const String savedAddress = " Saved address";
 }

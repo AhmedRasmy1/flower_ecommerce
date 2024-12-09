@@ -10,16 +10,19 @@ import 'best_repo_test.mocks.dart';
 
 @GenerateMocks([BestOnLineDataSource])
 void main() {
-  test('when call BestRepo for get best seller it should call it from online data source for best seller', () async {
-    var mockBestOnLineDataSource=MockBestOnLineDataSource();
-    var bestRepo=BestRepoImpl(mockBestOnLineDataSource);
+  test(
+      'when call BestRepo for get best seller it should call it from online data source for best seller',
+      () async {
+    var mockBestOnLineDataSource = MockBestOnLineDataSource();
+    var bestRepo = BestRepoImpl(mockBestOnLineDataSource);
 
-    var bestSellerList=<BestSellerEntity>[];
-    var mockedResult=Success<List<BestSellerEntity>>(bestSellerList);
+    var bestSellerList = <BestSellerEntity>[];
+    var mockedResult = Success<List<BestSellerEntity>>(bestSellerList);
     //Stub
-    when(mockBestOnLineDataSource.getBestSeller()).thenAnswer((_)async=>mockedResult);
+    when(mockBestOnLineDataSource.getBestSeller())
+        .thenAnswer((_) async => mockedResult);
     //Act
-    var result= await bestRepo.getBestSeller();
+    var result = await bestRepo.getBestSeller();
     //assert
     verify(mockBestOnLineDataSource.getBestSeller()).called(1);
     expect(result, mockedResult);

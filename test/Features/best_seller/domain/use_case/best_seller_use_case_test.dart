@@ -8,23 +8,20 @@ import 'package:mockito/mockito.dart';
 
 import 'best_seller_use_case_test.mocks.dart';
 
-
-
 @GenerateMocks([BestRepo])
 void main() {
-  test("when call invoke it should call bestRepo",
-          () async {
+  test("when call invoke it should call bestRepo", () async {
     //arrange
-    var mockBestRepo=MockBestRepo();
-    var bestSellerUseCase=BestSellerUseCase(mockBestRepo);
-    var bestSellerList=<BestSellerEntity>[];
-    var mockedResult=Success<List<BestSellerEntity>>(bestSellerList);
+    var mockBestRepo = MockBestRepo();
+    var bestSellerUseCase = BestSellerUseCase(mockBestRepo);
+    var bestSellerList = <BestSellerEntity>[];
+    var mockedResult = Success<List<BestSellerEntity>>(bestSellerList);
     //Stub
-    when(mockBestRepo.getBestSeller()).thenAnswer((_)async=>mockedResult);
+    when(mockBestRepo.getBestSeller()).thenAnswer((_) async => mockedResult);
     //Act
-    var result= await bestSellerUseCase.invoke();
+    var result = await bestSellerUseCase.invoke();
     //assert
-   verify(mockBestRepo.getBestSeller()).called(1);
-   expect(result, mockedResult);
-          });
+    verify(mockBestRepo.getBestSeller()).called(1);
+    expect(result, mockedResult);
+  });
 }
