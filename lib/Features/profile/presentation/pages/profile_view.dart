@@ -97,21 +97,7 @@ class _ProfileViewState extends State<ProfileView> {
               ),
             ),
           ),
-          // Padding(
-          //   padding: const EdgeInsets.symmetric(vertical: AppPadding.p16),
-          //   child: Center(
-          //     child: IconButton(
-          //       onPressed: () {
-          //         showDialog(
-          //           context: context,
-          //           builder: (_) => const LogoutConfirmationDialog(),
-          //           barrierDismissible: false,
-          //         );
-          //       },
-          //       icon: const Icon(Icons.logout, size: 30, color: Colors.red),
-          //     ),
-          //   ),
-          // ),
+
         ],
       ),
     );

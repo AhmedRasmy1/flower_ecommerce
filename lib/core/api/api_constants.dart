@@ -15,4 +15,5 @@ class ApiConstants {
   static const String profileEndpoint = "auth/profile-data";
   static const String editProfileRoute = "auth/editProfile";
   static const String cartEndPoint = "cart";
+  static const String addressesEndPoint = "addresses";
 }

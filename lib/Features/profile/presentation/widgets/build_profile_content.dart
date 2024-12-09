@@ -96,13 +96,24 @@ Widget buildProfileContent(BuildContext context, ProfileEntity? profile) {
               trailingText: 'English',
               imageIconExists: false,
             ),
-            const OptionItem(
-              text: 'About us',
-              imageIconExists: true,
+            InkWell(onTap: () {
+  Navigator.pushNamed(
+  context, RoutesManager.AboutUsPageRoute,
+  );},
+              child: const OptionItem(
+                text: 'About us',
+                imageIconExists: true,
+              ),
             ),
-            const OptionItem(
-              text: 'Terms & conditions',
-              imageIconExists: true,
+            InkWell(onTap: () {
+              Navigator.pushNamed(
+                  context, RoutesManager.TermsAndConditionsPageRoute,
+                  );
+            },
+              child: const OptionItem(
+                text: 'Terms & conditions',
+                imageIconExists: true,
+              ),
             ),
             const Divider(thickness: 1, color: Colors.grey),
             Row(

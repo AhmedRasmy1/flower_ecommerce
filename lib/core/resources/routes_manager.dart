@@ -1,4 +1,5 @@
 import 'package:flower_ecommerce/Features/cart&checkout/presentation/views/check_out_view.dart';
+import 'package:flower_ecommerce/Features/profile/presentation/pages/terms_and_conditions.dart';
 import 'package:flutter/material.dart';
 
 import '../../Features/auth/presentation/views/email_verification_view.dart';
@@ -14,6 +15,7 @@ import '../../Features/layout/presentation/pages/layout_view.dart';
 import '../../Features/occasions/presentation/views/occasions_view.dart';
 import '../../Features/products_details/presentation/views/product_details_view.dart';
 import '../../Features/products_details/presentation/widgets/try_screen.dart';
+import '../../Features/profile/presentation/pages/about_us_page.dart';
 import '../../Features/profile/presentation/pages/profile_view.dart';
 import '../../Features/profile_reset_password/presentation/view/change_password_view.dart';
 import '../../splash_view.dart';
@@ -39,6 +41,8 @@ class RoutesManager {
   static const String changePasswordViewRoute = '/chanePasswordViewRoute';
 
   static const String editProfileRoute = '/editProfileRoute';
+  static const String TermsAndConditionsPageRoute = '/TermsAndConditionsPageRoute';
+  static const String AboutUsPageRoute = '/AboutUsPageRoute';
 }
 
 class RouteGenerator {
@@ -75,6 +79,11 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const OtpVerificationPage());
       case RoutesManager.layoutRoute:
         return MaterialPageRoute(builder: (_) => const LayoutView());
+      case RoutesManager.TermsAndConditionsPageRoute:
+        return MaterialPageRoute(builder: (_) => const TermsAndConditionsPage());
+    case RoutesManager.AboutUsPageRoute:
+    return MaterialPageRoute(
+    builder: (_) => const AboutUsPage());
 
       case RoutesManager.tryScreenRoute:
         return MaterialPageRoute(builder: (_) => const TryScreen());

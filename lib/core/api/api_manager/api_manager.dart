@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flower_ecommerce/Features/cart&checkout/data/models/request/update_quantity_request.dart';
+import 'package:flower_ecommerce/Features/cart&checkout/data/models/response/checkout/address_response.dart';
 import 'package:flower_ecommerce/Features/cart&checkout/data/models/response/delete_product_response/delete_product_response.dart';
 import 'package:flower_ecommerce/Features/cart&checkout/data/models/response/fetch_user_cart_response/fetch_user_cart_response.dart';
 import 'package:flower_ecommerce/Features/cart&checkout/data/models/response/update_product_quantity/update_product_quantity.dart';
@@ -103,4 +104,10 @@ abstract class ApiService {
     @Body() AddToCartReqBody addToCartBody,
     @Header("Authorization") String token,
   );
+  @GET(ApiConstants.addressesEndPoint)
+  Future<AddressResponse?> getUserAddresses(
+      @Header("Authorization") String token,
+      );
+
+
 }

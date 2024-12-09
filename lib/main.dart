@@ -1,3 +1,4 @@
+
 import 'package:flower_ecommerce/core/resources/theme_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -45,7 +46,8 @@ class FlowerApp extends StatelessWidget {
         theme: getApplicationTheme(),
         debugShowCheckedModeBanner: false,
         onGenerateRoute: RouteGenerator.getRoute,
-        initialRoute: RoutesManager.splashRoute,
+
+       initialRoute: RoutesManager.splashRoute,
       ),
     );
   }
