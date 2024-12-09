@@ -12,6 +12,11 @@ import 'package:flower_ecommerce/core/common/add_to_cart/data/models/response/ad
     as _i30;
 import 'package:flower_ecommerce/Features/address/saved_address/data/models/response/address_dto.dart'
     as _i15;
+import 'package:flower_ecommerce/core/api/api_manager/api_manager.dart' as _i15;
+import 'package:flower_ecommerce/Features/add_address/data/models/request/add_address_model.dart'
+    as _i30;
+import 'package:flower_ecommerce/Features/add_address/data/models/response/AddAddressResponse.dart'
+    as _i29;
 import 'package:flower_ecommerce/Features/auth/data/models/request/forget_password_request/forget_password_request.dart'
     as _i19;
 import 'package:flower_ecommerce/Features/auth/data/models/request/forget_password_request/reset_password_request.dart'
@@ -612,4 +617,22 @@ class MockApiService extends _i1.Mock implements _i16.ApiService {
         ),
         returnValue: _i17.Future<_i32.AddressResponse?>.value(),
       ) as _i17.Future<_i32.AddressResponse?>);
+        returnValue: _i16.Future<_i28.DeleteProductResponse?>.value(),
+      ) as _i16.Future<_i28.DeleteProductResponse?>);
+
+  @override
+  _i16.Future<_i29.AddAddressResponse?> addAddress(
+    _i30.AddAddressRequest? addAddressRequest,
+    String? token,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #addAddress,
+          [
+            addAddressRequest,
+            token,
+          ],
+        ),
+        returnValue: _i16.Future<_i29.AddAddressResponse?>.value(),
+      ) as _i16.Future<_i29.AddAddressResponse?>);
 }

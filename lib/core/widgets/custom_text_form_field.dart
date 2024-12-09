@@ -22,6 +22,7 @@ class CustomTextFormField extends StatelessWidget {
     this.prefixStyle,
     this.hintStyle,
     this.borderSideColor,
+    this.onTap,
   });
 
   final TextEditingController controller;
@@ -38,6 +39,8 @@ class CustomTextFormField extends StatelessWidget {
   final TextStyle? prefixStyle;
   final TextStyle? hintStyle;
   final Color? borderSideColor;
+  final void Function()? onTap;
+
   // final double borderRadius = AppSize.s5;
 
   @override
@@ -45,7 +48,7 @@ class CustomTextFormField extends StatelessWidget {
     return TextFormField(
       initialValue: initialValue,
       readOnly: enabled ?? false,
-
+      onTap: onTap,
       // enabled:enabled ,
       controller: controller,
       keyboardType: keyboardType,
@@ -107,6 +110,7 @@ class CustomTextFormField extends StatelessWidget {
       validator: validator,
       onChanged: onChanged,
       autovalidateMode: AutovalidateMode.onUserInteraction,
+
     );
   }
 }

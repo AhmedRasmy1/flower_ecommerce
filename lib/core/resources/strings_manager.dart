@@ -36,7 +36,7 @@ class AppStrings {
   static const String enterYourConfirmPassword = "confirm password";
   static const String emailVerification = "Email verification";
   static const String subTitleOfEmailVerification =
-      "Please enter your code that send to your email address ";
+      "Please enter your code that send to your email add_address ";
   static const String dontReciveCode = "Didn't receive code? ";
   static const String invalidCode = "Invalid code";
   static const String enterPhoneNumber = "Enter your phone number";

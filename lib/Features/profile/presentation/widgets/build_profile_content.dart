@@ -163,26 +163,29 @@ Widget buildProfileContent(BuildContext context, ProfileEntity? profile) {
                 ],
               ),
             ),
-
-            InkWell(onTap: () {
-  Navigator.pushNamed(
-  context, RoutesManager.AboutUsPageRoute,
-  );},
+            InkWell(
+              onTap: () {
+                Navigator.pushNamed(
+                  context,
+                  RoutesManager.AboutUsPageRoute,
+                );
+              },
               child: OptionItem(
-              text: AppLocalizations.of(context)!.aboutUs,
-              imageIconExists: true,
-            ),
-            ),
-            InkWell(onTap: () {
-              Navigator.pushNamed(
-                  context, RoutesManager.TermsAndConditionsPageRoute,
-                  );
-            },
-              child: OptionItem(
-              text: AppLocalizations.of(context)!.termsAndConditions,
-              imageIconExists: true,
+                text: AppLocalizations.of(context)!.aboutUs,
+                imageIconExists: true,
               ),
-
+            ),
+            InkWell(
+              onTap: () {
+                Navigator.pushNamed(
+                  context,
+                  RoutesManager.TermsAndConditionsPageRoute,
+                );
+              },
+              child: OptionItem(
+                text: AppLocalizations.of(context)!.termsAndConditions,
+                imageIconExists: true,
+              ),
             ),
             Divider(thickness: 1, color: Colors.grey),
             Row(

@@ -1,11 +1,11 @@
-
 import 'package:flower_ecommerce/core/resources/theme_manager.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flower_ecommerce/localization/locale_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-
+import 'package:device_preview/device_preview.dart';
 import 'core/di/di.dart';
 import 'core/resources/color_manager.dart';
 import 'core/resources/routes_manager.dart';
@@ -44,7 +44,6 @@ class FlowerApp extends StatelessWidget {
         systemNavigationBarColor: Colors.white,
         systemNavigationBarIconBrightness: Brightness.dark,
       ),
-
       child: BlocProvider(
         create: (_) => LocaleCubit(),
         child: BlocBuilder<LocaleCubit, Locale>(

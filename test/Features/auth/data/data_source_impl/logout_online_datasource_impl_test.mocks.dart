@@ -5,6 +5,11 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i17;
 
+import 'package:flower_ecommerce/core/api/api_manager/api_manager.dart' as _i15;
+import 'package:flower_ecommerce/Features/add_address/data/models/request/add_address_model.dart'
+    as _i30;
+import 'package:flower_ecommerce/Features/add_address/data/models/response/AddAddressResponse.dart'
+    as _i29;
 import 'package:flower_ecommerce/core/api/api_manager/api_manager.dart' as _i16;
 import 'package:flower_ecommerce/core/common/add_to_cart/data/models/request/add_to_cart_req_body.dart'
     as _i31;
@@ -541,6 +546,24 @@ class MockApiService extends _i1.Mock implements _i16.ApiService {
             token,
           ],
         ),
+        returnValue: _i16.Future<_i28.DeleteProductResponse?>.value(),
+      ) as _i16.Future<_i28.DeleteProductResponse?>);
+
+  @override
+  _i16.Future<_i29.AddAddressResponse?> addAddress(
+    _i30.AddAddressRequest? addAddressRequest,
+    String? token,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #addAddress,
+          [
+            addAddressRequest,
+            token,
+          ],
+        ),
+        returnValue: _i16.Future<_i29.AddAddressResponse?>.value(),
+      ) as _i16.Future<_i29.AddAddressResponse?>);
         returnValue: _i17.Future<_i29.DeleteProductResponse?>.value(),
       ) as _i17.Future<_i29.DeleteProductResponse?>);
 

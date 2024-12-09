@@ -666,6 +666,46 @@ class _ApiService implements ApiService {
   }
 
   @override
+  Future<AddAddressResponse?> addAddress(
+    AddAddressRequest addAddressRequest,
+    String token,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
+    final _data = <String, dynamic>{};
+    _data.addAll(addAddressRequest.toJson());
+    final _options = _setStreamType<AddAddressResponse>(Options(
+      method: 'PATCH',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          'addresses',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>?>(_options);
+    late AddAddressResponse? _value;
+    try {
+      _value = _result.data == null
+          ? null
+          : AddAddressResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
   Future<AllAddressesDto> getAddresses(String token) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};

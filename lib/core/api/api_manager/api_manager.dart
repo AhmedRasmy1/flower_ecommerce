@@ -11,6 +11,8 @@ import 'package:injectable/injectable.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
 
+import '../../../Features/add_address/data/models/request/add_address_model.dart';
+import '../../../Features/add_address/data/models/response/AddAddressResponse.dart';
 import '../../../Features/auth/data/models/request/forget_password_request/forget_password_request.dart';
 import '../../../Features/auth/data/models/request/forget_password_request/reset_password_request.dart';
 import '../../../Features/auth/data/models/request/forget_password_request/verify_request.dart';
@@ -118,6 +120,11 @@ abstract class ApiService {
     @Header("Authorization") String token,
   );
 
+  @PATCH(ApiConstants.addressesEndPoint)
+  Future<AddAddressResponse?> addAddress(
+    @Body() AddAddressRequest addAddressRequest,
+    @Header("Authorization") String token,
+  );
 
   @GET(ApiConstants.addressEndPoint)
   Future<AllAddressesDto> getAddresses(
@@ -136,8 +143,6 @@ abstract class ApiService {
   );
   @GET(ApiConstants.addressesEndPoint)
   Future<AddressResponse?> getUserAddresses(
-      @Header("Authorization") String token,
-      );
-
-
+    @Header("Authorization") String token,
+  );
 }

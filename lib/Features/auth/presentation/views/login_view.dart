@@ -1,3 +1,4 @@
+import 'package:flower_ecommerce/core/permissions/permissions.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:motion_toast/motion_toast.dart';
 import '../view_model/login_view_model/login_cubit.dart';
@@ -56,6 +57,7 @@ class _LoginScreenState extends State<LoginView> {
                 EasyLoading.dismiss();
               });
             } else if (state is SuccessLoginState) {
+
               Navigator.pushReplacementNamed(
                   context, RoutesManager.layoutRoute);
             } else if (state is ErrorLoginState) {
