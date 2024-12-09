@@ -37,12 +37,9 @@ import 'package:flower_ecommerce/Features/auth/data/models/response/register_res
 import 'package:flower_ecommerce/Features/best_seller/data/model/best_seller_response.dart'
     as _i10;
 import 'package:flower_ecommerce/Features/cart&checkout/data/models/request/update_quantity_request.dart'
-    as _i27;
-import 'package:flower_ecommerce/Features/cart&checkout/data/models/response/checkout/address_response.dart'
-    as _i31;
-import 'package:flower_ecommerce/Features/cart&checkout/data/models/response/delete_product_response/delete_product_response.dart'
-
     as _i28;
+import 'package:flower_ecommerce/Features/cart&checkout/data/models/response/checkout/address_response.dart'
+    as _i32;
 import 'package:flower_ecommerce/Features/cart&checkout/data/models/response/delete_product_response/delete_product_response.dart'
     as _i29;
 import 'package:flower_ecommerce/Features/cart&checkout/data/models/response/fetch_user_cart_response/fetch_user_cart_response.dart'
@@ -603,18 +600,16 @@ class MockApiService extends _i1.Mock implements _i16.ApiService {
             token,
           ],
         ),
-        returnValue: _i16.Future<_i29.AddToCartResModel?>.value(),
-      ) as _i16.Future<_i29.AddToCartResModel?>);
+        returnValue: _i17.Future<_i30.AddToCartResModel?>.value(),
+      ) as _i17.Future<_i30.AddToCartResModel?>);
 
   @override
-  _i16.Future<_i31.AddressResponse?> getUserAddresses(String? token) =>
+  _i17.Future<_i32.AddressResponse?> getUserAddresses(String? token) =>
       (super.noSuchMethod(
         Invocation.method(
           #getUserAddresses,
           [token],
         ),
-        returnValue: _i16.Future<_i31.AddressResponse?>.value(),
-      ) as _i16.Future<_i31.AddressResponse?>);
-        returnValue: _i17.Future<_i30.AddToCartResModel?>.value(),
-      ) as _i17.Future<_i30.AddToCartResModel?>);
+        returnValue: _i17.Future<_i32.AddressResponse?>.value(),
+      ) as _i17.Future<_i32.AddressResponse?>);
 }

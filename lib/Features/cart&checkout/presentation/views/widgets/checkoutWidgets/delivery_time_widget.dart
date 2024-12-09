@@ -2,6 +2,7 @@ import 'package:flower_ecommerce/core/resources/color_manager.dart';
 import 'package:flutter/material.dart';
 
 class buildDeliveryTimeSection extends StatelessWidget {
+  const buildDeliveryTimeSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class buildDeliveryTimeSection extends StatelessWidget {
               child: const Text(
                 'Schedule',
                 style: TextStyle(
-                    color:ColorManager.pink,
+                    color: ColorManager.pink,
                     fontSize: 18,
                     fontWeight: FontWeight.w600),
               ),
@@ -29,12 +30,18 @@ class buildDeliveryTimeSection extends StatelessWidget {
         ),
         const Row(children: [
           Icon(Icons.access_time),
-          SizedBox(width: 8,),
+          SizedBox(
+            width: 8,
+          ),
           Text('Instant'),
-          Text(' Arrive by 03 Sep 2024, 11:00 AM', style:
-          TextStyle(fontSize:14,color: Color(0XFF0CB359)),),
-        ]), SizedBox(height: 20,),
-
+          Text(
+            ' Arrive by 03 Sep 2024, 11:00 AM',
+            style: TextStyle(fontSize: 14, color: Color(0XFF0CB359)),
+          ),
+        ]),
+        SizedBox(
+          height: 20,
+        ),
       ],
     );
   }

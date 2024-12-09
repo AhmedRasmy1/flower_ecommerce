@@ -38,6 +38,8 @@ import 'package:flower_ecommerce/Features/best_seller/data/model/best_seller_res
     as _i10;
 import 'package:flower_ecommerce/Features/cart&checkout/data/models/request/update_quantity_request.dart'
     as _i28;
+import 'package:flower_ecommerce/Features/cart&checkout/data/models/response/checkout/address_response.dart'
+    as _i32;
 import 'package:flower_ecommerce/Features/cart&checkout/data/models/response/delete_product_response/delete_product_response.dart'
     as _i29;
 import 'package:flower_ecommerce/Features/cart&checkout/data/models/response/fetch_user_cart_response/fetch_user_cart_response.dart'
@@ -600,4 +602,14 @@ class MockApiService extends _i1.Mock implements _i16.ApiService {
         ),
         returnValue: _i17.Future<_i30.AddToCartResModel?>.value(),
       ) as _i17.Future<_i30.AddToCartResModel?>);
+
+  @override
+  _i17.Future<_i32.AddressResponse?> getUserAddresses(String? token) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getUserAddresses,
+          [token],
+        ),
+        returnValue: _i17.Future<_i32.AddressResponse?>.value(),
+      ) as _i17.Future<_i32.AddressResponse?>);
 }

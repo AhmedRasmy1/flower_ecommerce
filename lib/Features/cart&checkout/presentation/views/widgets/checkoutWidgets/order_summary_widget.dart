@@ -12,40 +12,45 @@ Widget buildOrderSummary(double total) {
         ),
       ),
       SizedBox(
-        height:80,
-        child:  Column(
+        height: 80,
+        child: Column(
           children: [
-
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [Text('SubTotal'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('SubTotal'),
                 Text(
                   "\$$total",
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ],
             ),
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [Text('delivery fee'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('delivery fee'),
                 Text(
                   "\$10",
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ],
             ),
-            Divider(color: Colors.grey,),
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [Text('Total'),
+            Divider(
+              color: Colors.grey,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Total'),
                 Text(
-                  "\$${total+10}",
+                  "\$${total + 10}",
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ],
             ),
           ],
         ),
-
       ),
-
     ],
   );
 }

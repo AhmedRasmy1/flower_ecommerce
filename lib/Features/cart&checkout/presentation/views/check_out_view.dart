@@ -1,4 +1,3 @@
-
 import 'package:flower_ecommerce/Features/cart&checkout/presentation/views/widgets/checkoutWidgets/addresswidget.dart';
 import 'package:flower_ecommerce/Features/cart&checkout/presentation/views/widgets/checkoutWidgets/build_payment_widget.dart';
 import 'package:flower_ecommerce/Features/cart&checkout/presentation/views/widgets/checkoutWidgets/delivery_time_widget.dart';
@@ -8,18 +7,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/di/di.dart';
 import '../../../../core/resources/color_manager.dart';
 import '../../../../core/utils/cashed_data_shared_preferences.dart';
-import '../../../../core/widgets/custom_app_bar.dart';
 import '../../../../core/widgets/custom_elevated_button.dart';
 import '../../domain/entities/cart_item_entity.dart';
 import '../manager/checkout/checkout_state.dart';
 import '../manager/checkout/checkout_viewmodel.dart';
 
-
 class CheckOutView extends StatefulWidget {
-  const CheckOutView({Key? key}) : super(key: key);
+  const CheckOutView({super.key});
 
   @override
-  _CheckOutViewState createState() => _CheckOutViewState();
+  createState() => _CheckOutViewState();
 }
 
 class _CheckOutViewState extends State<CheckOutView> {
@@ -42,7 +39,7 @@ class _CheckOutViewState extends State<CheckOutView> {
     if (arguments is List<CartItemEntity> && arguments.isNotEmpty) {
       setState(() {
         cartList = arguments;
-      // Assign cart items to the list
+        // Assign cart items to the list
       });
     } else {
       debugPrint('No cart items received or arguments are not valid');
@@ -54,34 +51,30 @@ class _CheckOutViewState extends State<CheckOutView> {
 
   @override
   Widget build(BuildContext context) {
-    double total =  getTotal(cartList);
+    double total = getTotal(cartList);
     return Scaffold(
-    appBar: AppBar(backgroundColor: Colors.white,
-
-        title: const Text("Checkout",style:TextStyle(fontSize: 20,
-        fontWeight: FontWeight.w500),),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: const Text(
+          "Checkout",
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             Padding(
               padding: const EdgeInsets.all(16),
               child: buildDeliveryTimeSection(),
-
             ),
             const Divider(thickness: 24, color: Color(0xFFEAEAEA)),
-
-
             const SizedBox(height: 10),
-
             Padding(
               padding: const EdgeInsets.all(16),
               child: buildDeliveryAddressSection(),
             ),
             const Divider(thickness: 24, color: Color(0xFFEAEAEA)),
-
             const SizedBox(height: 10),
             BuildPaymentWidget(),
             const Divider(thickness: 24, color: Color(0xFFEAEAEA)),
@@ -95,7 +88,6 @@ class _CheckOutViewState extends State<CheckOutView> {
               padding: const EdgeInsets.all(16),
               child: buildOrderSummary(total),
             ),
-
             Padding(
               padding: const EdgeInsets.all(16),
               child: _buildCheckoutButton(),
@@ -105,8 +97,6 @@ class _CheckOutViewState extends State<CheckOutView> {
       ),
     );
   }
-
-
 
   Widget buildDeliveryAddressSection() {
     return Column(
@@ -134,10 +124,10 @@ class _CheckOutViewState extends State<CheckOutView> {
                         });
                       },
                       child: AddressTile(
-
                         addressType: address.street ?? "Unnamed Address",
                         addressDetails: address.city ?? "No details available",
-                        isSelected: _selectedAddressIndex == addresses.indexOf(address),
+                        isSelected:
+                            _selectedAddressIndex == addresses.indexOf(address),
                       ),
                     );
                   }).toList(),
@@ -165,10 +155,11 @@ class _CheckOutViewState extends State<CheckOutView> {
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: ColorManager.white,
-
-              shape: RoundedRectangleBorder( side: BorderSide(color: Colors.grey,),
+              shape: RoundedRectangleBorder(
+                side: BorderSide(
+                  color: Colors.grey,
+                ),
                 borderRadius: BorderRadius.circular(50),
-
               ),
             ),
             child: const Text(
@@ -182,34 +173,29 @@ class _CheckOutViewState extends State<CheckOutView> {
     );
   }
 
-
-
   Widget buildIsGiftSection() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-
         const SizedBox(height: 8),
         Row(
-          children: [Switch(  activeColor: Colors.white,
-            activeTrackColor: Colors.pink,
-
-            value: _isGift,
-            onChanged: (value) {
-
-              setState(() {
-                _isGift = value;
-              });
-            },),
-
+          children: [
+            Switch(
+              activeColor: Colors.white,
+              activeTrackColor: Colors.pink,
+              value: _isGift,
+              onChanged: (value) {
+                setState(() {
+                  _isGift = value;
+                });
+              },
+            ),
             const Text(
               'It is a gift',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-
-
-          ],),
-
+          ],
+        ),
         if (_isGift) ...[
           const SizedBox(height: 8),
           const TextField(
@@ -226,9 +212,6 @@ class _CheckOutViewState extends State<CheckOutView> {
             ),
           ),
         ],
-
-
-
       ],
     );
   }
@@ -236,22 +219,22 @@ class _CheckOutViewState extends State<CheckOutView> {
   Widget _buildCheckoutButton() {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-
-
-        child: CustomElevatedButton(buttonColor:ColorManager.pink,
-            title:'Place Order' , onPressed: (){ ScaffoldMessenger.of(context).showSnackBar(
+      child: CustomElevatedButton(
+          buttonColor: ColorManager.pink,
+          title: 'Place Order',
+          onPressed: () {
+            ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Text("Order placed successfully!")),
-            );}),
-
-
-
+            );
+          }),
     );
   }
 
-  double getTotal(List<CartItemEntity> cartList) {double total = 0;
-  for (var item in cartList) {
-    total += item.quantity! * item.price!.toDouble();
+  double getTotal(List<CartItemEntity> cartList) {
+    double total = 0;
+    for (var item in cartList) {
+      total += item.quantity! * item.price!.toDouble();
+    }
+    return total;
   }
-  return total;}
 }
-

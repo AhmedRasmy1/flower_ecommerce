@@ -1,19 +1,10 @@
-
-import 'dart:convert';
-
-
 class AddressEntity {
-  AddressEntity({
-    this.addresses,
-    this.message,
-    this.error
-  });
+  AddressEntity({this.addresses, this.message, this.error});
 
   List<Address>? addresses;
   String? message;
   String? error;
 }
-
 
 class Address {
   Address({
@@ -24,9 +15,7 @@ class Address {
   });
 
   String? phone;
-  String ?city;
-  String ?street;
-  String ?id;
-
-
+  String? city;
+  String? street;
+  String? id;
 }

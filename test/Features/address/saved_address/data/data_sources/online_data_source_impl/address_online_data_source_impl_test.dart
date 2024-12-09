@@ -1,7 +1,6 @@
 import 'package:flower_ecommerce/Features/address/saved_address/data/data_sources/online_data_source_impl/address_online_data_source_impl.dart';
 import 'package:flower_ecommerce/Features/address/saved_address/data/models/response/address_dto.dart';
 import 'package:flower_ecommerce/Features/address/saved_address/domain/entities/response/address_entity.dart';
-import 'package:flower_ecommerce/Features/auth/domain/entities/login_entities.dart';
 import 'package:flower_ecommerce/core/api/api_manager/api_manager.dart';
 import 'package:flower_ecommerce/core/common/api_result.dart';
 import 'package:flutter_test/flutter_test.dart';

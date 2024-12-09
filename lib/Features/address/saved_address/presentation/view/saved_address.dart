@@ -3,7 +3,6 @@ import 'package:flower_ecommerce/core/di/di.dart';
 import 'package:flower_ecommerce/core/resources/color_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 import '../../../../../core/resources/strings_manager.dart';
 import '../../../../../core/utils/cashed_data_shared_preferences.dart';
 import '../../../../../core/widgets/loading_indicator.dart';
@@ -115,7 +114,6 @@ class _SavedAddressState extends State<SavedAddress> {
             } else {
               return const SizedBox();
             }
-            return SizedBox();
           },
         ),
       ),
