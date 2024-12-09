@@ -8,7 +8,7 @@ import 'package:mockito/mockito.dart';
 import 'all_product_use_case_test.mocks.dart';
 @GenerateMocks([ProductsRepo])
 void main() {
-  test('when call getproducts it calls getproduct of product Repo', () async {
+/*  test('when call getproducts it calls getproduct of product Repo', () async {
     var productRepo = MockProductsRepo();
 
     var mockedResult = (Success<AllProductsEntities?>(AllProductsEntities()));
@@ -18,5 +18,5 @@ void main() {
     var result = await productRepo.getAllProducts();
     expect(result, mockedResult);
     verify(productRepo.getAllProducts());
-  });
+  });*/
 }

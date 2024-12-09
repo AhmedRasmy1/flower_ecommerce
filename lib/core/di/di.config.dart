@@ -70,16 +70,27 @@ import '../../Features/best_seller/presentation/best_seller_view_model/best_sell
     as _i1012;
 import '../../Features/cart&checkout/data/contracts/cart_online_data_source.dart'
     as _i278;
+import '../../Features/cart&checkout/data/contracts/checkout_online_datasource.dart'
+    as _i26;
 import '../../Features/cart&checkout/data/data_sources/cart_online_data_source_impl.dart'
     as _i1031;
+import '../../Features/cart&checkout/data/data_sources/check_out_online_data_source_impl.dart'
+    as _i623;
 import '../../Features/cart&checkout/data/repos/cart_repo_impl.dart' as _i459;
+import '../../Features/cart&checkout/data/repos/check_out_repo_impl.dart'
+    as _i579;
 import '../../Features/cart&checkout/domain/repos/cart_repo.dart' as _i983;
+import '../../Features/cart&checkout/domain/repos/checkout_repo.dart' as _i84;
+import '../../Features/cart&checkout/domain/use_cases/checkout_usecase.dart'
+    as _i404;
 import '../../Features/cart&checkout/domain/use_cases/delete_product_use_case.dart'
     as _i1065;
 import '../../Features/cart&checkout/domain/use_cases/fetch_user_cart_usecase.dart'
     as _i403;
 import '../../Features/cart&checkout/domain/use_cases/update_product_quantity_use_case.dart'
     as _i566;
+import '../../Features/cart&checkout/presentation/manager/checkout/checkout_viewmodel.dart'
+    as _i609;
 import '../../Features/cart&checkout/presentation/manager/delete_product/delete_product_view_model.dart'
     as _i498;
 import '../../Features/cart&checkout/presentation/manager/fetch_user_cart/fetch_user_cart_view_model.dart'
@@ -240,6 +251,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i453.AuthOnLineDataSourceImpl(gh<_i680.ApiService>()));
     gh.factory<_i471.EditProfileRepo>(
         () => _i615.EditProfileRepoImpl(gh<_i964.EditProfileDataSource>()));
+    gh.factory<_i26.CheckoutOnlineDataSource>(
+        () => _i623.CheckoutOnlineDataSourceImpl(gh<_i680.ApiService>()));
     gh.factory<_i873.AddToCartOnlineDataSource>(
         () => _i675.AddToCartOnlineDataSourceImpl(gh<_i680.ApiService>()));
     gh.factory<_i306.AddToCartRepo>(
@@ -256,6 +269,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i118.AuthRepoImpl(gh<_i318.AuthOnLineDataSource>()));
     gh.factory<_i368.ProductDetailsRepo>(() => _i174.ProductDetailsRepoImpl(
         gh<_i178.ProductDetailsOnlineDataSource>()));
+    gh.factory<_i84.CheckoutRepo>(
+        () => _i579.CheckoutRepoImpl(gh<_i26.CheckoutOnlineDataSource>()));
     gh.factory<_i540.ProductsRepo>(
         () => _i173.CategoriesRepoImpl(gh<_i711.AllProductsDatasource>()));
     gh.factory<_i390.OccasionRepo>(
@@ -313,9 +328,13 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i71.OccasionDetailsUseCase(gh<_i390.OccasionRepo>()));
     gh.factory<_i536.OccasionUseCase>(
         () => _i536.OccasionUseCase(gh<_i390.OccasionRepo>()));
+    gh.factory<_i404.CheckoutUseCase>(
+        () => _i404.CheckoutUseCase(gh<_i84.CheckoutRepo>()));
     gh.factory<_i674.UpdateProductQuantityViewModel>(() =>
         _i674.UpdateProductQuantityViewModel(
             gh<_i566.UpdateProductQuantityUseCase>()));
+    gh.factory<_i609.CheckoutViewModel>(
+        () => _i609.CheckoutViewModel(gh<_i404.CheckoutUseCase>()));
     gh.factory<_i185.HomeUseCase>(
         () => _i185.HomeUseCase(gh<_i143.HomeRepo>()));
     gh.factory<_i1022.HomeCubit>(

@@ -95,6 +95,9 @@ class _ProfileViewState extends State<ProfileView> {
                 },
               ),
             ),
+          ),
+
+        ],
             // Padding(
             //   padding: const EdgeInsets.symmetric(vertical: AppPadding.p16),
             //   child: Center(
