@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import '../../../../auth/presentation/widgets/loading_manager.dart';
 import '../../../domain/entities/cart_item_entity.dart';
 import '../../manager/fetch_user_cart/fetch_user_cart_view_model.dart';
