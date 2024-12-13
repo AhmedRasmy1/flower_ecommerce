@@ -1,0 +1,37 @@
+name: Firebase App Workflow
+on:
+  push:
+    branches:
+      - development
+  pull_request:
+    branches:
+      - development
+jobs:
+  firebase_distribution:
+    name: Firebase App Distribution
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "stable"
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build APK
+        run: flutter build apk --release
+
+      - name: Upload to Firebase App Distribution
+        env:
+          FIREBASE_AUTH_TOKEN: ${{ secrets.FIREBASE_AUTH_TOKEN }}
+          ANDROID_APP_ID: "1:845994738611:android:21ebaf1b1a1a58c3f541c6"
+        run: |
+          firebase appdistribution:distribute \
+          build/app/outputs/flutter-apk/app-release.apk \
+          --app $ANDROID_APP_ID \
+          --groups "testers"
