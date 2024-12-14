@@ -30,9 +30,6 @@ jobs:
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
 
-      - name: Authenticate Firebase CLI
-        run: echo "${{ secrets.FIREBASE_AUTH_TOKEN }}" | firebase login:ci --token
-
       - name: Upload to Firebase App Distribution
         env:
           FIREBASE_AUTH_TOKEN: ${{ secrets.FIREBASE_AUTH_TOKEN }}
