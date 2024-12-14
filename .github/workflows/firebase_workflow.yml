@@ -46,11 +46,7 @@ jobs:
           ACTIONS_STEP_DEBUG: true
         run: echo "Debugging environment variables set"
 
-      # Firebase Login (Check if Firebase CLI is properly authenticated)
-      - name: firebase Login
-        run: firebase login:ci
-
-      # Upload to Firebase App Distribution
+      # Upload to Firebase App Distribution using Firebase Auth Token directly
       - name: Upload to Firebase App Distribution
         env:
           FIREBASE_AUTH_TOKEN: ${{ secrets.FIREBASE_AUTH_TOKEN }}
