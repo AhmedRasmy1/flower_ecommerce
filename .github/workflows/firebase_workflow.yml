@@ -31,7 +31,7 @@ jobs:
         run: npm install -g firebase-tools
 
       - name: firebase Login
-        run: firebase login
+        run: firebase login:ci
 
       - name: Upload to Firebase App Distribution
         env:
