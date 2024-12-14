@@ -36,7 +36,7 @@ jobs:
           ANDROID_APP_ID: "1:845994738611:android:21ebaf1b1a1a58c3f541c6"
         run: |
           echo $FIREBASE_AUTH_TOKEN > ./firebase-token.json
-          firebase login --no-localhost --token $(cat ./firebase-token.json)
+          firebase login:ci --token $(cat ./firebase-token.json)
           firebase appdistribution:distribute \
           build/app/outputs/flutter-apk/app-release.apk \
           --app $ANDROID_APP_ID \
