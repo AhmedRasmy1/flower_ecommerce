@@ -1,4 +1,5 @@
 name: Firebase App Workflow
+
 on:
   push:
     branches:
@@ -19,7 +20,7 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: "3.24.5"
+          flutter-version: "3.24.0" # Ensure this is the correct version
 
       - name: Install dependencies
         run: flutter pub get
@@ -30,15 +31,11 @@ jobs:
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
 
-      - name: firebase Login
-        run: firebase login:ci
-
       - name: Upload to Firebase App Distribution
         env:
           FIREBASE_AUTH_TOKEN: ${{ secrets.FIREBASE_AUTH_TOKEN }}
-          ANDROID_APP_ID: "1:845994738611:android:21ebaf1b1a1a58c3f541c6"
         run: |
           firebase appdistribution:distribute \
           build/app/outputs/flutter-apk/app-release.apk \
-          --app $ANDROID_APP_ID \
+          --app 1:845994738611:android:21ebaf1b1a1a58c3f541c6 \
           --groups "testers"
