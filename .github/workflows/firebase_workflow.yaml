@@ -31,9 +31,7 @@ jobs:
         run: npm install -g firebase-tools
 
       - name: Authenticate Firebase CLI
-        env:
-          FIREBASE_AUTH_TOKEN: ${{ secrets.FIREBASE_AUTH_TOKEN }}
-        run: firebase auth:ci-login --token $FIREBASE_AUTH_TOKEN
+        run: firebase login:ci --token ${{ secrets.FIREBASE_AUTH_TOKEN }}
 
       - name: Upload to Firebase App Distribution
         env:
@@ -43,5 +41,4 @@ jobs:
           firebase appdistribution:distribute \
           build/app/outputs/flutter-apk/app-release.apk \
           --app $ANDROID_APP_ID \
-          --groups "testers" \
-          --release-notes "GitHub Actions: إصدار جديد من التطبيق."
+          --groups "testers"
