@@ -1,3 +1,7 @@
+import 'dart:ui';
+
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+
 import 'core/resources/theme_manager.dart';
 import 'localization/locale_cubit.dart';
 import 'package:flutter/material.dart';
@@ -13,8 +17,11 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+const _kShouldTestAsyncErrorOnInit = false;
 
-void main() async {
+// Toggle this for testing Crashlytics in your app locally.
+const _kTestingCrashlytics = true;
+Future<void> main()  async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheService.cacheInitialization();
   Bloc.observer = MyBlocObserver();
@@ -24,6 +31,25 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+  const fatalError = true;
+  FlutterError.onError = (errorDetails) {
+    if (fatalError) {
+      // If you want to record a "fatal" exception
+      FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+      // ignore: dead_code
+    } else {
+      // If you want to record a "non-fatal" exception
+      FirebaseCrashlytics.instance.recordFlutterError(errorDetails);
+    }
+  };
+  FlutterError.onError = (errorDetails) {
+    FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+  };
+  PlatformDispatcher.instance.onError = (error, stack) {
+    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+    return true;
+  };
   runApp(
     // DevicePreview(
     //   enabled: !kReleaseMode,
