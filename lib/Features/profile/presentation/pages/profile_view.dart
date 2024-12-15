@@ -1,3 +1,4 @@
+import 'package:flower_ecommerce/core/resources/routes_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -57,21 +58,27 @@ class _ProfileViewState extends State<ProfileView> {
                   color: ColorManager.pink,
                   fontFamily: GoogleFonts.imFellEnglish().fontFamily,
                 ),
-                const Stack(
-                  children: [
-                    Icon(Icons.notifications, size: 28, color: Colors.grey),
-                    Positioned(
-                      right: 0,
-                      child: CircleAvatar(
-                        radius: 8,
-                        backgroundColor: Colors.red,
-                        child: Text(
-                          '3',
-                          style: TextStyle(color: Colors.white, fontSize: 12),
+                InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(
+                        context, RoutesManager.notificationsListView);
+                  },
+                  child: const Stack(
+                    children: [
+                      Icon(Icons.notifications, size: 28, color: Colors.grey),
+                      Positioned(
+                        right: 0,
+                        child: CircleAvatar(
+                          radius: 8,
+                          backgroundColor: Colors.red,
+                          child: Text(
+                            '3',
+                            style: TextStyle(color: Colors.white, fontSize: 12),
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ],
             ),
