@@ -1,3 +1,7 @@
+
+
+import 'package:firebase_analytics/firebase_analytics.dart';
+
 import 'core/resources/theme_manager.dart';
 import 'localization/locale_cubit.dart';
 import 'package:flutter/material.dart';
@@ -13,10 +17,31 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flower_ecommerce/services/notificttionservice.dart';
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+FlutterLocalNotificationsPlugin();
+
+
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+  print('Handling a background message: ${message.messageId}');
+}
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheService.cacheInitialization();
+  //await NotificationService.instance.initialize();
+  const AndroidInitializationSettings initializationSettingsAndroid =
+  AndroidInitializationSettings('@mipmap/ic_launcher');
+
+  const InitializationSettings initializationSettings =
+  InitializationSettings(android: initializationSettingsAndroid);
+
+  await flutterLocalNotificationsPlugin.initialize(initializationSettings);
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   Bloc.observer = MyBlocObserver();
   configureDependencies();
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
@@ -35,8 +60,70 @@ void main() async {
   );
 }
 
-class FlowerApp extends StatelessWidget {
+class FlowerApp extends StatefulWidget {
   const FlowerApp({super.key});
+
+  @override
+  State<FlowerApp> createState() => _FlowerAppState();
+
+}
+
+class _FlowerAppState extends State<FlowerApp> {
+  late FirebaseMessaging _messaging;
+  @override
+  void initState() {
+    super.initState();
+    _messaging = FirebaseMessaging.instance;
+    _requestPermission();
+    _setupInteractedMessage();
+
+  }
+  Future<void> _requestPermission() async {
+    NotificationSettings settings = await _messaging.requestPermission(
+      alert: true,
+      badge: true,
+      provisional: false,
+      sound: true,
+    );
+    if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+      print('User granted permission');
+    } else if (settings.authorizationStatus == AuthorizationStatus.provisional) {
+      print('User granted provisional permission');
+    } else {
+      print('User declined permission');
+    }
+  }
+  void _setupInteractedMessage() {
+    // Get the token
+    _getToken();
+    // Handle foreground messages
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      print('Received a new message: ${message.notification?.title} - ${message.notification?.body}');
+
+      // Show the notification using your NotificationService
+      if (message.notification != null) {
+        NotificationService.instance.showNotification(
+          message
+        //  title: message.notification!.title,
+          //body: message.notification!.body,
+         // payload: message.data, // You can pass additional data
+        );
+      }
+    });
+    // Handle message taps for navigation
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      print('Message clicked!');
+      // Navigate based on the message data if necessary
+      // Example: Navigator.pushNamed(context, message.data['route']);
+    });
+  }
+  Future<void> _getToken() async {
+    String? token = await _messaging.getToken();
+    print('FCM Token: $token');
+
+    // You can store the token in your backend or Firestore for later use
+    // Example: Firestore.instance.collection('devices').add({'token': token});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,6 +159,7 @@ class FlowerApp extends StatelessWidget {
               ),
               debugShowCheckedModeBanner: false,
               onGenerateRoute: RouteGenerator.getRoute,
+           // home: ShowNotificationPage(),
               initialRoute: RoutesManager.splashRoute,
             );
           },

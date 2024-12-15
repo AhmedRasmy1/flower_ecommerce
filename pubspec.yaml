@@ -37,6 +37,7 @@ dependencies:
   device_preview: ^1.2.0
   dio: ^5.7.0
   firebase_core: ^3.8.1
+
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
@@ -67,6 +68,9 @@ dependencies:
   smooth_page_indicator: ^1.2.0+3
   spincircle_bottom_bar: ^2.0.0
   test: ^1.25.7
+  flutter_local_notifications: ^18.0.1
+  firebase_messaging: ^15.1.6
+  firebase_analytics: ^11.3.6
 
 dev_dependencies:
   build_runner: ^2.4.13
@@ -115,6 +119,7 @@ flutter:
         - asset: assets/fonts/Roboto-Regular.ttf
         - asset: assets/fonts/Roboto-Bold.ttf
           weight: 700
+  #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
   assets:
