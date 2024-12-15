@@ -55,6 +55,7 @@ jobs:
           firebase appdistribution:distribute \
           build/app/outputs/flutter-apk/app-release.apk \
           --app $ANDROID_APP_ID \
+          --token $FIREBASE_AUTH_TOKEN \
           --groups "testers"
 
       # Optional: Add .firebaserc file for project configuration (if needed)
