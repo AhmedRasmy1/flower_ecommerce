@@ -1,0 +1,68 @@
+name: Firebase App Workflow
+on:
+  push:
+    branches:
+      - development
+  pull_request:
+    branches:
+      - development
+
+jobs:
+  firebase_distribution:
+    name: Firebase App Distribution
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Set up Flutter
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.24.5"
+
+      # Install dependencies
+      - name: Install dependencies
+        run: flutter pub get
+
+      # Build APK
+      - name: Build APK
+        run: flutter build apk --release
+
+      # Install Firebase CLI
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools@latest
+
+      # Debug Firebase Token (to check if it's being correctly retrieved)
+      - name: Debug Firebase Token
+        run: echo ${{ secrets.FIREBASE_AUTH_TOKEN }}
+
+      # Set environment variables for debugging
+      - name: Set Debugging Environment
+        env:
+          ACTIONS_RUNNER_DEBUG: true
+          ACTIONS_STEP_DEBUG: true
+        run: echo "Debugging environment variables set"
+
+      # Upload to Firebase App Distribution using Firebase Auth Token directly
+      - name: Upload to Firebase App Distribution
+        env:
+          FIREBASE_AUTH_TOKEN: ${{ secrets.FIREBASE_AUTH_TOKEN }}
+          ANDROID_APP_ID: "1:845994738611:android:21ebaf1b1a1a58c3f541c6"
+        run: |
+          firebase appdistribution:distribute \
+          build/app/outputs/flutter-apk/app-release.apk \
+          --app $ANDROID_APP_ID \
+          --token $FIREBASE_AUTH_TOKEN \
+          --groups "testers"
+
+      # Optional: Add .firebaserc file for project configuration (if needed)
+      - name: Create .firebaserc File
+        run: |
+          echo '{
+            "projects": {
+              "default": "your-project-id"
+            }
+          }' > .firebaserc
