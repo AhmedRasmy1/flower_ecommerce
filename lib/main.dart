@@ -1,5 +1,3 @@
-
-
 import 'package:firebase_analytics/firebase_analytics.dart';
 
 import 'core/resources/theme_manager.dart';
@@ -20,25 +18,24 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flower_ecommerce/services/notificttionservice.dart';
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-FlutterLocalNotificationsPlugin();
 
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
   print('Handling a background message: ${message.messageId}');
 }
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheService.cacheInitialization();
   //await NotificationService.instance.initialize();
   const AndroidInitializationSettings initializationSettingsAndroid =
-  AndroidInitializationSettings('@mipmap/ic_launcher');
+      AndroidInitializationSettings('@mipmap/ic_launcher');
 
   const InitializationSettings initializationSettings =
-  InitializationSettings(android: initializationSettingsAndroid);
+      InitializationSettings(android: initializationSettingsAndroid);
 
   await flutterLocalNotificationsPlugin.initialize(initializationSettings);
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
@@ -65,7 +62,6 @@ class FlowerApp extends StatefulWidget {
 
   @override
   State<FlowerApp> createState() => _FlowerAppState();
-
 }
 
 class _FlowerAppState extends State<FlowerApp> {
@@ -76,8 +72,8 @@ class _FlowerAppState extends State<FlowerApp> {
     _messaging = FirebaseMessaging.instance;
     _requestPermission();
     _setupInteractedMessage();
-
   }
+
   Future<void> _requestPermission() async {
     NotificationSettings settings = await _messaging.requestPermission(
       alert: true,
@@ -87,27 +83,29 @@ class _FlowerAppState extends State<FlowerApp> {
     );
     if (settings.authorizationStatus == AuthorizationStatus.authorized) {
       print('User granted permission');
-    } else if (settings.authorizationStatus == AuthorizationStatus.provisional) {
+    } else if (settings.authorizationStatus ==
+        AuthorizationStatus.provisional) {
       print('User granted provisional permission');
     } else {
       print('User declined permission');
     }
   }
+
   void _setupInteractedMessage() {
     // Get the token
     _getToken();
     // Handle foreground messages
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      print('Received a new message: ${message.notification?.title} - ${message.notification?.body}');
+      print(
+          'Received a new message: ${message.notification?.title} - ${message.notification?.body}');
 
       // Show the notification using your NotificationService
       if (message.notification != null) {
-        NotificationService.instance.showNotification(
-          message
-        //  title: message.notification!.title,
-          //body: message.notification!.body,
-         // payload: message.data, // You can pass additional data
-        );
+        NotificationService.instance.showNotification(message
+            //  title: message.notification!.title,
+            //body: message.notification!.body,
+            // payload: message.data, // You can pass additional data
+            );
       }
     });
     // Handle message taps for navigation
@@ -117,6 +115,7 @@ class _FlowerAppState extends State<FlowerApp> {
       // Example: Navigator.pushNamed(context, message.data['route']);
     });
   }
+
   Future<void> _getToken() async {
     String? token = await _messaging.getToken();
     print('FCM Token: $token');
@@ -159,7 +158,7 @@ class _FlowerAppState extends State<FlowerApp> {
               ),
               debugShowCheckedModeBanner: false,
               onGenerateRoute: RouteGenerator.getRoute,
-           // home: ShowNotificationPage(),
+              // home: ShowNotificationPage(),
               initialRoute: RoutesManager.splashRoute,
             );
           },
