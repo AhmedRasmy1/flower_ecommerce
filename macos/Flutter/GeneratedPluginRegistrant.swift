@@ -9,8 +9,6 @@ import firebase_analytics
 import firebase_core
 import firebase_crashlytics
 import firebase_messaging
-
-
 import flutter_local_notifications
 import location
 import path_provider_foundation

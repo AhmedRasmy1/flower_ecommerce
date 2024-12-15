@@ -18,7 +18,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-const _kShouldTestAsyncErrorOnInit = false;
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flower_ecommerce/services/notificttionservice.dart';
@@ -31,10 +30,11 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   print('Handling a background message: ${message.messageId}');
 }
 
-
 // Toggle this for testing Crashlytics in your app locally.
 const _kTestingCrashlytics = true;
-Future<void> main()  async {
+const _kShouldTestAsyncErrorOnInit = false;
+
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheService.cacheInitialization();
   //await NotificationService.instance.initialize();
