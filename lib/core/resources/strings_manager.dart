@@ -101,4 +101,8 @@ class AppStrings {
 
   static const String addNewAddress = "Add new address";
   static const String savedAddress = " Saved address";
+  static const String myOrders = "My orders";
+  static const String active = "Active";
+  static const String complete = "Completed";
+
 }

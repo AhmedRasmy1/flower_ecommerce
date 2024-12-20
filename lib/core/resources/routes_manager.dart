@@ -1,4 +1,5 @@
 import 'package:flower_ecommerce/Features/notifications_list/presentation/view/notifications_list_view.dart';
+import 'package:flower_ecommerce/Features/orders/presentation/orders_view.dart';
 
 import '../../Features/add_address/presentation/pages/address_view.dart';
 import '../../Features/address/saved_address/presentation/view/saved_address.dart';
@@ -49,6 +50,7 @@ class RoutesManager {
   static const String savedAddress = '/savedAddress';
   static const String addAddressView = '/addAddressView';
   static const String notificationsListView = '/notificationListView';
+  static const String ordersView = '/MyOrdersPage';
 }
 
 class RouteGenerator {
@@ -115,7 +117,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const AddressView());
       case RoutesManager.notificationsListView:
         return MaterialPageRoute(builder: (_) => const NotificationsListView());
-
+      case RoutesManager.ordersView:
+        return MaterialPageRoute(builder: (_) => const MyOrdersPage());
       default:
         return unDefinedRoute();
     }
