@@ -1,5 +1,6 @@
 class AssetsManager {
   AssetsManager._();
+
   static const String logo = "assets/images/Flower.svg";
   static const String vector = "assets/images/Vector.svg";
   static const String cart = 'assets/images/cart.svg';
@@ -21,4 +22,6 @@ class AssetsManager {
   static const String background = 'assets/images/background.jpeg';
   static const String imagesMarker = 'assets/images/marker.png';
   static const String mapStyleMapStyle = 'assets/map_style/map_style.json';
+  static const String backIcon = 'assets/images/arrow-right-new.svg';
+  static const String noBouqeut='assets/images/rose.jpg';
 }

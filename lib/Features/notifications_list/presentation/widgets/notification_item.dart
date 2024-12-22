@@ -1,12 +1,16 @@
+import 'package:flower_ecommerce/Features/notifications_list/domain/entities/notifications_list_entity.dart';
 import 'package:flower_ecommerce/core/resources/color_manager.dart';
 import 'package:flutter/material.dart';
 
 class NotificationItem extends StatelessWidget {
-  const NotificationItem({super.key});
+  NotificationsEntity notificationsEntity;
+
+  NotificationItem({required this.notificationsEntity, super.key});
 
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(
           height: 16,
@@ -24,7 +28,7 @@ class NotificationItem extends StatelessWidget {
               width: 8,
             ),
             Text(
-              "New offer",
+              notificationsEntity.title!,
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
             ),
             SizedBox(
@@ -43,9 +47,7 @@ class NotificationItem extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 40),
           child: Text(
-            "Lorem ipsum dolor sit amet consectetur Tristique et "
-            "mauris sem congue in felis id nec. Amet sed morbi "
-            "bibendum vestibulum.",
+            notificationsEntity.body!,
             style: TextStyle(
                 fontWeight: FontWeight.w400,
                 fontSize: 12,
