@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flower_ecommerce/Features/notifications_list/data/models/notifications_list_dto.dart';
 import '../../../Features/address/saved_address/data/models/response/address_dto.dart';
 import '../../../Features/cart&checkout/data/models/request/update_quantity_request.dart';
 import '../../../Features/cart&checkout/data/models/response/checkout/address_response.dart';
@@ -136,13 +137,20 @@ abstract class ApiService {
     @Header("Authorization") String token,
     @Path() String addressId,
   );
+
   @POST(ApiConstants.cartEndPoint)
   Future<AddToCartResModel?> addProductToCart(
     @Body() AddToCartReqBody addToCartBody,
     @Header("Authorization") String token,
   );
+
   @GET(ApiConstants.addressesEndPoint)
   Future<AddressResponse?> getUserAddresses(
+    @Header("Authorization") String token,
+  );
+
+  @GET(ApiConstants.notification)
+  Future<NotificationsListDto> getAllNotifications(
     @Header("Authorization") String token,
   );
 }
