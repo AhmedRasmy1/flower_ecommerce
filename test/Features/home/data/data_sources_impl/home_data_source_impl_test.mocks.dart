@@ -363,16 +363,17 @@ class MockApiService extends _i1.Mock implements _i16.ApiService {
       ) as _i17.Future<_i8.AllCategories>);
 
   @override
-  _i17.Future<_i9.AllProducts> getAllProducts() => (super.noSuchMethod(
+  _i17.Future<_i9.AllProducts> getAllProducts(String? sortType) =>
+      (super.noSuchMethod(
         Invocation.method(
           #getAllProducts,
-          [],
+          [sortType],
         ),
         returnValue: _i17.Future<_i9.AllProducts>.value(_FakeAllProducts_7(
           this,
           Invocation.method(
             #getAllProducts,
-            [],
+            [sortType],
           ),
         )),
       ) as _i17.Future<_i9.AllProducts>);

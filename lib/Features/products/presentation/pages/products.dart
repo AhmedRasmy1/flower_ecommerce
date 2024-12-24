@@ -19,10 +19,13 @@ class GirdBodyOfProducts extends StatefulWidget {
     super.key,
     required this.page,
     required this.pageId,
+    this.sortType,
+
   });
 
   final EnumPage page;
   final String pageId;
+  final String? sortType;
 
   @override
   State<GirdBodyOfProducts> createState() => _GirdBodyOfProductsState();
@@ -45,6 +48,7 @@ class _GirdBodyOfProductsState extends State<GirdBodyOfProducts> {
   }
 
   @override
+
   Widget build(BuildContext context) {
     return RefreshIndicator(
       color: ColorManager.pink,
@@ -56,10 +60,13 @@ class _GirdBodyOfProductsState extends State<GirdBodyOfProducts> {
         child: BlocConsumer<AllProductsViewModel, AllProductsState>(
           listener: (context, state) {},
           builder: (context, state) {
+
             if (state is SuccessAllProductsState) {
               List<ProductsEntities> allData =
-                  //! chat gpt
+
                   state.categoriesEntities?.products ?? [];
+              //print('alldata');
+              //print(allData);
               List<ProductsEntities> filteredByOccasion =
                   allData.where((product) {
                 if (widget.pageId.isEmpty) {
@@ -74,7 +81,8 @@ class _GirdBodyOfProductsState extends State<GirdBodyOfProducts> {
                 }
               }).toList();
               return CustomCardAll(filteredByOccasion: filteredByOccasion);
-            } else {
+            }
+            else {
               return const SkeletonBody();
             }
           },

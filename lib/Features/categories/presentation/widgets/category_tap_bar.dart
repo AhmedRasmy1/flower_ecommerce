@@ -1,55 +1,60 @@
-import '../manager/all_categories_cubit.dart';
-import 'skeleton_bar.dart';
-import '../../../../core/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart'; // Import Provider
+import '../../../../core/common/providers.dart';
+import '../../../products/presentation/manager/all_products_cubit.dart';
+import '../manager/all_categories_cubit.dart';
+import '../manager/all_categories_state.dart';
+import 'skeleton_bar.dart';
+import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/di/di.dart';
 import '../../../../core/resources/color_manager.dart';
 import '../../../../core/resources/style_manager.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../../../products/presentation/pages/products.dart';
 import '../../domain/entities/categories_entities.dart';
-import '../manager/all_categories_state.dart';
 
 class CategoryTapBar extends StatefulWidget {
-  const CategoryTapBar({super.key});
-
+  final String? sortType;
+  const CategoryTapBar({super.key, required this.sortType});
   @override
   State<CategoryTapBar> createState() => _CategoryTapBarState();
 }
-
 class _CategoryTapBarState extends State<CategoryTapBar> {
+  late AllCategoriesViewModel categoriesViewModel;
+  late AllProductsViewModel productsViewModel;
   int indexTab = 0;
-  late AllCategoriesViewModel viewModel;
-
   @override
   void initState() {
-    viewModel = getIt.get<AllCategoriesViewModel>()
+    categoriesViewModel = getIt.get<AllCategoriesViewModel>()
       ..doIntent(GetAllCategoriesAction());
+    productsViewModel = getIt.get<AllProductsViewModel>(); // Initialize the products view model
     super.initState();
   }
-
   @override
   void dispose() {
-    viewModel.close();
+    categoriesViewModel.close();
     super.dispose();
   }
-
   @override
   Widget build(BuildContext context) {
+    String sortType = Provider.of<SortTypeProvider>(context).currentSortType;
+    // Update the sort type in the productsViewModel
+
+    print(productsViewModel.sortType??"");
+    print(sortType);
     return BlocProvider(
-      create: (context) => viewModel,
+      create: (context) => categoriesViewModel,
       child: BlocConsumer<AllCategoriesViewModel, AllCategoriesState>(
         listener: (context, state) {},
         builder: (context, state) {
           if (state is SuccessAllCategoriesState) {
             List<CategoriesEntities> tabName =
                 state.categoriesEntities?.categories ?? [];
+          if(tabName[0].name !=AppStrings.all)
             tabName.insert(0, CategoriesEntities(name: AppStrings.all));
-
-            /// first items /// from chatgpt
-            List<Tab> tabs = tabName.map(
-              (tab) {
+           List<Tab> tabs = tabName.map(
+                  (tab) {
                 return Tab(
                   text: tab.name,
                 );
@@ -64,7 +69,7 @@ class _CategoryTapBarState extends State<CategoryTapBar> {
                     indicatorSize: TabBarIndicatorSize.tab,
                     dividerColor: Colors.transparent,
                     indicatorPadding:
-                        const EdgeInsets.symmetric(horizontal: AppSize.s16),
+                    const EdgeInsets.symmetric(horizontal: AppSize.s16),
                     unselectedLabelColor: ColorManager.lightGrey3,
                     unselectedLabelStyle: getSemiBoldStyle(
                       color: ColorManager.lightGrey3,
@@ -99,10 +104,13 @@ class _CategoryTapBarState extends State<CategoryTapBar> {
                     child: TabBarView(
                       children: tabs.map((e) {
                         int currentIndex = tabs.indexOf(e);
-                        return GirdBodyOfProducts(
-                          pageId: tabName[currentIndex].id ?? '',
-                          page: EnumPage.category,
-                          // value1: currentIndex
+                        return BlocProvider<AllProductsViewModel>.value(
+                          value: productsViewModel,
+                          child: GirdBodyOfProducts(
+                            sortType: sortType, // Pass sortType from the provider
+                            pageId: tabName[currentIndex].id ?? '',
+                            page: EnumPage.category,
+                          ),
                         );
                       }).toList(),
                     ),

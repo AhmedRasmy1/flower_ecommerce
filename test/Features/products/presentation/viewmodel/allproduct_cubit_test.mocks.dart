@@ -74,18 +74,19 @@ class MockProductsUseCase extends _i1.Mock implements _i4.ProductsUseCase {
       );
 
   @override
-  _i5.Future<_i3.Result<_i6.AllProductsEntities?>> getAllProducts() =>
+  _i5.Future<_i3.Result<_i6.AllProductsEntities?>> getAllProducts(
+          String? sortType) =>
       (super.noSuchMethod(
         Invocation.method(
           #getAllProducts,
-          [],
+          [sortType],
         ),
         returnValue: _i5.Future<_i3.Result<_i6.AllProductsEntities?>>.value(
             _FakeResult_1<_i6.AllProductsEntities?>(
           this,
           Invocation.method(
             #getAllProducts,
-            [],
+            [sortType],
           ),
         )),
       ) as _i5.Future<_i3.Result<_i6.AllProductsEntities?>>);

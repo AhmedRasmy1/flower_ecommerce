@@ -11,7 +11,7 @@ class CategoriesRepoImpl implements ProductsRepo {
   CategoriesRepoImpl(this.allProductsDatasource);
 
   @override
-  Future<Result<AllProductsEntities?>> getAllProducts() {
-    return allProductsDatasource.getAllProducts();
+  Future<Result<AllProductsEntities?>> getAllProducts(String? sortType) {
+    return allProductsDatasource.getAllProducts(sortType);
   }
 }

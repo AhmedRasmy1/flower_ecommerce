@@ -262,9 +262,10 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<AllProducts> getAllProducts() async {
+  Future<AllProducts> getAllProducts(String? sortType) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'sort': sortType};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<AllProducts>(Options(
@@ -284,6 +285,8 @@ class _ApiService implements ApiService {
           baseUrl,
         )));
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    print(sortType);
+    print(_result);
     late AllProducts _value;
     try {
       _value = AllProducts.fromJson(_result.data!);

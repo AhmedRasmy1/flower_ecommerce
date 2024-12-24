@@ -146,6 +146,7 @@ class _OccasionsViewState extends State<OccasionsView> {
               id != null && id!.isNotEmpty
                   ? Expanded(
                       child: GirdBodyOfProducts(
+                        sortType: '',
                         page: EnumPage.occasion,
                         pageId: id!,
                       ),

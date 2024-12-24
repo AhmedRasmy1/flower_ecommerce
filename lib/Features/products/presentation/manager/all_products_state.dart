@@ -19,9 +19,25 @@ class ErrorAllProductsState extends AllProductsState {
 
   ErrorAllProductsState(this.exception);
 }
+class SortTypeUpdatedState extends AllProductsState {
+  AllProductsEntities? categoriesEntities;
+
+  final String sortType;
+  SortTypeUpdatedState(this.sortType);
+}
 
 sealed class AllProductsToAction {}
 
 class GetAllProductsAction extends AllProductsToAction {
+
   GetAllProductsAction();
 }
+abstract class AllProductsIntent {}
+
+class UpdateSortTypeIntent extends AllProductsIntent {
+  final String sortType;
+
+  UpdateSortTypeIntent(this.sortType);
+}
+
+class FetchProductsIntent extends AllProductsIntent {}

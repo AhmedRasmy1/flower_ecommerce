@@ -69,8 +69,8 @@ abstract class ApiService {
   @GET(ApiConstants.categories)
   Future<AllCategories> getAllCategories();
 
-  @GET(ApiConstants.products)
-  Future<AllProducts> getAllProducts();
+  @GET('https://flower.elevateegy.com/api/v1/products/')
+  Future<AllProducts> getAllProducts(@Query('sort') String? sortType);
 
   @GET(ApiConstants.bestSellerRoute)
   Future<BestSellerResponse> getBestSeller();

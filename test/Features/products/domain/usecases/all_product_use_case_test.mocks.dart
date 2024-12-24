@@ -44,18 +44,19 @@ class MockProductsRepo extends _i1.Mock implements _i3.ProductsRepo {
   }
 
   @override
-  _i4.Future<_i2.Result<_i5.AllProductsEntities?>> getAllProducts() =>
+  _i4.Future<_i2.Result<_i5.AllProductsEntities?>> getAllProducts(
+          String? sortType) =>
       (super.noSuchMethod(
         Invocation.method(
           #getAllProducts,
-          [],
+          [sortType],
         ),
         returnValue: _i4.Future<_i2.Result<_i5.AllProductsEntities?>>.value(
             _FakeResult_0<_i5.AllProductsEntities?>(
           this,
           Invocation.method(
             #getAllProducts,
-            [],
+            [sortType],
           ),
         )),
       ) as _i4.Future<_i2.Result<_i5.AllProductsEntities?>>);

@@ -1,8 +1,11 @@
+
 import 'dart:ui';
 
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:provider/provider.dart';
 
+import 'core/common/providers.dart';
 import 'core/resources/theme_manager.dart';
 import 'localization/locale_cubit.dart';
 import 'package:flutter/material.dart';
@@ -73,14 +76,10 @@ Future<void> main() async {
     return true;
   };
   runApp(
-    // DevicePreview(
-    //   enabled: !kReleaseMode,
-    //   builder: (context) {
-    //     return const FlowerApp();
-    //   },
-    // ),
-    const FlowerApp(),
-  );
+      ChangeNotifierProvider(
+        create: (context) => SortTypeProvider(), // Initialize the provider
+        child: FlowerApp(),
+      ),);
 }
 
 class FlowerApp extends StatefulWidget {
