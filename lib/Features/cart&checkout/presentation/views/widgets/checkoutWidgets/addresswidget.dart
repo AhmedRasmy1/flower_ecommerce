@@ -5,7 +5,7 @@ class AddressTile extends StatelessWidget {
   final String addressDetails;
   final bool isSelected;
   final VoidCallback? onTap;
-  final VoidCallback? onEditTap; // لإضافة وظيفة للأيقونة
+  final VoidCallback? onEditTap;
 
   const AddressTile({
     super.key,

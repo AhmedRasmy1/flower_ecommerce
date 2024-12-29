@@ -1,7 +1,8 @@
 import 'package:flower_ecommerce/core/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/resources/color_manager.dart';
-import '../model/my_order_details.dart';
+import '../useful_classes/my_order_details.dart';
+
 
 class BuildOneOrder extends StatelessWidget {
    BuildOneOrder({required this.order,

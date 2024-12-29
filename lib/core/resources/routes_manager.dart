@@ -1,9 +1,11 @@
 import 'package:flower_ecommerce/Features/notifications_list/presentation/view/notifications_list_view.dart';
-import 'package:flower_ecommerce/Features/orders/presentation/orders_view.dart';
+import 'package:flower_ecommerce/Features/orders/presentation/view/orders_view.dart';
 
 import '../../Features/add_address/presentation/pages/address_view.dart';
 import '../../Features/address/saved_address/presentation/view/saved_address.dart';
 import '../../Features/cart&checkout/presentation/views/check_out_view.dart';
+import '../../Features/payment/presentation/view/payment_cash_page.dart';
+import '../../Features/payment/presentation/view/payment_online_page.dart';
 import '../../Features/profile/presentation/pages/terms_and_conditions.dart';
 import 'package:flutter/material.dart';
 
@@ -51,6 +53,8 @@ class RoutesManager {
   static const String addAddressView = '/addAddressView';
   static const String notificationsListView = '/notificationListView';
   static const String ordersView = '/MyOrdersPage';
+  static const String paymentCashView = '/PaymentCashPage';
+  static const String paymentOnlineView = '/PaymentOnlinePage';
 }
 
 class RouteGenerator {
@@ -119,6 +123,10 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const NotificationsListView());
       case RoutesManager.ordersView:
         return MaterialPageRoute(builder: (_) => const MyOrdersPage());
+      case RoutesManager.paymentCashView:
+        return MaterialPageRoute(builder: (_) => const PaymentCashPage());
+      case RoutesManager.paymentOnlineView:
+        return MaterialPageRoute(builder: (_) => const PaymentOnlinePage());
       default:
         return unDefinedRoute();
     }

@@ -89,7 +89,7 @@
   "passwordChangedSuccessfuly": "تم تغيير كلمة السر بنجاح",
   "giftNow": "اهدي الآن",
   "celebrateSpecialDay": "احتفل بيومك الخاص معنا!",
-    "myOrders": "طلباتي",
+  "myOrders": "طلباتي",
   "savedAddress": "العناوين المحفوظة",
   "notification": "الإشعارات",
   "language": "اللغة",
@@ -129,7 +129,6 @@
   "about_us_vision_content": "- أن نكون المزود الرائد لترتيبات الزهور والهدايا.\n- معروفون بجودتنا وإبداعنا وخدمة العملاء الاستثنائية.\n- نسعى لجعل كل عملية شراء تجربة ممتعة لعملائنا.",
   "about_us_contact_title": "تواصل معنا",
   "about_us_contact_content": "- لديك أسئلة أو تحتاج إلى مساعدة؟ لا تتردد في الاتصال بنا:\n- البريد الإلكتروني: support@flowery.com\n- الهاتف: +20123456789",
-
   "terms_title": "الشروط والأحكام",
   "terms_welcome": "مرحبًا بكم في فلاوري!",
   "terms_agreement_title": "1. الموافقة على الشروط",
@@ -141,7 +140,7 @@
   "terms_updates_title": "4. تحديثات الشروط",
   "terms_updates_content": "نحتفظ بالحق في تحديث أو تعديل هذه الشروط والأحكام في أي وقت دون إشعار مسبق.",
   "terms_contact": "للمزيد من التفاصيل، تواصل مع support@flowery.com",
-    "add_new_address": "أضف عنوانًا جديدًا",
+  "add_new_address": "أضف عنوانًا جديدًا",
   "saved_address": "العنوان المحفوظ",
   "add_address": "إضافة عنوان",
   "enter_add_address": "أدخل العنوان",
@@ -155,6 +154,6 @@
   "please_select_area": "يرجى اختيار المنطقة",
   "area": "المنطقة",
   "something_went_wrong": "حدث خطأ ما. الرجاء المحاولة لاحقًا.",
-    "address_added_successfully": "تمت إضافة العنوان بنجاح إلى العناوين المحفوظة لديك."
+  "address_added_successfully": "تمت إضافة العنوان بنجاح إلى العناوين المحفوظة لديك."
 
 }

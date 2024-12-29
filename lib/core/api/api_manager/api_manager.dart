@@ -1,10 +1,14 @@
 import 'package:dio/dio.dart';
+import 'package:flower_ecommerce/Features/payment/data/model/response/cash_order_response/cash_order_response.dart';
+import 'package:flower_ecommerce/Features/payment/data/model/response/checkout_session_response/Paymernt_checkout_response.dart';
 import '../../../Features/address/saved_address/data/models/response/address_dto.dart';
 import '../../../Features/cart&checkout/data/models/request/update_quantity_request.dart';
 import '../../../Features/cart&checkout/data/models/response/checkout/address_response.dart';
 import '../../../Features/cart&checkout/data/models/response/delete_product_response/delete_product_response.dart';
 import '../../../Features/cart&checkout/data/models/response/fetch_user_cart_response/fetch_user_cart_response.dart';
 import '../../../Features/cart&checkout/data/models/response/update_product_quantity/update_product_quantity.dart';
+import '../../../Features/orders/data/model/orders_response.dart';
+import '../../../Features/payment/data/model/request/payment_checkout_request.dart';
 import '../../common/add_to_cart/data/models/request/add_to_cart_req_body.dart';
 import '../../common/add_to_cart/data/models/response/add_to_product_res_model/add_to_product_res_model.dart';
 import 'package:injectable/injectable.dart';
@@ -145,4 +149,22 @@ abstract class ApiService {
   Future<AddressResponse?> getUserAddresses(
     @Header("Authorization") String token,
   );
+
+
+  @POST(ApiConstants.checkoutSessionRoute)
+  Future<PaymentCheckoutResponse> getPaymentCheckout(
+      @Body() PaymentCheckoutRequest paymentCheckoutRequest,
+      @Header("Authorization") String token);
+
+
+  @POST(ApiConstants.cashOrderRoute)
+  Future<CashOrderResponse> getCashOrder(
+      @Body() PaymentCheckoutRequest paymentCheckoutRequest,
+      @Header("Authorization") String token);
+
+  @GET(ApiConstants.getUserOrdersRoute)
+  Future<OrdersResponse> getUserOrders(
+      @Header("Authorization") String token);
+
+
 }

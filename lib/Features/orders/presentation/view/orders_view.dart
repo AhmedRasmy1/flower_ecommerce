@@ -1,27 +1,49 @@
 
+import 'package:flower_ecommerce/Features/orders/presentation/useful_classes/my_order_details.dart';
 import 'package:flower_ecommerce/Features/orders/presentation/widgets/build_order_list.dart';
+import 'package:flower_ecommerce/Features/payment/data/model/response/cash_order_response/OrderItems.dart';
 import 'package:flower_ecommerce/core/resources/color_manager.dart';
 import 'package:flower_ecommerce/core/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'model/my_order_details.dart';
+import '../../../../core/di/di.dart';
+import '../../../../core/utils/cashed_data_shared_preferences.dart';
+import '../../../products/presentation/widgets/skeleton_body.dart';
+import '../../data/model/user_order_items.dart';
+import '../view_model/orders_cubit.dart';
+import '../view_model/orders_state.dart';
+
 
 
 class MyOrdersPage extends StatefulWidget {
   const MyOrdersPage({super.key});
 
   @override
-  _MyOrdersPageState createState() => _MyOrdersPageState();
+  State<MyOrdersPage> createState() => _MyOrdersPageState();
 }
 
 class _MyOrdersPageState extends State<MyOrdersPage>
     with SingleTickerProviderStateMixin {
+ // late OrdersViewModel ordersViewModel;
   late TabController _tabController;
 
   @override
   void initState() {
-    super.initState();
+   // ordersViewModel = getIt.get<OrdersViewModel>();
+
     _tabController = TabController(length: 2, vsync: this);
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    String savedToken = CacheService.getData(key: CacheConstants.userToken);
+    String token = "Bearer $savedToken";
+
+   // ordersViewModel.getUserOrders(token);
   }
 
   @override
@@ -38,6 +60,7 @@ class _MyOrdersPageState extends State<MyOrdersPage>
       MyOrderDetails("Red roses","EGP 600","Delivered on 3 Sep 2024","Reorder"),
 
      ];
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(AppStrings.myOrders,
@@ -67,7 +90,9 @@ class _MyOrdersPageState extends State<MyOrdersPage>
           BuildOrderList(orderDetailsList: completeOrderDetails,
           ),
         ],
-      ),
+      )
+
+
     );
   }
 

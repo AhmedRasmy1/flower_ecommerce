@@ -1,3 +1,10 @@
+import 'package:flower_ecommerce/Features/cart&checkout/presentation/views/useful_methods/get_total_func.dart';
+import 'package:flower_ecommerce/Features/payment/data/model/request/payment_checkout_request.dart';
+import 'package:flower_ecommerce/Features/payment/data/model/request/shipping_address.dart';
+import 'package:flower_ecommerce/Features/payment/presentation/useful_methods/payment_navegation_items.dart';
+import 'package:flower_ecommerce/Features/payment/presentation/view/payment_cash_page.dart';
+
+import '../../../payment/presentation/view/payment_online_page.dart';
 import 'widgets/checkoutWidgets/addresswidget.dart';
 import 'widgets/checkoutWidgets/build_payment_widget.dart';
 import 'widgets/checkoutWidgets/delivery_time_widget.dart';
@@ -26,11 +33,15 @@ class _CheckOutViewState extends State<CheckOutView> {
   late CheckoutViewModel _checkoutViewModel;
   bool _isGift = false;
   int? _selectedAddressIndex;
-
+   String city="";
+   String street="";
+   String phone="";
+  late String _paymentOption;
   @override
   void initState() {
     super.initState();
     _checkoutViewModel = getIt<CheckoutViewModel>();
+    _paymentOption = "cash";
   }
 
   @override
@@ -80,7 +91,15 @@ class _CheckOutViewState extends State<CheckOutView> {
               ),
               const Divider(thickness: 24, color: Color(0xFFEAEAEA)),
               const SizedBox(height: 10),
-              BuildPaymentWidget(),
+              BuildPaymentWidget(
+                onPaymentOptionChanged: (option) {
+                  setState(() {
+                    _paymentOption = option;
+                    print(_paymentOption);
+                  });
+                },
+              ),
+
               const Divider(thickness: 24, color: Color(0xFFEAEAEA)),
               const SizedBox(height: 10),
               Padding(
@@ -120,13 +139,17 @@ class _CheckOutViewState extends State<CheckOutView> {
                 return const Center(child: CircularProgressIndicator());
               } else if (state is SuccessCheckoutState) {
                 final addresses = state.addressResponse?.addresses ?? [];
+
                 return Column(
                   children: addresses.map((address) {
                     return GestureDetector(
                       onTap: () {
                         setState(() {
                           _selectedAddressIndex = addresses.indexOf(address);
-                        });
+                          city=address.city ??"";
+                          street=address.street??"";
+                          phone=address.phone??"";
+                          });
                       },
                       child: AddressTile(
                         addressType: address.street ?? "Unnamed Address",
@@ -228,18 +251,32 @@ class _CheckOutViewState extends State<CheckOutView> {
           buttonColor: ColorManager.pink,
           title: 'Place Order',
           onPressed: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text("Order placed successfully!")),
-            );
+
+            ShippingAddress userShippingAddress=ShippingAddress(street:street ,phone:phone ,city:city );
+
+            PaymentCheckoutRequest paymentRequest=PaymentCheckoutRequest(shippingAddress: userShippingAddress);
+            PaymentNavigationItems paymentNavigationItems=PaymentNavigationItems(paymentCheckoutRequest: paymentRequest, orderItems: cartList);
+            if (_paymentOption=="cash"){
+             Navigator.push(
+                 context,
+                 MaterialPageRoute(
+                     builder: (context) => const PaymentCashPage(),
+                     settings: RouteSettings(arguments:paymentNavigationItems)));
+           }
+           else if(_paymentOption=="online"){
+             Navigator.push(
+                 context,
+                 MaterialPageRoute(
+                     builder: (context) => const PaymentOnlinePage(),
+                     settings: RouteSettings(arguments:paymentNavigationItems)));
+           }
+           else {
+
+           }
+
           }),
     );
   }
 
-  double getTotal(List<CartItemEntity> cartList) {
-    double total = 0;
-    for (var item in cartList) {
-      total += item.quantity! * item.price!.toDouble();
-    }
-    return total;
-  }
+
 }
