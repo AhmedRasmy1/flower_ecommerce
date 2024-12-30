@@ -3,8 +3,10 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../core/di/di.dart';
+import '../../../../core/provider.dart';
 import '../../../../core/resources/color_manager.dart';
 import '../../../best_seller/domain/entities/best_seller_entity.dart';
 import '../../../products_details/presentation/views/product_details_view.dart';
@@ -14,54 +16,75 @@ import '../manager/all_products_state.dart';
 import '../widgets/cart_product.dart';
 import '../widgets/skeleton_body.dart';
 
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 class GirdBodyOfProducts extends StatefulWidget {
-  const GirdBodyOfProducts({
+  GirdBodyOfProducts({
     super.key,
     required this.page,
     required this.pageId,
   });
-
   final EnumPage page;
   final String pageId;
-
   @override
   State<GirdBodyOfProducts> createState() => _GirdBodyOfProductsState();
 }
-
 class _GirdBodyOfProductsState extends State<GirdBodyOfProducts> {
   late AllProductsViewModel viewModel;
-
+  late SortProvider sortProvider;
   @override
   void initState() {
-    viewModel = getIt.get<AllProductsViewModel>()
-      ..doIntent(GetAllProductsAction());
     super.initState();
+    viewModel = getIt.get<AllProductsViewModel>();
+    sortProvider = Provider.of<SortProvider>(context, listen: false); // Get the provider without listening
+    // Fetch initial products with the default filter type
+    viewModel.getAllProducts(sortProvider.filterType);
   }
-
   @override
   void dispose() {
     viewModel.close();
     super.dispose();
   }
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Access SortProvider to respond to changes in filter type
+    final newFilterType = sortProvider.filterType;
+
+    // Check if the filter type has changed and react accordingly
+    if (newFilterType != viewModel.filterType) { // Assuming -> you'll have to track currentFilterType in your ViewModel.
+      viewModel.getAllProducts(newFilterType);
+    }
+  }
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
+    // Access SortProvider to listen for changes
+    final sortProvider = Provider.of<SortProvider>(context);
     return RefreshIndicator(
       color: ColorManager.pink,
       onRefresh: () async {
-        getIt.get<AllProductsViewModel>().doIntent(GetAllProductsAction());
+        // Fetch products based on the current filter type from SortProvider
+        viewModel.getAllProducts(sortProvider.filterType);
       },
       child: BlocProvider(
         create: (context) => viewModel,
         child: BlocConsumer<AllProductsViewModel, AllProductsState>(
-          listener: (context, state) {},
+          listener: (context, state) {
+            // If you want to add any side-effects based on state changes, add it here
+          },
           builder: (context, state) {
             if (state is SuccessAllProductsState) {
-              List<ProductsEntities> allData =
-                  //! chat gpt
-                  state.categoriesEntities?.products ?? [];
+              List<ProductsEntities> allData = state.categoriesEntities?.products ?? [];
+
+
               List<ProductsEntities> filteredByOccasion =
-                  allData.where((product) {
+              allData.where((product) {
                 if (widget.pageId.isEmpty) {
                   return true;
                 }
@@ -83,7 +106,6 @@ class _GirdBodyOfProductsState extends State<GirdBodyOfProducts> {
     );
   }
 }
-
 class CustomCardAll extends StatelessWidget {
   const CustomCardAll({
     super.key,
