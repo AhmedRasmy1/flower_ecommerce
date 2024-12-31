@@ -1,6 +1,10 @@
+import 'package:flower_ecommerce/Features/categories/presentation/widgets/upperfilterbox.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/provider.dart';
+import '../../../../core/resources/assets_manager.dart';
+import '../../../../core/resources/color_manager.dart';
 import '../widgets/category_tap_bar.dart';
 import '../widgets/custom_search.dart';
 import '../widgets/filter_button.dart';
@@ -18,54 +22,114 @@ class _CategoriesViewState extends State<CategoriesView> {
 
   void showFilterSheet() {
     final sortProvider = Provider.of<SortProvider>(context, listen: false);
+    String? selectedSortType = sortProvider.filterType;
+    double minPrice = 100;
+    double maxPrice = 4000;
+    double startPrice = minPrice;
+    double endPrice = maxPrice;
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
         return Container(
+
           padding: const EdgeInsets.all(16.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              ListTile(
-                title: const Text("Price After Discount"),
-                onTap: () {
+              const Text(
+                "Sort by",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const Divider(),
+              buildRadioListTile(
+                "Lowest Price",
+                "priceAfterDiscount",
+                selectedSortType,
+                    (value) {
                   setState(() {
-                    filterType = "priceAfterDiscount(ascending)";
-                  sortProvider.changeFilter(filterType);
+                    selectedSortType = value;
+                    sortProvider.changeFilter(selectedSortType);
+                  });
+                  Navigator.pop(context);
+                },
+              ),
+              buildRadioListTile(
+                "Highest Price",
+                "-priceAfterDiscount",
+                selectedSortType,
+                    (value) {
+                  setState(() {
+                    selectedSortType = value;
+                    sortProvider.changeFilter(selectedSortType);
+                  });
+                  Navigator.pop(context);
+                },
+              ),
+              buildRadioListTile(
+                "less quantity",
+                "quantity",
+                selectedSortType,
+                    (value) {
+                  setState(() {
+                    selectedSortType = value;
+                    sortProvider.changeFilter(selectedSortType);
+                  });
+                  Navigator.pop(context);
+                },
+              ),
+              buildRadioListTile(
+                " higher quantity",
+                "-quantity",
+                selectedSortType,
+                    (value) {
+                  setState(() {
+                    selectedSortType = value;
+                    sortProvider.changeFilter(selectedSortType);
                   });
                   Navigator.pop(context);
                 },
               ),
 
-              ListTile(
-                title: const Text("price after`discount(descending)"),
-                onTap: () {
+              const Divider(),
+              const Text(
+                "Price",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              RangeSlider(
+                values: RangeValues(startPrice, endPrice),
+                min: minPrice,
+                max: maxPrice,
+                activeColor: ColorManager.pink,
+                inactiveColor: Colors.grey,
+                onChanged: (RangeValues values) {
                   setState(() {
-                    filterType = "-priceAfterDiscount";
-                    sortProvider.changeFilter(filterType);
+                    startPrice = values.start;
+                    endPrice = values.end;
+                    // Optionally, handle the slider change
                   });
-                  Navigator.pop(context);
                 },
               ),
-              ListTile(
-                title: const Text("Quantity (Ascending)"),
-                onTap: () {
-                  setState(() {
-                    filterType = "quantity";
-                    sortProvider.changeFilter(filterType);
-                  });
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                title: const Text("Quantity (Descending)"),
-                onTap: () {
-                  setState(() {
-                    filterType = "-quantity";
-                   sortProvider.changeFilter(filterType);
-                  });
-                  Navigator.pop(context);
-                },
+              Container(width: double.infinity,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: ColorManager.pink,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                  ),
+                  onPressed: () {
+                    // Apply filters as needed
+                    Navigator.pop(context);
+                  },
+                  child: const Text("Filter",
+                  style: TextStyle(color: Colors.white),),
+                ),
               ),
             ],
           ),
@@ -73,6 +137,22 @@ class _CategoriesViewState extends State<CategoriesView> {
       },
     );
   }
+  Widget buildRadioListTile(
+      String title,
+      String value,
+      String? groupValue,
+      ValueChanged<String?> onChanged,
+      ) {
+    return RadioListTile<String>(
+
+      title: Text(title),
+      value: value,
+      groupValue: groupValue,
+      onChanged: onChanged,
+      activeColor: ColorManager.pink,
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +160,20 @@ class _CategoriesViewState extends State<CategoriesView> {
       child: Scaffold(
         body: Column(
           children: [
-            const CustomSearch(),
+             Padding(
+               padding: const EdgeInsets.all(16),
+               child: Row(
+                 children: [
+                   Expanded(flex:5,child: CustomSearch()),
+                   SizedBox(width: 10,),
+                   Expanded(
+                     flex: 1,
+                     child:InkWell(onTap: showFilterSheet,
+                         child: UpperFilterBox())
+                   )
+                 ],
+               ),
+             ),
             Expanded(
               child: Stack(
                 alignment: Alignment.bottomCenter,
