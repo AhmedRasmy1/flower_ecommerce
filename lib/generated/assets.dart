@@ -2,7 +2,71 @@
 class Assets {
   Assets._();
 
+  static const String assetsImagesCart = 'assets/images/cart.svg';
+  static const String assetsImagesIconAvatar = 'assets/images/icon__avatar.png';
+  static const String imagesAppLogo = 'assets/images/AppLogo.svg';
+  static const String imagesArrow = 'assets/images/arrow.svg';
+  static const String imagesArrowRight = 'assets/images/arrow-right.svg';
+  static const String imagesBackground = 'assets/images/background.jpeg';
+  static const String imagesBestsellerimage =
+      'assets/images/bestsellerimage.jpg';
+  static const String imagesBouqeut2 = 'assets/images/bouqeut2.png';
+  static const String imagesBouquet = 'assets/images/bouquet.png';
+  static const String imagesCameraSvg = 'assets/images/camera_svg.svg';
+  static const String imagesCart = 'assets/images/cart.png';
+  static const String imagesCartDeleteIcon =
+      'assets/images/cart_delete_icon.svg';
+  static const String imagesCartLocation = 'assets/images/cart_location.svg';
+  static const String imagesCartMinusIcon = 'assets/images/cart_minus_icon.svg';
+  static const String imagesCartPlaceholderImage =
+      'assets/images/cart_placeholder_image.png';
+  static const String imagesCartPlusIcon = 'assets/images/cart_plus_icon.svg';
+  static const String imagesCategories = 'assets/images/categories.svg';
+  static const String imagesCircleLoader = 'assets/images/Circle_Loader.gif';
+  static const String imagesCircleLoader1 = 'assets/images/Circle_Loader_1.gif';
+  static const String imagesConceptOfWebsiteRecovery =
+      'assets/images/concept-of-website-recovery.svg';
+  static const String imagesEducation = 'assets/images/education.jpg';
+  static const String imagesEmptyCartt = 'assets/images/empty_cartt.png';
+  static const String imagesFilter = 'assets/images/filter.svg';
+  static const String
+      imagesFloralDelicateBouquetWithWhiteLiliesInACraftPinkWrapper1 =
+      'assets/images/floral-delicate-bouquet-with-white-lilies-in-a-craft-pink-wrapper-1.png';
+  static const String imagesFloralRosehipFlowersInASmallBouquet =
+      'assets/images/floral-rosehip-flowers-in-a-small-bouquet.png';
+  static const String imagesFloweeeeeeeeeeeer =
+      'assets/images/floweeeeeeeeeeeer.jpg';
   static const String imagesFlower = 'assets/images/Flower.svg';
+  static const String imagesFlowerr = 'assets/images/flowerr.svg';
+  static const String imagesFlowerrrrrr = 'assets/images/flowerrrrrr.svg';
+  static const String imagesGift = 'assets/images/Gift.svg';
+  static const String imagesHome = 'assets/images/home.svg';
+  static const String imagesIconAvatar = 'assets/images/icon_avatar.png';
+  static const String imagesIfnodata = 'assets/images/ifnodata.svg';
+  static const String imagesImageloading = 'assets/images/imageloading.png';
+  static const String imagesImageloading1 = 'assets/images/imageloading1.png';
+  static const String imagesImageloading2 = 'assets/images/imageloading2.png';
+  static const String imagesImageloading3 = 'assets/images/imageloading3.png';
+  static const String imagesImmagee = 'assets/images/immagee.jpg';
+  static const String imagesLoading = 'assets/images/Loading.mp4';
+  static const String imagesLoadingggggg = 'assets/images/loadingggggg.png';
+  static const String imagesLocation = 'assets/images/location.svg';
+  static const String imagesMaleCourierPersonHoldingBokeh =
+      'assets/images/male-courier-person-holding-bokeh.svg';
+  static const String imagesMegaCreator = 'assets/images/mega-creator.png';
+  static const String imagesMenu = 'assets/images/menu.svg';
+  static const String imagesNotoPen = 'assets/images/noto_pen.png';
+  static const String imagesOccasion = 'assets/images/occasion.png';
+  static const String imagesPassword = 'assets/images/password.svg';
+  static const String imagesPhoto = 'assets/images/Photo.png';
+  static const String imagesProfile = 'assets/images/profile.svg';
+  static const String imagesRoseDay = 'assets/images/rose-day.svg';
+  static const String imagesSearch = 'assets/images/search.svg';
+  static const String imagesSearchIcon = 'assets/images/searchIcon.svg';
+  static const String imagesSideArrow = 'assets/images/side_arrow.png';
+  static const String imagesSplashBackground =
+      'assets/images/splashBackground.jpg';
+  static const String imagesSplashLogo = 'assets/images/splashLogo.png';
   static const String imagesVector = 'assets/images/Vector.svg';
-
+  static const String mapStyleMapStyle = 'assets/map_style/map_style.json';
 }

@@ -1,20 +1,15 @@
-
-
 class RegisterEntities {
   final String? message;
   final String? error;
   final UserEntity? user;
   final String? token;
-  RegisterEntities ({
+  RegisterEntities({
     this.message,
     this.error,
     this.user,
     this.token,
   });
-
-
 }
-
 
 class UserEntity {
   final String? firstName;
@@ -24,9 +19,9 @@ class UserEntity {
   final String? phone;
   final String? photo;
   final String? role;
-  final String? Id;
+  final String? id;
   final String? createdAt;
-  UserEntity ({
+  UserEntity({
     this.firstName,
     this.lastName,
     this.email,
@@ -34,11 +29,7 @@ class UserEntity {
     this.phone,
     this.photo,
     this.role,
-    this.Id,
+    this.id,
     this.createdAt,
   });
-
-
 }
-
-

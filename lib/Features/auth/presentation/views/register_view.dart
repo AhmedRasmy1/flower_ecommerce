@@ -1,17 +1,20 @@
-import 'package:flower_ecommerce/core/functions/extenstions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/di/di.dart';
+import '../../../../core/functions/extenstions.dart';
 import '../../../../core/functions/helper.dart';
 import '../../../../core/resources/app_constants.dart';
 import '../../../../core/resources/color_manager.dart';
-import '../../../../core/resources/strings_manager.dart';
+import '../../../../core/resources/routes_manager.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
-import '../../../../core/widgets/custom_elevated_button.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 import '../view_model/signup_view_model/signup_cubit.dart';
+import '../widgets/bloc_consumer_signin_page.dart';
+import '../widgets/choose_gender.dart';
+import '../widgets/custom_auth_prompt.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});
@@ -29,9 +32,8 @@ class _RegisterViewState extends State<RegisterView> {
   final TextEditingController _rePasswordController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  Color buttonColor = ColorManager.pink;
-  bool isPasswordHidden1 = true;
-  bool isPasswordHidden2 = true;
+  Color buttonColor = ColorManager.darkGrey;
+  bool _hasStartedTyping = false;
 
   @override
   void initState() {
@@ -39,8 +41,24 @@ class _RegisterViewState extends State<RegisterView> {
     super.initState();
   }
 
+  void _onTextChanged(String text) {
+    if (!_hasStartedTyping && text.isNotEmpty) {
+      _hasStartedTyping = true;
+      _phoneController.text = '+2$text';
+      _phoneController.selection =
+          TextSelection.collapsed(offset: _phoneController.text.length);
+    }
+    if (text.isEmpty) {
+      _hasStartedTyping = false;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    // final arguments =
+    // ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
+    // final String? email = arguments['email'] as String??'';
+    // print("=========================$email========================");
     return BlocProvider(
       create: (context) => viewModel,
       child: SafeArea(
@@ -57,10 +75,10 @@ class _RegisterViewState extends State<RegisterView> {
                   child: Column(
                     children: [
                       CustomAppBar(
-                        title: AppStrings.signUp,
+                        title: AppLocalizations.of(context)!.signUp,
                         color: ColorManager.black,
                         onTap: () {
-                          ///  Navigator.pop(context);
+                          Navigator.pop(context);
                         },
                       ),
                       const SizedBox(height: AppSize.s24),
@@ -72,11 +90,19 @@ class _RegisterViewState extends State<RegisterView> {
                                 AppConstants.screenWidthRatio,
                             child: CustomTextFormField(
                               controller: _firstNameController,
-                              labelText: AppStrings.firstName,
-                              hintText: AppStrings.enterYourFirstName,
-                              obscureText: false,
-                              validator: (value) => validateNotEmpty(
-                                  value, AppStrings.entervalidfirstName),
+                              labelText:
+                                  AppLocalizations.of(context)!.firstName,
+                              hintText: AppLocalizations.of(context)!
+                                  .enterYourFirstName,
+                              validator: (value) => validateString(
+                                value: value!,
+                                messageLength: AppLocalizations.of(context)!
+                                    .messageLength3,
+                                messageInvalid:
+                                    AppLocalizations.of(context)!.invalidInput,
+                                message: AppLocalizations.of(context)!
+                                    .entervalidLastName,
+                              ),
                             ),
                           ),
                           SizedBox(
@@ -84,11 +110,18 @@ class _RegisterViewState extends State<RegisterView> {
                                 AppConstants.screenWidthRatio,
                             child: CustomTextFormField(
                               controller: _lastNameController,
-                              labelText: AppStrings.lastName,
-                              hintText: AppStrings.enterYourLastName,
-                              obscureText: false,
-                              validator: (value) => validateNotEmpty(
-                                  value, AppStrings.entervalidLastName),
+                              labelText: AppLocalizations.of(context)!.lastName,
+                              hintText: AppLocalizations.of(context)!
+                                  .enterYourLastName,
+                              validator: (value) => validateString(
+                                value: value!,
+                                messageLength: AppLocalizations.of(context)!
+                                    .messageLength3,
+                                messageInvalid:
+                                    AppLocalizations.of(context)!.invalidInput,
+                                message: AppLocalizations.of(context)!
+                                    .entervalidLastName,
+                              ),
                             ),
                           ),
                         ],
@@ -97,11 +130,14 @@ class _RegisterViewState extends State<RegisterView> {
                       CustomTextFormField(
                         keyboardType: TextInputType.emailAddress,
                         controller: _emailController,
-                        labelText: AppStrings.email,
-                        hintText: AppStrings.enterYourEmail,
-                        obscureText: false,
-                        validator: (value) =>
-                            validateNotEmpty(value, AppStrings.enterValidEmail),
+                        labelText: AppLocalizations.of(context)!.email,
+                        hintText: AppLocalizations.of(context)!.enterYourEmail,
+                        validator: (value) => validateEmail(
+                          value: value!,
+                          message: AppLocalizations.of(context)!.emailIsEmpty,
+                          messageInvalid:
+                              AppLocalizations.of(context)!.enterValidEmail,
+                        ),
                       ),
                       const SizedBox(height: AppSize.s24),
                       Row(
@@ -111,14 +147,19 @@ class _RegisterViewState extends State<RegisterView> {
                             width: context.screenWidth /
                                 AppConstants.screenWidthRatio,
                             child: CustomTextFormField(
-                              controller: _rePasswordController,
-                              labelText: AppStrings.password,
-                              hintText: AppStrings.enterYourPassword,
-                              obscureText: isPasswordHidden2,
-                              validator: (value) => validatePasswordMatch(
+                              controller: _passwordController,
+                              labelText: AppLocalizations.of(context)!.password,
+                              hintText: AppLocalizations.of(context)!
+                                  .enterYourPassword,
+                              obscureText: true,
+                              validator: (value) => validatePassword(
                                   password: _passwordController.text,
-                                  confirmPassword: _rePasswordController.text,
-                                  message: AppStrings.passwordNotMatch),
+                                  messageInvalid: AppLocalizations.of(context)!
+                                      .passwordInvalidFormat,
+                                  messageLength: AppLocalizations.of(context)!
+                                      .passwordCharactersLong,
+                                  message: AppLocalizations.of(context)!
+                                      .passwordNotMatch),
                             ),
                           ),
                           SizedBox(
@@ -126,13 +167,18 @@ class _RegisterViewState extends State<RegisterView> {
                                 AppConstants.screenWidthRatio,
                             child: CustomTextFormField(
                               controller: _rePasswordController,
-                              labelText: AppStrings.confirmPassword,
-                              hintText: AppStrings.enterYourConfirmPassword,
-                              obscureText: isPasswordHidden2,
+                              labelText:
+                                  AppLocalizations.of(context)!.confirmPassword,
+                              hintText: AppLocalizations.of(context)!
+                                  .enterYourConfirmPassword,
+                              obscureText: true,
                               validator: (value) => validatePasswordMatch(
+                                  messageIsEmpty: AppLocalizations.of(context)!
+                                      .passwordIsEmpty,
                                   password: _passwordController.text,
                                   confirmPassword: _rePasswordController.text,
-                                  message: AppStrings.passwordNotMatch),
+                                  message: AppLocalizations.of(context)!
+                                      .passwordNotMatch),
                             ),
                           ),
                         ],
@@ -141,52 +187,61 @@ class _RegisterViewState extends State<RegisterView> {
                       CustomTextFormField(
                         controller: _phoneController,
                         keyboardType: TextInputType.phone,
-                        labelText: AppStrings.phoneNumber,
-                        hintText: AppStrings.enterPhoneNumber,
+                        labelText: AppLocalizations.of(context)!.phoneNumber,
+                        hintText:
+                            AppLocalizations.of(context)!.enterPhoneNumber,
+                        onChanged: _onTextChanged,
                         obscureText: false,
                         validator: (value) => validateNotEmpty(
                           value,
-                          AppStrings.enterValidPhoneNumber,
+                          AppLocalizations.of(context)!.enterValidPhoneNumber,
                         ),
                       ),
+                      const SizedBox(height: AppSize.s16),
+                      ChooseGender(viewModel: viewModel),
+                      AuthPrompt(
+                        message:
+                            AppLocalizations.of(context)!.agreeTermsConditions,
+                        userAccess:
+                            AppLocalizations.of(context)!.termsConditions,
+                        color: ColorManager.black,
+                        routeName: RoutesManager.loginRoute,
+
+                        /// change
+                      ),
                       const SizedBox(height: AppSize.s48),
-                      CustomElevatedButton(
+                      BlocConsumerForSignupPage(
+                        isSelectGender: viewModel.isSelectGender,
+                        formKey: _formKey,
+                        emailController: _emailController,
+                        passwordController: _passwordController,
+                        firstNameController: _firstNameController,
+                        lastNameController: _lastNameController,
+                        rePasswordController: _rePasswordController,
+                        phoneController: _phoneController,
                         buttonColor: buttonColor,
-                        title: AppStrings.signUp,
-                        onPressed: () {
-                          viewModel.register(
-                              // firstName: _firstNameController.text,
-                              // lastName: _lastNameController.text,
-                              // email: _emailController.text,
-                              // password: _passwordController.text,
-                              // rePassword: _rePasswordController.text,
-                              // phone:'+201200131125',
-                              // gender: 'male'
-                              );
+                        viewModel: viewModel,
+                        updateButtonColor: (newColor) {
+                          setState(() {
+                            if (viewModel.isSelectGender) {
+                              buttonColor = newColor;
+                              if (viewModel.isSelectGender2 == true) {
+                                viewModel.isSelectGender = true;
+                              }
+                            } else {
+                              if (viewModel.isSelectGender2 == false) {
+                                viewModel.isSelectGender = true;
+                              }
+                            }
+                          });
                         },
+                      ),
+                      AuthPrompt(
+                        message:
+                            AppLocalizations.of(context)!.alreadyHaveAccount,
+                        userAccess: AppLocalizations.of(context)!.login,
+                        routeName: RoutesManager.loginRoute,
                       )
-                      // BlocConsumerForSignupPage(
-                      //   formKey: _formKey,
-                      //   emailController: _emailController,
-                      //   passwordController: _passwordController,
-                      //   userNameController: _userNameController,
-                      //   firstNameController: _firstNameController,
-                      //   lastNameController: _lastNameController,
-                      //   confirmPasswordController: _confirmPasswordController,
-                      //   phoneController: _phoneController,
-                      //   buttonColor: buttonColor,
-                      //   viewModel: viewModel,
-                      //   updateButtonColor: (newColor) {
-                      //     setState(() {
-                      //       buttonColor = newColor;
-                      //     });
-                      //   },
-                      // ),
-                      // const AuthPrompt(
-                      //   message: AppStrings.alreadyHaveAccount,
-                      //   userAccess: AppStrings.login,
-                      //   routeName: RoutesManager.loginRoute,
-                      // )
                     ],
                   ),
                 ),

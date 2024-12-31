@@ -1,9 +1,9 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SharedData {
+class CacheService {
   static late SharedPreferences sharedPreferences;
 
-  static void cacheInitialization() async {
+  static cacheInitialization() async {
     sharedPreferences = await SharedPreferences.getInstance();
   }
 
@@ -41,15 +41,15 @@ class SharedData {
   }
 }
 
-class StringCache {
-  //!for Example ! for Example ! for Example ! for Example ! for Example
- // static const String emailResetPassword = 'emailResetPassword';
-// static const String userEmail = 'userEmail';
-// static const String userPassword = 'userPassword';
-}
-//how to used  for Example
-// SharedData.setData(key: StringCache.emailResetPassword, value: value)- // Set
+class CacheConstants {
+  static const String selectGender = 'selectGender';
+  static const String userToken = 'userToken';
+//static late final String userToken ;
 
-// SharedData.getData(key: StringCache.emailResetPassword) ---------------// get
-// SharedData.deleteItem(key: StringCache.emailResetPassword)------// deleteItem
-// SharedData.clearItems()-----------------------------------------// clearItems
+  static const String userFirstName = 'userFirstName';
+  static const String userLastName = 'userLastName';
+  static const String userEmail = 'userEmail';
+  static const String userPhone = 'userPhone';
+  static const String isRememberMe = 'isRememberMe';
+  static const String defaultLanguage = 'defaultLanguage';
+}

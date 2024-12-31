@@ -1,14 +1,13 @@
-import 'package:flower_ecommerce/core/resources/style_manager.dart';
 import 'package:flutter/material.dart';
 
 import 'color_manager.dart';
 import 'font_manager.dart';
-
+import 'style_manager.dart';
 import 'values_manager.dart';
-
 
 ThemeData getApplicationTheme() {
   return ThemeData(
+    scaffoldBackgroundColor: ColorManager.white,
     inputDecorationTheme: InputDecorationTheme(
       contentPadding: const EdgeInsets.all(AppPadding.p8),
       hintStyle: getRegularStyle(
