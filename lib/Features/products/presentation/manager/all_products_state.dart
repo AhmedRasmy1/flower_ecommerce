@@ -20,6 +20,13 @@ class ErrorAllProductsState extends AllProductsState {
   ErrorAllProductsState(this.exception);
 }
 
+class SearchAllProductsState extends AllProductsState {
+  final List<ProductsEntities> filteredProducts;
+
+  SearchAllProductsState(this.filteredProducts);
+}
+
+
 sealed class AllProductsToAction {}
 
 class GetAllProductsAction extends AllProductsToAction {

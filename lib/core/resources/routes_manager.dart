@@ -1,5 +1,7 @@
 import 'package:flower_ecommerce/Features/notifications_list/presentation/view/notifications_list_view.dart';
 import 'package:flower_ecommerce/Features/orders/presentation/view/orders_view.dart';
+import 'package:flower_ecommerce/Features/search/presentation/views/empty_search_view.dart';
+import 'package:flower_ecommerce/Features/search/presentation/views/search_screen_view.dart';
 
 import '../../Features/add_address/presentation/pages/address_view.dart';
 import '../../Features/address/saved_address/presentation/view/saved_address.dart';
@@ -55,6 +57,8 @@ class RoutesManager {
   static const String ordersView = '/MyOrdersPage';
   static const String paymentCashView = '/PaymentCashPage';
   static const String paymentOnlineView = '/PaymentOnlinePage';
+  static const String emptySearchView = '/emptySearchView';
+  static const String searchView='/searchView';
 }
 
 class RouteGenerator {
@@ -127,6 +131,10 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const PaymentCashPage());
       case RoutesManager.paymentOnlineView:
         return MaterialPageRoute(builder: (_) => const PaymentOnlinePage());
+      case RoutesManager.emptySearchView:
+        return MaterialPageRoute(builder: (_) => const EmptySearchView());
+      case RoutesManager.searchView:
+        return MaterialPageRoute(builder: (_) => const SearchScreenView());
       default:
         return unDefinedRoute();
     }

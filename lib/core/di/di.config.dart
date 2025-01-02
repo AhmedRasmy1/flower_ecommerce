@@ -141,6 +141,18 @@ import '../../Features/home/data/repositories_impl/home_repo_impl.dart'
 import '../../Features/home/domain/repositories/home_repo.dart' as _i143;
 import '../../Features/home/domain/use_cases/home_use_case.dart' as _i185;
 import '../../Features/home/presentation/viewmodels/home_cubit.dart' as _i1022;
+import '../../Features/notifications_list/data/data_sources/online_data_source/notifications_list_online_data_source.dart'
+    as _i918;
+import '../../Features/notifications_list/data/data_sources/online_data_source_impl/notifications_list_online_data_source_impl.dart'
+    as _i21;
+import '../../Features/notifications_list/data/repositories/notifications_list_repo_impl.dart'
+    as _i1017;
+import '../../Features/notifications_list/domain/repositories/notifications_list_repo.dart'
+    as _i968;
+import '../../Features/notifications_list/domain/use_cases/notifications_list_use_case.dart'
+    as _i106;
+import '../../Features/notifications_list/presentation/view_model/notifictions_list_cubit.dart'
+    as _i225;
 import '../../Features/occasions/data/data_source_impl/occasion_online_datasource_imp.dart'
     as _i864;
 import '../../Features/occasions/data/data_sourses/occasion_datasource.dart'
@@ -331,6 +343,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i579.CheckoutRepoImpl(gh<_i26.CheckoutOnlineDataSource>()));
     gh.factory<_i540.ProductsRepo>(
         () => _i173.CategoriesRepoImpl(gh<_i711.AllProductsDatasource>()));
+    gh.factory<_i918.NotificationsListOnlineDataSource>(() =>
+        _i21.NotificationsListOnlineDataSourceImpl(gh<_i680.ApiService>()));
     gh.factory<_i390.OccasionRepo>(
         () => _i971.OccasionRepoImpl(gh<_i679.OccasionOnLineDataSource>()));
     gh.factory<_i149.ProfileViewModel>(
@@ -370,6 +384,9 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i753.VerifyUseCase(gh<_i1049.AuthRepo>()));
     gh.factory<_i143.HomeRepo>(
         () => _i288.HomeRepoImpl(gh<_i448.HomeDataSource>()));
+    gh.factory<_i968.NotificationsListRepo>(() =>
+        _i1017.NotificationsListRepoImpl(
+            gh<_i918.NotificationsListOnlineDataSource>()));
     gh.factory<_i1012.BestSellerViewModel>(
         () => _i1012.BestSellerViewModel(gh<_i439.BestSellerUseCase>()));
     gh.factory<_i728.EditProfileUseCase>(
@@ -384,6 +401,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i706.LogoutViewModel(gh<_i266.LogoutUseCases>()));
     gh.factory<_i922.PaymentCheckoutUseCase>(
         () => _i922.PaymentCheckoutUseCase(gh<_i292.PaymentCheckoutRepo>()));
+    gh.factory<_i106.NotificationsListUseCases>(() =>
+        _i106.NotificationsListUseCases(gh<_i968.NotificationsListRepo>()));
     gh.factory<_i920.LoginViewModel>(
         () => _i920.LoginViewModel(gh<_i526.LoginUseCases>()));
     gh.factory<_i674.RegisterViewModel>(
@@ -437,6 +456,9 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i498.DeleteProductViewModel(gh<_i1065.DeleteProductUseCase>()));
     gh.factory<_i314.PaymentCheckoutViewModel>(() =>
         _i314.PaymentCheckoutViewModel(gh<_i922.PaymentCheckoutUseCase>()));
+    gh.factory<_i225.NotificationsListViewModel>(() =>
+        _i225.NotificationsListViewModel(
+            gh<_i106.NotificationsListUseCases>()));
     gh.factory<_i251.OccasionViewModel>(
         () => _i251.OccasionViewModel(gh<_i536.OccasionUseCase>()));
     return this;
