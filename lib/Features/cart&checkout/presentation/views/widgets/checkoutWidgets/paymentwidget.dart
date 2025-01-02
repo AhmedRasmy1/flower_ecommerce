@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class PaymentOptionTile extends StatelessWidget {
   final String option;
   final bool isSelected;
-  final VoidCallback onTap; // Callback لتبديل الحالة
+  final VoidCallback onTap;
   const PaymentOptionTile({
     super.key,
     required this.option,
@@ -15,7 +15,7 @@ class PaymentOptionTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap, // للتبديل عند النقر
+      onTap: onTap,
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
         decoration: BoxDecoration(
@@ -26,7 +26,7 @@ class PaymentOptionTile extends StatelessWidget {
         ),
         child: Row(
           mainAxisAlignment:
-              MainAxisAlignment.spaceBetween, // لجعل الـ Radio على اليمين
+              MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
               child: Text(

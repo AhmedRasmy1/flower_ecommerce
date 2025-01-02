@@ -62,10 +62,15 @@ Widget buildProfileContent(BuildContext context, ProfileEntity? profile) {
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
           children: [
-            OptionItem(
-              icon: Icons.event_note_outlined,
-              text: AppLocalizations.of(context)!.myOrders,
-              imageIconExists: true,
+            InkWell(
+              onTap:(){
+                Navigator.pushNamed(context, RoutesManager.ordersView);
+              },
+              child: OptionItem(
+                icon: Icons.event_note_outlined,
+                text: AppLocalizations.of(context)!.myOrders,
+                imageIconExists: true,
+              ),
             ),
             InkWell(
               onTap: () {

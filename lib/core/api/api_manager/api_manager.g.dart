@@ -852,12 +852,90 @@ class _ApiService implements ApiService {
   }
 
   @override
+  Future<PaymentCheckoutResponse> getPaymentCheckout(
+    PaymentCheckoutRequest paymentCheckoutRequest,
+    String token,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
+    final _data = <String, dynamic>{};
+    _data.addAll(paymentCheckoutRequest.toJson());
+    final _options = _setStreamType<PaymentCheckoutResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          'orders/checkout?url=http://localhost:3000',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late PaymentCheckoutResponse _value;
+    try {
+      _value = PaymentCheckoutResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<CashOrderResponse> getCashOrder(
+    PaymentCheckoutRequest paymentCheckoutRequest,
+    String token,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
+    final _data = <String, dynamic>{};
+    _data.addAll(paymentCheckoutRequest.toJson());
+    final _options = _setStreamType<CashOrderResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          'orders',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late CashOrderResponse _value;
+    try {
+      _value = CashOrderResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<OrdersResponse> getUserOrders(String token) async {
   Future<NotificationsListDto> getAllNotifications(String token) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{r'Authorization': token};
     _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<OrdersResponse>(Options(
     final _options = _setStreamType<NotificationsListDto>(Options(
       method: 'GET',
       headers: _headers,
@@ -865,6 +943,7 @@ class _ApiService implements ApiService {
     )
         .compose(
           _dio.options,
+          'orders',
           'notifications',
           queryParameters: queryParameters,
           data: _data,
@@ -875,6 +954,9 @@ class _ApiService implements ApiService {
           baseUrl,
         )));
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late OrdersResponse _value;
+    try {
+      _value = OrdersResponse.fromJson(_result.data!);
     late NotificationsListDto _value;
     try {
       _value = NotificationsListDto.fromJson(_result.data!);

@@ -2,14 +2,17 @@ import 'paymentwidget.dart';
 import 'package:flutter/material.dart';
 
 class BuildPaymentWidget extends StatefulWidget {
-  const BuildPaymentWidget({super.key});
+  const BuildPaymentWidget({super.key,required this.onPaymentOptionChanged});
+
+  final ValueChanged<String> onPaymentOptionChanged;
 
   @override
   State<BuildPaymentWidget> createState() => _BuildPaymentWidgetState();
 }
 
 class _BuildPaymentWidgetState extends State<BuildPaymentWidget> {
-  int selectedOption = 1; // القيمة الافتراضية
+  int selectedOption = 1;
+  String paymentOption="cash";
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +32,8 @@ class _BuildPaymentWidgetState extends State<BuildPaymentWidget> {
             onTap: () {
               setState(() {
                 selectedOption = 1;
+                paymentOption="cash";
+                widget.onPaymentOptionChanged(paymentOption);
               });
             },
           ),
@@ -39,6 +44,8 @@ class _BuildPaymentWidgetState extends State<BuildPaymentWidget> {
             onTap: () {
               setState(() {
                 selectedOption = 2;
+                paymentOption="online";
+                widget.onPaymentOptionChanged(paymentOption);
               });
             },
           ),

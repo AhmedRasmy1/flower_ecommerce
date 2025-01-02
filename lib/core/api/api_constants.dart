@@ -17,5 +17,8 @@ class ApiConstants {
   static const String cartEndPoint = "cart";
   static const String addressesEndPoint = 'addresses';
   static const String addressEndPoint = "addresses";
+  static const String cashOrderRoute="orders";
+  static const String getUserOrdersRoute="orders";
+  static const String checkoutSessionRoute="orders/checkout?url=http://localhost:3000";
   static const String notification = 'notifications';
 }
