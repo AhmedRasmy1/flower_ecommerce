@@ -19,6 +19,11 @@ class ErrorAllCategoriesState extends AllCategoriesState {
 
   ErrorAllCategoriesState(this.exception);
 }
+class FilterUpdatedState extends AllCategoriesState {
+  final String filterType;
+
+  FilterUpdatedState(this.filterType);
+}
 
 sealed class AllCategoriesToAction {}
 

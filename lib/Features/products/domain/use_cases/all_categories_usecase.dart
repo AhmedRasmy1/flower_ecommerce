@@ -9,7 +9,7 @@ class ProductsUseCase {
 
   ProductsUseCase(this.productsRepo);
 
-  Future<Result<AllProductsEntities?>> getAllProducts() {
-    return productsRepo.getAllProducts();
+  Future<Result<AllProductsEntities?>> getAllProducts(String filterType) {
+    return productsRepo.getAllProducts(filterType);
   }
 }

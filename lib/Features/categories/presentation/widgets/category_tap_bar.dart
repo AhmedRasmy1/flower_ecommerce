@@ -1,3 +1,6 @@
+import 'package:provider/provider.dart';
+
+import '../../../../core/provider.dart';
 import '../manager/all_categories_cubit.dart';
 import 'skeleton_bar.dart';
 import '../../../../core/resources/strings_manager.dart';
@@ -12,13 +15,16 @@ import '../../domain/entities/categories_entities.dart';
 import '../manager/all_categories_state.dart';
 
 class CategoryTapBar extends StatefulWidget {
-  const CategoryTapBar({super.key});
+
+  final String? filterType;
+  const CategoryTapBar({super.key,this.filterType});
 
   @override
   State<CategoryTapBar> createState() => _CategoryTapBarState();
 }
 
 class _CategoryTapBarState extends State<CategoryTapBar> {
+
   int indexTab = 0;
   late AllCategoriesViewModel viewModel;
 
@@ -43,9 +49,11 @@ class _CategoryTapBarState extends State<CategoryTapBar> {
         listener: (context, state) {},
         builder: (context, state) {
           if (state is SuccessAllCategoriesState) {
+
             List<CategoriesEntities> tabName =
                 state.categoriesEntities?.categories ?? [];
-            tabName.insert(0, CategoriesEntities(name: AppStrings.all));
+         if(tabName[0].name != 'All')
+           tabName.insert(0, CategoriesEntities(name: AppStrings.all));
 
             /// first items /// from chatgpt
             List<Tab> tabs = tabName.map(
@@ -100,6 +108,7 @@ class _CategoryTapBarState extends State<CategoryTapBar> {
                       children: tabs.map((e) {
                         int currentIndex = tabs.indexOf(e);
                         return GirdBodyOfProducts(
+
                           pageId: tabName[currentIndex].id ?? '',
                           page: EnumPage.category,
                           // value1: currentIndex

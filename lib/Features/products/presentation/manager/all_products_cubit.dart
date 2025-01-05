@@ -1,13 +1,17 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../../core/common/api_result.dart';
+import '../../../../core/provider.dart';
 import '../../domain/entities/products_entities.dart';
 import '../../domain/use_cases/all_categories_usecase.dart';
 import 'all_products_state.dart';
 
 @injectable
 class AllProductsViewModel extends Cubit<AllProductsState> {
+  String? filterType ;
+
   final ProductsUseCase _categoriesUseCase;
   List<ProductsEntities> allProducts = [];
    List<ProductsEntities> filteredProducts = [];
@@ -17,14 +21,14 @@ class AllProductsViewModel extends Cubit<AllProductsState> {
   void doIntent(AllProductsToAction intent) async {
     switch (intent) {
       case GetAllProductsAction():
-        _getAllProducts();
+        getAllProducts(filterType);
     }
   }
 
-  void _getAllProducts() async {
+  void getAllProducts(String? filterType) async {
     emit(LoadingAllProductsState());
 
-    var result = await _categoriesUseCase.getAllProducts();
+    var result = await _categoriesUseCase.getAllProducts(filterType ??"");
 
     switch (result) {
       case Success<AllProductsEntities?>():

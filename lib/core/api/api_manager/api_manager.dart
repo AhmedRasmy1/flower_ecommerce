@@ -75,7 +75,7 @@ abstract class ApiService {
   Future<AllCategories> getAllCategories();
 
   @GET(ApiConstants.products)
-  Future<AllProducts> getAllProducts();
+  Future<AllProducts> getAllProducts(@Query('sort') String? filterType);
 
   @GET(ApiConstants.bestSellerRoute)
   Future<BestSellerResponse> getBestSeller();

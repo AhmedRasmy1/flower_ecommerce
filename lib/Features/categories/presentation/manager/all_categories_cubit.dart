@@ -11,7 +11,8 @@ import 'all_categories_state.dart';
 @injectable
 class AllCategoriesViewModel extends Cubit<AllCategoriesState> {
   final CategoriesUseCase _categoriesUseCase;
-
+String? filterType ;
+  static AllCategoriesViewModel get(context)=>BlocProvider.of(context);
   AllCategoriesViewModel(this._categoriesUseCase) : super(InitialState());
 
   void doIntent(AllCategoriesToAction intent) async {
@@ -19,6 +20,11 @@ class AllCategoriesViewModel extends Cubit<AllCategoriesState> {
       case GetAllCategoriesAction():
         _getAllCategories();
     }
+  }
+
+  void updateFilterType(String newFilterType) {
+    filterType = newFilterType;
+    emit(FilterUpdatedState(newFilterType));
   }
 
   void _getAllCategories() async {

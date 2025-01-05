@@ -12,9 +12,9 @@ class AllProductsDatasourceImpl implements AllProductsDatasource {
   AllProductsDatasourceImpl(this._authRetrofit);
 
   @override
-  Future<Result<AllProductsEntities?>> getAllProducts() {
+  Future<Result<AllProductsEntities?>> getAllProducts(String? filterType) {
     return executeApi(() async {
-      var response = await _authRetrofit.getAllProducts();
+      var response = await _authRetrofit.getAllProducts(filterType);
       return response.toAllProductsEntities();
     });
   }
