@@ -177,6 +177,8 @@ import '../../Features/orders/domain/reposiroeies/user_orders_repo.dart'
     as _i1012;
 import '../../Features/orders/domain/use_case/user_orders_use_case.dart'
     as _i556;
+import '../../Features/orders/presentation/view_model/orders_cubit.dart'
+    as _i329;
 import '../../Features/payment/data/data_source/cash_order_online_data_source.dart'
     as _i619;
 import '../../Features/payment/data/data_source/cash_order_online_data_source_impl.dart'
@@ -405,6 +407,8 @@ extension GetItInjectableX on _i174.GetIt {
         _i106.NotificationsListUseCases(gh<_i968.NotificationsListRepo>()));
     gh.factory<_i920.LoginViewModel>(
         () => _i920.LoginViewModel(gh<_i526.LoginUseCases>()));
+    gh.factory<_i329.OrdersViewModel>(
+        () => _i329.OrdersViewModel(gh<_i556.UserOrdersUseCase>()));
     gh.factory<_i674.RegisterViewModel>(
         () => _i674.RegisterViewModel(gh<_i284.RegisterUseCase>()));
     gh.factory<_i612.AddressUseCases>(

@@ -262,9 +262,10 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<AllProducts> getAllProducts() async {
+  Future<AllProducts> getAllProducts(String? filterType) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'sort': filterType};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<AllProducts>(Options(
@@ -929,14 +930,12 @@ class _ApiService implements ApiService {
 
   @override
   Future<OrdersResponse> getUserOrders(String token) async {
-  Future<NotificationsListDto> getAllNotifications(String token) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{r'Authorization': token};
     _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<OrdersResponse>(Options(
-    final _options = _setStreamType<NotificationsListDto>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -944,7 +943,6 @@ class _ApiService implements ApiService {
         .compose(
           _dio.options,
           'orders',
-          'notifications',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -957,6 +955,37 @@ class _ApiService implements ApiService {
     late OrdersResponse _value;
     try {
       _value = OrdersResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<NotificationsListDto> getAllNotifications(String token) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<NotificationsListDto>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          'notifications',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
     late NotificationsListDto _value;
     try {
       _value = NotificationsListDto.fromJson(_result.data!);

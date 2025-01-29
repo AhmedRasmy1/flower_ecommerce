@@ -127,18 +127,7 @@ class _RegisterViewState extends State<RegisterView> {
                         ],
                       ),
                       const SizedBox(height: AppSize.s24),
-                      CustomTextFormField(
-                        keyboardType: TextInputType.emailAddress,
-                        controller: _emailController,
-                        labelText: AppLocalizations.of(context)!.email,
-                        hintText: AppLocalizations.of(context)!.enterYourEmail,
-                        validator: (value) => validateEmail(
-                          value: value!,
-                          message: AppLocalizations.of(context)!.emailIsEmpty,
-                          messageInvalid:
-                              AppLocalizations.of(context)!.enterValidEmail,
-                        ),
-                      ),
+
                       const SizedBox(height: AppSize.s24),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,

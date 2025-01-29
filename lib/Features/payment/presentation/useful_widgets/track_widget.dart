@@ -1,6 +1,7 @@
 import 'package:flower_ecommerce/Features/cart&checkout/domain/entities/cart_item_entity.dart';
 import 'package:flower_ecommerce/Features/payment/presentation/useful_widgets/order_summery_item.dart';
 import 'package:flower_ecommerce/Features/payment/presentation/useful_widgets/payment_button.dart';
+import 'package:flower_ecommerce/core/resources/routes_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -8,7 +9,6 @@ import '../../../../core/resources/color_manager.dart';
 import '../../../../core/utils/app_assets.dart';
 import '../../../../core/widgets/custom_elevated_button.dart';
 import '../../../cart&checkout/presentation/views/widgets/order_details.dart';
-import '../../data/model/response/cash_order_response/OrderItems.dart';
 
 class TrackWidget extends StatefulWidget {
   TrackWidget({
@@ -177,6 +177,7 @@ class _TrackWidgetState extends State<TrackWidget> {
                  buttonColor: ColorManager.pink,
                  title:"Continue shopping",
                  onPressed: () {
+                   Navigator.pushNamed(context, RoutesManager.layoutRoute);
                  },
                ),
              ),
@@ -188,6 +189,7 @@ class _TrackWidgetState extends State<TrackWidget> {
                  buttonColor: ColorManager.pink,
                  title:"Cancel order",
                  onPressed: () {
+                   Navigator.pushNamed(context, RoutesManager.layoutRoute);
                  },
                ),
              )

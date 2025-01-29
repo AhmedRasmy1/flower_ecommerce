@@ -24,6 +24,7 @@ class RegisterViewModel extends Cubit<RegisterState> {
     }
   }
 
+
   void _register(RegisterAction registerAction) async {
     emit(LoadingRegisterState());
     String gender =
