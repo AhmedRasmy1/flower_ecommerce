@@ -12,7 +12,9 @@ class AddAddressRepoImpl implements AddAddressRepo {
 
   @override
   Future<Result<AddAddressEntity?>> addAddressRepo(
-      String city, String phone, String street) async {
-    return await addressDataSourceRepo.addAddressRepo(city, phone, street);
+      String city, String phone,
+      String street, String lat, String long, String username) async {
+    return await addressDataSourceRepo.addAddressRepo(
+        city, phone, street, lat, long, username);
   }
 }

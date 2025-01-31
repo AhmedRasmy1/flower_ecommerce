@@ -15,14 +15,20 @@ class AddAddressDataSourceRepoImpl implements AddAddressDataSourceRepo {
   AddAddressDataSourceRepoImpl(this.apiService);
 
   @override
-  Future<Result<AddAddressEntity?>> addAddressRepo(
-      String city, String phone, String street) {
+  Future<Result<AddAddressEntity?>> addAddressRepo(String city, String phone,
+      String street, String lat, String long, String username) {
     final cachedToken = CacheService.getData(key: CacheConstants.userToken);
     print(' $cachedToken');
     print('zewin');
     return executeApi(() async {
       var response = await apiService.addAddress(
-        AddAddressRequest(city: city, phone: phone, street: street),
+        AddAddressRequest(
+            city: city,
+            phone: phone,
+            street: street,
+            username: username,
+            lat: lat,
+            long: long),
         "Bearer $cachedToken",
       );
 

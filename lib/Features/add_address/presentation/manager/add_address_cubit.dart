@@ -1,4 +1,6 @@
 import 'dart:developer';
+import 'package:flower_ecommerce/core/utils/cashed_data_shared_preferences.dart';
+
 import '../../domain/entities/add_address_entity.dart';
 import '../../domain/use_cases/add_address_usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,6 +20,8 @@ class AddAddressCubit extends Cubit<AddAddressState> {
   String address = 'Enter the add_address';
 
   String city = 'Cairo';
+  String lat = '37';
+  String long = "24";
 
   // void doIntent(AddAddressToAction intent) async {
   //   if (isClosed) return;
@@ -27,10 +31,20 @@ class AddAddressCubit extends Cubit<AddAddressState> {
   //   }
   // }
 
-  void addAddress(String city, String phone, String street) async {
+  void addAddress({
+    required String city,
+    required String phone,
+    required String street,
+
+  }) async {
+    String username =
+        "${CacheService.getData(key: CacheConstants.userFirstName)} "
+        "${CacheService.getData(key: CacheConstants.userLastName)}";
+
     emit(LoadingAddAddressState());
 
-    var result = await _addAddressUseCase.addAddress(city, phone, street);
+    var result = await _addAddressUseCase.addAddress(
+        city, phone, street, lat, long, username);
 
     switch (result) {
       case Success<AddAddressEntity?>():
