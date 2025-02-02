@@ -1,3 +1,4 @@
+import 'package:flower_ecommerce/Features/address/saved_address/presentation/widgets/skeleton_saved_address.dart';
 import 'package:flower_ecommerce/core/widgets/custom_app_bar.dart';
 
 import '../widgets/address_item.dart';
@@ -43,74 +44,81 @@ class _SavedAddressState extends State<SavedAddress> {
             ),
         ),
       ],
-      child: SafeArea(
-        child: Scaffold(
-          body: BlocBuilder<AddressViewModel, AddressState>(
-            builder: (context, state) {
-              if (state is LoadingAddressState) {
-                return const LoadingIndicator();
-              } else if (state is ErrorAddressState) {
-                return const Center(child: Text("something went wrong"));
-              } else if (state is SuccessAddressState) {
-                return Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: CustomAppBar(
-                        title: AppLocalizations.of(context)!.savedAddress,
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                      ),
-                    ),
-                    Expanded(
-                      child: ListView.separated(
-                        separatorBuilder: (context, index) => SizedBox(
-                          height: 5,
-                        ),
-                        itemBuilder: (context, index) => AddressItem(
-                          onRemove: () {
-                            setState(() {
-                              state.addresses.addresses!.removeAt(index);
-                            });
+      child: RefreshIndicator(
+        color: ColorManager.pink,
+        backgroundColor: ColorManager.white,
+        onRefresh: () {
+          return viewModel.getAddress("Bearer ${CacheService.getData(key: CacheConstants.userToken)}");
+        },
+        child: SafeArea(
+          child: Scaffold(
+            body: BlocBuilder<AddressViewModel, AddressState>(
+              builder: (context, state) {
+                if (state is LoadingAddressState) {
+                  return SkeletonSavedAddress();
+                } else if (state is ErrorAddressState) {
+                  return const Center(child: Text("something went wrong"));
+                } else if (state is SuccessAddressState) {
+                  return Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: CustomAppBar(
+                          title: AppLocalizations.of(context)!.savedAddress,
+                          onTap: () {
+                            Navigator.pop(context);
                           },
-                          addressesEntity: state.addresses.addresses![index],
                         ),
-                        itemCount: state.addresses.addresses!.length,
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: SizedBox(
-                        height: 48,
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            Navigator.pushNamed(
-                                context, RoutesManager.addAddressView);
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: ColorManager.pink,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
+                      Expanded(
+                        child: ListView.separated(
+                          separatorBuilder: (context, index) => SizedBox(
+                            height: 5,
+                          ),
+                          itemBuilder: (context, index) => AddressItem(
+                            onRemove: () {
+                              setState(() {
+                                state.addresses.addresses!.removeAt(index);
+                              });
+                            },
+                            addressesEntity: state.addresses.addresses![index],
+                          ),
+                          itemCount: state.addresses.addresses!.length,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: SizedBox(
+                          height: 48,
+                          width: double.infinity,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                  context, RoutesManager.addAddressView);
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: ColorManager.pink,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                            ),
+                            child: Text(
+                              AppLocalizations.of(context)!.add_new_address,
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 18),
                             ),
                           ),
-                          child: Text(
-                            AppLocalizations.of(context)!.add_new_address,
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 18),
-                          ),
                         ),
                       ),
-                    ),
-                  ],
-                );
-              } else {
-                return const SizedBox();
-              }
-            },
+                    ],
+                  );
+                } else {
+                  return const SizedBox();
+                }
+              },
+            ),
           ),
         ),
       ),

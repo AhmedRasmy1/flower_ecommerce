@@ -18,13 +18,6 @@ class AddressItem extends StatefulWidget {
 }
 
 class _AddressItemState extends State<AddressItem> {
-  // late RemoveAddressViewModel viewModel;
-  //
-  // @override
-  // void initState() {
-  //   viewModel = getIt.get<RemoveAddressViewModel>();
-  //   super.initState();
-  // }
 
   @override
   Widget build(BuildContext context) {
