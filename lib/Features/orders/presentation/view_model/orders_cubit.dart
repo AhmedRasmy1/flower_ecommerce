@@ -1,8 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
-
 import '../../../../core/common/api_result.dart';
-import '../../domain/entities/orders_response_entity.dart';
+import '../../domain/entities/user_orders_response_entity.dart';
 import '../../domain/use_case/user_orders_use_case.dart';
 import 'orders_state.dart';
 
@@ -18,9 +17,9 @@ class OrdersViewModel extends Cubit<OrdersState> {
     var result = await ordersUseCase.invoke(token);
 
     switch (result) {
-      case Success<OrdersResponseEntity?>():
+      case Success<UserOrdersResponseEntity?>():
         emit(SuccessOrdersState(result.data));
-      case Fail<OrdersResponseEntity?>():
+      case Fail<UserOrdersResponseEntity?>():
         emit(ErrorOrdersState(result.exception));
     }
   }

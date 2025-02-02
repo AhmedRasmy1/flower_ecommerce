@@ -2,7 +2,6 @@ import 'package:flower_ecommerce/Features/notifications_list/presentation/view/n
 import 'package:flower_ecommerce/Features/orders/presentation/view/orders_view.dart';
 import 'package:flower_ecommerce/Features/search/presentation/views/empty_search_view.dart';
 import 'package:flower_ecommerce/Features/search/presentation/views/search_screen_view.dart';
-
 import '../../Features/add_address/presentation/pages/address_view.dart';
 import '../../Features/address/saved_address/presentation/view/saved_address.dart';
 import '../../Features/cart&checkout/presentation/views/check_out_view.dart';
@@ -27,6 +26,7 @@ import '../../Features/products_details/presentation/widgets/try_screen.dart';
 import '../../Features/profile/presentation/pages/about_us_page.dart';
 import '../../Features/profile/presentation/pages/profile_view.dart';
 import '../../Features/profile_reset_password/presentation/view/change_password_view.dart';
+
 import '../../splash_view.dart';
 
 class RoutesManager {
@@ -59,6 +59,7 @@ class RoutesManager {
   static const String paymentOnlineView = '/PaymentOnlinePage';
   static const String emptySearchView = '/emptySearchView';
   static const String searchView='/searchView';
+  static const String showTrackOrderMapView='/showTrackOrderMapView';
 }
 
 class RouteGenerator {
@@ -135,6 +136,7 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const EmptySearchView());
       case RoutesManager.searchView:
         return MaterialPageRoute(builder: (_) => const SearchScreenView());
+
       default:
         return unDefinedRoute();
     }
