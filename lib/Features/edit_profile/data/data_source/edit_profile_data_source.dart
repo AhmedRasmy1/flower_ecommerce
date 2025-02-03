@@ -1,5 +1,5 @@
-import '../../domain/entities/edit_profile_entity.dart';
 import '../../../../core/common/api_result.dart';
+import '../../domain/entities/edit_profile_entity.dart';
 
 abstract class EditProfileDataSource {
   Future<Result<EditProfileEntity>> editProfile(

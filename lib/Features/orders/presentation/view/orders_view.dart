@@ -1,11 +1,10 @@
+import '../../data/model/user_orders.dart';
+import '../utilties/active_or_complete.dart';
 
-import 'package:flower_ecommerce/Features/orders/data/model/user_orders.dart';
-import 'package:flower_ecommerce/Features/orders/presentation/utilties/active_or_complete.dart';
-
-import 'package:flower_ecommerce/Features/orders/presentation/utilties/my_order_details_to_view.dart';
-import 'package:flower_ecommerce/Features/orders/presentation/widgets/build_order_list.dart';
-import 'package:flower_ecommerce/core/resources/color_manager.dart';
-import 'package:flower_ecommerce/core/resources/strings_manager.dart';
+import '../utilties/my_order_details_to_view.dart';
+import '../widgets/build_order_list.dart';
+import '../../../../core/resources/color_manager.dart';
+import '../../../../core/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,8 +14,6 @@ import '../../../products/presentation/widgets/skeleton_body.dart';
 import '../../domain/entities/user_orders_response_entity.dart';
 import '../view_model/orders_cubit.dart';
 import '../view_model/orders_state.dart';
-
-
 
 class MyOrdersPage extends StatefulWidget {
   const MyOrdersPage({super.key});
@@ -49,18 +46,20 @@ class _MyOrdersPageState extends State<MyOrdersPage>
 
   @override
   Widget build(BuildContext context) {
-    List<MyOrderDetailsToView> activeOrderDetails=[
-      MyOrderDetailsToView("Red roses","EGP 600",'order number#123456',"Track order"),
-      MyOrderDetailsToView("Red roses","EGP 600",'order number#123456',"Track order"),
-
+    List<MyOrderDetailsToView> activeOrderDetails = [
+      MyOrderDetailsToView(
+          "Red roses", "EGP 600", 'order number#123456', "Track order"),
+      MyOrderDetailsToView(
+          "Red roses", "EGP 600", 'order number#123456', "Track order"),
     ];
-    List<MyOrderDetailsToView> completeOrderDetails=[
-      MyOrderDetailsToView("Red roses","EGP 600","Delivered on 3 Sep 2024","Reorder"),
-      MyOrderDetailsToView("Red roses","EGP 600","Delivered on 3 Sep 2024","Reorder"),
-      MyOrderDetailsToView("Red roses","EGP 600","Delivered on 3 Sep 2024","Reorder"),
-
-     ];
-
+    List<MyOrderDetailsToView> completeOrderDetails = [
+      MyOrderDetailsToView(
+          "Red roses", "EGP 600", "Delivered on 3 Sep 2024", "Reorder"),
+      MyOrderDetailsToView(
+          "Red roses", "EGP 600", "Delivered on 3 Sep 2024", "Reorder"),
+      MyOrderDetailsToView(
+          "Red roses", "EGP 600", "Delivered on 3 Sep 2024", "Reorder"),
+    ];
 
     return BlocProvider(
       create: (context) => ordersViewModel,
@@ -68,7 +67,9 @@ class _MyOrdersPageState extends State<MyOrdersPage>
         appBar: AppBar(
           title: const Text(AppStrings.myOrders,
               style: TextStyle(
-                  color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold)),
+                  color: Colors.black,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold)),
           backgroundColor: Colors.white,
           elevation: 1,
           bottom: TabBar(
@@ -79,38 +80,39 @@ class _MyOrdersPageState extends State<MyOrdersPage>
             labelStyle: const TextStyle(fontWeight: FontWeight.bold),
             tabs: const [
               Tab(text: AppStrings.active),
-              Tab(text:AppStrings.complete),
+              Tab(text: AppStrings.complete),
             ],
           ),
         ),
-        body:  BlocBuilder<OrdersViewModel, OrdersState>(
+        body: BlocBuilder<OrdersViewModel, OrdersState>(
           builder: (context, state) {
             if (state is LoadingOrdersState) {
               return const Expanded(child: SkeletonBody());
             } else if (state is SuccessOrdersState) {
               UserOrdersResponseEntity? userOrders =
                   state.userOrdersResponseEntity;
-              List<UserOrders>? listUserOrders=userOrders?.orders;
-              if(listUserOrders!=null){
-                List<UserOrders> activeOrders= activeOrComplete(listUserOrders, "active");
-                List<UserOrders> completedOrders=activeOrComplete(listUserOrders,"completed");
-                return  TabBarView(
+              List<UserOrders>? listUserOrders = userOrders?.orders;
+              if (listUserOrders != null) {
+                List<UserOrders> activeOrders =
+                    activeOrComplete(listUserOrders, "active");
+                List<UserOrders> completedOrders =
+                    activeOrComplete(listUserOrders, "completed");
+                return TabBarView(
                   controller: _tabController,
                   children: [
                     // Active Orders
-                    BuildOrderList(orderDetailsList: activeOrders,
+                    BuildOrderList(
+                      orderDetailsList: activeOrders,
                     ),
                     // Completed Orders
-                    BuildOrderList(orderDetailsList: completedOrders,
+                    BuildOrderList(
+                      orderDetailsList: completedOrders,
                     ),
                   ],
                 );
-              }
-              else{
+              } else {
                 return Container();
               }
-
-
             } else if (state is ErrorOrdersState) {
               return Container(
                 color: Colors.red,
@@ -120,16 +122,7 @@ class _MyOrdersPageState extends State<MyOrdersPage>
             }
           },
         ),
-
-
-
-
-
-
-
       ),
     );
   }
-
-
 }

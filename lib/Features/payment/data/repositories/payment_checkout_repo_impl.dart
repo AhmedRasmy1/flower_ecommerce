@@ -1,4 +1,4 @@
-import 'package:flower_ecommerce/Features/payment/data/model/response/checkout_session_response/Paymernt_checkout_response.dart';
+import '../model/response/checkout_session_response/Paymernt_checkout_response.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/common/api_result.dart';
@@ -11,11 +11,13 @@ class PaymentCheckoutRepoImpl implements PaymentCheckoutRepo {
   PaymentCheckoutOnLineDataSource paymentCheckoutOnLineDataSource;
 
   PaymentCheckoutRepoImpl(
-      this.paymentCheckoutOnLineDataSource,
-      );
+    this.paymentCheckoutOnLineDataSource,
+  );
 
   @override
-  Future<Result<PaymentCheckoutResponse?>> getPaymentCheckout(PaymentCheckoutRequest paymentRequest,String token) {
-    return paymentCheckoutOnLineDataSource.getPaymentCheckout(paymentRequest,token);
+  Future<Result<PaymentCheckoutResponse?>> getPaymentCheckout(
+      PaymentCheckoutRequest paymentRequest, String token) {
+    return paymentCheckoutOnLineDataSource.getPaymentCheckout(
+        paymentRequest, token);
   }
 }

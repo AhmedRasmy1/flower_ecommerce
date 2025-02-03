@@ -1,5 +1,5 @@
-import 'package:flower_ecommerce/Features/search/presentation/views/search_screen_view.dart';
-import 'package:flower_ecommerce/core/resources/routes_manager.dart';
+import '../../../search/presentation/views/search_screen_view.dart';
+import '../../../../core/resources/routes_manager.dart';
 
 import '../../../../core/resources/assets_manager.dart';
 import '../../../../core/resources/color_manager.dart';
@@ -11,7 +11,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../search/presentation/views/search_screen_view.dart';
 
-
 class CustomTextFieldForSearch extends StatelessWidget {
   const CustomTextFieldForSearch({
     super.key,
@@ -20,9 +19,8 @@ class CustomTextFieldForSearch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      onTap: (){
-        Navigator.pushNamed(context,
-            RoutesManager.searchView);
+      onTap: () {
+        Navigator.pushNamed(context, RoutesManager.searchView);
       },
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.symmetric(

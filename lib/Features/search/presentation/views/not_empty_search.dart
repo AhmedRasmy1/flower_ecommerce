@@ -1,6 +1,6 @@
-import 'package:flower_ecommerce/Features/products_details/presentation/views/product_details_view.dart';
-import 'package:flower_ecommerce/core/resources/assets_manager.dart';
-import 'package:flower_ecommerce/core/resources/routes_manager.dart';
+import '../../../products_details/presentation/views/product_details_view.dart';
+import '../../../../core/resources/assets_manager.dart';
+import '../../../../core/resources/routes_manager.dart';
 import 'package:flutter/material.dart';
 
 import '../../../products/domain/entities/products_entities.dart';
@@ -50,7 +50,7 @@ class NotEmptySearch extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
+                  SizedBox(
                     width: 200,
                     child: SingleChildScrollView(
                       child: Text(

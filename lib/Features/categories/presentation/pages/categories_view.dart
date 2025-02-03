@@ -1,4 +1,4 @@
-import 'package:flower_ecommerce/Features/categories/presentation/widgets/upperfilterbox.dart';
+import '../widgets/upperfilterbox.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
@@ -8,6 +8,7 @@ import '../../../../core/resources/color_manager.dart';
 import '../widgets/category_tap_bar.dart';
 import '../widgets/custom_search.dart';
 import '../widgets/filter_button.dart';
+
 class CategoriesView extends StatefulWidget {
   const CategoriesView({super.key});
 
@@ -16,8 +17,6 @@ class CategoriesView extends StatefulWidget {
 }
 
 class _CategoriesViewState extends State<CategoriesView> {
-
-
   String filterType = "Price After Discount";
 
   void showFilterSheet() {
@@ -31,7 +30,6 @@ class _CategoriesViewState extends State<CategoriesView> {
       context: context,
       builder: (BuildContext context) {
         return Container(
-
           padding: const EdgeInsets.all(16.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -48,7 +46,7 @@ class _CategoriesViewState extends State<CategoriesView> {
                 "Lowest Price",
                 "priceAfterDiscount",
                 selectedSortType,
-                    (value) {
+                (value) {
                   setState(() {
                     selectedSortType = value;
                     sortProvider.changeFilter(selectedSortType);
@@ -60,7 +58,7 @@ class _CategoriesViewState extends State<CategoriesView> {
                 "Highest Price",
                 "-priceAfterDiscount",
                 selectedSortType,
-                    (value) {
+                (value) {
                   setState(() {
                     selectedSortType = value;
                     sortProvider.changeFilter(selectedSortType);
@@ -72,7 +70,7 @@ class _CategoriesViewState extends State<CategoriesView> {
                 "less quantity",
                 "quantity",
                 selectedSortType,
-                    (value) {
+                (value) {
                   setState(() {
                     selectedSortType = value;
                     sortProvider.changeFilter(selectedSortType);
@@ -84,7 +82,7 @@ class _CategoriesViewState extends State<CategoriesView> {
                 " higher quantity",
                 "-quantity",
                 selectedSortType,
-                    (value) {
+                (value) {
                   setState(() {
                     selectedSortType = value;
                     sortProvider.changeFilter(selectedSortType);
@@ -92,7 +90,6 @@ class _CategoriesViewState extends State<CategoriesView> {
                   Navigator.pop(context);
                 },
               ),
-
               const Divider(),
               const Text(
                 "Price",
@@ -115,7 +112,8 @@ class _CategoriesViewState extends State<CategoriesView> {
                   });
                 },
               ),
-              Container(width: double.infinity,
+              SizedBox(
+                width: double.infinity,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: ColorManager.pink,
@@ -127,8 +125,10 @@ class _CategoriesViewState extends State<CategoriesView> {
                     // Apply filters as needed
                     Navigator.pop(context);
                   },
-                  child: const Text("Filter",
-                  style: TextStyle(color: Colors.white),),
+                  child: const Text(
+                    "Filter",
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ),
             ],
@@ -137,14 +137,14 @@ class _CategoriesViewState extends State<CategoriesView> {
       },
     );
   }
-  Widget buildRadioListTile(
-      String title,
-      String value,
-      String? groupValue,
-      ValueChanged<String?> onChanged,
-      ) {
-    return RadioListTile<String>(
 
+  Widget buildRadioListTile(
+    String title,
+    String value,
+    String? groupValue,
+    ValueChanged<String?> onChanged,
+  ) {
+    return RadioListTile<String>(
       title: Text(title),
       value: value,
       groupValue: groupValue,
@@ -153,27 +153,27 @@ class _CategoriesViewState extends State<CategoriesView> {
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         body: Column(
           children: [
-             Padding(
-               padding: const EdgeInsets.all(16),
-               child: Row(
-                 children: [
-                   Expanded(flex:5,child: CustomSearch()),
-                   SizedBox(width: 10,),
-                   Expanded(
-                     flex: 1,
-                     child:InkWell(onTap: showFilterSheet,
-                         child: UpperFilterBox())
-                   )
-                 ],
-               ),
-             ),
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Row(
+                children: [
+                  Expanded(flex: 5, child: CustomSearch()),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Expanded(
+                      flex: 1,
+                      child: InkWell(
+                          onTap: showFilterSheet, child: UpperFilterBox()))
+                ],
+              ),
+            ),
             Expanded(
               child: Stack(
                 alignment: Alignment.bottomCenter,
@@ -182,11 +182,15 @@ class _CategoriesViewState extends State<CategoriesView> {
                   InkWell(
                     onTap: showFilterSheet,
                     child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20), // Adjust the padding for size
-                      margin: const EdgeInsets.all(16), // Add margin for spacing
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 12,
+                          horizontal: 20), // Adjust the padding for size
+                      margin:
+                          const EdgeInsets.all(16), // Add margin for spacing
                       decoration: BoxDecoration(
                         color: Colors.pink, // Button color
-                        borderRadius: BorderRadius.circular(10), // Rounded corners
+                        borderRadius:
+                            BorderRadius.circular(10), // Rounded corners
                       ),
                       child: const Text(
                         "Show Filter",
@@ -198,7 +202,6 @@ class _CategoriesViewState extends State<CategoriesView> {
                       ),
                     ),
                   ),
-
                 ],
               ),
             ),

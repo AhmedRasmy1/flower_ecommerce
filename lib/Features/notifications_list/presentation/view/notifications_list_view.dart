@@ -1,10 +1,10 @@
-import 'package:flower_ecommerce/Features/notifications_list/presentation/view_model/notfications_list_state.dart';
-import 'package:flower_ecommerce/Features/notifications_list/presentation/view_model/notifictions_list_cubit.dart';
-import 'package:flower_ecommerce/Features/notifications_list/presentation/widgets/notification_item.dart';
-import 'package:flower_ecommerce/core/di/di.dart';
-import 'package:flower_ecommerce/core/utils/cashed_data_shared_preferences.dart';
-import 'package:flower_ecommerce/core/widgets/custom_app_bar.dart';
-import 'package:flower_ecommerce/core/widgets/loading_indicator.dart';
+import '../view_model/notfications_list_state.dart';
+import '../view_model/notifictions_list_cubit.dart';
+import '../widgets/notification_item.dart';
+import '../../../../core/di/di.dart';
+import '../../../../core/utils/cashed_data_shared_preferences.dart';
+import '../../../../core/widgets/custom_app_bar.dart';
+import '../../../../core/widgets/loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

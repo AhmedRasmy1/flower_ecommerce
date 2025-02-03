@@ -1,8 +1,8 @@
-import 'package:flower_ecommerce/Features/notifications_list/presentation/view/notifications_list_view.dart';
-import 'package:flower_ecommerce/Features/orders/presentation/view/orders_view.dart';
-import 'package:flower_ecommerce/Features/search/presentation/views/empty_search_view.dart';
-import 'package:flower_ecommerce/Features/search/presentation/views/search_screen_view.dart';
-import 'package:flower_ecommerce/Features/track%20order/presentation/track_ui.dart';
+import '../../Features/notifications_list/presentation/view/notifications_list_view.dart';
+import '../../Features/orders/presentation/view/orders_view.dart';
+import '../../Features/search/presentation/views/empty_search_view.dart';
+import '../../Features/search/presentation/views/search_screen_view.dart';
+import '../../Features/track%20order/presentation/track_ui.dart';
 import '../../Features/add_address/presentation/pages/address_view.dart';
 import '../../Features/address/saved_address/presentation/view/saved_address.dart';
 import '../../Features/cart&checkout/presentation/views/check_out_view.dart';
@@ -59,9 +59,8 @@ class RoutesManager {
   static const String paymentCashView = '/PaymentCashPage';
   static const String paymentOnlineView = '/PaymentOnlinePage';
   static const String emptySearchView = '/emptySearchView';
-  static const String searchView='/searchView';
-  static const String trackOrderScreen='/trackOrderScreen';
-
+  static const String searchView = '/searchView';
+  static const String trackOrderScreen = '/trackOrderScreen';
 }
 
 class RouteGenerator {

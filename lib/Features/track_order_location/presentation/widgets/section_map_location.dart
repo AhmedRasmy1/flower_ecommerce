@@ -1,4 +1,4 @@
-import 'package:flower_ecommerce/Features/track_order_location/presentation/widgets/skeleton_map.dart';
+import 'skeleton_map.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';

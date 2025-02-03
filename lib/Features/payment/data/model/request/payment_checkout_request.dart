@@ -1,13 +1,14 @@
-
-
-import 'package:flower_ecommerce/Features/payment/data/model/request/shipping_address.dart';
+import 'shipping_address.dart';
 
 class PaymentCheckoutRequest {
   PaymentCheckoutRequest({
-    this.shippingAddress,});
+    this.shippingAddress,
+  });
 
   PaymentCheckoutRequest.fromJson(dynamic json) {
-    shippingAddress = json['shippingAddress'] != null ? ShippingAddress.fromJson(json['shippingAddress']) : null;
+    shippingAddress = json['shippingAddress'] != null
+        ? ShippingAddress.fromJson(json['shippingAddress'])
+        : null;
   }
   ShippingAddress? shippingAddress;
 
@@ -18,5 +19,4 @@ class PaymentCheckoutRequest {
     }
     return map;
   }
-
 }

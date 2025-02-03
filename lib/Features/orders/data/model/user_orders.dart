@@ -1,5 +1,4 @@
-import 'package:flower_ecommerce/Features/orders/data/model/user_order_items.dart';
-
+import 'user_order_items.dart';
 
 /// _id : "678a9bb63745562ff48ce07b"
 /// user : "678a783d3c3797492747c8e6"
@@ -16,18 +15,19 @@ import 'package:flower_ecommerce/Features/orders/data/model/user_order_items.dar
 
 class UserOrders {
   UserOrders({
-      this.id, 
-      this.user, 
-      this.orderItems, 
-      this.totalPrice, 
-      this.paymentType, 
-      this.isPaid, 
-      this.isDelivered, 
-      this.state, 
-      this.createdAt, 
-      this.updatedAt, 
-      this.orderNumber, 
-      this.v,});
+    this.id,
+    this.user,
+    this.orderItems,
+    this.totalPrice,
+    this.paymentType,
+    this.isPaid,
+    this.isDelivered,
+    this.state,
+    this.createdAt,
+    this.updatedAt,
+    this.orderNumber,
+    this.v,
+  });
 
   UserOrders.fromJson(dynamic json) {
     id = json['_id'];
@@ -79,5 +79,4 @@ class UserOrders {
     map['__v'] = v;
     return map;
   }
-
 }

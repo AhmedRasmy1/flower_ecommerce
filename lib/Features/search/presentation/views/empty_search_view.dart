@@ -1,4 +1,4 @@
-import 'package:flower_ecommerce/core/resources/assets_manager.dart';
+import '../../../../core/resources/assets_manager.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/resources/values_manager.dart';
@@ -18,7 +18,7 @@ class EmptySearchView extends StatelessWidget {
           height: 180,
           width: 180,
         ),
-        Container(
+        SizedBox(
           width: 300,
           child: Padding(
             padding: const EdgeInsets.only(

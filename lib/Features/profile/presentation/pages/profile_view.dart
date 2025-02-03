@@ -1,6 +1,6 @@
-import 'package:flower_ecommerce/Features/notifications_list/presentation/view_model/notfications_list_state.dart';
-import 'package:flower_ecommerce/Features/notifications_list/presentation/view_model/notifictions_list_cubit.dart';
-import 'package:flower_ecommerce/core/resources/routes_manager.dart';
+import '../../../notifications_list/presentation/view_model/notfications_list_state.dart';
+import '../../../notifications_list/presentation/view_model/notifictions_list_cubit.dart';
+import '../../../../core/resources/routes_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -90,7 +90,7 @@ class _ProfileViewState extends State<ProfileView> {
                               radius: 8,
                               backgroundColor: Colors.red,
                               child: Text(
-                                "${notificationsCount}",
+                                "$notificationsCount",
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 12),
                               ),

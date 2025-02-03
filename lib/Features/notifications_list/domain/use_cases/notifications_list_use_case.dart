@@ -1,5 +1,5 @@
-import 'package:flower_ecommerce/Features/notifications_list/domain/entities/notifications_list_entity.dart';
-import 'package:flower_ecommerce/Features/notifications_list/domain/repositories/notifications_list_repo.dart';
+import '../entities/notifications_list_entity.dart';
+import '../repositories/notifications_list_repo.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../../core/common/api_result.dart';
 

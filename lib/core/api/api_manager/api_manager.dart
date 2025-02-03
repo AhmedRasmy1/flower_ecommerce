@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:flower_ecommerce/Features/payment/data/model/response/cash_order_response/cash_order_response.dart';
-import 'package:flower_ecommerce/Features/payment/data/model/response/checkout_session_response/Paymernt_checkout_response.dart';
-import 'package:flower_ecommerce/Features/notifications_list/data/models/notifications_list_dto.dart';
+import '../../../Features/payment/data/model/response/cash_order_response/cash_order_response.dart';
+import '../../../Features/payment/data/model/response/checkout_session_response/Paymernt_checkout_response.dart';
+import '../../../Features/notifications_list/data/models/notifications_list_dto.dart';
 import '../../../Features/address/saved_address/data/models/response/address_dto.dart';
 import '../../../Features/cart&checkout/data/models/request/update_quantity_request.dart';
 import '../../../Features/cart&checkout/data/models/response/checkout/address_response.dart';
@@ -153,12 +153,10 @@ abstract class ApiService {
     @Header("Authorization") String token,
   );
 
-
   @POST(ApiConstants.checkoutSessionRoute)
   Future<PaymentCheckoutResponse> getPaymentCheckout(
       @Body() PaymentCheckoutRequest paymentCheckoutRequest,
       @Header("Authorization") String token);
-
 
   @POST(ApiConstants.cashOrderRoute)
   Future<CashOrderResponse> getCashOrder(
@@ -168,7 +166,6 @@ abstract class ApiService {
   @GET(ApiConstants.getUserOrdersRoute)
   Future<UserOrdersResponse> getUserOrders(
       @Header("Authorization") String token);
-
 
   @GET(ApiConstants.notification)
   Future<NotificationsListDto> getAllNotifications(

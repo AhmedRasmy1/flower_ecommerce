@@ -1,14 +1,16 @@
-import 'package:flower_ecommerce/Features/notifications_list/domain/entities/notifications_list_entity.dart';
+import '../../domain/entities/notifications_list_entity.dart';
 
 class NotificationsListDto {
   NotificationsListDto({
-      this.message,
-      this.metadata,
-      this.notifications,});
+    this.message,
+    this.metadata,
+    this.notifications,
+  });
 
   NotificationsListDto.fromJson(dynamic json) {
     message = json['message'];
-    metadata = json['metadata'] != null ? Metadata.fromJson(json['metadata']) : null;
+    metadata =
+        json['metadata'] != null ? Metadata.fromJson(json['metadata']) : null;
     if (json['notifications'] != null) {
       notifications = [];
       json['notifications'].forEach((v) {
@@ -32,24 +34,25 @@ class NotificationsListDto {
     return map;
   }
 
-  NotificationsListEntity toNotificationsListEntity(){
-    return NotificationsListEntity (
+  NotificationsListEntity toNotificationsListEntity() {
+    return NotificationsListEntity(
       message: message,
-      notifications: notifications?.map((notification) => notification.toNotificationsEntity()).toList(),
-
+      notifications: notifications
+          ?.map((notification) => notification.toNotificationsEntity())
+          .toList(),
     );
-}
-
+  }
 }
 
 class Notifications {
   Notifications({
-      this.id,
-      this.title,
-      this.body,
-      this.createdAt,
-      this.updatedAt,
-      this.v,});
+    this.id,
+    this.title,
+    this.body,
+    this.createdAt,
+    this.updatedAt,
+    this.v,
+  });
 
   Notifications.fromJson(dynamic json) {
     id = json['_id'];
@@ -77,21 +80,17 @@ class Notifications {
     return map;
   }
 
-  NotificationsEntity toNotificationsEntity(){
-    return NotificationsEntity(
-      id: id,
-      body: body,
-      title: title
-    );
+  NotificationsEntity toNotificationsEntity() {
+    return NotificationsEntity(id: id, body: body, title: title);
   }
-
 }
 
 class Metadata {
   Metadata({
-      this.currentPage,
-      this.numberOfPages,
-      this.limit,});
+    this.currentPage,
+    this.numberOfPages,
+    this.limit,
+  });
 
   Metadata.fromJson(dynamic json) {
     currentPage = json['currentPage'];
@@ -109,5 +108,4 @@ class Metadata {
     map['limit'] = limit;
     return map;
   }
-
 }

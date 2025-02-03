@@ -1,13 +1,12 @@
 import 'dart:async';
 import 'dart:developer';
-import 'package:flower_ecommerce/core/firebase_core/firebase_utils/firebase_utils.dart';
-import 'package:flower_ecommerce/core/resources/color_manager.dart';
+import '../../../../core/firebase_core/firebase_utils/firebase_utils.dart';
+import '../../../../core/resources/color_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../../../../core/firebase_core/model/order_details_add_firestore.dart';
 import '../../../../core/resources/assets_manager.dart';
-
 
 class MapTrackingLocation extends StatefulWidget {
   const MapTrackingLocation({
@@ -31,7 +30,6 @@ class _MapTrackingLocationState extends State<MapTrackingLocation> {
 
   @override
   void initState() {
-
     super.initState();
     initialCameraPosition =
         CameraPosition(zoom: 5, target: LatLng(29.5090942, 31.9453012));
@@ -85,10 +83,8 @@ class _MapTrackingLocationState extends State<MapTrackingLocation> {
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
-
     return SizedBox(
       height: MediaQuery.of(context).size.height * .88,
       width: double.infinity,
@@ -103,26 +99,23 @@ class _MapTrackingLocationState extends State<MapTrackingLocation> {
             log(driverLocation.email.toString());
             log(driverLocation.phone.toString());
 
-
             double latD = double.tryParse(driverLocation.lat ?? '0') ?? 0;
             double longD = double.tryParse(driverLocation.long ?? '0') ?? 0;
 
             LatLng driverLatLng = LatLng(latD, longD);
 
-
             WidgetsBinding.instance.addPostFrameCallback((_) {
-
-                markers.removeWhere((marker) => marker.markerId.value == 'Driver_location');
-                markers.add(
-                  Marker(
-                    markerId: const MarkerId("Driver_location"),
-                    icon: markerDriver,
-                    position: driverLatLng,
-                    infoWindow: const InfoWindow(title: "Driver"),
-                  ),
-                );
-              });
-
+              markers.removeWhere(
+                  (marker) => marker.markerId.value == 'Driver_location');
+              markers.add(
+                Marker(
+                  markerId: const MarkerId("Driver_location"),
+                  icon: markerDriver,
+                  position: driverLatLng,
+                  infoWindow: const InfoWindow(title: "Driver"),
+                ),
+              );
+            });
 
             return GoogleMap(
               markers: markers,
@@ -134,12 +127,10 @@ class _MapTrackingLocationState extends State<MapTrackingLocation> {
             );
           }
 
-          return Center(child: CircularProgressIndicator(color: ColorManager.pink));
+          return Center(
+              child: CircularProgressIndicator(color: ColorManager.pink));
         },
       ),
     );
   }
-
-
-
 }

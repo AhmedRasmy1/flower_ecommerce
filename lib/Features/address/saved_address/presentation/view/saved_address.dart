@@ -1,5 +1,5 @@
-import 'package:flower_ecommerce/Features/address/saved_address/presentation/widgets/skeleton_saved_address.dart';
-import 'package:flower_ecommerce/core/widgets/custom_app_bar.dart';
+import '../widgets/skeleton_saved_address.dart';
+import '../../../../../core/widgets/custom_app_bar.dart';
 
 import '../widgets/address_item.dart';
 import '../../../../../core/di/di.dart';
@@ -48,7 +48,8 @@ class _SavedAddressState extends State<SavedAddress> {
         color: ColorManager.pink,
         backgroundColor: ColorManager.white,
         onRefresh: () {
-          return viewModel.getAddress("Bearer ${CacheService.getData(key: CacheConstants.userToken)}");
+          return viewModel.getAddress(
+              "Bearer ${CacheService.getData(key: CacheConstants.userToken)}");
         },
         child: SafeArea(
           child: Scaffold(

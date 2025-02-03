@@ -1,9 +1,9 @@
-import 'package:flower_ecommerce/Features/cart&checkout/domain/entities/cart_item_entity.dart';
-import 'package:flower_ecommerce/Features/payment/data/model/request/payment_checkout_request.dart';
-import 'package:flower_ecommerce/Features/payment/data/model/response/cash_order_response/OrderItems.dart';
-import 'package:flower_ecommerce/Features/payment/presentation/cash_order_view_model/cash_order_cubit.dart';
-import 'package:flower_ecommerce/Features/payment/presentation/useful_methods/payment_navegation_items.dart';
-import 'package:flower_ecommerce/Features/payment/presentation/useful_widgets/track_widget.dart';
+import '../../../cart&checkout/domain/entities/cart_item_entity.dart';
+import '../../data/model/request/payment_checkout_request.dart';
+import '../../data/model/response/cash_order_response/OrderItems.dart';
+import '../cash_order_view_model/cash_order_cubit.dart';
+import '../useful_methods/payment_navegation_items.dart';
+import '../useful_widgets/track_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/di/di.dart';
@@ -20,9 +20,8 @@ class PaymentCashPage extends StatefulWidget {
 }
 
 class _PaymentCashPageState extends State<PaymentCashPage> {
-
   late CashOrderViewModel cashOrderViewModel;
- late PaymentNavigationItems paymentData;
+  late PaymentNavigationItems paymentData;
 
   @override
   void initState() {
@@ -37,8 +36,8 @@ class _PaymentCashPageState extends State<PaymentCashPage> {
     String savedToken = CacheService.getData(key: CacheConstants.userToken);
     String token = "Bearer $savedToken";
 
-   paymentData =
-    ModalRoute.of(context)?.settings.arguments as PaymentNavigationItems;
+    paymentData =
+        ModalRoute.of(context)?.settings.arguments as PaymentNavigationItems;
 
     cashOrderViewModel.getCashOrder(paymentData.paymentCheckoutRequest, token);
   }
@@ -65,11 +64,19 @@ class _PaymentCashPageState extends State<PaymentCashPage> {
                     if (state is CashOrderLoadingState) {
                       return const Expanded(child: SkeletonBody());
                     } else if (state is CashOrderSuccessState) {
-                      List<CartItemEntity>? orderItems=paymentData.orderItems;
-                      String? city=paymentData.paymentCheckoutRequest.shippingAddress?.city;
-                      String? street=paymentData.paymentCheckoutRequest.shippingAddress?.street;
-                      num? totalPrice=state.response?.order?.totalPrice;
-                      return TrackWidget(orderItems: orderItems, city: city, street:street, totalPrice: totalPrice, isCash:true,);
+                      List<CartItemEntity>? orderItems = paymentData.orderItems;
+                      String? city = paymentData
+                          .paymentCheckoutRequest.shippingAddress?.city;
+                      String? street = paymentData
+                          .paymentCheckoutRequest.shippingAddress?.street;
+                      num? totalPrice = state.response?.order?.totalPrice;
+                      return TrackWidget(
+                        orderItems: orderItems,
+                        city: city,
+                        street: street,
+                        totalPrice: totalPrice,
+                        isCash: true,
+                      );
                     } else if (state is CashOrderErrorState) {
                       return Container(
                         color: Colors.red,

@@ -1,12 +1,12 @@
-import 'package:flower_ecommerce/Features/products/domain/entities/products_entities.dart';
-import 'package:flower_ecommerce/Features/products/presentation/manager/all_products_cubit.dart';
-import 'package:flower_ecommerce/Features/products/presentation/manager/all_products_state.dart';
-import 'package:flower_ecommerce/Features/search/presentation/views/empty_search_view.dart';
-import 'package:flower_ecommerce/Features/search/presentation/views/not_empty_search.dart';
-import 'package:flower_ecommerce/core/resources/assets_manager.dart';
-import 'package:flower_ecommerce/core/resources/color_manager.dart';
-import 'package:flower_ecommerce/core/resources/font_manager.dart';
-import 'package:flower_ecommerce/core/widgets/custom_app_bar.dart';
+import '../../../products/domain/entities/products_entities.dart';
+import '../../../products/presentation/manager/all_products_cubit.dart';
+import '../../../products/presentation/manager/all_products_state.dart';
+import 'empty_search_view.dart';
+import 'not_empty_search.dart';
+import '../../../../core/resources/assets_manager.dart';
+import '../../../../core/resources/color_manager.dart';
+import '../../../../core/resources/font_manager.dart';
+import '../../../../core/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -111,10 +111,10 @@ class _SearchScreenViewState extends State<SearchScreenView> {
                 Expanded(child:
                     BlocBuilder<AllProductsViewModel, AllProductsState>(
                         builder: (context, state) {
-                     if (viewModel.filteredProducts.isEmpty) {
-                      return const EmptySearchView();
-                     } else {
-                       return ListView.builder(
+                  if (viewModel.filteredProducts.isEmpty) {
+                    return const EmptySearchView();
+                  } else {
+                    return ListView.builder(
                         itemCount: viewModel.filteredProducts.length,
                         itemBuilder: (context, index) => NotEmptySearch(
                             index: index,

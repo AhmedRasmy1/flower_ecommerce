@@ -1,4 +1,4 @@
-import 'package:flower_ecommerce/Features/notifications_list/domain/entities/notifications_list_entity.dart';
+import '../../../domain/entities/notifications_list_entity.dart';
 import '../../../../../../core/api/api_extentions.dart';
 import '../../../../../../core/api/api_manager/api_manager.dart';
 import '../../../../../../core/common/api_result.dart';

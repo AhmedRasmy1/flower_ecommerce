@@ -1,7 +1,7 @@
-import 'package:flower_ecommerce/Features/cart&checkout/domain/entities/cart_item_entity.dart';
-import 'package:flower_ecommerce/Features/payment/presentation/useful_widgets/order_summery_item.dart';
-import 'package:flower_ecommerce/Features/payment/presentation/useful_widgets/payment_button.dart';
-import 'package:flower_ecommerce/core/resources/routes_manager.dart';
+import '../../../cart&checkout/domain/entities/cart_item_entity.dart';
+import 'order_summery_item.dart';
+import 'payment_button.dart';
+import '../../../../core/resources/routes_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -12,11 +12,13 @@ import '../../../cart&checkout/presentation/views/widgets/order_details.dart';
 
 class TrackWidget extends StatefulWidget {
   TrackWidget({
-    this.paymentUrl, required this.orderItems,
-  required this.city,
-  required this.street,
-  required this.totalPrice,
-    required this.isCash,super.key,
+    this.paymentUrl,
+    required this.orderItems,
+    required this.city,
+    required this.street,
+    required this.totalPrice,
+    required this.isCash,
+    super.key,
   });
 
   List<CartItemEntity>? orderItems;
@@ -31,151 +33,172 @@ class TrackWidget extends StatefulWidget {
 }
 
 class _TrackWidgetState extends State<TrackWidget> {
-  num deliveryFees=10;
+  num deliveryFees = 10;
 
   @override
   Widget build(BuildContext context) {
-    num totalPriceWithDelivery=(widget.totalPrice??0 )+ deliveryFees;
+    num totalPriceWithDelivery = (widget.totalPrice ?? 0) + deliveryFees;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
-       crossAxisAlignment: CrossAxisAlignment.center,
-       children: [
-         Icon(Icons.check_circle,size: 45,color:Color(0XFF2F9033),),
-         SizedBox(height: 10,),
-         Text("Thank you for shopping with us!"),
-         SizedBox(height: 10,),
-         Container(
-           padding: const EdgeInsets.all(12.0),
-           margin: const EdgeInsets.symmetric(vertical: 4.0),
-           decoration: BoxDecoration(
-             border: Border.all(
-               color: Colors.grey,
-             ),
-             borderRadius: BorderRadius.circular(8.0),
-           ),
-           child: Column(
-             crossAxisAlignment: CrossAxisAlignment.start,
-             children: [
-               Row(
-                 crossAxisAlignment: CrossAxisAlignment.start,
-                 children: [
-                   SvgPicture.asset(
-                     AppAssets.cartLocationSvgImage,
-                     width: 24,
-                     height: 24,
-                   ),
-                   Text(widget.street??""),
-                 ],
-               ),
-               Text(widget.city??"")
-             ],
-           ),
-         ),
-         SizedBox(height: 10,),
-         Container(
-           padding: const EdgeInsets.all(12.0),
-           margin: const EdgeInsets.symmetric(vertical: 4.0),
-           decoration: BoxDecoration(
-             border: Border.all(
-               color: Colors.grey,
-             ),
-             borderRadius: BorderRadius.circular(8.0),
-           ),
-           child: Column(
-             crossAxisAlignment: CrossAxisAlignment.start,
-             children: [
-               Row(
-                 crossAxisAlignment: CrossAxisAlignment.start,
-                 children: [
-                   SvgPicture.asset(
-                     AppAssets.cartLocationSvgImage,
-                     width: 24,
-                     height: 24,
-                   ),
-                   Text("EGY ${totalPriceWithDelivery.toString()}"),
-                 ],
-               ),
-            Container(
-              child: (widget.isCash?? true) ? Text("Pay with cash"):PaymentButton(checkoutUrl: widget.paymentUrl),
-            )
-
-             ],
-           ),
-         ),
-         Container(
-           padding: const EdgeInsets.all(12.0),
-           margin: const EdgeInsets.symmetric(vertical: 4.0),
-           decoration: BoxDecoration(
-             border: Border.all(
-               color: Colors.grey,
-             ),
-             borderRadius: BorderRadius.circular(8.0),
-           ),
-           child: Column(
-             children: [
-               Row(
-                 children: [
-                   Icon(Icons.shopping_cart_outlined,),
-                   Text("${widget.orderItems?.length.toString()} Items",
-                   style: TextStyle(
-                     fontSize: 16
-                   ),
-                   ),
-                 ],
-               ),
-               SizedBox(height: 20,),
-               ListView.separated(
-                 shrinkWrap: true,
-                 physics: const NeverScrollableScrollPhysics(),
-                 itemBuilder: (context, index) => OrderSummeryItem(imageUrl: widget.orderItems?[index].imgCover??"", itemTitle: widget.orderItems?[index].title??"", itemDetails:widget.orderItems?[index].description??"", itemPrice: widget.orderItems?[index].price.toString()??""),
-                 separatorBuilder: (context, index) => const SizedBox(
-                   height: 24,
-                 ),
-                 itemCount: widget.orderItems!.length,
-               ),
-               SizedBox(height: 20,),
-
-
-             ],
-           ),
-         ),
-         OrderDetails(total: widget.totalPrice?.toDouble()??0),
-         SizedBox(height: 20,),
-         Row(
-           mainAxisAlignment: MainAxisAlignment.center,
-           children: [
-             SizedBox(
-               height: 50,
-               width:190,
-               child: CustomElevatedButton(
-                 buttonColor: ColorManager.pink,
-                 title:"Continue shopping",
-                 onPressed: () {
-                   Navigator.pushNamed(context, RoutesManager.layoutRoute);
-                 },
-               ),
-             ),
-           ],
-         ),
-         SizedBox(height: 20,),
-         Row(
-           mainAxisAlignment: MainAxisAlignment.center,
-           children: [
-             SizedBox(
-               height: 50,
-               width:190,
-               child: CustomElevatedButton(
-                 buttonColor: ColorManager.pink,
-                 title:"Track Order",
-                 onPressed: () {
-                 },
-               ),
-             ),
-           ],
-         )
-
-       ],
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Icon(
+            Icons.check_circle,
+            size: 45,
+            color: Color(0XFF2F9033),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Text("Thank you for shopping with us!"),
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            padding: const EdgeInsets.all(12.0),
+            margin: const EdgeInsets.symmetric(vertical: 4.0),
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Colors.grey,
+              ),
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SvgPicture.asset(
+                      AppAssets.cartLocationSvgImage,
+                      width: 24,
+                      height: 24,
+                    ),
+                    Text(widget.street ?? ""),
+                  ],
+                ),
+                Text(widget.city ?? "")
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            padding: const EdgeInsets.all(12.0),
+            margin: const EdgeInsets.symmetric(vertical: 4.0),
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Colors.grey,
+              ),
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SvgPicture.asset(
+                      AppAssets.cartLocationSvgImage,
+                      width: 24,
+                      height: 24,
+                    ),
+                    Text("EGY ${totalPriceWithDelivery.toString()}"),
+                  ],
+                ),
+                Container(
+                  child: (widget.isCash ?? true)
+                      ? Text("Pay with cash")
+                      : PaymentButton(checkoutUrl: widget.paymentUrl),
+                )
+              ],
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.all(12.0),
+            margin: const EdgeInsets.symmetric(vertical: 4.0),
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Colors.grey,
+              ),
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Icon(
+                      Icons.shopping_cart_outlined,
+                    ),
+                    Text(
+                      "${widget.orderItems?.length.toString()} Items",
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                ListView.separated(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (context, index) => OrderSummeryItem(
+                      imageUrl: widget.orderItems?[index].imgCover ?? "",
+                      itemTitle: widget.orderItems?[index].title ?? "",
+                      itemDetails: widget.orderItems?[index].description ?? "",
+                      itemPrice:
+                          widget.orderItems?[index].price.toString() ?? ""),
+                  separatorBuilder: (context, index) => const SizedBox(
+                    height: 24,
+                  ),
+                  itemCount: widget.orderItems!.length,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+              ],
+            ),
+          ),
+          OrderDetails(total: widget.totalPrice?.toDouble() ?? 0),
+          SizedBox(
+            height: 20,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 50,
+                width: 190,
+                child: CustomElevatedButton(
+                  buttonColor: ColorManager.pink,
+                  title: "Continue shopping",
+                  onPressed: () {
+                    Navigator.pushNamed(context, RoutesManager.layoutRoute);
+                  },
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 50,
+                width: 190,
+                child: CustomElevatedButton(
+                  buttonColor: ColorManager.pink,
+                  title: "Track Order",
+                  onPressed: () {},
+                ),
+              ),
+            ],
+          )
+        ],
       ),
     );
   }

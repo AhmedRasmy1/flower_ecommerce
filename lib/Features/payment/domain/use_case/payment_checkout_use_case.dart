@@ -1,4 +1,4 @@
-import 'package:flower_ecommerce/Features/payment/data/model/response/checkout_session_response/Paymernt_checkout_response.dart';
+import '../../data/model/response/checkout_session_response/Paymernt_checkout_response.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/common/api_result.dart';
@@ -11,7 +11,8 @@ class PaymentCheckoutUseCase {
 
   PaymentCheckoutUseCase(this.paymentCheckoutRepo);
 
-  Future<Result<PaymentCheckoutResponse?>> invoke(PaymentCheckoutRequest paymentRequest,String token) {
-    return paymentCheckoutRepo.getPaymentCheckout(paymentRequest,token);
+  Future<Result<PaymentCheckoutResponse?>> invoke(
+      PaymentCheckoutRequest paymentRequest, String token) {
+    return paymentCheckoutRepo.getPaymentCheckout(paymentRequest, token);
   }
 }

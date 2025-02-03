@@ -1,6 +1,6 @@
-import 'package:flower_ecommerce/core/resources/custom_loading.dart';
-import 'package:flower_ecommerce/core/widgets/error_toast.dart';
-import 'package:flower_ecommerce/core/widgets/success_toast.dart';
+import '../../../../core/resources/custom_loading.dart';
+import '../../../../core/widgets/error_toast.dart';
+import '../../../../core/widgets/success_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,7 +19,6 @@ class ButtonSaveBody extends StatefulWidget {
 
   final TextEditingController phone;
   final TextEditingController street;
-
 
   final AddAddressCubit viewModel;
 
@@ -54,11 +53,11 @@ class _ButtonSaveBodyState extends State<ButtonSaveBody> {
           buttonColor: ColorManager.pink,
           title: AppLocalizations.of(context)!.save_address,
           onPressed: () {
-            widget.viewModel.addAddress(city: widget.viewModel.city,
-                phone: widget.phone.text,
-                street: widget.street.text,
-
-                );
+            widget.viewModel.addAddress(
+              city: widget.viewModel.city,
+              phone: widget.phone.text,
+              street: widget.street.text,
+            );
           }),
     );
   }

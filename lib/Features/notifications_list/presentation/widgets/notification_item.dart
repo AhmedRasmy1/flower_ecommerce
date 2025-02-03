@@ -1,5 +1,5 @@
-import 'package:flower_ecommerce/Features/notifications_list/domain/entities/notifications_list_entity.dart';
-import 'package:flower_ecommerce/core/resources/color_manager.dart';
+import '../../domain/entities/notifications_list_entity.dart';
+import '../../../../core/resources/color_manager.dart';
 import 'package:flutter/material.dart';
 
 class NotificationItem extends StatelessWidget {

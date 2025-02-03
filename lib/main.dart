@@ -1,9 +1,9 @@
 import 'dart:ui';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:flower_ecommerce/Features/track_order_location/presentation/pages/track_order_location.dart';
-import 'package:flower_ecommerce/Features/track%20order/presentation/track_ui.dart';
-import 'package:flower_ecommerce/core/provider.dart';
+import 'Features/track_order_location/presentation/pages/track_order_location.dart';
+import 'Features/track%20order/presentation/track_ui.dart';
+import 'core/provider.dart';
 import 'package:provider/provider.dart';
 import 'core/resources/theme_manager.dart';
 import 'firebase_options.dart';
@@ -23,9 +23,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flower_ecommerce/services/notificttionservice.dart';
+import 'services/notificttionservice.dart';
+
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-FlutterLocalNotificationsPlugin();
+    FlutterLocalNotificationsPlugin();
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
   print('Handling a background message: ${message.messageId}');
@@ -38,9 +39,9 @@ Future<void> main() async {
   await CacheService.cacheInitialization();
 
   const AndroidInitializationSettings initializationSettingsAndroid =
-  AndroidInitializationSettings('@mipmap/ic_launcher');
+      AndroidInitializationSettings('@mipmap/ic_launcher');
   const InitializationSettings initializationSettings =
-  InitializationSettings(android: initializationSettingsAndroid);
+      InitializationSettings(android: initializationSettingsAndroid);
   await flutterLocalNotificationsPlugin.initialize(initializationSettings);
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   Bloc.observer = MyBlocObserver();
@@ -53,11 +54,13 @@ Future<void> main() async {
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
   runApp(const FlowerApp());
 }
+
 class FlowerApp extends StatefulWidget {
   const FlowerApp({super.key});
   @override
   State<FlowerApp> createState() => _FlowerAppState();
 }
+
 class _FlowerAppState extends State<FlowerApp> {
   late FirebaseMessaging _messaging;
   @override
@@ -67,6 +70,7 @@ class _FlowerAppState extends State<FlowerApp> {
     _requestPermission();
     _setupInteractedMessage();
   }
+
   Future<void> _requestPermission() async {
     NotificationSettings settings = await _messaging.requestPermission(
       alert: true,
@@ -83,6 +87,7 @@ class _FlowerAppState extends State<FlowerApp> {
       print('User declined permission');
     }
   }
+
   void _setupInteractedMessage() {
     _getToken();
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
@@ -96,15 +101,19 @@ class _FlowerAppState extends State<FlowerApp> {
       print('Message clicked!');
     });
   }
+
   Future<void> _getToken() async {
     String? token = await _messaging.getToken();
     print('FCM Token: $token');
   }
+
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value:  SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,/// mohamed zewin change//
+      value: SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+
+        /// mohamed zewin change//
         statusBarIconBrightness: Brightness.dark,
         systemNavigationBarColor: Colors.white,
         systemNavigationBarIconBrightness: Brightness.dark,
@@ -119,8 +128,7 @@ class _FlowerAppState extends State<FlowerApp> {
           ],
           child: Builder(
             builder: (context) {
-              final fontFamily =
-              context.read<LocaleCubit>().changeFontFamily();
+              final fontFamily = context.read<LocaleCubit>().changeFontFamily();
               return MaterialApp(
                 locale: context.watch<LocaleCubit>().state,
                 localizationsDelegates: [
@@ -141,8 +149,7 @@ class _FlowerAppState extends State<FlowerApp> {
                 ),
                 debugShowCheckedModeBanner: false,
                 onGenerateRoute: RouteGenerator.getRoute,
-           initialRoute: RoutesManager.splashRoute,
-
+                initialRoute: RoutesManager.splashRoute,
               );
             },
           ),

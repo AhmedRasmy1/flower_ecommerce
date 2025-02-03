@@ -1,8 +1,8 @@
-import 'package:flower_ecommerce/Features/cart&checkout/presentation/views/useful_methods/get_total_func.dart';
-import 'package:flower_ecommerce/Features/payment/data/model/request/payment_checkout_request.dart';
-import 'package:flower_ecommerce/Features/payment/data/model/request/shipping_address.dart';
-import 'package:flower_ecommerce/Features/payment/presentation/useful_methods/payment_navegation_items.dart';
-import 'package:flower_ecommerce/Features/payment/presentation/view/payment_cash_page.dart';
+import 'useful_methods/get_total_func.dart';
+import '../../../payment/data/model/request/payment_checkout_request.dart';
+import '../../../payment/data/model/request/shipping_address.dart';
+import '../../../payment/presentation/useful_methods/payment_navegation_items.dart';
+import '../../../payment/presentation/view/payment_cash_page.dart';
 
 import '../../../payment/presentation/view/payment_online_page.dart';
 import 'widgets/checkoutWidgets/addresswidget.dart';
@@ -33,9 +33,9 @@ class _CheckOutViewState extends State<CheckOutView> {
   late CheckoutViewModel _checkoutViewModel;
   bool _isGift = false;
   int? _selectedAddressIndex;
-   String city="";
-   String street="";
-   String phone="";
+  String city = "";
+  String street = "";
+  String phone = "";
   late String _paymentOption;
   @override
   void initState() {
@@ -99,7 +99,6 @@ class _CheckOutViewState extends State<CheckOutView> {
                   });
                 },
               ),
-
               const Divider(thickness: 24, color: Color(0xFFEAEAEA)),
               const SizedBox(height: 10),
               Padding(
@@ -145,10 +144,10 @@ class _CheckOutViewState extends State<CheckOutView> {
                       onTap: () {
                         setState(() {
                           _selectedAddressIndex = addresses.indexOf(address);
-                          city=address.city ??"";
-                          street=address.street??"";
-                          phone=address.phone??"";
-                          });
+                          city = address.city ?? "";
+                          street = address.street ?? "";
+                          phone = address.phone ?? "";
+                        });
                       },
                       child: AddressTile(
                         addressType: address.street ?? "Unnamed Address",
@@ -250,32 +249,31 @@ class _CheckOutViewState extends State<CheckOutView> {
           buttonColor: ColorManager.pink,
           title: 'Place Order',
           onPressed: () {
+            ShippingAddress userShippingAddress =
+                ShippingAddress(street: street, phone: phone, city: city);
 
-            ShippingAddress userShippingAddress=ShippingAddress(street:street ,phone:phone ,city:city );
-
-            PaymentCheckoutRequest paymentRequest=PaymentCheckoutRequest(shippingAddress: userShippingAddress);
-            PaymentNavigationItems paymentNavigationItems=PaymentNavigationItems(paymentCheckoutRequest: paymentRequest, orderItems: cartList);
-            if (_paymentOption=="cash"){
-             Navigator.push(
-                 context,
-                 MaterialPageRoute(
-                     builder: (context) => const PaymentCashPage(),
-                     settings: RouteSettings(arguments:paymentNavigationItems)));
-           }
-           else if(_paymentOption=="online"){
-             Navigator.push(
-                 context,
-                 MaterialPageRoute(
-                     builder: (context) => const PaymentOnlinePage(),
-                     settings: RouteSettings(arguments:paymentNavigationItems)));
-           }
-           else {
-
-           }
-
+            PaymentCheckoutRequest paymentRequest =
+                PaymentCheckoutRequest(shippingAddress: userShippingAddress);
+            PaymentNavigationItems paymentNavigationItems =
+                PaymentNavigationItems(
+                    paymentCheckoutRequest: paymentRequest,
+                    orderItems: cartList);
+            if (_paymentOption == "cash") {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const PaymentCashPage(),
+                      settings:
+                          RouteSettings(arguments: paymentNavigationItems)));
+            } else if (_paymentOption == "online") {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const PaymentOnlinePage(),
+                      settings:
+                          RouteSettings(arguments: paymentNavigationItems)));
+            } else {}
           }),
     );
   }
-
-
 }

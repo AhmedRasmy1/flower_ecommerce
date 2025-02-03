@@ -1,7 +1,7 @@
-import 'package:flower_ecommerce/Features/cart&checkout/domain/entities/cart_item_entity.dart';
-import 'package:flower_ecommerce/Features/cart&checkout/presentation/views/useful_methods/get_total_func.dart';
-import 'package:flower_ecommerce/Features/payment/presentation/useful_methods/payment_navegation_items.dart';
-import 'package:flower_ecommerce/Features/payment/presentation/useful_widgets/track_widget.dart';
+import '../../../cart&checkout/domain/entities/cart_item_entity.dart';
+import '../../../cart&checkout/presentation/views/useful_methods/get_total_func.dart';
+import '../useful_methods/payment_navegation_items.dart';
+import '../useful_widgets/track_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -12,7 +12,6 @@ import '../../../products/presentation/widgets/skeleton_body.dart';
 import '../payment_checkout_view_model/payment_checkout_cubit.dart';
 import '../payment_checkout_view_model/payment_checkout_state.dart';
 
-
 class PaymentOnlinePage extends StatefulWidget {
   const PaymentOnlinePage({super.key});
 
@@ -21,8 +20,6 @@ class PaymentOnlinePage extends StatefulWidget {
 }
 
 class _PaymentOnlinePageState extends State<PaymentOnlinePage> {
-
-
   late PaymentCheckoutViewModel paymentCheckoutViewModel;
   late final PaymentNavigationItems paymentData;
   String? checkoutUrl;
@@ -41,10 +38,12 @@ class _PaymentOnlinePageState extends State<PaymentOnlinePage> {
     String token = "Bearer $savedToken";
 
     paymentData =
-    ModalRoute.of(context)?.settings.arguments as PaymentNavigationItems;
+        ModalRoute.of(context)?.settings.arguments as PaymentNavigationItems;
 
-    paymentCheckoutViewModel.getPaymentCheckout(paymentData.paymentCheckoutRequest, token);
+    paymentCheckoutViewModel.getPaymentCheckout(
+        paymentData.paymentCheckoutRequest, token);
   }
+
   Future<void> openInBrowser(String url) async {
     final Uri uri = Uri.parse(url);
     if (await canLaunchUrl(uri)) {
@@ -80,18 +79,21 @@ class _PaymentOnlinePageState extends State<PaymentOnlinePage> {
                     if (state is PaymentCheckoutLoadingState) {
                       return const Expanded(child: SkeletonBody());
                     } else if (state is PaymentCheckoutSuccessState) {
-
                       checkoutUrl = state.response?.session?.url;
-                      List<CartItemEntity>? orderItems=paymentData.orderItems;
-                      String? city=paymentData.paymentCheckoutRequest.shippingAddress?.city;
-                      String? street=paymentData.paymentCheckoutRequest.shippingAddress?.street;
-                      num? totalPrice=getTotal(paymentData.orderItems);
+                      List<CartItemEntity>? orderItems = paymentData.orderItems;
+                      String? city = paymentData
+                          .paymentCheckoutRequest.shippingAddress?.city;
+                      String? street = paymentData
+                          .paymentCheckoutRequest.shippingAddress?.street;
+                      num? totalPrice = getTotal(paymentData.orderItems);
 
-
-
-                     return TrackWidget(orderItems: orderItems, city: city, street: street, totalPrice: totalPrice, isCash: false,paymentUrl:checkoutUrl );
-
-
+                      return TrackWidget(
+                          orderItems: orderItems,
+                          city: city,
+                          street: street,
+                          totalPrice: totalPrice,
+                          isCash: false,
+                          paymentUrl: checkoutUrl);
                     } else if (state is PaymentCheckoutErrorState) {
                       return Container(
                         color: Colors.red,

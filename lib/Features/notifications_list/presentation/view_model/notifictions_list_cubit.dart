@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:flower_ecommerce/Features/notifications_list/domain/entities/notifications_list_entity.dart';
-import 'package:flower_ecommerce/Features/notifications_list/domain/use_cases/notifications_list_use_case.dart';
-import 'package:flower_ecommerce/Features/notifications_list/presentation/view_model/notfications_list_state.dart';
+import '../../domain/entities/notifications_list_entity.dart';
+import '../../domain/use_cases/notifications_list_use_case.dart';
+import 'notfications_list_state.dart';
 import '../../../../../../core/common/api_result.dart';
 import 'package:injectable/injectable.dart';
 
