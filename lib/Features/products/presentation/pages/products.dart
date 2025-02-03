@@ -16,9 +16,6 @@ import '../manager/all_products_state.dart';
 import '../widgets/cart_product.dart';
 import '../widgets/skeleton_body.dart';
 
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 class GirdBodyOfProducts extends StatefulWidget {
   GirdBodyOfProducts({
     super.key,

@@ -8,7 +8,7 @@ import '../../../Features/cart&checkout/data/models/response/checkout/address_re
 import '../../../Features/cart&checkout/data/models/response/delete_product_response/delete_product_response.dart';
 import '../../../Features/cart&checkout/data/models/response/fetch_user_cart_response/fetch_user_cart_response.dart';
 import '../../../Features/cart&checkout/data/models/response/update_product_quantity/update_product_quantity.dart';
-import '../../../Features/orders/data/model/orders_response.dart';
+import '../../../Features/orders/data/model/user_orders_response.dart';
 import '../../../Features/payment/data/model/request/payment_checkout_request.dart';
 import '../../common/add_to_cart/data/models/request/add_to_cart_req_body.dart';
 import '../../common/add_to_cart/data/models/response/add_to_product_res_model/add_to_product_res_model.dart';
@@ -166,7 +166,7 @@ abstract class ApiService {
       @Header("Authorization") String token);
 
   @GET(ApiConstants.getUserOrdersRoute)
-  Future<OrdersResponse> getUserOrders(
+  Future<UserOrdersResponse> getUserOrders(
       @Header("Authorization") String token);
 
 

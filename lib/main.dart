@@ -2,9 +2,11 @@ import 'dart:ui';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flower_ecommerce/Features/track_order_location/presentation/pages/track_order_location.dart';
+import 'package:flower_ecommerce/Features/track%20order/presentation/track_ui.dart';
 import 'package:flower_ecommerce/core/provider.dart';
 import 'package:provider/provider.dart';
 import 'core/resources/theme_manager.dart';
+import 'firebase_options.dart';
 import 'localization/locale_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -17,7 +19,7 @@ import 'core/utils/cashed_data_shared_preferences.dart';
 import 'core/utils/my_bloc_observer.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
+
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -139,8 +141,8 @@ class _FlowerAppState extends State<FlowerApp> {
                 ),
                 debugShowCheckedModeBanner: false,
                 onGenerateRoute: RouteGenerator.getRoute,
-                initialRoute: RoutesManager.splashRoute,
-                // home: TrackOrderLocation(),
+           initialRoute: RoutesManager.splashRoute,
+
               );
             },
           ),

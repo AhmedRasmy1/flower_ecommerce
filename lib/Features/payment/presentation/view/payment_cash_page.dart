@@ -55,7 +55,7 @@ class _PaymentCashPageState extends State<PaymentCashPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomAppBar(
-                  title: "Payment",
+                  title: "Order Summary",
                   onTap: () {
                     Navigator.pop(context);
                   },

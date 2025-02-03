@@ -1,7 +1,8 @@
 
-import 'package:flower_ecommerce/Features/orders/domain/entities/orders_response_entity.dart';
 import 'package:injectable/injectable.dart';
+
 import '../../../../core/common/api_result.dart';
+import '../entities/user_orders_response_entity.dart';
 import '../reposiroeies/user_orders_repo.dart';
 @injectable
 class UserOrdersUseCase {
@@ -9,7 +10,7 @@ class UserOrdersUseCase {
 
   UserOrdersUseCase(this.userOrdersRepo);
 
-  Future<Result<OrdersResponseEntity?>> invoke(String token) {
+  Future<Result<UserOrdersResponseEntity?>> invoke(String token) {
     return userOrdersRepo.getUserOrders(token);
   }
 }
