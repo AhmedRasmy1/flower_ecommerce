@@ -87,6 +87,8 @@ class _MyLocationState extends State<MyLocation> {
             onDragEnd: (newPosition) {
               setState(() {
                 currentPosition = newPosition;
+                widget.viewModel.lat = currentPosition.latitude.toString();
+                widget.viewModel.long = currentPosition.longitude.toString();
               });
             },
             infoWindow: InfoWindow(

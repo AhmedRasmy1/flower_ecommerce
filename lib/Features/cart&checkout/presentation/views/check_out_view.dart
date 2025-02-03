@@ -139,7 +139,6 @@ class _CheckOutViewState extends State<CheckOutView> {
                 return const Center(child: CircularProgressIndicator());
               } else if (state is SuccessCheckoutState) {
                 final addresses = state.addressResponse?.addresses ?? [];
-
                 return Column(
                   children: addresses.map((address) {
                     return GestureDetector(

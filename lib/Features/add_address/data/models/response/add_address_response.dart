@@ -39,18 +39,26 @@ class Address {
     this.street,
     this.phone,
     this.city,
-    this.id,
-  });
+    this.lat,
+    this.long,
+    this.username,
+    this.id,});
 
   Address.fromJson(dynamic json) {
     street = json['street'];
     phone = json['phone'];
     city = json['city'];
+    lat = json['lat'];
+    long = json['long'];
+    username = json['username'];
     id = json['_id'];
   }
   String? street;
   String? phone;
   String? city;
+  String? lat;
+  String? long;
+  String? username;
   String? id;
 
   Map<String, dynamic> toJson() {
@@ -58,7 +66,11 @@ class Address {
     map['street'] = street;
     map['phone'] = phone;
     map['city'] = city;
+    map['lat'] = lat;
+    map['long'] = long;
+    map['username'] = username;
     map['_id'] = id;
     return map;
   }
+
 }

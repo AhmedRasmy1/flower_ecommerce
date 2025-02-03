@@ -10,7 +10,8 @@ class AddAddressUseCase {
   AddAddressUseCase(this._addAddressRepo);
 
   Future<Result<AddAddressEntity?>> addAddress(
-      String city, String phone, String street) async {
-    return await _addAddressRepo.addAddressRepo(city, phone, street);
+      String city, String phone,
+      String street, String lat, String long, String username) async {
+    return await _addAddressRepo.addAddressRepo(city, phone, street, lat, long, username);
   }
 }

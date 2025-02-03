@@ -1,7 +1,8 @@
 import 'dart:ui';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:flower_ecommerce/Features/track_order_location/presentation/pages/track_order_location.dart';
 import 'package:flower_ecommerce/Features/track%20order/presentation/track_ui.dart';
-
 import 'package:flower_ecommerce/core/provider.dart';
 import 'package:provider/provider.dart';
 import 'core/resources/theme_manager.dart';
@@ -102,8 +103,8 @@ class _FlowerAppState extends State<FlowerApp> {
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: const SystemUiOverlayStyle(
-        statusBarColor: ColorManager.white,
+      value:  SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,/// mohamed zewin change//
         statusBarIconBrightness: Brightness.dark,
         systemNavigationBarColor: Colors.white,
         systemNavigationBarIconBrightness: Brightness.dark,
@@ -140,8 +141,8 @@ class _FlowerAppState extends State<FlowerApp> {
                 ),
                 debugShowCheckedModeBanner: false,
                 onGenerateRoute: RouteGenerator.getRoute,
-//home: TrackOrderScreen(orderId: "67a0f8e8941115133e6f9d65"),
            initialRoute: RoutesManager.splashRoute,
+
               );
             },
           ),

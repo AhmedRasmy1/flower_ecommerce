@@ -3,5 +3,6 @@ import '../entities/add_address_entity.dart';
 
 abstract class AddAddressRepo {
   Future<Result<AddAddressEntity?>> addAddressRepo(
-      String city, String phone, String street);
+      String city, String phone,
+      String street, String lat, String long, String username);
 }

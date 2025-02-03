@@ -20,6 +20,7 @@ class ButtonSaveBody extends StatefulWidget {
   final TextEditingController phone;
   final TextEditingController street;
 
+
   final AddAddressCubit viewModel;
 
   @override
@@ -53,8 +54,11 @@ class _ButtonSaveBodyState extends State<ButtonSaveBody> {
           buttonColor: ColorManager.pink,
           title: AppLocalizations.of(context)!.save_address,
           onPressed: () {
-            widget.viewModel.addAddress(
-                widget.viewModel.city, widget.phone.text, widget.street.text);
+            widget.viewModel.addAddress(city: widget.viewModel.city,
+                phone: widget.phone.text,
+                street: widget.street.text,
+
+                );
           }),
     );
   }

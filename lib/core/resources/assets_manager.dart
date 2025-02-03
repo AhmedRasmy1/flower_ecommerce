@@ -24,4 +24,10 @@ class AssetsManager {
   static const String mapStyleMapStyle = 'assets/map_style/map_style.json';
   static const String backIcon = 'assets/images/arrow-right-new.svg';
   static const String noBouqeut='assets/images/rose.jpg';
+  static const String markerApartment='assets/images/marker_apartment.png';
+  static const String markerDelivery='assets/images/marker_delivery.png';
+  static const String markerStore='assets/images/store_marker.png';
+  static const String whatsapp = 'assets/images/whatsapp.svg';
+  static const String call = 'assets/images/call.svg';
+  static const String backIconMap = 'assets/images/BackIconMap.svg';
 }
