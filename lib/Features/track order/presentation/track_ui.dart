@@ -1,6 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flower_ecommerce/core/resources/routes_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
+import '../../track_order_location/presentation/pages/track_order_location.dart';
 class TrackOrderScreen extends StatelessWidget {
 
   const TrackOrderScreen({super.key});
@@ -91,7 +94,9 @@ class TrackOrderScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 20),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => TrackOrderLocation(),));
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.pink,
                     minimumSize: Size(double.infinity, 50),
