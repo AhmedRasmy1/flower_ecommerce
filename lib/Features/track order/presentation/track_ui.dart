@@ -2,10 +2,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 class TrackOrderScreen extends StatelessWidget {
-  final String orderId;
-  TrackOrderScreen({required this.orderId});
+
+  const TrackOrderScreen({super.key});
   @override
   Widget build(BuildContext context) {
+
+   String? orderId = ModalRoute.of(context)!.settings.arguments as String;
+    print("in track order page ------------- $orderId");
+   // String orderId="679d3852941115133e6f3907";
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(

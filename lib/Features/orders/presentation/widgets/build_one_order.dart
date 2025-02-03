@@ -1,5 +1,7 @@
 import 'package:flower_ecommerce/Features/orders/data/model/user_orders.dart';
 import 'package:flower_ecommerce/Features/orders/presentation/utilties/my_order_details_to_view.dart';
+import 'package:flower_ecommerce/Features/track%20order/presentation/track_ui.dart';
+import 'package:flower_ecommerce/core/resources/routes_manager.dart';
 import 'package:flower_ecommerce/core/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/resources/color_manager.dart';
@@ -78,7 +80,14 @@ class BuildOneOrder extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(AppSize.s20)),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          print(order.id);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const TrackOrderScreen(),
+                                  settings: RouteSettings(arguments: order.id)));
+                        },
                         child: Text("Track Order",style: const TextStyle(
                             fontSize: 13, fontWeight:FontWeight.w500)),
                       ),
