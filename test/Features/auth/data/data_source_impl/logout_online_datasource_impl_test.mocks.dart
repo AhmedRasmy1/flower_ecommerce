@@ -60,7 +60,7 @@ import 'package:flower_ecommerce/Features/notifications_list/data/models/notific
     as _i19;
 import 'package:flower_ecommerce/Features/occasions/data/models/occasion_response/occasion_response.dart'
     as _i27;
-import 'package:flower_ecommerce/Features/orders/data/model/orders_response.dart'
+import 'package:flower_ecommerce/Features/orders/data/model/user_orders_response.dart'
     as _i18;
 import 'package:flower_ecommerce/Features/payment/data/model/request/payment_checkout_request.dart'
     as _i39;
@@ -266,9 +266,9 @@ class _FakeCashOrderResponse_15 extends _i1.SmartFake
         );
 }
 
-class _FakeOrdersResponse_16 extends _i1.SmartFake
-    implements _i18.OrdersResponse {
-  _FakeOrdersResponse_16(
+class _FakeUserOrdersResponse_16 extends _i1.SmartFake
+    implements _i18.UserOrdersResponse {
+  _FakeUserOrdersResponse_16(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -742,21 +742,21 @@ class MockApiService extends _i1.Mock implements _i20.ApiService {
       ) as _i21.Future<_i17.CashOrderResponse>);
 
   @override
-  _i21.Future<_i18.OrdersResponse> getUserOrders(String? token) =>
+  _i21.Future<_i18.UserOrdersResponse> getUserOrders(String? token) =>
       (super.noSuchMethod(
         Invocation.method(
           #getUserOrders,
           [token],
         ),
-        returnValue:
-            _i21.Future<_i18.OrdersResponse>.value(_FakeOrdersResponse_16(
+        returnValue: _i21.Future<_i18.UserOrdersResponse>.value(
+            _FakeUserOrdersResponse_16(
           this,
           Invocation.method(
             #getUserOrders,
             [token],
           ),
         )),
-      ) as _i21.Future<_i18.OrdersResponse>);
+      ) as _i21.Future<_i18.UserOrdersResponse>);
 
   @override
   _i21.Future<_i19.NotificationsListDto> getAllNotifications(String? token) =>

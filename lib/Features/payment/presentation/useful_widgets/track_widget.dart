@@ -43,33 +43,7 @@ class _TrackWidgetState extends State<TrackWidget> {
        children: [
          Icon(Icons.check_circle,size: 45,color:Color(0XFF2F9033),),
          SizedBox(height: 10,),
-         Text("Your order placed successfully!"),
-         SizedBox(height: 10,),
-         Row(
-           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-           children: [
-             Container(
-               height: 3,
-               width: 100,
-               color: Color(0XFF2F9033),
-             ),
-             Container(
-               height: 3,
-               width: 100,
-               color: Color(0XFFA6A6A6),
-             ),
-             Container(
-               height: 3,
-               width: 100,
-               color: Color(0XFFA6A6A6),
-             ),
-             Container(
-               height: 3,
-               width: 100,
-               color: Color(0XFFA6A6A6),
-             )
-           ],
-         ),
+         Text("Thank you for shopping with us!"),
          SizedBox(height: 10,),
          Container(
            padding: const EdgeInsets.all(12.0),
@@ -169,6 +143,7 @@ class _TrackWidgetState extends State<TrackWidget> {
          OrderDetails(total: widget.totalPrice?.toDouble()??0),
          SizedBox(height: 20,),
          Row(
+           mainAxisAlignment: MainAxisAlignment.center,
            children: [
              SizedBox(
                height: 50,
@@ -181,18 +156,22 @@ class _TrackWidgetState extends State<TrackWidget> {
                  },
                ),
              ),
-             SizedBox(width: 20,),
+           ],
+         ),
+         SizedBox(height: 20,),
+         Row(
+           mainAxisAlignment: MainAxisAlignment.center,
+           children: [
              SizedBox(
                height: 50,
-               width: 190,
+               width:190,
                child: CustomElevatedButton(
                  buttonColor: ColorManager.pink,
-                 title:"Cancel order",
+                 title:"Track Order",
                  onPressed: () {
-                   Navigator.pushNamed(context, RoutesManager.layoutRoute);
                  },
                ),
-             )
+             ),
            ],
          )
 

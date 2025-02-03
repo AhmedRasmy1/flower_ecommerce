@@ -1,14 +1,14 @@
 
-import 'package:flower_ecommerce/Features/orders/domain/entities/orders_response_entity.dart';
+import '../../domain/entities/user_orders_response_entity.dart';
 
 sealed class OrdersState {}
 
 class InitialState extends OrdersState {}
 
 class SuccessOrdersState extends OrdersState {
-  OrdersResponseEntity? ordersEntities;
+  UserOrdersResponseEntity? userOrdersResponseEntity;
 
-  SuccessOrdersState(this.ordersEntities);
+  SuccessOrdersState(this.userOrdersResponseEntity);
 }
 
 class LoadingOrdersState extends OrdersState {}
