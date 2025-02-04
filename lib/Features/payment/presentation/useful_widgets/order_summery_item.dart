@@ -45,21 +45,23 @@ class OrderSummeryItem extends StatelessWidget {
             const SizedBox(
               width: 8,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-
-                Text( itemTitle),
-                Text(
-                  splitText(itemDetails, 40),
-                  style: const TextStyle(fontSize: 12),
-                ),
-
-
-              ],
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+              
+                  Text( itemTitle),
+                  Text(
+                    splitText(itemDetails, 40),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    style: const TextStyle(fontSize: 12),
+                  ),
+                ],
+              ),
             ),
-            Spacer(),
+        
             Text(
               " $itemPrice EGP",
               style: const TextStyle().copyWith(

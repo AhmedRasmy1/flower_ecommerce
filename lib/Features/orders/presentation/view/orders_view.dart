@@ -1,3 +1,5 @@
+import 'package:flower_ecommerce/core/resources/style_manager.dart';
+
 import '../../data/model/user_orders.dart';
 import '../utilties/active_or_complete.dart';
 
@@ -65,11 +67,8 @@ class _MyOrdersPageState extends State<MyOrdersPage>
       create: (context) => ordersViewModel,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text(AppStrings.myOrders,
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold)),
+          title:  Text(AppStrings.myOrders,
+              style: getSemiBoldStyle(fontSize: 20,),),
           backgroundColor: Colors.white,
           elevation: 1,
           bottom: TabBar(
@@ -77,7 +76,7 @@ class _MyOrdersPageState extends State<MyOrdersPage>
             indicatorColor: ColorManager.pink,
             labelColor: ColorManager.pink,
             unselectedLabelColor: Colors.grey,
-            labelStyle: const TextStyle(fontWeight: FontWeight.bold),
+            labelStyle: getSemiBoldStyle(fontSize: 16),
             tabs: const [
               Tab(text: AppStrings.active),
               Tab(text: AppStrings.complete),
@@ -95,18 +94,20 @@ class _MyOrdersPageState extends State<MyOrdersPage>
               if (listUserOrders != null) {
                 List<UserOrders> activeOrders =
                     activeOrComplete(listUserOrders, "active");
+                List<UserOrders> newActiveOrders=activeOrders.reversed.toList();
                 List<UserOrders> completedOrders =
                     activeOrComplete(listUserOrders, "completed");
+                List<UserOrders> newCompletedOrders=completedOrders.reversed.toList();
                 return TabBarView(
                   controller: _tabController,
                   children: [
                     // Active Orders
                     BuildOrderList(
-                      orderDetailsList: activeOrders,
+                      orderDetailsList: newActiveOrders,
                     ),
                     // Completed Orders
                     BuildOrderList(
-                      orderDetailsList: completedOrders,
+                      orderDetailsList: newCompletedOrders,
                     ),
                   ],
                 );

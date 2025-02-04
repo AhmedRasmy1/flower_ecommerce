@@ -1,3 +1,6 @@
+import 'package:flower_ecommerce/core/resources/style_manager.dart';
+import 'package:flower_ecommerce/core/widgets/custom_text_form_field.dart';
+
 import 'useful_methods/get_total_func.dart';
 import '../../../payment/data/model/request/payment_checkout_request.dart';
 import '../../../payment/data/model/request/shipping_address.dart';
@@ -37,6 +40,7 @@ class _CheckOutViewState extends State<CheckOutView> {
   String street = "";
   String phone = "";
   late String _paymentOption;
+
   @override
   void initState() {
     super.initState();
@@ -100,9 +104,9 @@ class _CheckOutViewState extends State<CheckOutView> {
                 },
               ),
               const Divider(thickness: 24, color: Color(0xFFEAEAEA)),
-              const SizedBox(height: 10),
+
               Padding(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: buildIsGiftSection(),
               ),
               const Divider(thickness: 24, color: Color(0xFFEAEAEA)),
@@ -114,6 +118,9 @@ class _CheckOutViewState extends State<CheckOutView> {
                 padding: const EdgeInsets.all(16),
                 child: _buildCheckoutButton(),
               ),
+              SizedBox(
+                height: 12,
+              )
             ],
           ),
         ),
@@ -171,7 +178,7 @@ class _CheckOutViewState extends State<CheckOutView> {
             },
           ),
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 10),
         // Add New Address Button
         SizedBox(
           width: double.infinity,
@@ -188,9 +195,9 @@ class _CheckOutViewState extends State<CheckOutView> {
                 borderRadius: BorderRadius.circular(50),
               ),
             ),
-            child: const Text(
+            child: Text(
               ' + Add new',
-              style: TextStyle(color: ColorManager.pink),
+              style: getBoldStyle(color: ColorManager.pink, fontSize: 16),
             ),
           ),
         ),
@@ -203,18 +210,21 @@ class _CheckOutViewState extends State<CheckOutView> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(height: 8),
         Row(
           children: [
-            Switch(
-              activeColor: Colors.white,
-              activeTrackColor: Colors.pink,
-              value: _isGift,
-              onChanged: (value) {
-                setState(() {
-                  _isGift = value;
-                });
-              },
+            Transform.scale(
+              scale: .7,
+              child: Switch(
+                activeColor: Colors.white,
+                activeTrackColor: Colors.pink,
+                inactiveThumbColor: ColorManager.pink,
+                value: _isGift,
+                onChanged: (value) {
+                  setState(() {
+                    _isGift = value;
+                  });
+                },
+              ),
             ),
             const Text(
               'It is a gift',
@@ -224,19 +234,18 @@ class _CheckOutViewState extends State<CheckOutView> {
         ),
         if (_isGift) ...[
           const SizedBox(height: 8),
-          const TextField(
-            decoration: InputDecoration(
-              labelText: 'Name',
-              border: OutlineInputBorder(),
-            ),
+          CustomTextFormField(
+            controller: TextEditingController(),
+            labelText: 'Name',
+            hintText: 'Enter the name',
+          ),
+          const SizedBox(height: 16),
+          CustomTextFormField(
+            controller: TextEditingController(),
+            labelText: 'Phone number',
+            hintText: 'Enter the phone number',
           ),
           const SizedBox(height: 8),
-          const TextField(
-            decoration: InputDecoration(
-              labelText: 'Phone number',
-              border: OutlineInputBorder(),
-            ),
-          ),
         ],
       ],
     );

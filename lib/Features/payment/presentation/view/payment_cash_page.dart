@@ -3,6 +3,7 @@ import '../../data/model/request/payment_checkout_request.dart';
 import '../../data/model/response/cash_order_response/OrderItems.dart';
 import '../cash_order_view_model/cash_order_cubit.dart';
 import '../useful_methods/payment_navegation_items.dart';
+import '../useful_widgets/skeleton_payment.dart';
 import '../useful_widgets/track_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -50,43 +51,44 @@ class _PaymentCashPageState extends State<PaymentCashPage> {
         child: Scaffold(
           body: Padding(
             padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CustomAppBar(
-                  title: "Order Summary",
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                ),
-                BlocBuilder<CashOrderViewModel, CashOrderState>(
-                  builder: (context, state) {
-                    if (state is CashOrderLoadingState) {
-                      return const Expanded(child: SkeletonBody());
-                    } else if (state is CashOrderSuccessState) {
-                      List<CartItemEntity>? orderItems = paymentData.orderItems;
-                      String? city = paymentData
-                          .paymentCheckoutRequest.shippingAddress?.city;
-                      String? street = paymentData
-                          .paymentCheckoutRequest.shippingAddress?.street;
-                      num? totalPrice = state.response?.order?.totalPrice;
-                      return TrackWidget(
-                        orderItems: orderItems,
-                        city: city,
-                        street: street,
-                        totalPrice: totalPrice,
-                        isCash: true,
-                      );
-                    } else if (state is CashOrderErrorState) {
-                      return Container(
-                        color: Colors.red,
-                      );
-                    } else {
-                      return Container();
-                    }
-                  },
-                ),
-              ],
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  CustomAppBar(
+                    title: "Order Summary",
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                  BlocBuilder<CashOrderViewModel, CashOrderState>(
+                    builder: (context, state) {
+                      if (state is CashOrderLoadingState) {
+                        return SkeletonPayment();
+                      } else if (state is CashOrderSuccessState) {
+                        List<CartItemEntity>? orderItems = paymentData.orderItems;
+                        String? city = paymentData
+                            .paymentCheckoutRequest.shippingAddress?.city;
+                        String? street = paymentData
+                            .paymentCheckoutRequest.shippingAddress?.street;
+                        num? totalPrice = state.response?.order?.totalPrice;
+                        return TrackWidget(
+                          orderItems: orderItems,
+                          city: city,
+                          street: street,
+                          totalPrice: totalPrice,
+                          isCash: true,
+                        );
+                      } else if (state is CashOrderErrorState) {
+                        return Container(
+                          color: Colors.red,
+                        );
+                      } else {
+                        return Container();
+                      }
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         ),

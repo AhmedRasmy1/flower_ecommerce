@@ -1,18 +1,23 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flower_ecommerce/core/resources/color_manager.dart';
 import 'package:flower_ecommerce/core/resources/routes_manager.dart';
+import 'package:flower_ecommerce/core/resources/style_manager.dart';
+import 'package:flower_ecommerce/core/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 
 import '../../track_order_location/presentation/pages/track_order_location.dart';
-class TrackOrderScreen extends StatelessWidget {
 
+class TrackOrderScreen extends StatelessWidget {
   const TrackOrderScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
-
-   String? orderId = ModalRoute.of(context)!.settings.arguments as String;
-    print("in track order page ------------- $orderId");
-   // String orderId="679d3852941115133e6f3907";
+    String? orderId = ModalRoute
+        .of(context)!
+        .settings
+        .arguments as String;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -26,90 +31,110 @@ class TrackOrderScreen extends StatelessWidget {
         title: Text('Track order', style: TextStyle(color: Colors.black)),
         elevation: 0,
       ),
-      body: StreamBuilder<DocumentSnapshot>(
-        stream: FirebaseFirestore.instance.collection('OrdersInfo').doc(orderId).snapshots(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
-          }
-          if (!snapshot.hasData || snapshot.data == null || !snapshot.data!.exists) {
-            return Center(child: Text("No order found"));
-          }
-          var orderData = snapshot.data!.data() as Map<String, dynamic>;
-          // Accessing data
-          String state = orderData['state'] ?? 'Accepted';
-          Map<String, dynamic> driver = orderData['driver'] ?? {};
-          String arrivalTime = _formatDateTime(DateTime.now());
-          return Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Estimated arrival',
-                  style: TextStyle(color: Colors.grey),
-                ),
-                SizedBox(height: 4),
-                Text(
-                  arrivalTime,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                ),
-                Divider(height: 20, thickness: 1),
-                Row(
-                  children: [
-                    CircleAvatar(
-                      radius: 24,
-                      backgroundColor: Colors.grey[200],
-                      child: Icon(Icons.person, color: Colors.pink),
-                    ),
-                    SizedBox(width: 16),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          driver['firstName'] ?? 'Unknown',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          'Is your delivery hero for today',
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                      ],
-                    ),
-                    Spacer(),
-                    Icon(Icons.phone, color: Colors.pink),
-                    SizedBox(width: 16),
-                    Icon(Icons.chat, color: Colors.pink),
-                  ],
-                ),
-                SizedBox(height: 20),
-                Center(
-                  child: Image.asset('assets/images/Car.png', errorBuilder: (context, error, stackTrace) {
-                    return Text('Image not found');
-                  }),
-                ),
-                SizedBox(height: 20),
-                Expanded(
-                  child: _buildOrderTimeline(state),
-                ),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => TrackOrderLocation(),));
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.pink,
-                    minimumSize: Size(double.infinity, 50),
+      body: orderId.isNotEmpty
+          ? Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: StreamBuilder<DocumentSnapshot>(
+          stream: FirebaseFirestore.instance
+              .collection('OrdersInfo')
+              .doc(orderId)
+              .snapshots(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                  child: CircularProgressIndicator(
+                    color: ColorManager.pink,
+                  ));
+            }
+            if (!snapshot.hasData ||
+                snapshot.data == null ||
+                !snapshot.data!.exists) {
+              return Center(child: Text("No order found"));
+            }
+            var orderData = snapshot.data!.data() as Map<String, dynamic>;
+            String state = orderData['state'] ?? 'Accepted';
+            Map<String, dynamic> driver = orderData['driver'] ?? {};
+            String arrivalTime = _formatDateTime(DateTime.now());
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Estimated arrival',
+                    style: TextStyle(color: Colors.grey),
                   ),
-                  child: Text('Show map', style: TextStyle(color: Colors.white)),
-                ),
-              ],
-            ),
-          );
-        },
+                  SizedBox(height: 4),
+                  Text(
+                    arrivalTime,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
+                  Divider(height: 20, thickness: 1),
+                  Row(
+                    children: [
+                      CircleAvatar(
+                        radius: 24,
+                        backgroundColor: Colors.grey[200],
+                        child: Icon(Icons.person, color: Colors.pink),
+                      ),
+                      SizedBox(width: 16),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            driver['firstName'] ?? 'Unknown',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            'Is your delivery hero for today',
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                        ],
+                      ),
+                      Spacer(),
+                      Icon(Icons.phone, color: Colors.pink),
+                      SizedBox(width: 16),
+                      Icon(Icons.chat, color: Colors.pink),
+                    ],
+                  ),
+                  SizedBox(height: 20),
+                  Center(
+                      child: SvgPicture.asset('assets/images/Car.svg')
+                  ),
+                  SizedBox(height: 40),
+                  Expanded(
+                    child: _buildOrderTimeline(state),
+                  ),
+                  SizedBox(height: 10),
+                  CustomElevatedButton(
+                      buttonColor: ColorManager.pink,
+                      title: 'Show map',
+                      onPressed: (){
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => TrackOrderLocation(),
+                            ));
+                      }),
+                  SizedBox(height: 40),
+
+                ],
+              ),
+            );
+          },
+        ),
+      )
+          : Scaffold(
+        body: Center(
+            child: Text(
+              'The order is not yet confirmed',
+              style: getSemiBoldStyle(fontSize: 24),
+            )),
       ),
     );
   }
+
   Widget _buildOrderTimeline(String currentState) {
     DateTime now = DateTime.now();
     List<String> statuses = [
@@ -130,14 +155,16 @@ class TrackOrderScreen extends StatelessWidget {
         DateTime currentTime = now.add(Duration(minutes: 30 * index));
         return Column(
           children: [
-            _buildOrderStatus(status, _formatDateTime(currentTime), isActive: isActive),
-            SizedBox(height: 20),
+            _buildOrderStatus(status, _formatDateTime(currentTime),
+                isActive: isActive),
           ],
         );
       }).toList(),
     );
   }
-  Widget _buildOrderStatus(String status, String date, {bool isActive = false}) {
+
+  Widget _buildOrderStatus(String status, String date,
+      {bool isActive = false}) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -149,7 +176,7 @@ class TrackOrderScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 color: isActive ? Colors.pink : Colors.white,
                 border: Border.all(
-                  color: Colors.pink,
+                  color: isActive ? Colors.pink : Colors.grey,
                   width: 2,
                 ),
                 borderRadius: BorderRadius.circular(8),
@@ -158,12 +185,12 @@ class TrackOrderScreen extends StatelessWidget {
             if (status != "Arrived")
               Container(
                 width: 2,
-                height: 40,
-                color: Colors.pink,
+                height: 55,
+                color: isActive ? Colors.pink : Colors.grey,
               ),
           ],
         ),
-        SizedBox(width: 10),
+        SizedBox(width: 20),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -175,6 +202,7 @@ class TrackOrderScreen extends StatelessWidget {
       ],
     );
   }
+
   String _formatDateTime(DateTime dateTime) {
     return DateFormat('dd MMM yyyy - HH:mm').format(dateTime);
   }

@@ -28,22 +28,24 @@ class _AddressViewState extends State<AddressView> {
       create: (context) => viewModel,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            CustomAppBar(
-              title: AppLocalizations.of(context)!.add_address,
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            SizedBox(height: 24),
-            MyLocation(
-              viewModel: viewModel,
-            ),
-            AddAddressBody(
-              viewModel: viewModel,
-            ),
-          ],
+        child: SafeArea(
+          child: Column(
+            children: [
+              CustomAppBar(
+                title: AppLocalizations.of(context)!.add_address,
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              SizedBox(height: 24),
+              MyLocation(
+                viewModel: viewModel,
+              ),
+              AddAddressBody(
+                viewModel: viewModel,
+              ),
+            ],
+          ),
         ),
       ),
     );

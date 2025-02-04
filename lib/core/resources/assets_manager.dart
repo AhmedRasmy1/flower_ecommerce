@@ -30,4 +30,5 @@ class AssetsManager {
   static const String whatsapp = 'assets/images/whatsapp.svg';
   static const String call = 'assets/images/call.svg';
   static const String backIconMap = 'assets/images/BackIconMap.svg';
+  static const String money = 'assets/images/money.svg';
 }

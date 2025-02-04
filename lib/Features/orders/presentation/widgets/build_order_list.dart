@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import '../../data/model/user_orders.dart';
 
 class BuildOrderList extends StatelessWidget {
-  BuildOrderList({required this.orderDetailsList, super.key});
+ const BuildOrderList({required this.orderDetailsList, super.key});
 
-  List<UserOrders> orderDetailsList;
+ final List<UserOrders> orderDetailsList;
 
   @override
   Widget build(BuildContext context) {

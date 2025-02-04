@@ -1,3 +1,6 @@
+import 'package:flower_ecommerce/core/resources/assets_manager.dart';
+import 'package:flower_ecommerce/core/resources/style_manager.dart';
+
 import '../../../cart&checkout/domain/entities/cart_item_entity.dart';
 import 'order_summery_item.dart';
 import 'payment_button.dart';
@@ -51,69 +54,80 @@ class _TrackWidgetState extends State<TrackWidget> {
           SizedBox(
             height: 10,
           ),
-          Text("Thank you for shopping with us!"),
-          SizedBox(
-            height: 10,
-          ),
-          Container(
-            padding: const EdgeInsets.all(12.0),
-            margin: const EdgeInsets.symmetric(vertical: 4.0),
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.grey,
-              ),
-              borderRadius: BorderRadius.circular(8.0),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SvgPicture.asset(
-                      AppAssets.cartLocationSvgImage,
-                      width: 24,
-                      height: 24,
-                    ),
-                    Text(widget.street ?? ""),
-                  ],
-                ),
-                Text(widget.city ?? "")
-              ],
-            ),
+          Text(
+            "Thank you for shopping with us!",
+            style: getBoldStyle(color: ColorManager.black, fontSize: 16),
           ),
           SizedBox(
             height: 10,
           ),
-          Container(
-            padding: const EdgeInsets.all(12.0),
-            margin: const EdgeInsets.symmetric(vertical: 4.0),
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.grey,
+          Card(
+            elevation: 4,
+            color: ColorManager.white,
+            margin: const EdgeInsets.symmetric(vertical: 12.0),
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SvgPicture.asset(
+                        AppAssets.cartLocationSvgImage,
+                        width: 24,
+                        height: 24,
+                      ),
+                      Expanded(
+                          child: Text(
+                        widget.street ?? "",
+                        overflow: TextOverflow.ellipsis,
+                      )),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  Text(widget.city ?? "")
+                ],
               ),
-              borderRadius: BorderRadius.circular(8.0),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SvgPicture.asset(
-                      AppAssets.cartLocationSvgImage,
-                      width: 24,
-                      height: 24,
-                    ),
-                    Text("EGY ${totalPriceWithDelivery.toString()}"),
-                  ],
-                ),
-                Container(
-                  child: (widget.isCash ?? true)
-                      ? Text("Pay with cash")
-                      : PaymentButton(checkoutUrl: widget.paymentUrl),
-                )
-              ],
+          ),
+          Card(
+            elevation: 4,
+            color: ColorManager.white,
+            margin: const EdgeInsets.symmetric(vertical: 12.0),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SvgPicture.asset(
+                        AssetsManager.money,
+                        width: 24,
+                        height: 24,
+                      ),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      Text(
+                        "EGY ${totalPriceWithDelivery.toString()}",
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  Container(
+                    child: (widget.isCash ?? true)
+                        ? Text("Pay with cash")
+                        : PaymentButton(checkoutUrl: widget.paymentUrl),
+                  )
+                ],
+              ),
             ),
           ),
           Container(

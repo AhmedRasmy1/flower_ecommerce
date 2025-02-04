@@ -16,34 +16,33 @@ class PaymentOptionTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          border:
-              Border.all(color: isSelected ? ColorManager.pink : Colors.grey),
-          borderRadius: BorderRadius.circular(8.0),
-        ),
-        child: Row(
-          mainAxisAlignment:
-              MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(
-              child: Text(
-                option,
-                style: TextStyle(
-                  color: isSelected ? ColorManager.pink : Colors.black,
-                  fontWeight: FontWeight.bold,
+      child: Card(
+        elevation: 4,
+        color: ColorManager.white,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Row(
+            mainAxisAlignment:
+                MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Text(
+                  option,
+                  style: TextStyle(
+                    color: isSelected ? ColorManager.pink : Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-            ),
-            Radio<int>(
-              value: 1,
-              groupValue: isSelected ? 1 : 0,
-              activeColor: ColorManager.pink,
-              onChanged: (value) => onTap(),
-            ),
-          ],
+              Radio<int>(
+                value: 1,
+                groupValue: isSelected ? 1 : 0,
+                activeColor: ColorManager.pink,
+
+                onChanged: (value) => onTap(),
+              ),
+            ],
+          ),
         ),
       ),
     );

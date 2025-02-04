@@ -21,7 +21,7 @@ class AddressTile extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.all(12.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 4),
         margin: const EdgeInsets.symmetric(vertical: 4.0),
         decoration: BoxDecoration(
           border: Border.all(
@@ -35,27 +35,33 @@ class AddressTile extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    Radio<bool>(
-                      activeColor: Colors.pink,
-                      value: true,
-                      groupValue: isSelected,
-                      onChanged: (value) {
-                        if (onTap != null) {
-                          onTap!();
-                        }
-                      },
-                    ),
-                    Text(
-                      addressType,
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: isSelected ? Colors.pink : Colors.black,
+                Expanded(
+                  child: Row(
+                    children: [
+                      Radio<bool>(
+                        activeColor: Colors.pink,
+                        value: true,
+                        groupValue: isSelected,
+                        onChanged: (value) {
+                          if (onTap != null) {
+                            onTap!();
+                          }
+                        },
                       ),
-                    ),
-                  ],
+                      Expanded(
+                        child: Text(
+                          addressType,
+                          overflow:TextOverflow.ellipsis,
+                          maxLines: 1,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: isSelected ? Colors.pink : Colors.black,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 IconButton(
                   onPressed: onEditTap,

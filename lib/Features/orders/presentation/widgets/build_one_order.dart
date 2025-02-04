@@ -1,15 +1,14 @@
+import 'package:flower_ecommerce/core/resources/style_manager.dart';
 import '../../data/model/user_orders.dart';
-import '../utilties/my_order_details_to_view.dart';
 import '../../../track%20order/presentation/track_ui.dart';
-import '../../../../core/resources/routes_manager.dart';
 import '../../../../core/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/resources/color_manager.dart';
 
 class BuildOneOrder extends StatelessWidget {
-  BuildOneOrder({required this.order, super.key});
+ const BuildOneOrder({required this.order, super.key});
 
-  UserOrders order;
+ final UserOrders order;
 
   @override
   Widget build(BuildContext context) {
@@ -19,11 +18,10 @@ class BuildOneOrder extends StatelessWidget {
     } else {
       isCompleted = false;
     }
-
     return Card(
       color: Colors.white,
       margin: const EdgeInsets.only(
-          top: AppSize.s20, left: AppSize.s40, right: AppSize.s40),
+          top: AppSize.s20, left: AppSize.s24, right: AppSize.s24),
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppSize.s10),
           side: BorderSide(color: Colors.grey)),
@@ -54,12 +52,7 @@ class BuildOneOrder extends StatelessWidget {
                             fontSize: 14,
                             color: Colors.black,
                             fontWeight: FontWeight.w500)),
-                    // if (order.deliveredDate != null) ...[
-                    //   const SizedBox(height: AppSize.s4),
-                    //   Text(order.deliveredDate!,
-                    //       style: const TextStyle(
-                    //           fontSize: 12, color: Colors.grey,fontWeight:FontWeight.w500)),
-                    // ],
+                
                     Text("${order.state}",
                         style: const TextStyle(
                             fontSize: 14,
@@ -87,6 +80,7 @@ class BuildOneOrder extends StatelessWidget {
                             )
                           : ElevatedButton(
                               style: ElevatedButton.styleFrom(
+
                                 backgroundColor: ColorManager.pink,
                                 foregroundColor: Colors.white,
                                 shape: RoundedRectangleBorder(
@@ -103,10 +97,14 @@ class BuildOneOrder extends StatelessWidget {
                                         settings: RouteSettings(
                                             arguments: order.id)));
                               },
-                              child: Text("Track Order",
-                                  style: const TextStyle(
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.w500)),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: Text("Track Order",
+                                        style: getSemiBoldStyle(fontSize: AppSize.s12)),
+                                  ),
+                                ],
+                              ),
                             ),
                     ),
                   ],
