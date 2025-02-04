@@ -25,7 +25,7 @@ class _SearchScreenViewState extends State<SearchScreenView> {
   late AllProductsViewModel viewModel;
   late List<ProductsEntities> allProducts;
 
-  // List<ProductsEntities> filteredProducts = [];
+
 
   @override
   void initState() {

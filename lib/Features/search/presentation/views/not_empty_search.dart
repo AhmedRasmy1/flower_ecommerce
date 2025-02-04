@@ -6,12 +6,10 @@ import 'package:flutter/material.dart';
 import '../../../products/domain/entities/products_entities.dart';
 
 class NotEmptySearch extends StatelessWidget {
-  List<ProductsEntities> filteredProducts;
-
-  int index;
-
-  NotEmptySearch(
+  const NotEmptySearch(
       {required this.filteredProducts, required this.index, super.key});
+  final List<ProductsEntities> filteredProducts;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -47,35 +45,37 @@ class NotEmptySearch extends StatelessWidget {
               SizedBox(
                 width: 12,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    width: 200,
-                    child: SingleChildScrollView(
-                      child: Text(
-                        "${filteredProducts[index].title}",
-                        style: TextStyle(fontSize: 16, color: Colors.black),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: 200,
+                      child: SingleChildScrollView(
+                        child: Text(
+                          "${filteredProducts[index].title}",
+                          style: TextStyle(fontSize: 16, color: Colors.black),
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 4,
-                  ),
-                  Text(
-                    "No of items: ${filteredProducts[index].quantity}",
-                    style: TextStyle(
-                        fontSize: 14, color: Colors.black.withOpacity(0.67)),
-                  ),
-                  SizedBox(
-                    height: 4,
-                  ),
-                  Text(
-                    "Price: ${filteredProducts[index].priceAfterDiscount} EGP",
-                    style: TextStyle(
-                        fontSize: 14, color: Colors.black.withOpacity(0.67)),
-                  ),
-                ],
+                    SizedBox(
+                      height: 4,
+                    ),
+                    Text(
+                      "No of items: ${filteredProducts[index].quantity}",
+                      style: TextStyle(
+                          fontSize: 14, color: Colors.black.withOpacity(0.67)),
+                    ),
+                    SizedBox(
+                      height: 4,
+                    ),
+                    Text(
+                      "Price: ${filteredProducts[index].priceAfterDiscount} EGP",
+                      style: TextStyle(
+                          fontSize: 14, color: Colors.black.withOpacity(0.67)),
+                    ),
+                  ],
+                ),
               )
             ],
           ),

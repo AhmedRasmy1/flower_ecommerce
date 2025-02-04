@@ -63,7 +63,7 @@ class _HomeViewState extends State<HomeView> {
                   var bestSeller = state.homeEntity.bestSeller;
                   var occasions = state.homeEntity.occasions;
                   var homeCategories = state.homeEntity.categories;
-                  // var product = state.homeEntity.products;
+
                   return SingleChildScrollView(
                     child: Column(
                       children: [
@@ -79,7 +79,11 @@ class _HomeViewState extends State<HomeView> {
                             const SizedBox(
                               width: AppSize.s16,
                             ),
-                            const Expanded(child: CustomTextFieldForSearch())
+                             Expanded(child: GestureDetector(
+                                 onTap: () {
+                                   FocusScope.of(context).unfocus();
+                                 },
+                                 child: CustomTextFieldForSearch()))
                           ],
                         ),
                         const SizedBox(height: AppSize.s16),

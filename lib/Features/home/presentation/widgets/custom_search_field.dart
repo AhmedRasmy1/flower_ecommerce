@@ -18,41 +18,53 @@ class CustomTextFieldForSearch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
+    return GestureDetector(
       onTap: () {
         Navigator.pushNamed(context, RoutesManager.searchView);
       },
-      decoration: InputDecoration(
-        contentPadding: const EdgeInsets.symmetric(
-          vertical: AppPadding.p8,
-          horizontal: AppPadding.p16,
-        ),
-        hintText: AppLocalizations.of(context)!.search,
-        hintStyle: TextStyle(
-          fontSize: FontSize.s14,
-          color: ColorManager.grey,
-          fontWeight: FontWeightManager.medium,
-        ),
-        prefixIcon: SizedBox(
-          width: AppSize.s18,
-          height: AppSize.s18,
-          child: SvgPicture.asset(
-            AssetsManager.searchIcon,
-            fit: BoxFit.scaleDown,
+      child: TextFormField(
+        enabled: false,
+        onTap: () {
+
+        },
+        decoration: InputDecoration(
+          contentPadding: const EdgeInsets.symmetric(
+            vertical: AppPadding.p8,
+            horizontal: AppPadding.p16,
           ),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderSide: const BorderSide(
-            color: ColorManager.offWhite,
-            width: AppSize.w1_5,
+          hintText: AppLocalizations.of(context)!.search,
+          hintStyle: TextStyle(
+            fontSize: FontSize.s14,
+            color: ColorManager.grey,
+            fontWeight: FontWeightManager.medium,
           ),
-          borderRadius: BorderRadius.circular(AppSize.s10),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(
-            color: ColorManager.offWhite,
+          prefixIcon: SizedBox(
+            width: AppSize.s18,
+            height: AppSize.s18,
+            child: SvgPicture.asset(
+              AssetsManager.searchIcon,
+              fit: BoxFit.scaleDown,
+            ),
           ),
-          borderRadius: BorderRadius.circular(AppSize.s10),
+          enabledBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+              color: ColorManager.offWhite,
+              width: AppSize.w1_5,
+            ),
+            borderRadius: BorderRadius.circular(AppSize.s10),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+              color: ColorManager.offWhite,
+            ),
+            borderRadius: BorderRadius.circular(AppSize.s10),
+          ),
+          disabledBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+              color: ColorManager.offWhite,
+            ),
+            borderRadius: BorderRadius.circular(AppSize.s10),
+          )
         ),
       ),
     );
