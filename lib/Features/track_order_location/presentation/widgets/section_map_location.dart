@@ -1,3 +1,4 @@
+import '../../../../core/firebase_core/model/order_details_add_firestore.dart';
 import 'skeleton_map.dart';
 
 import 'package:flutter/material.dart';
@@ -8,13 +9,12 @@ import 'map_tracking_location.dart';
 
 class SectionMapLocation extends StatelessWidget {
   const SectionMapLocation({
-    super.key,
-    // required this.orderDetails,
-    // required this.isUser,
-  });
+    super.key, this.orderData,
 
-  // final Orders orderDetails;
-  // final bool isUser;
+  });
+  final  Orders? orderData;
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,8 @@ class SectionMapLocation extends StatelessWidget {
       child: Stack(
         children: [
           MapTrackingLocation(
-            idOrder: '67a1336c941115133e6faac3',
+            orderData: orderData,
+
           ),
           Positioned(
             top: 64,

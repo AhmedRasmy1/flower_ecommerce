@@ -1,3 +1,4 @@
+import '../../../../core/firebase_core/model/order_details_add_firestore.dart';
 import '../../../../core/resources/color_manager.dart';
 import '../../../../core/resources/style_manager.dart';
 import '../../../../core/widgets/custom_elevated_button.dart';
@@ -7,9 +8,9 @@ import 'custom_card_details.dart';
 
 class SectionCard extends StatelessWidget {
   const SectionCard({
-    super.key,
+    super.key, this.orderData,
   });
-
+  final  Orders? orderData;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -32,11 +33,11 @@ class SectionCard extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 16),
           child: CustomCardDetails(
-              phone: '+01200361136',
-              subTitle: ' orderDetails.user?.phone ?? ' '',
+              phone: orderData?.driver?.phone??'',
+              subTitle:  orderData?.driver?.phone??'',
               title2:
-                  // "${orderDetails.user?.firstName} ${orderDetails.user?.lastName}",
-                  'mohammed zewin',
+                   "${orderData?.driver?.firstName} ${orderData?.driver?.lastName}",
+
               urlImage:
                   'https://flower.elevateegy.com/uploads/default-profile.png',
               noIcon: false),

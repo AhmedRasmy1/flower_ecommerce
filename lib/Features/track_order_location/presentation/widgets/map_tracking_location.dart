@@ -10,11 +10,11 @@ import '../../../../core/resources/assets_manager.dart';
 
 class MapTrackingLocation extends StatefulWidget {
   const MapTrackingLocation({
-    super.key,
-    required this.idOrder,
+    super.key, this.orderData,
+
   });
 
-  final String idOrder;
+  final  Orders? orderData;
 
   @override
   State<MapTrackingLocation> createState() => _MapTrackingLocationState();
@@ -89,7 +89,7 @@ class _MapTrackingLocationState extends State<MapTrackingLocation> {
       height: MediaQuery.of(context).size.height * .88,
       width: double.infinity,
       child: StreamBuilder<Orders?>(
-        stream: FirebaseUtils.fetchLocationDriver(widget.idOrder),
+        stream: FirebaseUtils.fetchLocationDriver(widget.orderData?.id??''),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             final driverLocation = snapshot.data!.driver!;

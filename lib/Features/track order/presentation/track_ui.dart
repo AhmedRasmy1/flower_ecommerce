@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 
+import '../../../core/firebase_core/firebase_utils/firebase_utils.dart';
+import '../../../core/firebase_core/model/order_details_add_firestore.dart';
 import '../../track_order_location/presentation/pages/track_order_location.dart';
 
 class TrackOrderScreen extends StatelessWidget {
@@ -34,11 +36,8 @@ class TrackOrderScreen extends StatelessWidget {
       body: orderId.isNotEmpty
           ? Padding(
         padding: const EdgeInsets.all(8.0),
-        child: StreamBuilder<DocumentSnapshot>(
-          stream: FirebaseFirestore.instance
-              .collection('OrdersInfo')
-              .doc(orderId)
-              .snapshots(),
+        child: StreamBuilder<Orders?>(
+          stream: FirebaseUtils.fetchLocationDriver(orderId),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(
@@ -47,13 +46,14 @@ class TrackOrderScreen extends StatelessWidget {
                   ));
             }
             if (!snapshot.hasData ||
-                snapshot.data == null ||
-                !snapshot.data!.exists) {
+                snapshot.data == null ) {
               return Center(child: Text("No order found"));
             }
-            var orderData = snapshot.data!.data() as Map<String, dynamic>;
-            String state = orderData['state'] ?? 'Accepted';
-            Map<String, dynamic> driver = orderData['driver'] ?? {};
+            Orders? orderData =snapshot.data;
+            // snapshot.data!.data() as Map<String, dynamic>;
+            String state = orderData?.state??'Accepted';
+                // orderData['state'] ?? 'Accepted';
+            Driver? driver = orderData?.driver;
             String arrivalTime = _formatDateTime(DateTime.now());
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -83,7 +83,7 @@ class TrackOrderScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            driver['firstName'] ?? 'Unknown',
+                            '${driver?.firstName} ${driver?.lastName}',
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                           Text(
@@ -114,7 +114,7 @@ class TrackOrderScreen extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => TrackOrderLocation(),
+                              builder: (context) => TrackOrderLocation(orderData: orderData,),
                             ));
                       }),
                   SizedBox(height: 40),
