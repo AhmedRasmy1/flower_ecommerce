@@ -1,3 +1,6 @@
+import 'package:flower_ecommerce/Features/cart&checkout/presentation/views/widgets/skeleton_cart.dart';
+import 'package:skeletonizer/skeletonizer.dart';
+
 import '../../../../auth/presentation/widgets/loading_manager.dart';
 import '../../../domain/entities/cart_item_entity.dart';
 import '../../manager/fetch_user_cart/fetch_user_cart_view_model.dart';
@@ -39,14 +42,10 @@ class _CartViewBodyState extends State<CartViewBody> {
       },
       builder: (context, state) {
         if (state is FetchUserCartLoading && state.isFirst) {
-          return const Center(
-            child: SizedBox(
-              width: 200,
-              child: LinearProgressIndicator(
-                color: ColorManager.pink,
-              ),
-            ),
-          );
+          return Center(child: CircularProgressIndicator(color: ColorManager.pink,))
+            // SkeletonCart()
+          ;
+
         }
         if (_cartItems != null && _cartItems!.isEmpty) {
           return const EmptyCart();

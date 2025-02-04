@@ -1,3 +1,6 @@
+import 'package:flower_ecommerce/Features/profile/domain/entities/profile_entity.dart';
+import 'package:skeletonizer/skeletonizer.dart';
+
 import '../../../notifications_list/presentation/view_model/notfications_list_state.dart';
 import '../../../notifications_list/presentation/view_model/notifictions_list_cubit.dart';
 import '../../../../core/resources/routes_manager.dart';
@@ -108,7 +111,7 @@ class _ProfileViewState extends State<ProfileView> {
               child: BlocBuilder<ProfileViewModel, ProfileState>(
                 builder: (context, state) {
                   if (state is LoadingProfileState) {
-                    return const Center(child: CircularProgressIndicator());
+                    return Skeletonizer(child: buildProfileContent(context, ProfileEntity(message: '')));
                   } else if (state is SuccessProfileState) {
                     return buildProfileContent(context, state.profileEntity);
                   } else if (state is ErrorProfileState) {
@@ -124,21 +127,7 @@ class _ProfileViewState extends State<ProfileView> {
           ]),
         ),
 
-        // Padding(
-        //   padding: const EdgeInsets.symmetric(vertical: AppPadding.p16),
-        //   child: Center(
-        //     child: IconButton(
-        //       onPressed: () {
-        //         showDialog(
-        //           context: context,
-        //           builder: (_) => const LogoutConfirmationDialog(),
-        //           barrierDismissible: false,
-        //         );
-        //       },
-        //       icon: const Icon(Icons.logout, size: 30, color: Colors.red),
-        //     ),
-        //   ),
-        // ),
+
       ),
     );
   }
