@@ -139,7 +139,7 @@ class _HomeViewState extends State<HomeView> {
                     ),
                   );
                 } else {
-                  return const Center(child: Text('Error'));
+                  return const SkeletonHome();
                 }
               },
             ),

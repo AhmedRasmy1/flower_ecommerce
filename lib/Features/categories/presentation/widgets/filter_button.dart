@@ -8,9 +8,9 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class FilterButton extends StatelessWidget {
   const FilterButton({
-    super.key,
+    super.key, this.onTap,
   });
-
+final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -20,9 +20,7 @@ class FilterButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           backgroundColor: ColorManager.pink.withOpacity(.8),
         ),
-        onPressed: () {
-          /// go to Filter
-        },
+        onPressed: onTap,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,

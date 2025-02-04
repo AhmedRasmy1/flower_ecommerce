@@ -1,3 +1,5 @@
+import '../../../../core/resources/style_manager.dart';
+import '../../../../core/resources/values_manager.dart';
 import '../widgets/upperfilterbox.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -9,11 +11,12 @@ import '../widgets/category_tap_bar.dart';
 import '../widgets/custom_search.dart';
 import '../widgets/filter_button.dart';
 
+
 class CategoriesView extends StatefulWidget {
   const CategoriesView({super.key});
 
   @override
-  _CategoriesViewState createState() => _CategoriesViewState();
+  State<CategoriesView> createState() => _CategoriesViewState();
 }
 
 class _CategoriesViewState extends State<CategoriesView> {
@@ -159,49 +162,16 @@ class _CategoriesViewState extends State<CategoriesView> {
       child: Scaffold(
         body: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Row(
-                children: [
-                  Expanded(flex: 5, child: CustomSearch()),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                      flex: 1,
-                      child: InkWell(
-                          onTap: showFilterSheet, child: UpperFilterBox()))
-                ],
-              ),
+
+            CustomSearch(
+              onTap:showFilterSheet ,
             ),
             Expanded(
               child: Stack(
                 alignment: Alignment.bottomCenter,
                 children: [
                   CategoryTapBar(filterType: filterType),
-                  InkWell(
-                    onTap: showFilterSheet,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 12,
-                          horizontal: 20), // Adjust the padding for size
-                      margin:
-                          const EdgeInsets.all(16), // Add margin for spacing
-                      decoration: BoxDecoration(
-                        color: Colors.pink, // Button color
-                        borderRadius:
-                            BorderRadius.circular(10), // Rounded corners
-                      ),
-                      child: const Text(
-                        "Show Filter",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16, // Adjust text size
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
+                  FilterButton(onTap: showFilterSheet,)
                 ],
               ),
             ),
