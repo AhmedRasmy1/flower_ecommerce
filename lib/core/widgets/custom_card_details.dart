@@ -94,11 +94,7 @@ class CustomCardDetails extends StatelessWidget {
               children: [
                 noIcon
                     ? SizedBox()
-                // SvgPicture.asset(
-                //         AssetsManager.location,
-                //         width: 20,
-                //         height: 20,
-                //       )
+
                     : SizedBox(),
                 SizedBox(
                   width: 4,

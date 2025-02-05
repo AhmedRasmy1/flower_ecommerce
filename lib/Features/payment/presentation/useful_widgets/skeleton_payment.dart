@@ -135,14 +135,14 @@ class SkeletonPayment extends StatelessWidget {
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (context, index) => OrderSummeryItem(
-                        imageUrl: "widget.orderItems?[index].imgCover ?? """,
+                        imageUrl: "https://flower.elevateegy.com/uploads/default-profile.png",
                         itemTitle: "widget.orderItems?[index].title ?? """,
                         itemDetails: "widget.orderItems?[index].description ?? """,
                         itemPrice:'125'),
                     separatorBuilder: (context, index) => const SizedBox(
                       height: 24,
                     ),
-                    itemCount: 2,
+                    itemCount: 1,
                   ),
                   SizedBox(
                     height: 20,

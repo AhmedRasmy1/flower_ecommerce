@@ -1,10 +1,10 @@
 import '../../../../core/firebase_core/model/order_details_add_firestore.dart';
 import '../../../../core/resources/color_manager.dart';
 import '../../../../core/resources/style_manager.dart';
+import '../../../../core/widgets/custom_card_details.dart';
 import '../../../../core/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 
-import 'custom_card_details.dart';
 
 class SectionCard extends StatelessWidget {
   const SectionCard({
@@ -54,7 +54,7 @@ class SectionCard extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 34,
+          height: 45,
         ),
       ],
     ));

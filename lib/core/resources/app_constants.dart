@@ -6,7 +6,7 @@ import '../../Features/home/presentation/pages/home_view.dart';
 import '../../Features/profile/presentation/pages/profile_view.dart';
 
 class AppConstants {
-  static const int splashDelay = 3;
+  static const int splashDelay = 4;
   static const double screenWidthRatio = 2.3;
   static const int listGenerate = 6;
   static const viewOptions = <Widget>[

@@ -1,6 +1,7 @@
 import '../../../cart&checkout/domain/entities/cart_item_entity.dart';
 import '../../data/model/request/payment_checkout_request.dart';
 import '../../data/model/response/cash_order_response/OrderItems.dart';
+import '../../data/model/response/cash_order_response/order.dart';
 import '../cash_order_view_model/cash_order_cubit.dart';
 import '../useful_methods/payment_navegation_items.dart';
 import '../useful_widgets/skeleton_payment.dart';
@@ -57,7 +58,7 @@ class _PaymentCashPageState extends State<PaymentCashPage> {
                   CustomAppBar(
                     title: "Order Summary",
                     onTap: () {
-                      Navigator.pop(context);
+                      // Navigator.pop(context);
                     },
                   ),
                   BlocBuilder<CashOrderViewModel, CashOrderState>(
@@ -71,12 +72,15 @@ class _PaymentCashPageState extends State<PaymentCashPage> {
                         String? street = paymentData
                             .paymentCheckoutRequest.shippingAddress?.street;
                         num? totalPrice = state.response?.order?.totalPrice;
+
+                        Order? order =  state.response?.order;
                         return TrackWidget(
                           orderItems: orderItems,
                           city: city,
                           street: street,
                           totalPrice: totalPrice,
                           isCash: true,
+                          order: order,
                         );
                       } else if (state is CashOrderErrorState) {
                         return Container(

@@ -47,10 +47,19 @@ class _SplashViewState extends State<SplashView> {
                 height: AppSize.s100,
               ),
               Center(
-                child: Image.asset(
-                  'assets/images/splashLogo.png',
-                  width: AppSize.s54,
-                  height: AppSize.s54,
+                child: TweenAnimationBuilder<double>(
+                  tween: Tween<double>(begin: 0, end: 1),
+                  duration: const Duration(milliseconds: 1500),
+                  builder: (context, value, child) {
+                    return Transform.scale(
+                      scale: value,
+                      child: Image.asset(
+                        'assets/images/splashLogo.png',
+                        width: AppSize.s54 * value,
+                        height: AppSize.s54 * value,
+                      ),
+                    );
+                  },
                 ),
               ),
               Padding(
@@ -58,15 +67,30 @@ class _SplashViewState extends State<SplashView> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      AppStrings.flowry,
-                      style: TextStyle(
-                        fontSize: 50,
-                        color: ColorManager.pink,
-                        fontWeight: FontWeight.w800,
-                        fontFamily:
-                            GoogleFonts.eduNswActFoundation().fontFamily,
-                      ),
+                    TweenAnimationBuilder<double>(
+                      tween: Tween<double>(begin: 0, end: 1),
+                      duration: const Duration(milliseconds: 1500),
+                      builder: (context, value, child) {
+                        return Transform.scale(
+                          scale: value,
+                          child: Text(
+                            'Flowery',
+                            style: TextStyle(
+                              fontSize: 70,
+                              color: ColorManager.pink,
+                              fontWeight: FontWeight.w800,
+                              fontFamily: GoogleFonts.eduNswActFoundation().fontFamily,
+                            ),
+                          ),
+                        );
+
+                      },
+                      onEnd: () {
+                        setState(() {
+
+                        });
+                      },
+
                     ),
                     const SizedBox(
                       width: 10,

@@ -2,6 +2,9 @@ import 'package:flower_ecommerce/core/resources/assets_manager.dart';
 import 'package:flower_ecommerce/core/resources/style_manager.dart';
 
 import '../../../cart&checkout/domain/entities/cart_item_entity.dart';
+import '../../../layout/presentation/cubit/layout_cubit.dart';
+import '../../../track order/presentation/track_ui.dart';
+import '../../data/model/response/cash_order_response/order.dart';
 import 'order_summery_item.dart';
 import 'payment_button.dart';
 import '../../../../core/resources/routes_manager.dart';
@@ -14,22 +17,23 @@ import '../../../../core/widgets/custom_elevated_button.dart';
 import '../../../cart&checkout/presentation/views/widgets/order_details.dart';
 
 class TrackWidget extends StatefulWidget {
-  TrackWidget({
+ const TrackWidget({
     this.paymentUrl,
     required this.orderItems,
     required this.city,
     required this.street,
     required this.totalPrice,
     required this.isCash,
-    super.key,
+    super.key, this.order,
   });
 
-  List<CartItemEntity>? orderItems;
-  String? city;
-  String? street;
-  num? totalPrice;
-  bool? isCash;
-  String? paymentUrl;
+ final List<CartItemEntity>? orderItems;
+ final String? city;
+  final String? street;
+ final num? totalPrice;
+ final bool? isCash;
+ final String? paymentUrl;
+ final  Order? order;
 
   @override
   State<TrackWidget> createState() => _TrackWidgetState();
@@ -207,7 +211,15 @@ class _TrackWidgetState extends State<TrackWidget> {
                 child: CustomElevatedButton(
                   buttonColor: ColorManager.pink,
                   title: "Track Order",
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                            const TrackOrderScreen(),
+                            settings: RouteSettings(
+                                arguments: widget.order?.id??'')));
+                  },
                 ),
               ),
             ],

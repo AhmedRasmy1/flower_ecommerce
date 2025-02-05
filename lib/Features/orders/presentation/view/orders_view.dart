@@ -48,21 +48,6 @@ class _MyOrdersPageState extends State<MyOrdersPage>
 
   @override
   Widget build(BuildContext context) {
-    List<MyOrderDetailsToView> activeOrderDetails = [
-      MyOrderDetailsToView(
-          "Red roses", "EGP 600", 'order number#123456', "Track order"),
-      MyOrderDetailsToView(
-          "Red roses", "EGP 600", 'order number#123456', "Track order"),
-    ];
-    List<MyOrderDetailsToView> completeOrderDetails = [
-      MyOrderDetailsToView(
-          "Red roses", "EGP 600", "Delivered on 3 Sep 2024", "Reorder"),
-      MyOrderDetailsToView(
-          "Red roses", "EGP 600", "Delivered on 3 Sep 2024", "Reorder"),
-      MyOrderDetailsToView(
-          "Red roses", "EGP 600", "Delivered on 3 Sep 2024", "Reorder"),
-    ];
-
     return BlocProvider(
       create: (context) => ordersViewModel,
       child: Scaffold(

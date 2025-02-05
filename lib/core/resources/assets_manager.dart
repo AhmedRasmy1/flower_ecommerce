@@ -31,4 +31,5 @@ class AssetsManager {
   static const String call = 'assets/images/call.svg';
   static const String backIconMap = 'assets/images/BackIconMap.svg';
   static const String money = 'assets/images/money.svg';
+  static const String pending = 'assets/images/pending.json';
 }

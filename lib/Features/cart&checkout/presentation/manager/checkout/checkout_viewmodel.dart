@@ -19,9 +19,15 @@ class CheckoutViewModel extends Cubit<CheckoutState> {
 
     switch (result) {
       case Success<AddressResponse?>():
-        emit(SuccessCheckoutState(result.data));
+        if (!isClosed) {
+          emit(SuccessCheckoutState(result.data));
+        }
+
       case Fail<AddressResponse?>():
-        emit(ErrorCheckoutState(result.exception));
+        if(!isClosed){
+          emit(ErrorCheckoutState(result.exception));
+        }
+
     }
   }
 }

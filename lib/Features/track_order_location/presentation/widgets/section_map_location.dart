@@ -9,12 +9,11 @@ import 'map_tracking_location.dart';
 
 class SectionMapLocation extends StatelessWidget {
   const SectionMapLocation({
-    super.key, this.orderData,
-
+    super.key,
+    this.orderData,
   });
-  final  Orders? orderData;
 
-
+  final Orders? orderData;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +22,6 @@ class SectionMapLocation extends StatelessWidget {
         children: [
           MapTrackingLocation(
             orderData: orderData,
-
           ),
           Positioned(
             top: 64,
@@ -41,6 +39,3 @@ class SectionMapLocation extends StatelessWidget {
   }
 }
 
-Future<void> _loadData() async {
-  await Future.delayed(Duration(seconds: 2));
-}

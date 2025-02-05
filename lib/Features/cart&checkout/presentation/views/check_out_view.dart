@@ -268,14 +268,14 @@ class _CheckOutViewState extends State<CheckOutView> {
                     paymentCheckoutRequest: paymentRequest,
                     orderItems: cartList);
             if (_paymentOption == "cash") {
-              Navigator.push(
+              Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                       builder: (context) => const PaymentCashPage(),
                       settings:
                           RouteSettings(arguments: paymentNavigationItems)));
             } else if (_paymentOption == "online") {
-              Navigator.push(
+              Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                       builder: (context) => const PaymentOnlinePage(),
