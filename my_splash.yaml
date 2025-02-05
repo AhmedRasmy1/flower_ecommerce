@@ -6,7 +6,7 @@ flutter_native_splash:
 
 
 
-  image: assets/images/android14.png
+  #image: assets/images/android14.png
 
 
   #branding: assets/dart.png
@@ -37,13 +37,13 @@ flutter_native_splash:
   # 640 pixels in diameter.
   # App icon without an icon background: This should be 1152×1152 pixels, and fit within a circle
   # 768 pixels in diameter.
-   image: assets/images/android14.png
+  # image: assets/images/android14.png
 
   # Splash screen background color.
-   color: "#F9ECF0"
+   #color: "#F9ECF0"
 
   # App icon background color.
-  icon_background_color: "#F9ECF0"
+ # icon_background_color: "#F9ECF0"
 
   # The branding property allows you to specify an image used as branding in the splash screen.
   #branding: assets/dart.png
@@ -57,8 +57,7 @@ flutter_native_splash:
 
   # The android, ios and web parameters can be used to disable generating a splash screen on a given
   # platform.
-  android: true
-  ios: true
+ ##ios: true
   #web: false
 
   # Platform specific images can be specified with the following parameters, which will override
