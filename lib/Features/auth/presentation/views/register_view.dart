@@ -7,6 +7,7 @@ import '../../../../core/functions/helper.dart';
 import '../../../../core/resources/app_constants.dart';
 import '../../../../core/resources/color_manager.dart';
 import '../../../../core/resources/routes_manager.dart';
+import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
@@ -127,6 +128,19 @@ class _RegisterViewState extends State<RegisterView> {
                         ],
                       ),
                       const SizedBox(height: AppSize.s24),
+
+                      CustomTextFormField(
+                        keyboardType: TextInputType.emailAddress,
+                        controller: _emailController,
+                        labelText: AppStrings.email,
+                        hintText: AppStrings.enterYourEmail,
+                        validator: (value) => validateEmail(
+                          value: value!,
+                          message: AppStrings.emailIsEmpty,
+                          messageInvalid: AppStrings.enterValidEmail,
+                        ),
+                      ),
+
 
                       const SizedBox(height: AppSize.s24),
                       Row(
