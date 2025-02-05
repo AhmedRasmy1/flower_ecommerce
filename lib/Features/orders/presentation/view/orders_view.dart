@@ -37,23 +37,26 @@ class _MyOrdersPageState extends State<MyOrdersPage>
     super.initState();
   }
 
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-
-    String savedToken = CacheService.getData(key: CacheConstants.userToken);
-    String token = "Bearer $savedToken";
-    ordersViewModel.getUserOrders(token);
-  }
+  // @override
+  // void didChangeDependencies() {
+  //   super.didChangeDependencies();
+  //
+  //   String savedToken = CacheService.getData(key: CacheConstants.userToken);
+  //   String token = "Bearer $savedToken";
+  //   ordersViewModel.getUserOrders(token);
+  // }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ordersViewModel,
+      create: (context) =>
+      ordersViewModel
+        ..getUserOrders(
+            'Bearer ${CacheService.getData(key: CacheConstants.userToken)}'),
       child: Scaffold(
         appBar: AppBar(
-          title:  Text(AppStrings.myOrders,
-              style: getSemiBoldStyle(fontSize: 20,),),
+          title: Text(AppStrings.myOrders,
+            style: getSemiBoldStyle(fontSize: 20,),),
           backgroundColor: Colors.white,
           elevation: 1,
           bottom: TabBar(
@@ -78,11 +81,13 @@ class _MyOrdersPageState extends State<MyOrdersPage>
               List<UserOrders>? listUserOrders = userOrders?.orders;
               if (listUserOrders != null) {
                 List<UserOrders> activeOrders =
-                    activeOrComplete(listUserOrders, "active");
-                List<UserOrders> newActiveOrders=activeOrders.reversed.toList();
+                activeOrComplete(listUserOrders, "active");
+                List<UserOrders> newActiveOrders = activeOrders.reversed
+                    .toList();
                 List<UserOrders> completedOrders =
-                    activeOrComplete(listUserOrders, "completed");
-                List<UserOrders> newCompletedOrders=completedOrders.reversed.toList();
+                activeOrComplete(listUserOrders, "completed");
+                List<UserOrders> newCompletedOrders = completedOrders.reversed
+                    .toList();
                 return TabBarView(
                   controller: _tabController,
                   children: [

@@ -60,7 +60,7 @@ class SkeletonTrack extends StatelessWidget {
               buttonColor: ColorManager.pink,
               title: 'Show map',
               onPressed: () {}),
-          SizedBox(height: 40),
+
         ],
       ),
     ));
