@@ -111,7 +111,9 @@ class _ProfileViewState extends State<ProfileView> {
               child: BlocBuilder<ProfileViewModel, ProfileState>(
                 builder: (context, state) {
                   if (state is LoadingProfileState) {
-                    return Skeletonizer(child: buildProfileContent(context, ProfileEntity(message: '')));
+                    return Skeletonizer(
+                        child: buildProfileContent(
+                            context, ProfileEntity(message: '')));
                   } else if (state is SuccessProfileState) {
                     return buildProfileContent(context, state.profileEntity);
                   } else if (state is ErrorProfileState) {
@@ -126,8 +128,6 @@ class _ProfileViewState extends State<ProfileView> {
             ),
           ]),
         ),
-
-
       ),
     );
   }

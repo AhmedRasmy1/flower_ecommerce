@@ -89,12 +89,15 @@ Widget buildProfileContent(BuildContext context, ProfileEntity? profile) {
                 children: [
                   Row(
                     children: [
-                      Switch(
-                        activeTrackColor: Colors.pink,
-                        value: true,
-                        onChanged: (value) {},
-                        activeColor: ColorManager.white,
-                        inactiveThumbColor: Colors.pink,
+                      Transform.scale(
+                        scale: .75,
+                        child: Switch(
+                          activeTrackColor: Colors.pink,
+                          value: true,
+                          onChanged: (value) {},
+                          activeColor: ColorManager.white,
+                          inactiveThumbColor: Colors.pink,
+                        ),
                       ),
                       const SizedBox(width: 10),
                       Text(AppLocalizations.of(context)!.notification,
