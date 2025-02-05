@@ -6,14 +6,13 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-
     <application
-        android:label="flower_ecommerce"
+        android:label="Flowery"
         android:name="${applicationName}"
         android:enableOnBackInvokedCallback="true"
         android:icon="@mipmap/ic_launcher">
         <meta-data android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCjsw4K1qG6bgGRswsO7OW4oKRI3PJMkDI"/>
+            android:value="AIzaSyD9muKr3jbebuye6Frinp1dY-BZZ-Qq6b4"/>
         <service android:name="com.google.firebase.messaging.FirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>

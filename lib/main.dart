@@ -1,8 +1,6 @@
 import 'dart:ui';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
-import 'Features/track_order_location/presentation/pages/track_order_location.dart';
-import 'Features/track%20order/presentation/track_ui.dart';
+
 import 'core/provider.dart';
 import 'package:provider/provider.dart';
 import 'core/resources/theme_manager.dart';
@@ -13,13 +11,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'core/di/di.dart';
-import 'core/resources/color_manager.dart';
+
 import 'core/resources/routes_manager.dart';
 import 'core/utils/cashed_data_shared_preferences.dart';
 import 'core/utils/my_bloc_observer.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
-
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
