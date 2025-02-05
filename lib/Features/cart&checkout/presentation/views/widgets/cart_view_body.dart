@@ -42,8 +42,9 @@ class _CartViewBodyState extends State<CartViewBody> {
       },
       builder: (context, state) {
         if (state is FetchUserCartLoading && state.isFirst) {
-          return Center(child: CircularProgressIndicator(color: ColorManager.pink,))
-            // SkeletonCart()
+          return
+
+             SkeletonCart()
           ;
 
         }

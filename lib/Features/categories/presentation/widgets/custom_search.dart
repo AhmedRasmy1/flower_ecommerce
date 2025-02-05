@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../../core/resources/assets_manager.dart';
 import '../../../../core/resources/color_manager.dart';
+import '../../../../core/resources/routes_manager.dart';
 import '../../../../core/resources/style_manager.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -19,10 +20,16 @@ final void Function()? onTap;
         children: [
           Expanded(
             child: CustomTextFormField(
+              enabled: true,
+              onTap: () {
+                Navigator.pushNamed(context, RoutesManager.searchView);
+              },
               prefixIcon: Padding(
                 padding: const EdgeInsets.all(6.0),
                 child: SvgPicture.asset(
                   AssetsManager.search,
+                  height: 20,
+                  width: 20,
                   colorFilter: const ColorFilter.mode(
                       ColorManager.lightGrey3, BlendMode.dst),
                 ),

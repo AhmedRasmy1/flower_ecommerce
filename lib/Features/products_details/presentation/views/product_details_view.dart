@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flower_ecommerce/Features/products_details/presentation/widgets/skeleton_search.dart';
 import '../../../../core/common/add_to_cart/data/models/request/add_to_cart_req_body.dart';
 import '../../../../core/common/add_to_cart/manager/cubit/add_to_cart_view_model.dart';
 import '../../../../core/utils/cashed_data_shared_preferences.dart';
@@ -54,7 +55,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
         body: BlocBuilder<ProductDetailsViewModel, ProductDetailsState>(
           builder: (context, state) {
             if (state is LoadingProductDetailsState) {
-              return const LoadingIndicator();
+              return SkeletonSearch();
             } else if (state is ErrorProductDetailsState) {
               return const Center(child: CircularProgressIndicator());
             } else if (state is SuccessProductDetailsState) {
@@ -285,7 +286,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                     ),
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 30,
                   ),
                 ],
               );
