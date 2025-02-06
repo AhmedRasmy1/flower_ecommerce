@@ -1,21 +1,13 @@
 import 'package:flower_ecommerce/core/resources/style_manager.dart';
-
-import '../../data/model/user_orders.dart';
-import '../utilties/active_or_complete.dart';
-
-import '../utilties/my_order_details_to_view.dart';
-import '../widgets/build_order_list.dart';
 import '../../../../core/resources/color_manager.dart';
 import '../../../../core/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../core/di/di.dart';
 import '../../../../core/utils/cashed_data_shared_preferences.dart';
-import '../../../products/presentation/widgets/skeleton_body.dart';
-import '../../domain/entities/user_orders_response_entity.dart';
 import '../view_model/orders_cubit.dart';
-import '../view_model/orders_state.dart';
+import '../widgets/orders_page_body.dart';
+
 
 class MyOrdersPage extends StatefulWidget {
   const MyOrdersPage({super.key});
@@ -36,16 +28,6 @@ class _MyOrdersPageState extends State<MyOrdersPage>
     _tabController = TabController(length: 2, vsync: this);
     super.initState();
   }
-
-  // @override
-  // void didChangeDependencies() {
-  //   super.didChangeDependencies();
-  //
-  //   String savedToken = CacheService.getData(key: CacheConstants.userToken);
-  //   String token = "Bearer $savedToken";
-  //   ordersViewModel.getUserOrders(token);
-  // }
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -71,49 +53,9 @@ class _MyOrdersPageState extends State<MyOrdersPage>
             ],
           ),
         ),
-        body: BlocBuilder<OrdersViewModel, OrdersState>(
-          builder: (context, state) {
-            if (state is LoadingOrdersState) {
-              return const Expanded(child: SkeletonBody());
-            } else if (state is SuccessOrdersState) {
-              UserOrdersResponseEntity? userOrders =
-                  state.userOrdersResponseEntity;
-              List<UserOrders>? listUserOrders = userOrders?.orders;
-              if (listUserOrders != null) {
-                List<UserOrders> activeOrders =
-                activeOrComplete(listUserOrders, "active");
-                List<UserOrders> newActiveOrders = activeOrders.reversed
-                    .toList();
-                List<UserOrders> completedOrders =
-                activeOrComplete(listUserOrders, "completed");
-                List<UserOrders> newCompletedOrders = completedOrders.reversed
-                    .toList();
-                return TabBarView(
-                  controller: _tabController,
-                  children: [
-                    // Active Orders
-                    BuildOrderList(
-                      orderDetailsList: newActiveOrders,
-                    ),
-                    // Completed Orders
-                    BuildOrderList(
-                      orderDetailsList: newCompletedOrders,
-                    ),
-                  ],
-                );
-              } else {
-                return Container();
-              }
-            } else if (state is ErrorOrdersState) {
-              return Container(
-                color: Colors.red,
-              );
-            } else {
-              return Container();
-            }
-          },
-        ),
+        body: MyOrdersPageBody(tabController: _tabController,),
       ),
     );
   }
 }
+

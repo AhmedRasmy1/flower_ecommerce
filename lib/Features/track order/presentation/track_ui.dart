@@ -113,18 +113,20 @@ class TrackOrderScreen extends StatelessWidget {
       print("Warning: Unknown order state - $currentState");
       currentState = "Accepted";
     }
-    return Column(
-      children: statuses.map((status) {
-        int index = statuses.indexOf(status);
-        bool isActive = index <= statuses.indexOf(currentState);
-        DateTime currentTime = now.add(Duration(minutes: 30 * index));
-        return Column(
-          children: [
-            _buildOrderStatus(status, _formatDateTime(currentTime),
-                isActive: isActive),
-          ],
-        );
-      }).toList(),
+    return SingleChildScrollView(
+      child: Column(
+        children: statuses.map((status) {
+          int index = statuses.indexOf(status);
+          bool isActive = index <= statuses.indexOf(currentState);
+          DateTime currentTime = now.add(Duration(minutes: 30 * index));
+          return Column(
+            children: [
+              _buildOrderStatus(status, _formatDateTime(currentTime),
+                  isActive: isActive),
+            ],
+          );
+        }).toList(),
+      ),
     );
   }
 

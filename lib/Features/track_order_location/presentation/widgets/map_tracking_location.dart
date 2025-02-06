@@ -3,7 +3,7 @@ import 'dart:developer';
 import '../../../../core/firebase_core/firebase_utils/firebase_utils.dart';
 import '../../../../core/resources/color_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../../../../core/firebase_core/model/order_details_add_firestore.dart';
 import '../../../../core/resources/assets_manager.dart';
@@ -32,7 +32,7 @@ class _MapTrackingLocationState extends State<MapTrackingLocation> {
   void initState() {
     super.initState();
     initialCameraPosition =
-        CameraPosition(zoom: 5, target: LatLng(29.5090942, 31.9453012));
+        CameraPosition(zoom: 14, target: LatLng(30.021284, 31.229236));
 
     _initializeMarkers().then((_) {
       _addMarkers();
@@ -60,9 +60,17 @@ class _MapTrackingLocationState extends State<MapTrackingLocation> {
       markers.clear();
       markers.add(
         Marker(
+          markerId: const MarkerId("Driver_location"),
+          icon: markerDriver,
+          position: LatLng(30.027182, 31.228989),
+          infoWindow: const InfoWindow(title: "Driver"),
+        ),
+      );
+      markers.add(
+        Marker(
           markerId: const MarkerId("user_location"),
           icon: markerUser,
-          position: LatLng(28.0875713, 31.4453012),
+          position: LatLng(30.020531, 31.235555),
           infoWindow: const InfoWindow(title: "User"),
         ),
       );
@@ -70,7 +78,7 @@ class _MapTrackingLocationState extends State<MapTrackingLocation> {
         Marker(
           markerId: const MarkerId("Store_location"),
           icon: markerStore,
-          position: LatLng(30.7605525, 31.6801068),
+          position: LatLng(30.014177, 31.224698),
           infoWindow: const InfoWindow(title: "Store"),
         ),
       );
