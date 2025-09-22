@@ -109,6 +109,7 @@ class _FlowerAppState extends State<FlowerApp> {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
+
         /// mohamed zewin change//
         statusBarIconBrightness: Brightness.dark,
         systemNavigationBarColor: Colors.white,
