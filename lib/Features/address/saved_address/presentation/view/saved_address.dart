@@ -8,11 +8,10 @@ import '../../../../../core/resources/routes_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/utils/cashed_data_shared_preferences.dart';
-import '../../../../../core/widgets/loading_indicator.dart';
 import '../view_models/get_address/address_cubit.dart';
 import '../view_models/get_address/address_state.dart';
 import '../view_models/remove_address/remove_cubit.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flower_ecommerce/l10n/app_localizations.dart';
 
 class SavedAddress extends StatefulWidget {
   const SavedAddress({super.key});

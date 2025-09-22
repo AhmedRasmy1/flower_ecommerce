@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/resources/color_manager.dart';
 import '../../../../core/widgets/custom_elevated_button.dart';
 import '../manager/add_address_cubit.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flower_ecommerce/l10n/app_localizations.dart';
 
 class ButtonSaveBody extends StatefulWidget {
   const ButtonSaveBody({

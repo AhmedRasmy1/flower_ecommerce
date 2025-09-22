@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:flower_ecommerce/l10n/app_localizations.dart';
+
 import '../view_model/forget_password_view_model/forget_password_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,7 +17,7 @@ import '../widgets/block_consumer_for_otp.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
 import '../widgets/custom_field_for_verification.dart';
 import '../view_model/verify_password_view_model/verify_password_cubit.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../../../../../core/widgets/loading_indicator.dart';
 
 class OtpVerificationPage extends StatefulWidget {
   const OtpVerificationPage({super.key});

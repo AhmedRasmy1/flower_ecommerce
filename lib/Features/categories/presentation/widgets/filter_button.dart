@@ -4,13 +4,14 @@ import '../../../../core/resources/assets_manager.dart';
 import '../../../../core/resources/color_manager.dart';
 import '../../../../core/resources/style_manager.dart';
 import '../../../../core/resources/values_manager.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flower_ecommerce/l10n/app_localizations.dart';
 
 class FilterButton extends StatelessWidget {
   const FilterButton({
-    super.key, this.onTap,
+    super.key,
+    this.onTap,
   });
-final void Function()? onTap;
+  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return Padding(

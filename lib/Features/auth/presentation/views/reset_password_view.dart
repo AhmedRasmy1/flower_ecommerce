@@ -1,3 +1,5 @@
+import 'package:flower_ecommerce/l10n/app_localizations.dart';
+
 import '../../../../core/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,7 +15,6 @@ import '../../../../core/widgets/show_error_dialogue.dart';
 import '../../../../core/widgets/show_loading_dialog.dart';
 import '../view_model/reset_password_view_model/reset_password_cubit.dart';
 import '../view_model/reset_password_view_model/reset_password_state.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ResetPasswordView extends StatefulWidget {
   const ResetPasswordView({super.key});

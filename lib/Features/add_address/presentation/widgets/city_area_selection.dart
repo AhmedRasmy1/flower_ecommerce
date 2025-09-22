@@ -6,7 +6,7 @@ import '../../../../core/resources/font_manager.dart';
 import '../../../../core/resources/style_manager.dart';
 import '../../../../core/resources/theme_manager.dart';
 import '../../../../core/resources/values_manager.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flower_ecommerce/l10n/app_localizations.dart';
 
 class CityAreaSelection extends StatefulWidget {
   const CityAreaSelection({super.key, required this.viewModel});
@@ -41,7 +41,7 @@ class _CityAreaSelectionState extends State<CityAreaSelection> {
         children: [
           Expanded(
             child: DropdownButtonFormField<String>(
-              value: selectedCity,
+              initialValue: selectedCity,
               onChanged: (newCity) {
                 setState(() {
                   selectedCity = newCity;
@@ -117,7 +117,8 @@ class _CityAreaSelectionState extends State<CityAreaSelection> {
           SizedBox(width: 17),
           Expanded(
             child: DropdownButtonFormField<String>(
-              value: selectedCityAreas.isNotEmpty ? selectedCityAreas[0] : null,
+              initialValue:
+                  selectedCityAreas.isNotEmpty ? selectedCityAreas[0] : null,
               onChanged: (newArea) {},
               validator: (value) {
                 if (value == null || value.isEmpty) {

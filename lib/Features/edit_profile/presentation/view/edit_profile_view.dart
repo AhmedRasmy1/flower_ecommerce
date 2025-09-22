@@ -24,7 +24,7 @@ import '../../../profile/domain/entities/profile_entity.dart';
 import '../../../profile/presentation/view_model/profile_view_model.dart';
 import '../viewmodels/editprofile_cubit.dart';
 import '../widgets/custom_circle_avatar.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flower_ecommerce/l10n/app_localizations.dart';
 
 class EditProfileView extends StatefulWidget {
   const EditProfileView({super.key});
@@ -288,7 +288,7 @@ class _ProfileViewState extends State<EditProfileView> {
                             MotionToast.success(
                               description: Text(
                                   AppLocalizations.of(context)!.profileUpdated),
-                              animationType: AnimationType.fromLeft,
+                              animationType: AnimationType.slideInFromLeft,
                             ).show(context);
                             Navigator.pop(context);
                           } else if (state is EditprofileFail) {
@@ -303,7 +303,7 @@ class _ProfileViewState extends State<EditProfileView> {
                             }
                             MotionToast.error(
                               description: Text(message),
-                              animationType: AnimationType.fromLeft,
+                              animationType: AnimationType.slideInFromLeft,
                             ).show(context);
                           }
                         },

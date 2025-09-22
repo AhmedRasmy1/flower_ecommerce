@@ -1,4 +1,5 @@
 import 'package:flower_ecommerce/core/utils/cashed_data_shared_preferences.dart';
+import 'package:flower_ecommerce/l10n/app_localizations.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:motion_toast/motion_toast.dart';
 import '../view_model/login_view_model/login_cubit.dart';
@@ -14,7 +15,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/di/di.dart';
 import '../view_model/login_view_model/login_state.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -63,7 +63,7 @@ class _LoginScreenState extends State<LoginView> {
               MotionToast.error(
                 description: const Text("Invalid Email or Password"),
                 title: const Text("Error"),
-                animationType: AnimationType.fromLeft,
+                animationType: AnimationType.slideInFromLeft,
               ).show(context);
             }
           },

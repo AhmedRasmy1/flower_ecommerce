@@ -7,7 +7,7 @@ import '../../../categories/presentation/widgets/skeleton_bar.dart';
 import '../../../products/presentation/pages/products.dart';
 import '../viewmodel/occasion_view_model/occasion_cubit.dart';
 import '../viewmodel/occasion_view_model/occasion_state.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flower_ecommerce/l10n/app_localizations.dart';
 
 class OccasionsView extends StatefulWidget {
   const OccasionsView({super.key});
@@ -146,7 +146,6 @@ class _OccasionsViewState extends State<OccasionsView> {
               id != null && id!.isNotEmpty
                   ? Expanded(
                       child: GirdBodyOfProducts(
-
                         page: EnumPage.occasion,
                         pageId: id!,
                       ),

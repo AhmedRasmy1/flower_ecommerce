@@ -1,3 +1,4 @@
+import 'package:flower_ecommerce/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,7 +16,6 @@ import '../view_model/signup_view_model/signup_cubit.dart';
 import '../widgets/bloc_consumer_signin_page.dart';
 import '../widgets/choose_gender.dart';
 import '../widgets/custom_auth_prompt.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});
@@ -128,7 +128,6 @@ class _RegisterViewState extends State<RegisterView> {
                         ],
                       ),
                       const SizedBox(height: AppSize.s24),
-
                       CustomTextFormField(
                         keyboardType: TextInputType.emailAddress,
                         controller: _emailController,
@@ -140,8 +139,6 @@ class _RegisterViewState extends State<RegisterView> {
                           messageInvalid: AppStrings.enterValidEmail,
                         ),
                       ),
-
-
                       const SizedBox(height: AppSize.s24),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,

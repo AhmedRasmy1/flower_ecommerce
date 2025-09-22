@@ -1,3 +1,4 @@
+import 'package:flower_ecommerce/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/resources/color_manager.dart';
@@ -5,7 +6,6 @@ import '../../../../core/resources/style_manager.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../../../../core/utils/cashed_data_shared_preferences.dart';
 import '../view_model/signup_view_model/signup_cubit.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ChooseGender extends StatefulWidget {
   const ChooseGender({super.key, required this.viewModel});

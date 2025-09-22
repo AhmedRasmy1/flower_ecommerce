@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/resources/color_manager.dart';
 import '../../domain/entities/profile_entity.dart';
 import 'option_item.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flower_ecommerce/l10n/app_localizations.dart';
 
 Widget buildProfileContent(BuildContext context, ProfileEntity? profile) {
   return Column(
@@ -63,7 +63,7 @@ Widget buildProfileContent(BuildContext context, ProfileEntity? profile) {
         child: Column(
           children: [
             InkWell(
-              onTap:(){
+              onTap: () {
                 Navigator.pushNamed(context, RoutesManager.ordersView);
               },
               child: OptionItem(

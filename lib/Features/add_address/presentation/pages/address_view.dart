@@ -1,3 +1,5 @@
+import 'package:flower_ecommerce/l10n/app_localizations.dart';
+
 import '../../../../core/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,7 +7,6 @@ import '../../../../core/di/di.dart';
 import '../manager/add_address_cubit.dart';
 import '../widgets/add_address_body.dart';
 import '../widgets/my_location.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AddressView extends StatefulWidget {
   const AddressView({super.key});

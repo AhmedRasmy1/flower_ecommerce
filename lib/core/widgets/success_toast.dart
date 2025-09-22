@@ -10,7 +10,6 @@ void showSuccessToast({
   MotionToastPosition? position,
 }) {
   MotionToast.success(
-    position: position ?? MotionToastPosition.bottom,
     contentPadding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
     opacity: 1,
     animationDuration: const Duration(microseconds: 2500),
@@ -31,7 +30,7 @@ void showSuccessToast({
       ),
     ),
     layoutOrientation: TextDirection.ltr,
-    animationType: AnimationType.fromLeft,
+    animationType: AnimationType.slideInFromLeft,
     width: MediaQuery.sizeOf(context).width * 0.92,
   ).show(context);
 }

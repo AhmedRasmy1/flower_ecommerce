@@ -8,7 +8,6 @@ void showErrorToast({
 }) {
   MotionToast.error(
     opacity: 1,
-    position: MotionToastPosition.bottom,
     contentPadding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
     animationDuration: const Duration(microseconds: 2500),
     description: Text(
@@ -23,7 +22,7 @@ void showErrorToast({
       ),
     ),
     layoutOrientation: TextDirection.ltr,
-    animationType: AnimationType.fromLeft,
+    animationType: AnimationType.slideInFromLeft,
     width: MediaQuery.sizeOf(context).width * 0.92,
     height: 100,
   ).show(context);

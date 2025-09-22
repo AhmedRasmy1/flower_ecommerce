@@ -12,7 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../../core/di/di.dart';
 import '../../../../core/resources/values_manager.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flower_ecommerce/l10n/app_localizations.dart';
 
 class SearchScreenView extends StatefulWidget {
   const SearchScreenView({super.key});
@@ -24,8 +24,6 @@ class SearchScreenView extends StatefulWidget {
 class _SearchScreenViewState extends State<SearchScreenView> {
   late AllProductsViewModel viewModel;
   late List<ProductsEntities> allProducts;
-
-
 
   @override
   void initState() {

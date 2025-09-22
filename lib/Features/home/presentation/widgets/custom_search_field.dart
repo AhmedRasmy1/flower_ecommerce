@@ -7,7 +7,7 @@ import '../../../../core/resources/font_manager.dart';
 import '../../../../core/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flower_ecommerce/l10n/app_localizations.dart';
 
 import '../../../search/presentation/views/search_screen_view.dart';
 
@@ -24,48 +24,45 @@ class CustomTextFieldForSearch extends StatelessWidget {
       },
       child: TextFormField(
         enabled: false,
-        onTap: () {
-
-        },
+        onTap: () {},
         decoration: InputDecoration(
-          contentPadding: const EdgeInsets.symmetric(
-            vertical: AppPadding.p8,
-            horizontal: AppPadding.p16,
-          ),
-          hintText: AppLocalizations.of(context)!.search,
-          hintStyle: TextStyle(
-            fontSize: FontSize.s14,
-            color: ColorManager.grey,
-            fontWeight: FontWeightManager.medium,
-          ),
-          prefixIcon: SizedBox(
-            width: AppSize.s18,
-            height: AppSize.s18,
-            child: SvgPicture.asset(
-              AssetsManager.searchIcon,
-              fit: BoxFit.scaleDown,
+            contentPadding: const EdgeInsets.symmetric(
+              vertical: AppPadding.p8,
+              horizontal: AppPadding.p16,
             ),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderSide: const BorderSide(
-              color: ColorManager.offWhite,
-              width: AppSize.w1_5,
+            hintText: AppLocalizations.of(context)!.search,
+            hintStyle: TextStyle(
+              fontSize: FontSize.s14,
+              color: ColorManager.grey,
+              fontWeight: FontWeightManager.medium,
             ),
-            borderRadius: BorderRadius.circular(AppSize.s10),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(
-              color: ColorManager.offWhite,
+            prefixIcon: SizedBox(
+              width: AppSize.s18,
+              height: AppSize.s18,
+              child: SvgPicture.asset(
+                AssetsManager.searchIcon,
+                fit: BoxFit.scaleDown,
+              ),
             ),
-            borderRadius: BorderRadius.circular(AppSize.s10),
-          ),
-          disabledBorder: OutlineInputBorder(
-            borderSide: const BorderSide(
-              color: ColorManager.offWhite,
+            enabledBorder: OutlineInputBorder(
+              borderSide: const BorderSide(
+                color: ColorManager.offWhite,
+                width: AppSize.w1_5,
+              ),
+              borderRadius: BorderRadius.circular(AppSize.s10),
             ),
-            borderRadius: BorderRadius.circular(AppSize.s10),
-          )
-        ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: const BorderSide(
+                color: ColorManager.offWhite,
+              ),
+              borderRadius: BorderRadius.circular(AppSize.s10),
+            ),
+            disabledBorder: OutlineInputBorder(
+              borderSide: const BorderSide(
+                color: ColorManager.offWhite,
+              ),
+              borderRadius: BorderRadius.circular(AppSize.s10),
+            )),
       ),
     );
   }

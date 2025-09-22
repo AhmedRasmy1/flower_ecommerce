@@ -6,7 +6,7 @@ import '../../../../core/resources/cashed_image.dart';
 import '../../../../core/resources/color_manager.dart';
 import '../../../../core/resources/style_manager.dart';
 import '../../../../core/resources/values_manager.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flower_ecommerce/l10n/app_localizations.dart';
 
 class CartProduct extends StatelessWidget {
   const CartProduct({

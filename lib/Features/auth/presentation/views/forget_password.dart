@@ -1,3 +1,5 @@
+import 'package:flower_ecommerce/l10n/app_localizations.dart';
+
 import '../../../../core/widgets/custom_app_bar.dart';
 
 import '../../../../core/resources/color_manager.dart';
@@ -15,7 +17,6 @@ import '../../../../core/widgets/show_loading_dialog.dart';
 import '../view_model/forget_password_view_model/forget_password_cubit.dart';
 import '../view_model/forget_password_view_model/forget_password_state.dart';
 import 'email_verification_view.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ForgetPasswordView extends StatefulWidget {
   const ForgetPasswordView({super.key});

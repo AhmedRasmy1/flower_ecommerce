@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flower_ecommerce/l10n/app_localizations.dart';
 
 import 'core/provider.dart';
 import 'package:provider/provider.dart';
@@ -17,7 +18,6 @@ import 'core/utils/cashed_data_shared_preferences.dart';
 import 'core/utils/my_bloc_observer.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'services/notificttionservice.dart';
@@ -109,8 +109,6 @@ class _FlowerAppState extends State<FlowerApp> {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
-
-        /// mohamed zewin change//
         statusBarIconBrightness: Brightness.dark,
         systemNavigationBarColor: Colors.white,
         systemNavigationBarIconBrightness: Brightness.dark,

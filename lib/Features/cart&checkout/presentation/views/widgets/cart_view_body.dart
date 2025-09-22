@@ -1,4 +1,5 @@
 import 'package:flower_ecommerce/Features/cart&checkout/presentation/views/widgets/skeleton_cart.dart';
+import 'package:flower_ecommerce/l10n/app_localizations.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../auth/presentation/widgets/loading_manager.dart';
@@ -17,7 +18,6 @@ import '../../../../../core/widgets/custom_app_bar.dart';
 import '../../../../../core/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CartViewBody extends StatefulWidget {
   const CartViewBody({super.key});
@@ -42,11 +42,7 @@ class _CartViewBodyState extends State<CartViewBody> {
       },
       builder: (context, state) {
         if (state is FetchUserCartLoading && state.isFirst) {
-          return
-
-             SkeletonCart()
-          ;
-
+          return SkeletonCart();
         }
         if (_cartItems != null && _cartItems!.isEmpty) {
           return const EmptyCart();

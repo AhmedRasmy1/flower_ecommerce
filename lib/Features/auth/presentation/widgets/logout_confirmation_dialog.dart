@@ -1,3 +1,4 @@
+import 'package:flower_ecommerce/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,7 +10,6 @@ import '../../../../core/resources/values_manager.dart';
 import '../../../../core/utils/cashed_data_shared_preferences.dart';
 import '../view_model/logout_view_model/logout_cubit.dart';
 import '../view_model/logout_view_model/logout_state.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LogoutConfirmationDialog extends StatefulWidget {
   const LogoutConfirmationDialog({super.key});

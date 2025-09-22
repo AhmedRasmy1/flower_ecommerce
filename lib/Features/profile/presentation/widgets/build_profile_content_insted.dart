@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/resources/color_manager.dart';
 import '../../domain/entities/profile_entity.dart';
 import 'option_item.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flower_ecommerce/l10n/app_localizations.dart';
 
 Widget buildProfileContentInstent(
     BuildContext context, ProfileEntity? profile) {

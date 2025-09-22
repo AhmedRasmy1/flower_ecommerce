@@ -1,3 +1,5 @@
+import 'package:flower_ecommerce/l10n/app_localizations.dart';
+
 import '../view_model/signup_view_model/signup_state.dart';
 import '../../../../core/resources/color_manager.dart';
 import '../../../../core/resources/style_manager.dart';
@@ -9,7 +11,6 @@ import '../../../../core/functions/helper.dart';
 import '../../../../core/resources/routes_manager.dart';
 import '../../../../core/widgets/custom_elevated_button.dart';
 import '../view_model/signup_view_model/signup_cubit.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class BlocConsumerForSignupPage extends StatelessWidget {
   final GlobalKey<FormState> formKey;

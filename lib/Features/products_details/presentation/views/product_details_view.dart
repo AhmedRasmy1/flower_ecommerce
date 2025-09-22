@@ -17,7 +17,7 @@ import '../../../../core/widgets/loading_indicator.dart';
 import '../view_model/product_details_cubit.dart';
 import '../view_model/product_details_state.dart';
 import '../widgets/custom_text.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flower_ecommerce/l10n/app_localizations.dart';
 
 class ProductDetailsView extends StatefulWidget {
   final String productId;

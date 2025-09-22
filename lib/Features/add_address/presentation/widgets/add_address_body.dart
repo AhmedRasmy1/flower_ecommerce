@@ -4,7 +4,7 @@ import '../../../../core/widgets/custom_text_form_field.dart';
 import '../manager/add_address_cubit.dart';
 import 'button_save_body.dart';
 import 'city_area_selection.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flower_ecommerce/l10n/app_localizations.dart';
 
 class AddAddressBody extends StatefulWidget {
   const AddAddressBody({

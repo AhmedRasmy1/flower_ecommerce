@@ -14,7 +14,7 @@ import '../../../../core/widgets/custom_app_bar.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 import '../view_model/change_password_cubit.dart';
 import '../view_model/change_password_state.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flower_ecommerce/l10n/app_localizations.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
   const ChangePasswordScreen({super.key});
@@ -71,13 +71,13 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                 var message = extractErrorMessage(state.exception);
                 MotionToast.error(
                   description: Text(message),
-                  animationType: AnimationType.fromLeft,
+                  animationType: AnimationType.slideInFromLeft,
                 ).show(context);
               } else if (state is ChangePasswordSuccessState) {
                 MotionToast.success(
                   description: Text(
                       AppLocalizations.of(context)!.passwordChangedSuccessfuly),
-                  animationType: AnimationType.fromLeft,
+                  animationType: AnimationType.slideInFromLeft,
                 ).show(context);
                 Navigator.pushNamed(context, RoutesManager.loginRoute);
               }

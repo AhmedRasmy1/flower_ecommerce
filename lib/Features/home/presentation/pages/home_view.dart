@@ -19,7 +19,7 @@ import '../../../../core/resources/values_manager.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flower_ecommerce/l10n/app_localizations.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -79,11 +79,12 @@ class _HomeViewState extends State<HomeView> {
                             const SizedBox(
                               width: AppSize.s16,
                             ),
-                             Expanded(child: GestureDetector(
-                                 onTap: () {
-                                   FocusScope.of(context).unfocus();
-                                 },
-                                 child: CustomTextFieldForSearch()))
+                            Expanded(
+                                child: GestureDetector(
+                                    onTap: () {
+                                      FocusScope.of(context).unfocus();
+                                    },
+                                    child: CustomTextFieldForSearch()))
                           ],
                         ),
                         const SizedBox(height: AppSize.s16),
